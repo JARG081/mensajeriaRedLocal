@@ -3,6 +3,8 @@ package com.cliente.cliente.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.cliente.cliente.connection.TcpConnection;
+import com.cliente.cliente.service.ClientState;
+import com.cliente.cliente.events.UiEventBus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,10 +15,14 @@ public class AuthClientService {
     private static final Logger log = LoggerFactory.getLogger(AuthClientService.class);
 
     private final TcpConnection conn;
+    private final ClientState clientState;
+    private final UiEventBus bus;
 
     @Autowired
-    public AuthClientService(TcpConnection conn){
+    public AuthClientService(TcpConnection conn, ClientState clientState, UiEventBus bus){
         this.conn = conn;
+        this.clientState = clientState;
+        this.bus = bus;
     }
 
     // Envía REGISTER y retorna true si comando fue enviado (la confirmación llega por MessageService)
@@ -68,6 +74,10 @@ public class AuthClientService {
             log.info("Enviando LOGIN al servidor (masked): {}", loginLiteral);
             // send the real password to the server; only mask it in logs
             try {
+                // store the username locally so other components know who we attempted to login as
+                clientState.setCurrentUser(user);
+                // notify UI that login was requested
+                bus.publish("LOGIN_REQUESTED", user);
                 conn.sendRaw("LOGIN " + user + "|" + pass);
             } catch (IOException ioe) {
                 log.warn("Enviar LOGIN falló con IOException: {}. Intentando reconectar y reenviar...", ioe.getMessage());

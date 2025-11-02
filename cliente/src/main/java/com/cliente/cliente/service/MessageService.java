@@ -9,6 +9,10 @@ import org.slf4j.LoggerFactory;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import com.cliente.cliente.service.ClientState;
+import com.cliente.cliente.dto.MessageDTO;
 
 @Component
 public class MessageService {
@@ -17,16 +21,18 @@ public class MessageService {
     private final TcpConnection conn;
     private final LocalPersistenceService persistence;
     private final UiEventBus bus;
+    private final ClientState clientState;
     private final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     // Track whether the client is logged in (set when server responds LOGGED)
     private volatile boolean loggedIn = false;
 
     @Autowired
-    public MessageService(TcpConnection conn, LocalPersistenceService persistence, UiEventBus bus){
-        this.conn = conn; this.persistence = persistence; this.bus = bus;
+    public MessageService(TcpConnection conn, LocalPersistenceService persistence, UiEventBus bus, ClientState clientState){
+        this.conn = conn; this.persistence = persistence; this.bus = bus; this.clientState = clientState;
     }
 
-    public boolean sendMessage(String text){
+    // send a message to a specific recipient (recipient may be null or empty for broadcast)
+    public boolean sendMessage(String recipient, String text){
         try {
             if (!loggedIn) {
                 String err = "Debe iniciar sesión antes de enviar mensajes";
@@ -40,7 +46,9 @@ public class MessageService {
                 conn.connect();
             }
 
-            String lineToSend = "MSG " + (text == null ? "" : text);
+            String to = (recipient == null || recipient.isEmpty()) ? "ALL" : recipient;
+            String safeText = text == null ? "" : text;
+            String lineToSend = "MSG " + to + "|" + safeText;
 
             // trazas adicionales: antes de enviar y el literal que se envía
             log.info("Preparando envío. isConnected={}, longitud={} chars", conn.isConnected(), lineToSend.length());
@@ -60,7 +68,7 @@ public class MessageService {
             log.info("Mensaje enviado localmente: [{}] (no confundir con confirmación del servidor)", lineToSend);
 
             // persistir y publicar localmente para que el ChatPanel muestre el propio mensaje
-            String stamped = "[" + LocalDateTime.now().format(fmt) + "] Yo: " + text;
+            String stamped = "[" + LocalDateTime.now().format(fmt) + "] Yo -> " + (recipient == null || recipient.isEmpty() ? "ALL" : recipient) + ": " + text;
             persistence.appendMessage(stamped);
             bus.publish("SERVER_LINE", stamped);
 
@@ -82,15 +90,44 @@ public class MessageService {
         log.debug("Procesando línea del servidor: {}", trimmed);
         log.info("mensaje llega a funcion de MessageService.handleServerLine correctamente. Línea='{}'", trimmed);
         // publicar la línea completa para que ChatPanel muestre
-        persistence.appendMessage("[SRV] " + trimmed);
-        bus.publish("SERVER_LINE", "[SRV] " + trimmed);
+    persistence.appendMessage("[SRV] " + trimmed);
+    // bus.publish("SERVER_LINE", "[SRV] " + trimmed); // evitar log global en UI
 
         // manejar respuestas de control
+        // lista de usuarios conectados enviada por el servidor: "USERS user1,user2"
+        if (trimmed.startsWith("USERS ")) {
+            String payload = trimmed.length() > 6 ? trimmed.substring(6).trim() : "";
+            List<String> users = new ArrayList<>();
+            if (!payload.isEmpty()) {
+                for (String u : payload.split(",")) {
+                    users.add(u.trim());
+                }
+            }
+            log.info("Recibida lista de usuarios: {}", users);
+            bus.publish("USERS_LIST", users);
+            return;
+        }
+
+        // mensajes entrantes reenviados por el servidor: "MSGFROM sender|text"
+        if (trimmed.startsWith("MSGFROM ")) {
+            String payload = trimmed.length() > 8 ? trimmed.substring(8) : "";
+            String[] p = payload.split("\\|", 2);
+            String sender = p.length > 0 ? p[0] : "";
+            String text = p.length > 1 ? p[1] : "";
+            MessageDTO dto = new MessageDTO(sender, text, System.currentTimeMillis());
+            log.info("Mensaje entrante de {}: {}", sender, text);
+            // publicar como mensaje entrante para que la UI lo ubique en la conversación correcta
+            bus.publish("INCOMING_MSG", dto);
+            return;
+        }
+
         if ("LOGGED".equalsIgnoreCase(trimmed)) {
             // mark logged in so the UI and services can enable sending
             loggedIn = true;
             log.info("Server reported LOGGED (user successfully logged in)");
-            bus.publish("USER_LOGGED", null);
+            // publish username so UI can update title and other components
+            String user = clientState == null ? null : clientState.getCurrentUser();
+            bus.publish("USER_LOGGED", user);
             return;
         }
         if ("REGISTERED".equalsIgnoreCase(trimmed)) {

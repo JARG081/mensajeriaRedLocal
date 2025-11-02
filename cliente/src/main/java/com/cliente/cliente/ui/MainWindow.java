@@ -49,9 +49,13 @@ public class MainWindow {
         miChat.addActionListener(e -> showChat());
         m.add(miLogin); m.add(miChat); mb.add(m);
         frame.setJMenuBar(mb);
-
-        // suscribirse para cambiar vista cuando el bus indica LOGIN correcto
-        bus.subscribe("USER_LOGGED", payload -> SwingUtilities.invokeLater(this::showChat));
+        bus.subscribe("USER_LOGGED", payload -> SwingUtilities.invokeLater(() -> {
+            // payload is expected to be the username
+            if (payload != null) {
+                frame.setTitle("Cliente Chat - " + payload.toString());
+            }
+            showChat();
+        }));
     }
 
     public void show() {

@@ -59,10 +59,13 @@ public class ClientWorker implements Runnable {
             log.error("Error en worker para cliente {}: {}", socket.getRemoteSocketAddress(), e.toString());
         } finally {
             try { socket.close(); } catch (IOException ignored) {}
-            if (authenticatedUser != null)
+            if (authenticatedUser != null) {
                 log.info("Usuario '{}' desconectado.", authenticatedUser);
-            else
+                // remove from registry and notify others
+                try { ConnectedClients.unregister(authenticatedUser); } catch (Exception ignored) {}
+            } else {
                 log.info("Cliente {} desconectado sin autenticarse.", socket.getRemoteSocketAddress());
+            }
         }
     }
 
@@ -105,6 +108,8 @@ public class ClientWorker implements Runnable {
             authenticatedUser = p[0];
             log.info("Login exitoso: usuario='{}' desde {}", authenticatedUser, socket.getRemoteSocketAddress());
             try { com.proyecto.demo.ui.UiServerWindow.publishMessageToUi("Login exitoso: " + authenticatedUser + " desde " + socket.getRemoteSocketAddress()); } catch (Exception ignored) {}
+            // register the authenticated user so we can broadcast connected users
+            try { ConnectedClients.register(authenticatedUser, out); } catch (Exception ignored) {}
             out.write("LOGGED\n");
         } else {
             log.warn("Login fallido: usuario='{}' desde {}", p[0], socket.getRemoteSocketAddress());
@@ -123,15 +128,37 @@ public class ClientWorker implements Runnable {
             out.flush();
             return;
         }
+        String payload = line.substring(4);
+        String recipient = "";
+        String messageText = "";
+        String[] parts = payload.split("\\|", 2);
+        if (parts.length >= 2) {
+            recipient = parts[0];
+            messageText = parts[1];
+        } else {
+            // fallback: no recipient included
+            recipient = "ALL";
+            messageText = payload;
+        }
 
-        String mensaje = line.substring(4);
         String hora = LocalDateTime.now().format(fmt);
-        log.info("[{}] {}: {}", hora, authenticatedUser, mensaje);
+        // Log in required format
+        String registro = String.format("Mensaje enviado por: %s Para %s Contenido: %s", authenticatedUser, recipient, messageText);
+        log.info("[{}] {}", hora, registro);
+        // also print to console and server UI
+        System.out.println("[MSG] " + hora + " " + registro + " (desde " + socket.getRemoteSocketAddress() + ")");
+        try { com.proyecto.demo.ui.UiServerWindow.publishMessageToUi("[MSG] " + hora + " " + registro + " (desde " + socket.getRemoteSocketAddress() + ")"); } catch (Exception ignored) {}
 
-        // Traza visible por consola
-        System.out.println("[MSG] " + hora + " " + authenticatedUser + ": " + mensaje +
-                " (desde " + socket.getRemoteSocketAddress() + ")");
-    try { com.proyecto.demo.ui.UiServerWindow.publishMessageToUi("[MSG] " + hora + " " + authenticatedUser + ": " + mensaje + " (desde " + socket.getRemoteSocketAddress() + ")"); } catch (Exception ignored) {}
+        // Deliver message: if recipient == ALL => broadcast; else send only to recipient (if connected)
+        String forwardLine = "MSGFROM " + authenticatedUser + "|" + messageText + "\n";
+        if ("ALL".equalsIgnoreCase(recipient)) {
+            ConnectedClients.broadcastMessage(authenticatedUser, messageText);
+        } else {
+            boolean sent = ConnectedClients.sendTo(recipient, forwardLine);
+            if (!sent) {
+                log.warn("No se pudo entregar mensaje a {} (no conectado)", recipient);
+            }
+        }
 
         out.write("SENT\n");
         out.flush();
