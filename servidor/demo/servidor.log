@@ -1,628 +1,97 @@
-2025-10-30T00:00:05.120-05:00 ERROR 4292 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Error en worker para cliente /192.168.40.12:50771: java.net.SocketException: Connection reset
-
-java.net.SocketException: Connection reset
-	at java.base/sun.nio.ch.NioSocketImpl.implRead(Unknown Source) ~[na:na]
-	at java.base/sun.nio.ch.NioSocketImpl.read(Unknown Source) ~[na:na]
-	at java.base/sun.nio.ch.NioSocketImpl$1.read(Unknown Source) ~[na:na]
-	at java.base/java.net.Socket$SocketInputStream.read(Unknown Source) ~[na:na]
-	at java.base/sun.nio.cs.StreamDecoder.readBytes(Unknown Source) ~[na:na]
-	at java.base/sun.nio.cs.StreamDecoder.implRead(Unknown Source) ~[na:na]
-	at java.base/sun.nio.cs.StreamDecoder.lockedRead(Unknown Source) ~[na:na]
-	at java.base/sun.nio.cs.StreamDecoder.read(Unknown Source) ~[na:na]
-	at java.base/java.io.InputStreamReader.read(Unknown Source) ~[na:na]
-	at java.base/java.io.BufferedReader.fill(Unknown Source) ~[na:na]
-	at java.base/java.io.BufferedReader.implReadLine(Unknown Source) ~[na:na]
-	at java.base/java.io.BufferedReader.readLine(Unknown Source) ~[na:na]
-	at java.base/java.io.BufferedReader.readLine(Unknown Source) ~[na:na]
-	at com.proyecto.demo.server.ClientWorker.run(ClientWorker.java:40) ~[classes/:na]
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source) ~[na:na]
-	at java.base/java.util.concurrent.FutureTask.run(Unknown Source) ~[na:na]
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source) ~[na:na]
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source) ~[na:na]
-	at java.base/java.lang.Thread.run(Unknown Source) ~[na:na]
-
-2025-10-30T00:00:05.126-05:00  INFO 4292 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.12:50771 desconectado sin autenticarse
-2025-10-30T00:00:05.145-05:00  INFO 4292 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : === Fin de conexión con /192.168.40.12:50771 ===
-2025-10-30T00:00:33.329-05:00  INFO 20216 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 20216 (C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\target\classes started by josem in C:\Users\josem\OneDrive\Escritorio\Nueva carpeta)
-2025-10-30T00:00:33.330-05:00 DEBUG 20216 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
-2025-10-30T00:00:33.331-05:00  INFO 20216 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
-2025-10-30T00:00:33.637-05:00  INFO 20216 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Iniciando servicio de autenticación. Archivo usuarios configurado en 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\usuarios.txt'
-2025-10-30T00:00:33.646-05:00  INFO 20216 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\usuarios.txt' finalizada. 1 registros leídos.
-2025-10-30T00:00:33.647-05:00  INFO 20216 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Carga de usuarios completada. Usuarios cargados: 1
-2025-10-30T00:00:33.814-05:00  INFO 20216 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
-2025-10-30T00:00:33.911-05:00  INFO 20216 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
-2025-10-30T00:00:33.911-05:00  INFO 20216 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (invokeAndWait)
-2025-10-30T00:00:33.920-05:00  INFO 20216 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 192.168.40.18:8080 (bind=/192.168.40.18) | UI enabled=true
-2025-10-30T00:00:34.006-05:00  INFO 20216 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 1.019 seconds (process running for 1.27)
-2025-10-30T00:00:34.008-05:00  INFO 20216 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=192.168.40.18, port=8080
-2025-10-30T00:00:34.009-05:00  INFO 20216 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Archivo de usuarios configurado: C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\usuarios.txt
-2025-10-30T00:00:34.009-05:00  INFO 20216 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
-2025-10-30T00:00:34.010-05:00  INFO 20216 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
-2025-10-30T00:00:47.102-05:00  INFO 20216 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /192.168.40.12:62870
-2025-10-30T00:00:50.085-05:00  INFO 20216 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : === Nueva conexión entrante desde /192.168.40.12:62870 ===
-2025-10-30T00:00:50.086-05:00 DEBUG 20216 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Handshake inicial enviado a /192.168.40.12:62870
-2025-10-30T00:00:50.087-05:00 DEBUG 20216 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Comando recibido de /192.168.40.12:62870: 'LOGIN manuel2|1234'
-2025-10-30T00:00:50.090-05:00  INFO 20216 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Login correcto: usuario='manuel2' desde /192.168.40.12:62870
-2025-10-30T00:01:03.732-05:00 ERROR 20216 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Error en worker para cliente /192.168.40.12:62870: java.net.SocketException: Connection reset
-
-java.net.SocketException: Connection reset
-	at java.base/sun.nio.ch.NioSocketImpl.implRead(Unknown Source) ~[na:na]
-	at java.base/sun.nio.ch.NioSocketImpl.read(Unknown Source) ~[na:na]
-	at java.base/sun.nio.ch.NioSocketImpl$1.read(Unknown Source) ~[na:na]
-	at java.base/java.net.Socket$SocketInputStream.read(Unknown Source) ~[na:na]
-	at java.base/sun.nio.cs.StreamDecoder.readBytes(Unknown Source) ~[na:na]
-	at java.base/sun.nio.cs.StreamDecoder.implRead(Unknown Source) ~[na:na]
-	at java.base/sun.nio.cs.StreamDecoder.lockedRead(Unknown Source) ~[na:na]
-	at java.base/sun.nio.cs.StreamDecoder.read(Unknown Source) ~[na:na]
-	at java.base/java.io.InputStreamReader.read(Unknown Source) ~[na:na]
-	at java.base/java.io.BufferedReader.fill(Unknown Source) ~[na:na]
-	at java.base/java.io.BufferedReader.implReadLine(Unknown Source) ~[na:na]
-	at java.base/java.io.BufferedReader.readLine(Unknown Source) ~[na:na]
-	at java.base/java.io.BufferedReader.readLine(Unknown Source) ~[na:na]
-	at com.proyecto.demo.server.ClientWorker.run(ClientWorker.java:40) ~[classes/:na]
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source) ~[na:na]
-	at java.base/java.util.concurrent.FutureTask.run(Unknown Source) ~[na:na]
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source) ~[na:na]
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source) ~[na:na]
-	at java.base/java.lang.Thread.run(Unknown Source) ~[na:na]
-
-2025-10-30T00:01:03.737-05:00  INFO 20216 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Usuario 'manuel2' desconectado (/192.168.40.12:62870)
-2025-10-30T00:01:03.737-05:00  INFO 20216 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : === Fin de conexión con /192.168.40.12:62870 ===
-2025-10-30T00:03:23.097-05:00  INFO 3348 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 3348 (C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\target\classes started by josem in C:\Users\josem\OneDrive\Escritorio\Nueva carpeta)
-2025-10-30T00:03:23.099-05:00 DEBUG 3348 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
-2025-10-30T00:03:23.100-05:00  INFO 3348 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
-2025-10-30T00:03:23.393-05:00  INFO 3348 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Iniciando servicio de autenticación. Archivo usuarios configurado en 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\usuarios.txt'
-2025-10-30T00:03:23.395-05:00  INFO 3348 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\usuarios.txt' finalizada. 1 registros leídos.
-2025-10-30T00:03:23.395-05:00  INFO 3348 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Carga de usuarios completada. Usuarios cargados: 1
-2025-10-30T00:03:23.572-05:00  INFO 3348 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
-2025-10-30T00:03:23.669-05:00  INFO 3348 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
-2025-10-30T00:03:23.670-05:00  INFO 3348 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (invokeAndWait)
-2025-10-30T00:03:23.678-05:00  INFO 3348 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 192.168.40.18:8080 (bind=/192.168.40.18) | UI enabled=true
-2025-10-30T00:03:23.761-05:00  INFO 3348 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 0.987 seconds (process running for 1.235)
-2025-10-30T00:03:23.787-05:00  INFO 3348 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=192.168.40.18, port=8080
-2025-10-30T00:03:23.791-05:00  INFO 3348 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Archivo de usuarios configurado: C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\usuarios.txt
-2025-10-30T00:03:23.791-05:00  INFO 3348 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
-2025-10-30T00:03:23.791-05:00  INFO 3348 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
-2025-10-30T00:03:36.299-05:00  INFO 3348 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /192.168.40.12:54916
-2025-10-30T00:03:39.697-05:00  INFO 3348 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : === Nueva conexión entrante desde /192.168.40.12:54916 ===
-2025-10-30T00:03:39.698-05:00 DEBUG 3348 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Handshake inicial enviado a /192.168.40.12:54916
-2025-10-30T00:03:39.699-05:00 DEBUG 3348 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Comando recibido de /192.168.40.12:54916: 'REGISTER manuel3|1234'
-2025-10-30T00:03:39.703-05:00  INFO 3348 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.FileAuthService   : Usuario 'manuel3' persistido en 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\usuarios.txt'. Total usuarios ahora: 2
-2025-10-30T00:03:39.704-05:00  INFO 3348 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.FileAuthService   : Alerta: nuevo usuario registrado -> manuel3
-2025-10-30T00:03:39.704-05:00  INFO 3348 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Registro exitoso: usuario='manuel3' desde /192.168.40.12:54916
-2025-10-30T00:03:48.748-05:00 ERROR 3348 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Error en worker para cliente /192.168.40.12:54916: java.net.SocketException: Connection reset
-
-java.net.SocketException: Connection reset
-	at java.base/sun.nio.ch.NioSocketImpl.implRead(Unknown Source) ~[na:na]
-	at java.base/sun.nio.ch.NioSocketImpl.read(Unknown Source) ~[na:na]
-	at java.base/sun.nio.ch.NioSocketImpl$1.read(Unknown Source) ~[na:na]
-	at java.base/java.net.Socket$SocketInputStream.read(Unknown Source) ~[na:na]
-	at java.base/sun.nio.cs.StreamDecoder.readBytes(Unknown Source) ~[na:na]
-	at java.base/sun.nio.cs.StreamDecoder.implRead(Unknown Source) ~[na:na]
-	at java.base/sun.nio.cs.StreamDecoder.lockedRead(Unknown Source) ~[na:na]
-	at java.base/sun.nio.cs.StreamDecoder.read(Unknown Source) ~[na:na]
-	at java.base/java.io.InputStreamReader.read(Unknown Source) ~[na:na]
-	at java.base/java.io.BufferedReader.fill(Unknown Source) ~[na:na]
-	at java.base/java.io.BufferedReader.implReadLine(Unknown Source) ~[na:na]
-	at java.base/java.io.BufferedReader.readLine(Unknown Source) ~[na:na]
-	at java.base/java.io.BufferedReader.readLine(Unknown Source) ~[na:na]
-	at com.proyecto.demo.server.ClientWorker.run(ClientWorker.java:40) ~[classes/:na]
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source) ~[na:na]
-	at java.base/java.util.concurrent.FutureTask.run(Unknown Source) ~[na:na]
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source) ~[na:na]
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source) ~[na:na]
-	at java.base/java.lang.Thread.run(Unknown Source) ~[na:na]
-
-2025-10-30T00:03:48.751-05:00  INFO 3348 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.12:54916 desconectado sin autenticarse
-2025-10-30T00:03:48.752-05:00  INFO 3348 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : === Fin de conexión con /192.168.40.12:54916 ===
-2025-10-30T00:06:06.615-05:00  INFO 3348 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /192.168.40.12:50494
-2025-10-30T00:06:10.608-05:00  INFO 3348 --- [servidor] [pool-2-thread-3] com.proyecto.demo.server.ClientWorker    : === Nueva conexión entrante desde /192.168.40.12:50494 ===
-2025-10-30T00:06:10.609-05:00 DEBUG 3348 --- [servidor] [pool-2-thread-3] com.proyecto.demo.server.ClientWorker    : Handshake inicial enviado a /192.168.40.12:50494
-2025-10-30T00:06:10.609-05:00 DEBUG 3348 --- [servidor] [pool-2-thread-3] com.proyecto.demo.server.ClientWorker    : Comando recibido de /192.168.40.12:50494: 'REGISTER manuel3|1234'
-2025-10-30T00:06:10.609-05:00  WARN 3348 --- [servidor] [pool-2-thread-3] com.proyecto.demo.server.ClientWorker    : Registro fallido (usuario existente): 'manuel3'
-2025-10-30T00:06:32.089-05:00 ERROR 3348 --- [servidor] [pool-2-thread-3] com.proyecto.demo.server.ClientWorker    : Error en worker para cliente /192.168.40.12:50494: java.net.SocketException: Connection reset
-
-java.net.SocketException: Connection reset
-	at java.base/sun.nio.ch.NioSocketImpl.implRead(Unknown Source) ~[na:na]
-	at java.base/sun.nio.ch.NioSocketImpl.read(Unknown Source) ~[na:na]
-	at java.base/sun.nio.ch.NioSocketImpl$1.read(Unknown Source) ~[na:na]
-	at java.base/java.net.Socket$SocketInputStream.read(Unknown Source) ~[na:na]
-	at java.base/sun.nio.cs.StreamDecoder.readBytes(Unknown Source) ~[na:na]
-	at java.base/sun.nio.cs.StreamDecoder.implRead(Unknown Source) ~[na:na]
-	at java.base/sun.nio.cs.StreamDecoder.lockedRead(Unknown Source) ~[na:na]
-	at java.base/sun.nio.cs.StreamDecoder.read(Unknown Source) ~[na:na]
-	at java.base/java.io.InputStreamReader.read(Unknown Source) ~[na:na]
-	at java.base/java.io.BufferedReader.fill(Unknown Source) ~[na:na]
-	at java.base/java.io.BufferedReader.implReadLine(Unknown Source) ~[na:na]
-	at java.base/java.io.BufferedReader.readLine(Unknown Source) ~[na:na]
-	at java.base/java.io.BufferedReader.readLine(Unknown Source) ~[na:na]
-	at com.proyecto.demo.server.ClientWorker.run(ClientWorker.java:40) ~[classes/:na]
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source) ~[na:na]
-	at java.base/java.util.concurrent.FutureTask.run(Unknown Source) ~[na:na]
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source) ~[na:na]
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source) ~[na:na]
-	at java.base/java.lang.Thread.run(Unknown Source) ~[na:na]
-
-2025-10-30T00:06:32.090-05:00  INFO 3348 --- [servidor] [pool-2-thread-3] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.12:50494 desconectado sin autenticarse
-2025-10-30T00:06:32.090-05:00  INFO 3348 --- [servidor] [pool-2-thread-3] com.proyecto.demo.server.ClientWorker    : === Fin de conexión con /192.168.40.12:50494 ===
-2025-10-30T00:13:42.097-05:00  INFO 14240 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 14240 (C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\target\classes started by josem in C:\Users\josem\OneDrive\Escritorio\Nueva carpeta)
-2025-10-30T00:13:42.098-05:00 DEBUG 14240 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
-2025-10-30T00:13:42.099-05:00  INFO 14240 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
-2025-10-30T00:13:42.414-05:00  INFO 14240 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Iniciando servicio de autenticación. Archivo usuarios configurado en 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\usuarios.txt'
-2025-10-30T00:13:42.423-05:00  INFO 14240 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\usuarios.txt' finalizada. 2 registros leídos.
-2025-10-30T00:13:42.424-05:00  INFO 14240 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Carga de usuarios completada. Usuarios cargados: 2
-2025-10-30T00:13:42.612-05:00  INFO 14240 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
-2025-10-30T00:13:42.703-05:00  INFO 14240 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
-2025-10-30T00:13:42.703-05:00  INFO 14240 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (invokeAndWait)
-2025-10-30T00:13:42.710-05:00  INFO 14240 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 192.168.40.18:8080 (bind=/192.168.40.18) | UI enabled=true
-2025-10-30T00:13:42.789-05:00  INFO 14240 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 1.042 seconds (process running for 1.366)
-2025-10-30T00:13:42.790-05:00  INFO 14240 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=192.168.40.18, port=8080
-2025-10-30T00:13:42.791-05:00  INFO 14240 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Archivo de usuarios configurado: C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\usuarios.txt
-2025-10-30T00:13:42.791-05:00  INFO 14240 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
-2025-10-30T00:13:42.791-05:00  INFO 14240 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
-2025-10-30T00:13:54.810-05:00  INFO 14240 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /192.168.40.12:62482
-2025-10-30T00:13:57.925-05:00  INFO 14240 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : === Nueva conexión entrante desde /192.168.40.12:62482 ===
-2025-10-30T00:13:57.927-05:00 DEBUG 14240 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Handshake inicial enviado a /192.168.40.12:62482
-2025-10-30T00:13:57.928-05:00 DEBUG 14240 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Comando recibido de /192.168.40.12:62482: 'REGISTER manuel10|1234'
-2025-10-30T00:13:57.932-05:00  INFO 14240 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.FileAuthService   : Usuario 'manuel10' persistido en 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\usuarios.txt'. Total usuarios ahora: 3
-2025-10-30T00:13:57.932-05:00  INFO 14240 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.FileAuthService   : Alerta: nuevo usuario registrado -> manuel10
-2025-10-30T00:13:57.932-05:00  INFO 14240 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Registro exitoso: usuario='manuel10' desde /192.168.40.12:62482
-2025-10-30T00:14:11.437-05:00 ERROR 14240 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Error en worker para cliente /192.168.40.12:62482: java.net.SocketException: Connection reset
-
-java.net.SocketException: Connection reset
-	at java.base/sun.nio.ch.NioSocketImpl.implRead(Unknown Source) ~[na:na]
-	at java.base/sun.nio.ch.NioSocketImpl.read(Unknown Source) ~[na:na]
-	at java.base/sun.nio.ch.NioSocketImpl$1.read(Unknown Source) ~[na:na]
-	at java.base/java.net.Socket$SocketInputStream.read(Unknown Source) ~[na:na]
-	at java.base/sun.nio.cs.StreamDecoder.readBytes(Unknown Source) ~[na:na]
-	at java.base/sun.nio.cs.StreamDecoder.implRead(Unknown Source) ~[na:na]
-	at java.base/sun.nio.cs.StreamDecoder.lockedRead(Unknown Source) ~[na:na]
-	at java.base/sun.nio.cs.StreamDecoder.read(Unknown Source) ~[na:na]
-	at java.base/java.io.InputStreamReader.read(Unknown Source) ~[na:na]
-	at java.base/java.io.BufferedReader.fill(Unknown Source) ~[na:na]
-	at java.base/java.io.BufferedReader.implReadLine(Unknown Source) ~[na:na]
-	at java.base/java.io.BufferedReader.readLine(Unknown Source) ~[na:na]
-	at java.base/java.io.BufferedReader.readLine(Unknown Source) ~[na:na]
-	at com.proyecto.demo.server.ClientWorker.run(ClientWorker.java:40) ~[classes/:na]
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source) ~[na:na]
-	at java.base/java.util.concurrent.FutureTask.run(Unknown Source) ~[na:na]
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source) ~[na:na]
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source) ~[na:na]
-	at java.base/java.lang.Thread.run(Unknown Source) ~[na:na]
-
-2025-10-30T00:14:11.440-05:00  INFO 14240 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.12:62482 desconectado sin autenticarse
-2025-10-30T00:14:11.440-05:00  INFO 14240 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : === Fin de conexión con /192.168.40.12:62482 ===
-2025-10-30T00:15:08.930-05:00  INFO 26500 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 26500 (C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\target\classes started by josem in C:\Users\josem\OneDrive\Escritorio\Nueva carpeta)
-2025-10-30T00:15:08.931-05:00 DEBUG 26500 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
-2025-10-30T00:15:08.932-05:00  INFO 26500 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
-2025-10-30T00:15:09.230-05:00  INFO 26500 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Iniciando servicio de autenticación. Archivo usuarios configurado en 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\usuarios.txt'
-2025-10-30T00:15:09.239-05:00  INFO 26500 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\usuarios.txt' finalizada. 3 registros leídos.
-2025-10-30T00:15:09.240-05:00  INFO 26500 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Carga de usuarios completada. Usuarios cargados: 3
-2025-10-30T00:15:09.414-05:00  INFO 26500 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
-2025-10-30T00:15:09.510-05:00  INFO 26500 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
-2025-10-30T00:15:09.511-05:00  INFO 26500 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (invokeAndWait)
-2025-10-30T00:15:09.522-05:00  INFO 26500 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 192.168.40.18:8080 (bind=/192.168.40.18) | UI enabled=true
-2025-10-30T00:15:09.639-05:00  INFO 26500 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 1.015 seconds (process running for 1.293)
-2025-10-30T00:15:09.641-05:00  INFO 26500 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=192.168.40.18, port=8080
-2025-10-30T00:15:09.643-05:00  INFO 26500 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Archivo de usuarios configurado: C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\usuarios.txt
-2025-10-30T00:15:09.643-05:00  INFO 26500 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
-2025-10-30T00:15:09.643-05:00  INFO 26500 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
-2025-10-30T00:15:19.845-05:00  INFO 26500 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /192.168.40.12:57185
-2025-10-30T00:15:26.377-05:00  INFO 26500 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.TcpServer       : Conexión desde /192.168.40.12:57185 rechazada (aprobada=false)
-2025-10-30T00:15:28.875-05:00  INFO 26500 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /192.168.40.12:55144
-2025-10-30T00:15:31.907-05:00  INFO 26500 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : === Nueva conexión entrante desde /192.168.40.12:55144 ===
-2025-10-30T00:15:31.909-05:00 DEBUG 26500 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Handshake inicial enviado a /192.168.40.12:55144
-2025-10-30T00:15:31.911-05:00 DEBUG 26500 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Comando recibido de /192.168.40.12:55144: 'REGISTER manuel123|1234'
-2025-10-30T00:15:31.916-05:00  INFO 26500 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.FileAuthService   : Usuario 'manuel123' persistido en 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\usuarios.txt'. Total usuarios ahora: 4
-2025-10-30T00:15:31.916-05:00  INFO 26500 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.FileAuthService   : Alerta: nuevo usuario registrado -> manuel123
-2025-10-30T00:15:31.916-05:00  INFO 26500 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Registro exitoso: usuario='manuel123' desde /192.168.40.12:55144
-2025-10-30T00:15:42.629-05:00 ERROR 26500 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Error en worker para cliente /192.168.40.12:55144: java.net.SocketException: Connection reset
-
-java.net.SocketException: Connection reset
-	at java.base/sun.nio.ch.NioSocketImpl.implRead(Unknown Source) ~[na:na]
-	at java.base/sun.nio.ch.NioSocketImpl.read(Unknown Source) ~[na:na]
-	at java.base/sun.nio.ch.NioSocketImpl$1.read(Unknown Source) ~[na:na]
-	at java.base/java.net.Socket$SocketInputStream.read(Unknown Source) ~[na:na]
-	at java.base/sun.nio.cs.StreamDecoder.readBytes(Unknown Source) ~[na:na]
-	at java.base/sun.nio.cs.StreamDecoder.implRead(Unknown Source) ~[na:na]
-	at java.base/sun.nio.cs.StreamDecoder.lockedRead(Unknown Source) ~[na:na]
-	at java.base/sun.nio.cs.StreamDecoder.read(Unknown Source) ~[na:na]
-	at java.base/java.io.InputStreamReader.read(Unknown Source) ~[na:na]
-	at java.base/java.io.BufferedReader.fill(Unknown Source) ~[na:na]
-	at java.base/java.io.BufferedReader.implReadLine(Unknown Source) ~[na:na]
-	at java.base/java.io.BufferedReader.readLine(Unknown Source) ~[na:na]
-	at java.base/java.io.BufferedReader.readLine(Unknown Source) ~[na:na]
-	at com.proyecto.demo.server.ClientWorker.run(ClientWorker.java:40) ~[classes/:na]
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source) ~[na:na]
-	at java.base/java.util.concurrent.FutureTask.run(Unknown Source) ~[na:na]
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source) ~[na:na]
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source) ~[na:na]
-	at java.base/java.lang.Thread.run(Unknown Source) ~[na:na]
-
-2025-10-30T00:15:42.633-05:00  INFO 26500 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.12:55144 desconectado sin autenticarse
-2025-10-30T00:15:42.634-05:00  INFO 26500 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : === Fin de conexión con /192.168.40.12:55144 ===
-2025-10-30T00:21:27.007-05:00  INFO 21132 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 21132 (C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\target\classes started by josem in C:\Users\josem\OneDrive\Escritorio\Nueva carpeta)
-2025-10-30T00:21:27.008-05:00 DEBUG 21132 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
-2025-10-30T00:21:27.009-05:00  INFO 21132 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
-2025-10-30T00:21:27.309-05:00  INFO 21132 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Iniciando servicio de autenticación. Archivo usuarios configurado en 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\usuarios.txt'
-2025-10-30T00:21:27.319-05:00  INFO 21132 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\usuarios.txt' finalizada. 4 registros leídos.
-2025-10-30T00:21:27.320-05:00  INFO 21132 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Carga de usuarios completada. Usuarios cargados: 4
-2025-10-30T00:21:27.399-05:00  INFO 21132 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 0.727 seconds (process running for 0.978)
-2025-10-30T00:21:27.402-05:00  INFO 21132 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=192.168.40.18, port=8080
-2025-10-30T00:21:27.402-05:00  INFO 21132 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Archivo de usuarios configurado: C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\usuarios.txt
-2025-10-30T00:21:27.402-05:00  WARN 21132 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer no inyectado
-2025-10-30T00:21:27.402-05:00  INFO 21132 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
-2025-10-30T00:21:37.466-05:00  INFO 7932 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 7932 (C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\target\classes started by josem in C:\Users\josem\OneDrive\Escritorio\Nueva carpeta)
-2025-10-30T00:21:37.467-05:00 DEBUG 7932 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
-2025-10-30T00:21:37.468-05:00  INFO 7932 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
-2025-10-30T00:21:37.806-05:00  INFO 7932 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Iniciando servicio de autenticación. Archivo usuarios configurado en 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\usuarios.txt'
-2025-10-30T00:21:37.807-05:00  INFO 7932 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\usuarios.txt' finalizada. 4 registros leídos.
-2025-10-30T00:21:37.807-05:00  INFO 7932 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Carga de usuarios completada. Usuarios cargados: 4
-2025-10-30T00:21:37.887-05:00  INFO 7932 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 0.792 seconds (process running for 1.03)
-2025-10-30T00:21:37.889-05:00  INFO 7932 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=192.168.40.18, port=8080
-2025-10-30T00:21:37.889-05:00  INFO 7932 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Archivo de usuarios configurado: C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\usuarios.txt
-2025-10-30T00:21:37.889-05:00  WARN 7932 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer no inyectado
-2025-10-30T00:21:37.889-05:00  INFO 7932 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
-2025-10-30T00:25:00.381-05:00  INFO 26540 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 24.0.2 with PID 26540 (C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\target\classes started by josem in C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo)
-2025-10-30T00:25:00.383-05:00 DEBUG 26540 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
-2025-10-30T00:25:00.384-05:00  INFO 26540 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
-2025-10-30T00:25:00.679-05:00  INFO 26540 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Iniciando servicio de autenticación. Archivo usuarios configurado en 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\usuarios.txt'
-2025-10-30T00:25:00.680-05:00  INFO 26540 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\usuarios.txt' finalizada. 4 registros leídos.
-2025-10-30T00:25:00.680-05:00  INFO 26540 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Carga de usuarios completada. Usuarios cargados: 4
-2025-10-30T00:25:00.769-05:00  INFO 26540 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 0.71 seconds (process running for 0.92)
-2025-10-30T00:25:00.771-05:00  INFO 26540 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=192.168.40.18, port=8080
-2025-10-30T00:25:00.772-05:00  INFO 26540 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Archivo de usuarios configurado: C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\usuarios.txt
-2025-10-30T00:25:00.772-05:00  WARN 26540 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer no inyectado
-2025-10-30T00:25:00.772-05:00  INFO 26540 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
-2025-10-30T00:26:23.793-05:00  INFO 8512 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 24.0.2 with PID 8512 (C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\target\classes started by josem in C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo)
-2025-10-30T00:26:23.796-05:00 DEBUG 8512 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
-2025-10-30T00:26:23.796-05:00  INFO 8512 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
-2025-10-30T00:26:24.098-05:00  INFO 8512 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Iniciando servicio de autenticación. Archivo usuarios configurado en 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\usuarios.txt'
-2025-10-30T00:26:24.099-05:00  INFO 8512 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\usuarios.txt' finalizada. 4 registros leídos.
-2025-10-30T00:26:24.100-05:00  INFO 8512 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Carga de usuarios completada. Usuarios cargados: 4
-2025-10-30T00:26:24.110-05:00  INFO 8512 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 192.168.40.18:8080
-2025-10-30T00:26:24.174-05:00  INFO 8512 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 0.69 seconds (process running for 0.918)
-2025-10-30T00:26:24.175-05:00  INFO 8512 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=192.168.40.18, port=8080
-2025-10-30T00:26:24.176-05:00  INFO 8512 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Archivo de usuarios configurado: C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\usuarios.txt
-2025-10-30T00:26:24.176-05:00  INFO 8512 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
-2025-10-30T00:26:24.176-05:00  INFO 8512 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
-2025-10-30T00:43:42.256-05:00  INFO 2256 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 2256 (C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\target\classes started by josem in C:\Users\josem\OneDrive\Escritorio\Nueva carpeta)
-2025-10-30T00:43:42.258-05:00 DEBUG 2256 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
-2025-10-30T00:43:42.259-05:00  INFO 2256 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
-2025-10-30T00:43:42.621-05:00  INFO 2256 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Iniciando servicio de autenticación. Archivo usuarios configurado en 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\usuarios.txt'
-2025-10-30T00:43:42.623-05:00  INFO 2256 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\usuarios.txt' finalizada. 4 registros leídos.
-2025-10-30T00:43:42.623-05:00  INFO 2256 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Carga de usuarios completada. Usuarios cargados: 4
-2025-10-30T00:43:42.632-05:00  INFO 2256 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 192.168.40.18:8080
-2025-10-30T00:43:42.713-05:00  INFO 2256 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 0.886 seconds (process running for 1.157)
-2025-10-30T00:43:42.716-05:00  INFO 2256 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=192.168.40.18, port=8080
-2025-10-30T00:43:42.716-05:00  INFO 2256 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Archivo de usuarios configurado: C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\usuarios.txt
-2025-10-30T00:43:42.717-05:00  INFO 2256 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
-2025-10-30T00:43:42.717-05:00  INFO 2256 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
-2025-10-30T00:44:12.706-05:00  INFO 11668 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 11668 (C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\target\classes started by josem in C:\Users\josem\OneDrive\Escritorio\Nueva carpeta)
-2025-10-30T00:44:12.707-05:00 DEBUG 11668 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
-2025-10-30T00:44:12.708-05:00  INFO 11668 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
-2025-10-30T00:44:13.032-05:00  INFO 11668 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Iniciando servicio de autenticación. Archivo usuarios configurado en 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\usuarios.txt'
-2025-10-30T00:44:13.034-05:00  INFO 11668 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\usuarios.txt' finalizada. 4 registros leídos.
-2025-10-30T00:44:13.034-05:00  INFO 11668 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Carga de usuarios completada. Usuarios cargados: 4
-2025-10-30T00:44:13.044-05:00  INFO 11668 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 192.168.40.18:8080
-2025-10-30T00:44:13.113-05:00  INFO 11668 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 0.769 seconds (process running for 1.023)
-2025-10-30T00:44:13.115-05:00  INFO 11668 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=192.168.40.18, port=8080
-2025-10-30T00:44:13.115-05:00  INFO 11668 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Archivo de usuarios configurado: C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\usuarios.txt
-2025-10-30T00:44:13.117-05:00  INFO 11668 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
-2025-10-30T00:44:13.117-05:00  INFO 11668 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
-2025-10-30T00:46:26.868-05:00  INFO 10728 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 10728 (C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\target\classes started by josem in C:\Users\josem\OneDrive\Escritorio\Nueva carpeta)
-2025-10-30T00:46:26.870-05:00 DEBUG 10728 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
-2025-10-30T00:46:26.870-05:00  INFO 10728 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
-2025-10-30T00:46:27.191-05:00  INFO 10728 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Iniciando servicio de autenticación. Archivo usuarios configurado en 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\usuarios.txt'
-2025-10-30T00:46:27.193-05:00  INFO 10728 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\usuarios.txt' finalizada. 4 registros leídos.
-2025-10-30T00:46:27.194-05:00  INFO 10728 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Carga de usuarios completada. Usuarios cargados: 4
-2025-10-30T00:46:27.203-05:00  INFO 10728 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 192.168.40.18:8080
-2025-10-30T00:46:27.274-05:00  INFO 10728 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 0.764 seconds (process running for 1.011)
-2025-10-30T00:46:27.276-05:00  INFO 10728 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=192.168.40.18, port=8080
-2025-10-30T00:46:27.276-05:00  INFO 10728 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Archivo de usuarios configurado: C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\usuarios.txt
-2025-10-30T00:46:27.276-05:00  INFO 10728 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
-2025-10-30T00:46:27.276-05:00  INFO 10728 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
-2025-10-30T00:48:08.101-05:00  INFO 13608 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 13608 (C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\target\classes started by josem in C:\Users\josem\OneDrive\Escritorio\Nueva carpeta)
-2025-10-30T00:48:08.102-05:00 DEBUG 13608 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
-2025-10-30T00:48:08.103-05:00  INFO 13608 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
-2025-10-30T00:48:08.380-05:00  INFO 13608 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Iniciando servicio de autenticación. Archivo usuarios configurado en 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\usuarios.txt'
-2025-10-30T00:48:08.381-05:00  INFO 13608 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\usuarios.txt' finalizada. 4 registros leídos.
-2025-10-30T00:48:08.382-05:00  INFO 13608 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Carga de usuarios completada. Usuarios cargados: 4
-2025-10-30T00:48:08.389-05:00  INFO 13608 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 192.168.40.18:8080
-2025-10-30T00:48:08.455-05:00  INFO 13608 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 0.703 seconds (process running for 0.968)
-2025-10-30T00:48:08.457-05:00  INFO 13608 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=192.168.40.18, port=8080
-2025-10-30T00:48:08.457-05:00  INFO 13608 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Archivo de usuarios configurado: C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\usuarios.txt
-2025-10-30T00:48:08.458-05:00  INFO 13608 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
-2025-10-30T00:48:08.458-05:00  INFO 13608 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
-2025-10-30T00:52:49.798-05:00  INFO 9344 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 9344 (C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\target\classes started by josem in C:\Users\josem\OneDrive\Escritorio\Nueva carpeta)
-2025-10-30T00:52:49.799-05:00 DEBUG 9344 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
-2025-10-30T00:52:49.799-05:00  INFO 9344 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
-2025-10-30T00:52:50.116-05:00  INFO 9344 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Iniciando servicio de autenticación. Archivo usuarios configurado en 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\usuarios.txt'
-2025-10-30T00:52:50.118-05:00  INFO 9344 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\usuarios.txt' finalizada. 4 registros leídos.
-2025-10-30T00:52:50.118-05:00  INFO 9344 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Carga de usuarios completada. Usuarios cargados: 4
-2025-10-30T00:52:50.125-05:00  INFO 9344 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 192.168.40.18:8080
-2025-10-30T00:52:50.201-05:00  INFO 9344 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 0.76 seconds (process running for 1.018)
-2025-10-30T00:52:50.204-05:00  INFO 9344 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=192.168.40.18, port=8080
-2025-10-30T00:52:50.204-05:00  INFO 9344 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Archivo de usuarios configurado: C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\demo\usuarios.txt
-2025-10-30T00:52:50.205-05:00  INFO 9344 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UI enabled property = true; intentando inicializar UI
-2025-10-30T00:52:50.210-05:00  INFO 9344 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : java.awt.headless=false | GraphicsEnvironment.isHeadless=false
-2025-10-30T00:52:50.250-05:00  INFO 9344 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
-2025-10-30T00:52:50.502-05:00  INFO 9344 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Panel iniciado
-2025-10-30T00:52:50.503-05:00  INFO 9344 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
-2025-10-30T00:52:50.503-05:00  INFO 9344 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (initialize)
-2025-10-30T00:52:50.503-05:00  INFO 9344 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UiServerWindow.initialize() invocado desde DemoApplication.run
-2025-10-30T00:52:50.503-05:00  INFO 9344 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
-2025-10-30T00:52:50.504-05:00  INFO 9344 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
-2025-10-30T09:02:47.737-05:00  INFO 9912 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 9912 (C:\Users\josem\Desktop\avanzadasProyecto\servidor\demo\target\classes started by josem in C:\Users\josem\Desktop\avanzadasProyecto)
-2025-10-30T09:02:47.737-05:00 DEBUG 9912 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
-2025-10-30T09:02:47.752-05:00  INFO 9912 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
-2025-10-30T09:02:48.451-05:00  INFO 9912 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Iniciando servicio de autenticación. Archivo usuarios configurado en 'C:\Users\josem\Desktop\avanzadasProyecto\servidor\demo\usuarios.txt'
-2025-10-30T09:02:48.454-05:00  INFO 9912 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\Desktop\avanzadasProyecto\servidor\demo\usuarios.txt' finalizada. 4 registros leídos.
-2025-10-30T09:02:48.454-05:00  INFO 9912 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Carga de usuarios completada. Usuarios cargados: 4
-2025-10-30T09:02:48.483-05:00  INFO 9912 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 172.15.203.200:8080
-2025-10-30T09:02:48.714-05:00  INFO 9912 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 1.63 seconds (process running for 2.105)
-2025-10-30T09:02:48.714-05:00  INFO 9912 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=172.15.203.200, port=8080
-2025-10-30T09:02:48.714-05:00  INFO 9912 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Archivo de usuarios configurado: C:\Users\josem\Desktop\avanzadasProyecto\servidor\demo\usuarios.txt
-2025-10-30T09:02:48.714-05:00  INFO 9912 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UI enabled property = true; intentando inicializar UI
-2025-10-30T09:02:48.729-05:00  INFO 9912 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : java.awt.headless=false | GraphicsEnvironment.isHeadless=false
-2025-10-30T09:02:48.808-05:00  INFO 9912 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
-2025-10-30T09:02:49.403-05:00  INFO 9912 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Panel iniciado
-2025-10-30T09:02:49.404-05:00  INFO 9912 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
-2025-10-30T09:02:49.406-05:00  INFO 9912 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (initialize)
-2025-10-30T09:02:49.408-05:00  INFO 9912 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UiServerWindow.initialize() invocado desde DemoApplication.run
-2025-10-30T09:02:49.410-05:00  INFO 9912 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
-2025-10-30T09:02:49.410-05:00  INFO 9912 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
-2025-10-30T09:03:27.389-05:00  INFO 9912 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /172.15.203.200:52106
-2025-10-30T09:03:27.395-05:00  INFO 9912 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /172.15.203.200:52106
-2025-10-30T09:03:31.453-05:00  INFO 9912 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /172.15.203.200:52106
-2025-10-30T09:03:31.453-05:00  INFO 9912 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /172.15.203.200:52106
-2025-10-30T09:03:31.453-05:00  INFO 9912 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /172.15.203.200:52106
-2025-10-30T09:03:31.468-05:00  INFO 9912 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /172.15.203.200:52106 conectado y saludado.
-2025-10-30T09:03:31.511-05:00  INFO 9912 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.FileAuthService   : Usuario 'manuel1' persistido en 'C:\Users\josem\Desktop\avanzadasProyecto\servidor\demo\usuarios.txt'. Total usuarios ahora: 5
-2025-10-30T09:03:31.511-05:00  INFO 9912 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.FileAuthService   : Alerta: nuevo usuario registrado -> manuel1
-2025-10-30T09:03:31.511-05:00  INFO 9912 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Registro exitoso de usuario 'manuel1' desde /172.15.203.200:52106
-2025-10-30T09:03:46.144-05:00 ERROR 9912 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Error en worker para cliente /172.15.203.200:52106: java.net.SocketException: Connection reset
-2025-10-30T09:03:46.146-05:00  INFO 9912 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /172.15.203.200:52106 desconectado sin autenticarse.
-2025-10-30T09:09:43.378-05:00  INFO 11900 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 11900 (C:\Users\josem\Desktop\avanzadasProyecto\servidor\demo\target\classes started by josem in C:\Users\josem\Desktop\avanzadasProyecto)
-2025-10-30T09:09:43.385-05:00 DEBUG 11900 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
-2025-10-30T09:09:43.387-05:00  INFO 11900 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
-2025-10-30T09:09:44.099-05:00  INFO 11900 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Iniciando servicio de autenticación. Archivo usuarios configurado en 'C:\Users\josem\Desktop\avanzadasProyecto\servidor\demo\usuarios.txt'
-2025-10-30T09:09:44.102-05:00  INFO 11900 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\Desktop\avanzadasProyecto\servidor\demo\usuarios.txt' finalizada. 5 registros leídos.
-2025-10-30T09:09:44.102-05:00  INFO 11900 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Carga de usuarios completada. Usuarios cargados: 5
-2025-10-30T09:09:44.118-05:00  INFO 11900 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 172.15.203.200:8080
-2025-10-30T09:09:44.338-05:00  INFO 11900 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 1.852 seconds (process running for 2.273)
-2025-10-30T09:09:44.345-05:00  INFO 11900 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=172.15.203.200, port=8080
-2025-10-30T09:09:44.345-05:00  INFO 11900 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Archivo de usuarios configurado: C:\Users\josem\Desktop\avanzadasProyecto\servidor\demo\usuarios.txt
-2025-10-30T09:09:44.347-05:00  INFO 11900 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UI enabled property = true; intentando inicializar UI
-2025-10-30T09:09:44.357-05:00  INFO 11900 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : java.awt.headless=false | GraphicsEnvironment.isHeadless=false
-2025-10-30T09:09:44.471-05:00  INFO 11900 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
-2025-10-30T09:09:44.863-05:00  INFO 11900 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Panel iniciado
-2025-10-30T09:09:44.865-05:00  INFO 11900 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
-2025-10-30T09:09:44.868-05:00  INFO 11900 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (initialize)
-2025-10-30T09:09:44.870-05:00  INFO 11900 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UiServerWindow.initialize() invocado desde DemoApplication.run
-2025-10-30T09:09:44.870-05:00  INFO 11900 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
-2025-10-30T09:09:44.872-05:00  INFO 11900 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
-2025-10-30T09:10:10.088-05:00  INFO 11900 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /172.15.203.200:54642
-2025-10-30T09:10:10.093-05:00  INFO 11900 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /172.15.203.200:54642
-2025-10-30T09:10:12.078-05:00  INFO 11900 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /172.15.203.200:54642
-2025-10-30T09:10:12.079-05:00  INFO 11900 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /172.15.203.200:54642
-2025-10-30T09:10:12.080-05:00  INFO 11900 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /172.15.203.200:54642
-2025-10-30T09:10:12.084-05:00  INFO 11900 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /172.15.203.200:54642 conectado y saludado.
-2025-10-30T09:10:12.123-05:00  INFO 11900 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.FileAuthService   : Usuario 'leiner' persistido en 'C:\Users\josem\Desktop\avanzadasProyecto\servidor\demo\usuarios.txt'. Total usuarios ahora: 6
-2025-10-30T09:10:12.123-05:00  INFO 11900 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.FileAuthService   : Alerta: nuevo usuario registrado -> leiner
-2025-10-30T09:10:12.125-05:00  INFO 11900 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Registro exitoso de usuario 'leiner' desde /172.15.203.200:54642
-2025-10-30T09:10:45.123-05:00 ERROR 11900 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Error en worker para cliente /172.15.203.200:54642: java.net.SocketException: Connection reset
-2025-10-30T09:10:45.123-05:00  INFO 11900 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /172.15.203.200:54642 desconectado sin autenticarse.
-2025-10-30T09:12:37.068-05:00  INFO 12080 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 12080 (C:\Users\josem\Desktop\avanzadasProyecto\servidor\demo\target\classes started by josem in C:\Users\josem\Desktop\avanzadasProyecto)
-2025-10-30T09:12:37.073-05:00 DEBUG 12080 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
-2025-10-30T09:12:37.076-05:00  INFO 12080 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
-2025-10-30T09:12:38.208-05:00  INFO 12080 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Iniciando servicio de autenticación. Archivo usuarios configurado en 'C:\Users\josem\Desktop\avanzadasProyecto\servidor\demo\usuarios.txt'
-2025-10-30T09:12:38.215-05:00  INFO 12080 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\Desktop\avanzadasProyecto\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
-2025-10-30T09:12:38.218-05:00  INFO 12080 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Carga de usuarios completada. Usuarios cargados: 6
-2025-10-30T09:12:38.244-05:00  INFO 12080 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 172.15.203.200:8080
-2025-10-30T09:12:38.474-05:00  INFO 12080 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 2.095 seconds (process running for 2.546)
-2025-10-30T09:12:38.474-05:00  INFO 12080 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=172.15.203.200, port=8080
-2025-10-30T09:12:38.474-05:00  INFO 12080 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Archivo de usuarios configurado: C:\Users\josem\Desktop\avanzadasProyecto\servidor\demo\usuarios.txt
-2025-10-30T09:12:38.474-05:00  INFO 12080 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UI enabled property = true; intentando inicializar UI
-2025-10-30T09:12:38.492-05:00  INFO 12080 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : java.awt.headless=false | GraphicsEnvironment.isHeadless=false
-2025-10-30T09:12:38.564-05:00  INFO 12080 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
-2025-10-30T09:12:38.950-05:00  INFO 12080 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Panel iniciado
-2025-10-30T09:12:38.950-05:00  INFO 12080 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
-2025-10-30T09:12:38.955-05:00  INFO 12080 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (initialize)
-2025-10-30T09:12:38.957-05:00  INFO 12080 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UiServerWindow.initialize() invocado desde DemoApplication.run
-2025-10-30T09:12:38.961-05:00  INFO 12080 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
-2025-10-30T09:12:38.964-05:00  INFO 12080 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
-2025-10-30T09:12:52.599-05:00  INFO 12080 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /172.15.203.200:61159
-2025-10-30T09:12:52.606-05:00  INFO 12080 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /172.15.203.200:61159
-2025-10-30T09:12:54.170-05:00  INFO 12080 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /172.15.203.200:61159
-2025-10-30T09:12:54.170-05:00  INFO 12080 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /172.15.203.200:61159
-2025-10-30T09:12:54.170-05:00  INFO 12080 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /172.15.203.200:61159
-2025-10-30T09:12:54.177-05:00  INFO 12080 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /172.15.203.200:61159 conectado y saludado.
-2025-10-30T09:12:54.181-05:00 ERROR 12080 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Error en worker para cliente /172.15.203.200:61159: java.net.SocketException: Se ha anulado una conexión establecida por el software en su equipo host.
-2025-10-30T09:12:54.182-05:00  INFO 12080 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /172.15.203.200:61159 desconectado sin autenticarse.
-2025-10-30T09:12:56.806-05:00  INFO 12080 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /172.15.203.200:62376
-2025-10-30T09:12:56.810-05:00  INFO 12080 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /172.15.203.200:62376
-2025-10-30T09:12:58.575-05:00  INFO 12080 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /172.15.203.200:62376
-2025-10-30T09:12:58.576-05:00  INFO 12080 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /172.15.203.200:62376
-2025-10-30T09:12:58.577-05:00  INFO 12080 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /172.15.203.200:62376
-2025-10-30T09:12:58.578-05:00  INFO 12080 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /172.15.203.200:62376 conectado y saludado.
-2025-10-30T09:12:58.579-05:00  WARN 12080 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Login fallido: usuario='leiner2' desde /172.15.203.200:62376
-2025-10-30T09:13:41.382-05:00 ERROR 12080 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Error en worker para cliente /172.15.203.200:62376: java.net.SocketException: Connection reset
-2025-10-30T09:13:41.383-05:00  INFO 12080 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /172.15.203.200:62376 desconectado sin autenticarse.
-2025-10-30T09:17:22.618-05:00  INFO 20768 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 20768 (C:\Users\josem\Desktop\avanzadasProyecto\servidor\demo\target\classes started by josem in C:\Users\josem\Desktop\avanzadasProyecto)
-2025-10-30T09:17:22.620-05:00 DEBUG 20768 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
-2025-10-30T09:17:22.621-05:00  INFO 20768 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
-2025-10-30T09:17:23.163-05:00  INFO 20768 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Iniciando servicio de autenticación. Archivo usuarios configurado en 'C:\Users\josem\Desktop\avanzadasProyecto\servidor\demo\usuarios.txt'
-2025-10-30T09:17:23.163-05:00  INFO 20768 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\Desktop\avanzadasProyecto\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
-2025-10-30T09:17:23.163-05:00  INFO 20768 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Carga de usuarios completada. Usuarios cargados: 6
-2025-10-30T09:17:23.185-05:00  INFO 20768 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 172.15.203.200:8080
-2025-10-30T09:17:23.318-05:00  INFO 20768 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 1.406 seconds (process running for 1.842)
-2025-10-30T09:17:23.318-05:00  INFO 20768 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=172.15.203.200, port=8080
-2025-10-30T09:17:23.318-05:00  INFO 20768 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Archivo de usuarios configurado: C:\Users\josem\Desktop\avanzadasProyecto\servidor\demo\usuarios.txt
-2025-10-30T09:17:23.318-05:00  INFO 20768 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UI enabled property = true; intentando inicializar UI
-2025-10-30T09:17:23.318-05:00  INFO 20768 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : java.awt.headless=false | GraphicsEnvironment.isHeadless=false
-2025-10-30T09:17:23.385-05:00  INFO 20768 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
-2025-10-30T09:17:23.654-05:00  INFO 20768 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Panel iniciado
-2025-10-30T09:17:23.654-05:00  INFO 20768 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
-2025-10-30T09:17:23.654-05:00  INFO 20768 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (initialize)
-2025-10-30T09:17:23.668-05:00  INFO 20768 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UiServerWindow.initialize() invocado desde DemoApplication.run
-2025-10-30T09:17:23.669-05:00  INFO 20768 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
-2025-10-30T09:17:23.670-05:00  INFO 20768 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
-2025-10-30T09:17:29.504-05:00  INFO 10096 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 10096 (C:\Users\josem\Desktop\avanzadasProyecto\servidor\demo\target\classes started by josem in C:\Users\josem\Desktop\avanzadasProyecto)
-2025-10-30T09:17:29.506-05:00 DEBUG 10096 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
-2025-10-30T09:17:29.507-05:00  INFO 10096 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
-2025-10-30T09:17:30.071-05:00  INFO 10096 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Iniciando servicio de autenticación. Archivo usuarios configurado en 'C:\Users\josem\Desktop\avanzadasProyecto\servidor\demo\usuarios.txt'
-2025-10-30T09:17:30.072-05:00  INFO 10096 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\Desktop\avanzadasProyecto\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
-2025-10-30T09:17:30.072-05:00  INFO 10096 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Carga de usuarios completada. Usuarios cargados: 6
-2025-10-30T09:17:30.096-05:00 ERROR 10096 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Error en servidor TCP al iniciar: java.net.BindException: Address already in use: bind
+2025-11-03T12:42:56.790-05:00  INFO 14908 --- [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 14908 (C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\target\classes started by josem in C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal)
+2025-11-03T12:42:56.798-05:00  INFO 14908 --- [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-11-03T12:42:57.352-05:00  INFO 14908 --- [main] com.proyecto.demo.auth.FileAuthService   : Iniciando servicio de autenticación. Archivo usuarios configurado en 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt'
+2025-11-03T12:42:57.362-05:00  INFO 14908 --- [main] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
+2025-11-03T12:42:57.362-05:00  INFO 14908 --- [main] com.proyecto.demo.auth.FileAuthService   : Carga de usuarios completada. Usuarios cargados: 6
+2025-11-03T12:42:57.373-05:00  INFO 14908 --- [servidor] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 0.0.0.0:8080
+2025-11-03T12:42:57.468-05:00  INFO 14908 --- [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 1.199 seconds (process running for 1.756)
+2025-11-03T12:42:57.470-05:00  INFO 14908 --- [main] com.proyecto.demo.DemoApplication        : Aplicación '<unknown>' iniciada. Server address=0.0.0.0, port=
+2025-11-03T12:42:57.470-05:00  INFO 14908 --- [main] com.proyecto.demo.DemoApplication        : Archivo de usuarios configurado: C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt
+2025-11-03T12:42:57.470-05:00  INFO 14908 --- [main] com.proyecto.demo.DemoApplication        : UI enabled property = true; intentando inicializar UI
+2025-11-03T12:42:57.475-05:00  INFO 14908 --- [main] com.proyecto.demo.ui.UiServerWindow      : java.awt.headless=false | GraphicsEnvironment.isHeadless=false
+2025-11-03T12:42:57.566-05:00  INFO 14908 --- [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
+2025-11-03T12:42:58.118-05:00  INFO 14908 --- [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Panel iniciado
+2025-11-03T12:42:58.119-05:00  INFO 14908 --- [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
+2025-11-03T12:42:58.121-05:00  INFO 14908 --- [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (initialize)
+2025-11-03T12:42:58.122-05:00  INFO 14908 --- [main] com.proyecto.demo.DemoApplication        : UiServerWindow.initialize() invocado desde DemoApplication.run
+2025-11-03T12:42:58.123-05:00  INFO 14908 --- [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
+2025-11-03T12:42:58.124-05:00  INFO 14908 --- [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
+2025-11-03T13:04:49.581-05:00  INFO 13940 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 13940 (C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\target\classes started by josem in C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal)
+2025-11-03T13:04:49.582-05:00 DEBUG 13940 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-11-03T13:04:49.583-05:00  INFO 13940 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-11-03T13:04:49.913-05:00  INFO 13940 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Iniciando servicio de autenticación. Archivo usuarios configurado en 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt'
+2025-11-03T13:04:49.914-05:00  INFO 13940 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
+2025-11-03T13:04:49.915-05:00  INFO 13940 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Carga de usuarios completada. Usuarios cargados: 6
+2025-11-03T13:04:49.923-05:00  INFO 13940 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 192.168.40.44:8080
+2025-11-03T13:04:49.994-05:00  INFO 13940 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 0.754 seconds (process running for 1.008)
+2025-11-03T13:04:49.997-05:00  INFO 13940 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=192.168.40.44, port=8080
+2025-11-03T13:04:49.997-05:00  INFO 13940 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Archivo de usuarios configurado: C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt
+2025-11-03T13:04:49.998-05:00  INFO 13940 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UI enabled property = true; intentando inicializar UI
+2025-11-03T13:04:50.003-05:00  INFO 13940 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : java.awt.headless=false | GraphicsEnvironment.isHeadless=false
+2025-11-03T13:04:50.040-05:00  INFO 13940 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
+2025-11-03T13:04:50.272-05:00  INFO 13940 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Panel iniciado
+2025-11-03T13:04:50.273-05:00  INFO 13940 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
+2025-11-03T13:04:50.273-05:00  INFO 13940 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (initialize)
+2025-11-03T13:04:50.274-05:00  INFO 13940 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UiServerWindow.initialize() invocado desde DemoApplication.run
+2025-11-03T13:04:50.274-05:00  INFO 13940 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
+2025-11-03T13:04:50.274-05:00  INFO 13940 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
+2025-11-03T13:05:22.825-05:00  INFO 13940 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /192.168.40.44:57326
+2025-11-03T13:05:22.829-05:00  INFO 13940 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /192.168.40.44:57326
+2025-11-03T13:05:27.048-05:00  INFO 13940 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /192.168.40.44:57326
+2025-11-03T13:05:27.049-05:00  INFO 13940 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /192.168.40.44:57326
+2025-11-03T13:05:27.050-05:00  INFO 13940 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /192.168.40.44:57326
+2025-11-03T13:05:27.052-05:00  INFO 13940 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.44:57326 conectado y saludado.
+2025-11-03T13:05:27.054-05:00 ERROR 13940 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Error en worker para cliente /192.168.40.44:57326: java.net.SocketException: Se ha anulado una conexión establecida por el software en su equipo host.
+2025-11-03T13:05:27.054-05:00  INFO 13940 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.44:57326 desconectado sin autenticarse.
+2025-11-03T13:05:29.654-05:00  INFO 13940 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /192.168.40.44:51338
+2025-11-03T13:05:29.657-05:00  INFO 13940 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /192.168.40.44:51338
+2025-11-03T13:05:32.674-05:00  INFO 13940 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: RECHAZADA para /192.168.40.44:51338
+2025-11-03T13:05:32.674-05:00  INFO 13940 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión rechazada desde /192.168.40.44:51338
+2025-11-03T13:05:32.675-05:00  WARN 13940 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión rechazada manualmente desde /192.168.40.44:51338
+2025-11-03T13:05:33.543-05:00  INFO 13940 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /192.168.40.44:57698
+2025-11-03T13:05:33.546-05:00  INFO 13940 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /192.168.40.44:57698
+2025-11-03T13:05:34.368-05:00  INFO 13940 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /192.168.40.44:57698
+2025-11-03T13:05:34.368-05:00  INFO 13940 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /192.168.40.44:57698
+2025-11-03T13:05:34.368-05:00  INFO 13940 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /192.168.40.44:57698
+2025-11-03T13:05:34.369-05:00  INFO 13940 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.44:57698 conectado y saludado.
+2025-11-03T13:05:34.369-05:00  INFO 13940 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN laura|1234'
+2025-11-03T13:05:34.369-05:00  INFO 13940 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
+2025-11-03T13:05:34.371-05:00  WARN 13940 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Login fallido: usuario='laura' desde /192.168.40.44:57698
+2025-11-03T13:05:34.372-05:00  INFO 13940 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : Login fallido: laura desde /192.168.40.44:57698
+2025-11-03T13:05:38.766-05:00  INFO 13940 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN laura|1234'
+2025-11-03T13:05:38.767-05:00  INFO 13940 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
+2025-11-03T13:05:38.767-05:00  WARN 13940 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Login fallido: usuario='laura' desde /192.168.40.44:57698
+2025-11-03T13:05:38.767-05:00  INFO 13940 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : Login fallido: laura desde /192.168.40.44:57698
+2025-11-03T13:06:05.521-05:00 ERROR 13940 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Error en worker para cliente /192.168.40.44:57698: java.net.SocketException: Connection reset
+2025-11-03T13:06:05.521-05:00  INFO 13940 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.44:57698 desconectado sin autenticarse.
+2025-11-03T13:43:02.299-05:00  INFO 22684 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 22684 (C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\target\classes started by josem in C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal)
+2025-11-03T13:43:02.299-05:00 DEBUG 22684 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-11-03T13:43:02.301-05:00  INFO 22684 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-11-03T13:43:02.659-05:00  INFO 22684 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Iniciando servicio de autenticación. Archivo usuarios configurado en 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt'
+2025-11-03T13:43:02.660-05:00  INFO 22684 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
+2025-11-03T13:43:02.661-05:00  INFO 22684 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Carga de usuarios completada. Usuarios cargados: 6
+2025-11-03T13:43:02.672-05:00  INFO 22684 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 192.168.40.44:8080
+2025-11-03T13:43:02.753-05:00  INFO 22684 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 0.831 seconds (process running for 1.141)
+2025-11-03T13:43:02.756-05:00  INFO 22684 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=192.168.40.44, port=8080
+2025-11-03T13:43:02.756-05:00  INFO 22684 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Archivo de usuarios configurado: C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt
+2025-11-03T13:43:02.756-05:00  INFO 22684 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UI enabled property = true; intentando inicializar UI
+2025-11-03T13:43:02.761-05:00  INFO 22684 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : java.awt.headless=false | GraphicsEnvironment.isHeadless=false
+2025-11-03T13:43:02.805-05:00  INFO 22684 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
+2025-11-03T13:43:03.068-05:00  INFO 22684 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Panel iniciado
+2025-11-03T13:43:03.068-05:00  INFO 22684 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
+2025-11-03T13:43:03.069-05:00  INFO 22684 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (initialize)
+2025-11-03T13:43:03.069-05:00  INFO 22684 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UiServerWindow.initialize() invocado desde DemoApplication.run
+2025-11-03T13:43:03.069-05:00  INFO 22684 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
+2025-11-03T13:43:03.070-05:00  INFO 22684 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
+2025-11-03T13:43:14.265-05:00  INFO 19564 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 19564 (C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\target\classes started by josem in C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal)
+2025-11-03T13:43:14.266-05:00 DEBUG 19564 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-11-03T13:43:14.267-05:00  INFO 19564 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-11-03T13:43:14.653-05:00  INFO 19564 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Iniciando servicio de autenticación. Archivo usuarios configurado en 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt'
+2025-11-03T13:43:14.662-05:00  INFO 19564 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
+2025-11-03T13:43:14.663-05:00  INFO 19564 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Carga de usuarios completada. Usuarios cargados: 6
+2025-11-03T13:43:14.673-05:00 ERROR 19564 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Error en servidor TCP al iniciar: java.net.BindException: Address already in use: bind
 
 java.net.BindException: Address already in use: bind
-	at java.base/sun.nio.ch.Net.bind0(Native Method) ~[na:na]
-	at java.base/sun.nio.ch.Net.bind(Net.java:565) ~[na:na]
-	at java.base/sun.nio.ch.Net.bind(Net.java:554) ~[na:na]
-	at java.base/sun.nio.ch.NioSocketImpl.bind(NioSocketImpl.java:636) ~[na:na]
-	at java.base/java.net.ServerSocket.bind(ServerSocket.java:391) ~[na:na]
-	at java.base/java.net.ServerSocket.bind(ServerSocket.java:342) ~[na:na]
-	at com.proyecto.demo.server.TcpServer.run(TcpServer.java:62) ~[classes/:na]
-	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
-
-2025-10-30T09:17:30.106-05:00  INFO 10096 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Shutting down TcpServer...
-2025-10-30T09:17:30.108-05:00  INFO 10096 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : TcpServer shutdown complete
-2025-10-30T09:17:30.273-05:00  INFO 10096 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 1.342 seconds (process running for 1.736)
-2025-10-30T09:17:30.276-05:00  INFO 10096 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=172.15.203.200, port=8080
-2025-10-30T09:17:30.276-05:00  INFO 10096 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Archivo de usuarios configurado: C:\Users\josem\Desktop\avanzadasProyecto\servidor\demo\usuarios.txt
-2025-10-30T09:17:30.277-05:00  INFO 10096 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UI enabled property = true; intentando inicializar UI
-2025-10-30T09:17:30.285-05:00  INFO 10096 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : java.awt.headless=false | GraphicsEnvironment.isHeadless=false
-2025-10-30T09:17:30.336-05:00  INFO 10096 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
-2025-10-30T09:17:30.630-05:00  INFO 10096 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Panel iniciado
-2025-10-30T09:17:30.632-05:00  INFO 10096 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
-2025-10-30T09:17:30.635-05:00  INFO 10096 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (initialize)
-2025-10-30T09:17:30.637-05:00  INFO 10096 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UiServerWindow.initialize() invocado desde DemoApplication.run
-2025-10-30T09:17:30.639-05:00  INFO 10096 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
-2025-10-30T09:17:30.640-05:00  INFO 10096 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
-2025-10-30T09:18:07.587-05:00  INFO 20768 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /172.15.203.200:59547
-2025-10-30T09:18:07.604-05:00  INFO 20768 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /172.15.203.200:59547
-2025-10-30T09:18:09.579-05:00  INFO 20768 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /172.15.203.200:59547
-2025-10-30T09:18:09.579-05:00  INFO 20768 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /172.15.203.200:59547
-2025-10-30T09:18:09.579-05:00  INFO 20768 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /172.15.203.200:59547
-2025-10-30T09:18:09.588-05:00  INFO 20768 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /172.15.203.200:59547 conectado y saludado.
-2025-10-30T09:18:09.592-05:00 ERROR 20768 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Error en worker para cliente /172.15.203.200:59547: java.net.SocketException: Se ha anulado una conexión establecida por el software en su equipo host.
-2025-10-30T09:18:09.593-05:00  INFO 20768 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /172.15.203.200:59547 desconectado sin autenticarse.
-2025-10-30T09:18:11.454-05:00  INFO 20768 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /172.15.203.200:52195
-2025-10-30T09:18:11.454-05:00  INFO 20768 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /172.15.203.200:52195
-2025-10-30T09:18:12.940-05:00  INFO 20768 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /172.15.203.200:52195
-2025-10-30T09:18:12.940-05:00  INFO 20768 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /172.15.203.200:52195
-2025-10-30T09:18:12.940-05:00  INFO 20768 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /172.15.203.200:52195
-2025-10-30T09:18:12.940-05:00  INFO 20768 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /172.15.203.200:52195 conectado y saludado.
-2025-10-30T09:18:12.940-05:00  INFO 20768 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\Desktop\avanzadasProyecto\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
-2025-10-30T09:18:12.940-05:00  WARN 20768 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Login fallido: usuario='cristian1' desde /172.15.203.200:52195
-2025-10-30T09:19:12.976-05:00  INFO 20768 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\Desktop\avanzadasProyecto\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
-2025-10-30T09:19:12.976-05:00  WARN 20768 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Login fallido: usuario='leiner1' desde /172.15.203.200:52195
-2025-10-30T09:19:21.808-05:00 ERROR 20768 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Error en worker para cliente /172.15.203.200:52195: java.net.SocketException: Connection reset
-2025-10-30T09:19:21.808-05:00  INFO 20768 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /172.15.203.200:52195 desconectado sin autenticarse.
-2025-10-30T09:19:26.379-05:00  INFO 17564 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 17564 (C:\Users\josem\Desktop\avanzadasProyecto\servidor\demo\target\classes started by josem in C:\Users\josem\Desktop\avanzadasProyecto)
-2025-10-30T09:19:26.381-05:00 DEBUG 17564 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
-2025-10-30T09:19:26.383-05:00  INFO 17564 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
-2025-10-30T09:19:26.890-05:00  INFO 17564 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Iniciando servicio de autenticación. Archivo usuarios configurado en 'C:\Users\josem\Desktop\avanzadasProyecto\servidor\demo\usuarios.txt'
-2025-10-30T09:19:26.906-05:00  INFO 17564 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\Desktop\avanzadasProyecto\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
-2025-10-30T09:19:26.906-05:00  INFO 17564 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Carga de usuarios completada. Usuarios cargados: 6
-2025-10-30T09:19:26.924-05:00  INFO 17564 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 172.15.203.200:8080
-2025-10-30T09:19:27.058-05:00  INFO 17564 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 1.254 seconds (process running for 1.678)
-2025-10-30T09:19:27.074-05:00  INFO 17564 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=172.15.203.200, port=8080
-2025-10-30T09:19:27.074-05:00  INFO 17564 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Archivo de usuarios configurado: C:\Users\josem\Desktop\avanzadasProyecto\servidor\demo\usuarios.txt
-2025-10-30T09:19:27.074-05:00  INFO 17564 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UI enabled property = true; intentando inicializar UI
-2025-10-30T09:19:27.074-05:00  INFO 17564 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : java.awt.headless=false | GraphicsEnvironment.isHeadless=false
-2025-10-30T09:19:27.131-05:00  INFO 17564 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
-2025-10-30T09:19:27.414-05:00  INFO 17564 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Panel iniciado
-2025-10-30T09:19:27.415-05:00  INFO 17564 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
-2025-10-30T09:19:27.415-05:00  INFO 17564 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (initialize)
-2025-10-30T09:19:27.416-05:00  INFO 17564 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UiServerWindow.initialize() invocado desde DemoApplication.run
-2025-10-30T09:19:27.417-05:00  INFO 17564 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
-2025-10-30T09:19:27.418-05:00  INFO 17564 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
-2025-10-30T09:20:20.696-05:00  INFO 17564 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /172.15.203.200:54673
-2025-10-30T09:20:20.717-05:00  INFO 17564 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /172.15.203.200:54673
-2025-10-30T09:20:23.960-05:00  INFO 17564 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /172.15.203.200:54673
-2025-10-30T09:20:23.960-05:00  INFO 17564 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /172.15.203.200:54673
-2025-10-30T09:20:23.960-05:00  INFO 17564 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /172.15.203.200:54673
-2025-10-30T09:20:23.976-05:00  INFO 17564 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /172.15.203.200:54673 conectado y saludado.
-2025-10-30T09:20:23.981-05:00  INFO 17564 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\Desktop\avanzadasProyecto\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
-2025-10-30T09:20:24.013-05:00  INFO 17564 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Login exitoso: usuario='manuel1' desde /172.15.203.200:54673
-2025-10-30T09:21:24.031-05:00  INFO 17564 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : [2025-10-30 09:21:24] manuel1: mensaje
-2025-10-30T09:26:29.104-05:00  INFO 17564 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : [2025-10-30 09:26:29] manuel1: mensaje a las 9:25:57
-2025-10-30T09:27:39.492-05:00  INFO 11116 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 11116 (C:\Users\josem\Desktop\avanzadasProyecto\servidor\demo\target\classes started by josem in C:\Users\josem\Desktop\avanzadasProyecto)
-2025-10-30T09:27:39.494-05:00 DEBUG 11116 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
-2025-10-30T09:27:39.496-05:00  INFO 11116 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
-2025-10-30T09:27:40.016-05:00  INFO 11116 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Iniciando servicio de autenticación. Archivo usuarios configurado en 'C:\Users\josem\Desktop\avanzadasProyecto\servidor\demo\usuarios.txt'
-2025-10-30T09:27:40.028-05:00  INFO 11116 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\Desktop\avanzadasProyecto\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
-2025-10-30T09:27:40.028-05:00  INFO 11116 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Carga de usuarios completada. Usuarios cargados: 6
-2025-10-30T09:27:40.046-05:00  INFO 11116 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 172.15.203.200:8080
-2025-10-30T09:27:40.202-05:00  INFO 11116 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 1.283 seconds (process running for 1.688)
-2025-10-30T09:27:40.218-05:00  INFO 11116 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=172.15.203.200, port=8080
-2025-10-30T09:27:40.219-05:00  INFO 11116 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Archivo de usuarios configurado: C:\Users\josem\Desktop\avanzadasProyecto\servidor\demo\usuarios.txt
-2025-10-30T09:27:40.219-05:00  INFO 11116 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UI enabled property = true; intentando inicializar UI
-2025-10-30T09:27:40.227-05:00  INFO 11116 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : java.awt.headless=false | GraphicsEnvironment.isHeadless=false
-2025-10-30T09:27:40.269-05:00  INFO 11116 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
-2025-10-30T09:27:40.559-05:00  INFO 11116 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Panel iniciado
-2025-10-30T09:27:40.559-05:00  INFO 11116 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
-2025-10-30T09:27:40.559-05:00  INFO 11116 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (initialize)
-2025-10-30T09:27:40.559-05:00  INFO 11116 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UiServerWindow.initialize() invocado desde DemoApplication.run
-2025-10-30T09:27:40.559-05:00  INFO 11116 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
-2025-10-30T09:27:40.559-05:00  INFO 11116 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
-2025-10-30T09:27:52.468-05:00  INFO 11116 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /172.15.203.200:51049
-2025-10-30T09:27:52.474-05:00  INFO 11116 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /172.15.203.200:51049
-2025-10-30T09:27:54.348-05:00  INFO 11116 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /172.15.203.200:51049
-2025-10-30T09:27:54.348-05:00  INFO 11116 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /172.15.203.200:51049
-2025-10-30T09:27:54.348-05:00  INFO 11116 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /172.15.203.200:51049
-2025-10-30T09:27:54.365-05:00  INFO 11116 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /172.15.203.200:51049 conectado y saludado.
-2025-10-30T09:27:54.366-05:00  INFO 11116 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN manuel1|1234'
-2025-10-30T09:27:54.368-05:00  INFO 11116 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\Desktop\avanzadasProyecto\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
-2025-10-30T09:27:54.410-05:00  INFO 11116 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Login exitoso: usuario='manuel1' desde /172.15.203.200:51049
-2025-10-30T09:27:54.410-05:00  INFO 11116 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : Login exitoso: manuel1 desde /172.15.203.200:51049
-2025-10-30T09:28:54.422-05:00  INFO 11116 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleMessage correctamente. Raw='MSG mensaje cliente manuel'
-2025-10-30T09:28:54.423-05:00  INFO 11116 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : [2025-10-30 09:28:54] manuel1: mensaje cliente manuel
-2025-10-30T09:28:54.429-05:00  INFO 11116 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : [MSG] 2025-10-30 09:28:54 manuel1: mensaje cliente manuel (desde /172.15.203.200:51049)
-2025-10-30T09:37:03.160-05:00 ERROR 11116 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Error en worker para cliente /172.15.203.200:51049: java.net.SocketException: Connection reset
-2025-10-30T09:37:03.161-05:00  INFO 11116 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Usuario 'manuel1' desconectado.
-2025-10-30T09:37:11.616-05:00  INFO 11116 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /172.15.203.200:58061
-2025-10-30T09:37:11.636-05:00  INFO 11116 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /172.15.203.200:58061
-2025-10-30T09:37:14.734-05:00  INFO 11116 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /172.15.203.200:58061
-2025-10-30T09:37:14.734-05:00  INFO 11116 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /172.15.203.200:58061
-2025-10-30T09:37:14.734-05:00  INFO 11116 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /172.15.203.200:58061
-2025-10-30T09:37:14.734-05:00  INFO 11116 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /172.15.203.200:58061 conectado y saludado.
-2025-10-30T09:37:14.734-05:00  INFO 11116 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN manuel1|1234'
-2025-10-30T09:37:14.734-05:00  INFO 11116 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\Desktop\avanzadasProyecto\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
-2025-10-30T09:37:14.734-05:00  INFO 11116 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Login exitoso: usuario='manuel1' desde /172.15.203.200:58061
-2025-10-30T09:37:14.734-05:00  INFO 11116 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : Login exitoso: manuel1 desde /172.15.203.200:58061
-2025-10-30T09:37:21.559-05:00  INFO 11116 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleMessage correctamente. Raw='MSG mensaje de manuel para servidor'
-2025-10-30T09:37:21.559-05:00  INFO 11116 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : [2025-10-30 09:37:21] manuel1: mensaje de manuel para servidor
-2025-10-30T09:37:21.559-05:00  INFO 11116 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : [MSG] 2025-10-30 09:37:21 manuel1: mensaje de manuel para servidor (desde /172.15.203.200:58061)
-2025-10-30T09:38:50.649-05:00  INFO 11116 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /172.15.203.200:53936
-2025-10-30T09:38:50.654-05:00  INFO 11116 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /172.15.203.200:53936
-2025-10-30T09:38:54.407-05:00  INFO 11116 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /172.15.203.200:53936
-2025-10-30T09:38:54.408-05:00  INFO 11116 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /172.15.203.200:53936
-2025-10-30T09:38:54.409-05:00  INFO 11116 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /172.15.203.200:53936
-2025-10-30T09:38:54.410-05:00  INFO 11116 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Cliente /172.15.203.200:53936 conectado y saludado.
-2025-10-30T09:38:54.411-05:00  INFO 11116 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN leiner|1234'
-2025-10-30T09:38:54.412-05:00  INFO 11116 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\Desktop\avanzadasProyecto\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
-2025-10-30T09:38:54.413-05:00  INFO 11116 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Login exitoso: usuario='leiner' desde /172.15.203.200:53936
-2025-10-30T09:38:54.415-05:00  INFO 11116 --- [servidor] [pool-2-thread-2] com.proyecto.demo.ui.UiServerWindow      : Login exitoso: leiner desde /172.15.203.200:53936
-2025-10-30T09:38:59.728-05:00  INFO 11116 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleMessage correctamente. Raw='MSG mensaje de leiner'
-2025-10-30T09:38:59.729-05:00  INFO 11116 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : [2025-10-30 09:38:59] leiner: mensaje de leiner
-2025-10-30T09:38:59.730-05:00  INFO 11116 --- [servidor] [pool-2-thread-2] com.proyecto.demo.ui.UiServerWindow      : [MSG] 2025-10-30 09:38:59 leiner: mensaje de leiner (desde /172.15.203.200:53936)
-2025-10-30T09:39:07.680-05:00  INFO 11116 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleMessage correctamente. Raw='MSG mensaje de manuel1'
-2025-10-30T09:39:07.680-05:00  INFO 11116 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : [2025-10-30 09:39:07] manuel1: mensaje de manuel1
-2025-10-30T09:39:07.680-05:00  INFO 11116 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : [MSG] 2025-10-30 09:39:07 manuel1: mensaje de manuel1 (desde /172.15.203.200:58061)
-2025-10-30T09:39:21.315-05:00 ERROR 11116 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Error en worker para cliente /172.15.203.200:53936: java.net.SocketException: Connection reset
-2025-10-30T09:39:21.316-05:00  INFO 11116 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Usuario 'leiner' desconectado.
-2025-11-01T19:47:09.721-05:00  INFO 8684 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 8684 (C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\target\classes started by josem in C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal)
-2025-11-01T19:47:09.722-05:00 DEBUG 8684 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
-2025-11-01T19:47:09.723-05:00  INFO 8684 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
-2025-11-01T19:47:10.067-05:00  INFO 8684 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Iniciando servicio de autenticación. Archivo usuarios configurado en 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt'
-2025-11-01T19:47:10.077-05:00  INFO 8684 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
-2025-11-01T19:47:10.077-05:00  INFO 8684 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Carga de usuarios completada. Usuarios cargados: 6
-2025-11-01T19:47:10.090-05:00 ERROR 8684 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Error en servidor TCP al iniciar: java.net.BindException: Cannot assign requested address: bind
-
-java.net.BindException: Cannot assign requested address: bind
 	at java.base/sun.nio.ch.Net.bind0(Native Method) ~[na:na]
 	at java.base/sun.nio.ch.Net.bind(Unknown Source) ~[na:na]
 	at java.base/sun.nio.ch.Net.bind(Unknown Source) ~[na:na]
@@ -632,328 +101,96 @@ java.net.BindException: Cannot assign requested address: bind
 	at com.proyecto.demo.server.TcpServer.run(TcpServer.java:62) ~[classes/:na]
 	at java.base/java.lang.Thread.run(Unknown Source) ~[na:na]
 
-2025-11-01T19:47:10.096-05:00  INFO 8684 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Shutting down TcpServer...
-2025-11-01T19:47:10.097-05:00  INFO 8684 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : TcpServer shutdown complete
-2025-11-01T19:47:10.169-05:00  INFO 8684 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 0.831 seconds (process running for 1.148)
-2025-11-01T19:47:10.171-05:00  INFO 8684 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=172.15.203.200, port=8080
-2025-11-01T19:47:10.171-05:00  INFO 8684 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Archivo de usuarios configurado: C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt
-2025-11-01T19:47:10.171-05:00  INFO 8684 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UI enabled property = true; intentando inicializar UI
-2025-11-01T19:47:10.177-05:00  INFO 8684 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : java.awt.headless=false | GraphicsEnvironment.isHeadless=false
-2025-11-01T19:47:10.222-05:00  INFO 8684 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
-2025-11-01T19:47:10.878-05:00  INFO 8684 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Panel iniciado
-2025-11-01T19:47:10.879-05:00  INFO 8684 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
-2025-11-01T19:47:10.880-05:00  INFO 8684 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (initialize)
-2025-11-01T19:47:10.880-05:00  INFO 8684 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UiServerWindow.initialize() invocado desde DemoApplication.run
-2025-11-01T19:47:10.880-05:00  INFO 8684 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
-2025-11-01T19:47:10.880-05:00  INFO 8684 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
-2025-11-01T19:48:22.493-05:00  INFO 916 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 916 (C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\target\classes started by josem in C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal)
-2025-11-01T19:48:22.494-05:00 DEBUG 916 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
-2025-11-01T19:48:22.494-05:00  INFO 916 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
-2025-11-01T19:48:22.785-05:00  INFO 916 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Iniciando servicio de autenticación. Archivo usuarios configurado en 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt'
-2025-11-01T19:48:22.787-05:00  INFO 916 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
-2025-11-01T19:48:22.787-05:00  INFO 916 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Carga de usuarios completada. Usuarios cargados: 6
-2025-11-01T19:48:22.796-05:00  INFO 916 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 192.168.40.44:8080
-2025-11-01T19:48:22.859-05:00  INFO 916 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 0.705 seconds (process running for 0.946)
-2025-11-01T19:48:22.861-05:00  INFO 916 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=192.168.40.44, port=8080
-2025-11-01T19:48:22.861-05:00  INFO 916 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Archivo de usuarios configurado: C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt
-2025-11-01T19:48:22.861-05:00  INFO 916 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UI enabled property = true; intentando inicializar UI
-2025-11-01T19:48:22.866-05:00  INFO 916 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : java.awt.headless=false | GraphicsEnvironment.isHeadless=false
-2025-11-01T19:48:22.904-05:00  INFO 916 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
-2025-11-01T19:48:23.161-05:00  INFO 916 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Panel iniciado
-2025-11-01T19:48:23.162-05:00  INFO 916 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
-2025-11-01T19:48:23.162-05:00  INFO 916 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (initialize)
-2025-11-01T19:48:23.162-05:00  INFO 916 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UiServerWindow.initialize() invocado desde DemoApplication.run
-2025-11-01T19:48:23.162-05:00  INFO 916 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
-2025-11-01T19:48:23.163-05:00  INFO 916 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
-2025-11-01T19:48:48.042-05:00  INFO 916 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /192.168.40.44:52401
-2025-11-01T19:48:48.045-05:00  INFO 916 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /192.168.40.44:52401
-2025-11-01T19:48:49.371-05:00  INFO 916 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /192.168.40.44:52401
-2025-11-01T19:48:49.371-05:00  INFO 916 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /192.168.40.44:52401
-2025-11-01T19:48:49.371-05:00  INFO 916 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /192.168.40.44:52401
-2025-11-01T19:48:49.374-05:00  INFO 916 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.44:52401 conectado y saludado.
-2025-11-01T19:48:49.375-05:00  INFO 916 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN manuel|1234'
-2025-11-01T19:48:49.375-05:00  INFO 916 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
-2025-11-01T19:48:49.378-05:00  WARN 916 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Login fallido: usuario='manuel' desde /192.168.40.44:52401
-2025-11-01T19:48:49.378-05:00  INFO 916 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : Login fallido: manuel desde /192.168.40.44:52401
-2025-11-01T19:48:52.607-05:00  INFO 916 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN manuel1|1234'
-2025-11-01T19:48:52.607-05:00  INFO 916 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
-2025-11-01T19:48:52.632-05:00  INFO 916 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Login exitoso: usuario='manuel1' desde /192.168.40.44:52401
-2025-11-01T19:48:52.632-05:00  INFO 916 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : Login exitoso: manuel1 desde /192.168.40.44:52401
-2025-11-01T19:48:52.633-05:00  INFO 916 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Usuario registrado para broadcast: manuel1 (total=1)
-2025-11-01T19:48:52.634-05:00  INFO 916 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 1 clients: manuel1
-2025-11-01T19:49:14.291-05:00  INFO 916 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /192.168.40.44:52585
-2025-11-01T19:49:14.294-05:00  INFO 916 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /192.168.40.44:52585
-2025-11-01T19:49:16.378-05:00  INFO 916 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /192.168.40.44:52585
-2025-11-01T19:49:16.378-05:00  INFO 916 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /192.168.40.44:52585
-2025-11-01T19:49:16.379-05:00  INFO 916 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /192.168.40.44:52585
-2025-11-01T19:49:16.379-05:00  INFO 916 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.44:52585 conectado y saludado.
-2025-11-01T19:49:16.380-05:00  INFO 916 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN leiner|1234'
-2025-11-01T19:49:16.381-05:00  INFO 916 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
-2025-11-01T19:49:16.384-05:00  INFO 916 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Login exitoso: usuario='leiner' desde /192.168.40.44:52585
-2025-11-01T19:49:16.386-05:00  INFO 916 --- [servidor] [pool-2-thread-2] com.proyecto.demo.ui.UiServerWindow      : Login exitoso: leiner desde /192.168.40.44:52585
-2025-11-01T19:49:16.388-05:00  INFO 916 --- [servidor] [pool-2-thread-2] c.proyecto.demo.server.ConnectedClients  : Usuario registrado para broadcast: leiner (total=2)
-2025-11-01T19:49:16.388-05:00  INFO 916 --- [servidor] [pool-2-thread-2] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 2 clients: leiner,manuel1
-2025-11-01T19:57:05.215-05:00  INFO 10912 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 10912 (C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\target\classes started by josem in C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal)
-2025-11-01T19:57:05.217-05:00 DEBUG 10912 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
-2025-11-01T19:57:05.217-05:00  INFO 10912 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
-2025-11-01T19:57:05.503-05:00  INFO 10912 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Iniciando servicio de autenticación. Archivo usuarios configurado en 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt'
-2025-11-01T19:57:05.505-05:00  INFO 10912 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
-2025-11-01T19:57:05.506-05:00  INFO 10912 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Carga de usuarios completada. Usuarios cargados: 6
-2025-11-01T19:57:05.514-05:00  INFO 10912 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 192.168.40.44:8080
-2025-11-01T19:57:05.583-05:00  INFO 10912 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 0.695 seconds (process running for 0.94)
-2025-11-01T19:57:05.585-05:00  INFO 10912 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=192.168.40.44, port=8080
-2025-11-01T19:57:05.585-05:00  INFO 10912 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Archivo de usuarios configurado: C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt
-2025-11-01T19:57:05.586-05:00  INFO 10912 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UI enabled property = true; intentando inicializar UI
-2025-11-01T19:57:05.590-05:00  INFO 10912 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : java.awt.headless=false | GraphicsEnvironment.isHeadless=false
-2025-11-01T19:57:05.625-05:00  INFO 10912 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
-2025-11-01T19:57:05.843-05:00  INFO 10912 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Panel iniciado
-2025-11-01T19:57:05.843-05:00  INFO 10912 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
-2025-11-01T19:57:05.843-05:00  INFO 10912 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (initialize)
-2025-11-01T19:57:05.844-05:00  INFO 10912 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UiServerWindow.initialize() invocado desde DemoApplication.run
-2025-11-01T19:57:05.844-05:00  INFO 10912 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
-2025-11-01T19:57:05.844-05:00  INFO 10912 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
-2025-11-01T19:57:20.818-05:00  INFO 10912 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /192.168.40.44:64364
-2025-11-01T19:57:20.821-05:00  INFO 10912 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /192.168.40.44:64364
-2025-11-01T19:57:22.228-05:00  INFO 10912 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /192.168.40.44:64364
-2025-11-01T19:57:22.228-05:00  INFO 10912 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /192.168.40.44:64364
-2025-11-01T19:57:22.229-05:00  INFO 10912 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /192.168.40.44:64364
-2025-11-01T19:57:22.231-05:00  INFO 10912 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.44:64364 conectado y saludado.
-2025-11-01T19:57:22.231-05:00  INFO 10912 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN manuel1|1234'
-2025-11-01T19:57:22.232-05:00  INFO 10912 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
-2025-11-01T19:57:22.257-05:00  INFO 10912 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Login exitoso: usuario='manuel1' desde /192.168.40.44:64364
-2025-11-01T19:57:22.257-05:00  INFO 10912 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : Login exitoso: manuel1 desde /192.168.40.44:64364
-2025-11-01T19:57:22.258-05:00  INFO 10912 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Usuario registrado para broadcast: manuel1 (total=1)
-2025-11-01T19:57:22.258-05:00  INFO 10912 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 1 clients: manuel1
-2025-11-01T19:57:33.503-05:00  INFO 10912 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /192.168.40.44:51307
-2025-11-01T19:57:33.505-05:00  INFO 10912 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /192.168.40.44:51307
-2025-11-01T19:57:34.801-05:00  INFO 10912 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /192.168.40.44:51307
-2025-11-01T19:57:34.802-05:00  INFO 10912 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /192.168.40.44:51307
-2025-11-01T19:57:34.802-05:00  INFO 10912 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /192.168.40.44:51307
-2025-11-01T19:57:34.803-05:00  INFO 10912 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.44:51307 conectado y saludado.
-2025-11-01T19:57:34.803-05:00  INFO 10912 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN leiner|1234'
-2025-11-01T19:57:34.803-05:00  INFO 10912 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
-2025-11-01T19:57:34.804-05:00  INFO 10912 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Login exitoso: usuario='leiner' desde /192.168.40.44:51307
-2025-11-01T19:57:34.804-05:00  INFO 10912 --- [servidor] [pool-2-thread-2] com.proyecto.demo.ui.UiServerWindow      : Login exitoso: leiner desde /192.168.40.44:51307
-2025-11-01T19:57:34.809-05:00  INFO 10912 --- [servidor] [pool-2-thread-2] c.proyecto.demo.server.ConnectedClients  : Usuario registrado para broadcast: leiner (total=2)
-2025-11-01T19:57:34.809-05:00  INFO 10912 --- [servidor] [pool-2-thread-2] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 2 clients: leiner,manuel1
-2025-11-01T19:57:53.112-05:00  INFO 10912 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleMessage correctamente. Raw='MSG manuel1|Hola manuel'
-2025-11-01T19:57:53.112-05:00  INFO 10912 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : [2025-11-01 19:57:53] Mensaje enviado por: leiner Para manuel1 Contenido: Hola manuel
-2025-11-01T19:57:53.113-05:00  INFO 10912 --- [servidor] [pool-2-thread-2] com.proyecto.demo.ui.UiServerWindow      : [MSG] 2025-11-01 19:57:53 Mensaje enviado por: leiner Para manuel1 Contenido: Hola manuel (desde /192.168.40.44:51307)
-2025-11-01T19:58:00.810-05:00  INFO 10912 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleMessage correctamente. Raw='MSG leiner|Hola leiner'
-2025-11-01T19:58:00.810-05:00  INFO 10912 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : [2025-11-01 19:58:00] Mensaje enviado por: manuel1 Para leiner Contenido: Hola leiner
-2025-11-01T19:58:00.811-05:00  INFO 10912 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : [MSG] 2025-11-01 19:58:00 Mensaje enviado por: manuel1 Para leiner Contenido: Hola leiner (desde /192.168.40.44:64364)
-2025-11-01T19:58:10.291-05:00 ERROR 10912 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Error en worker para cliente /192.168.40.44:51307: java.net.SocketException: Connection reset
-2025-11-01T19:58:10.291-05:00  INFO 10912 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Usuario 'leiner' desconectado.
-2025-11-01T19:58:10.292-05:00  INFO 10912 --- [servidor] [pool-2-thread-2] c.proyecto.demo.server.ConnectedClients  : Usuario removido del registro: leiner (total=1)
-2025-11-01T19:58:10.292-05:00  INFO 10912 --- [servidor] [pool-2-thread-2] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 1 clients: manuel1
-2025-11-01T19:58:10.398-05:00 ERROR 10912 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Error en worker para cliente /192.168.40.44:64364: java.net.SocketException: Connection reset
-2025-11-01T19:58:10.398-05:00  INFO 10912 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Usuario 'manuel1' desconectado.
-2025-11-01T19:58:10.399-05:00  INFO 10912 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Usuario removido del registro: manuel1 (total=0)
-2025-11-01T19:58:10.399-05:00  INFO 10912 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 0 clients: 
-2025-11-01T20:05:29.693-05:00  INFO 18824 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 18824 (C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\target\classes started by josem in C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal)
-2025-11-01T20:05:29.694-05:00 DEBUG 18824 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
-2025-11-01T20:05:29.695-05:00  INFO 18824 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
-2025-11-01T20:05:30.003-05:00  INFO 18824 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Iniciando servicio de autenticación. Archivo usuarios configurado en 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt'
-2025-11-01T20:05:30.005-05:00  INFO 18824 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
-2025-11-01T20:05:30.005-05:00  INFO 18824 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Carga de usuarios completada. Usuarios cargados: 6
-2025-11-01T20:05:30.012-05:00  INFO 18824 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 192.168.40.44:8080
-2025-11-01T20:05:30.075-05:00  INFO 18824 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 0.734 seconds (process running for 1.015)
-2025-11-01T20:05:30.077-05:00  INFO 18824 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=192.168.40.44, port=8080
-2025-11-01T20:05:30.078-05:00  INFO 18824 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Archivo de usuarios configurado: C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt
-2025-11-01T20:05:30.078-05:00  INFO 18824 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UI enabled property = true; intentando inicializar UI
-2025-11-01T20:05:30.083-05:00  INFO 18824 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : java.awt.headless=false | GraphicsEnvironment.isHeadless=false
-2025-11-01T20:05:30.119-05:00  INFO 18824 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
-2025-11-01T20:05:30.333-05:00  INFO 18824 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Panel iniciado
-2025-11-01T20:05:30.333-05:00  INFO 18824 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
-2025-11-01T20:05:30.333-05:00  INFO 18824 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (initialize)
-2025-11-01T20:05:30.333-05:00  INFO 18824 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UiServerWindow.initialize() invocado desde DemoApplication.run
-2025-11-01T20:05:30.333-05:00  INFO 18824 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
-2025-11-01T20:05:30.333-05:00  INFO 18824 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
-2025-11-01T20:06:25.243-05:00  INFO 18824 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /192.168.40.44:64485
-2025-11-01T20:06:25.246-05:00  INFO 18824 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /192.168.40.44:64485
-2025-11-01T20:06:26.358-05:00  INFO 18824 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /192.168.40.44:64485
-2025-11-01T20:06:26.358-05:00  INFO 18824 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /192.168.40.44:64485
-2025-11-01T20:06:26.358-05:00  INFO 18824 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /192.168.40.44:64485
-2025-11-01T20:06:26.360-05:00  INFO 18824 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.44:64485 conectado y saludado.
-2025-11-01T20:06:26.361-05:00  INFO 18824 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN leiner|1234'
-2025-11-01T20:06:26.361-05:00  INFO 18824 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
-2025-11-01T20:06:26.385-05:00  INFO 18824 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Login exitoso: usuario='leiner' desde /192.168.40.44:64485
-2025-11-01T20:06:26.385-05:00  INFO 18824 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : Login exitoso: leiner desde /192.168.40.44:64485
-2025-11-01T20:06:26.386-05:00  INFO 18824 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Usuario registrado para broadcast: leiner (total=1)
-2025-11-01T20:06:26.386-05:00  INFO 18824 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 1 clients: leiner
-2025-11-01T20:06:27.922-05:00  INFO 18824 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /192.168.40.44:62435
-2025-11-01T20:06:27.924-05:00  INFO 18824 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /192.168.40.44:62435
-2025-11-01T20:06:28.820-05:00  INFO 18824 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /192.168.40.44:62435
-2025-11-01T20:06:28.820-05:00  INFO 18824 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /192.168.40.44:62435
-2025-11-01T20:06:28.820-05:00  INFO 18824 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /192.168.40.44:62435
-2025-11-01T20:06:28.821-05:00  INFO 18824 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.44:62435 conectado y saludado.
-2025-11-01T20:06:28.821-05:00  INFO 18824 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN manuel1|1234'
-2025-11-01T20:06:28.822-05:00  INFO 18824 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
-2025-11-01T20:06:28.823-05:00  INFO 18824 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Login exitoso: usuario='manuel1' desde /192.168.40.44:62435
-2025-11-01T20:06:28.823-05:00  INFO 18824 --- [servidor] [pool-2-thread-2] com.proyecto.demo.ui.UiServerWindow      : Login exitoso: manuel1 desde /192.168.40.44:62435
-2025-11-01T20:06:28.824-05:00  INFO 18824 --- [servidor] [pool-2-thread-2] c.proyecto.demo.server.ConnectedClients  : Usuario registrado para broadcast: manuel1 (total=2)
-2025-11-01T20:06:28.824-05:00  INFO 18824 --- [servidor] [pool-2-thread-2] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 2 clients: leiner,manuel1
-2025-11-01T20:06:33.476-05:00  INFO 18824 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleMessage correctamente. Raw='MSG leiner|hola leiner'
-2025-11-01T20:06:33.476-05:00  INFO 18824 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : [2025-11-01 20:06:33] Mensaje enviado por: manuel1 Para leiner Contenido: hola leiner
-2025-11-01T20:06:33.477-05:00  INFO 18824 --- [servidor] [pool-2-thread-2] com.proyecto.demo.ui.UiServerWindow      : [MSG] 2025-11-01 20:06:33 Mensaje enviado por: manuel1 Para leiner Contenido: hola leiner (desde /192.168.40.44:62435)
-2025-11-01T20:06:39.347-05:00  INFO 18824 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleMessage correctamente. Raw='MSG manuel1|hola manuel'
-2025-11-01T20:06:39.347-05:00  INFO 18824 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : [2025-11-01 20:06:39] Mensaje enviado por: leiner Para manuel1 Contenido: hola manuel
-2025-11-01T20:06:39.348-05:00  INFO 18824 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : [MSG] 2025-11-01 20:06:39 Mensaje enviado por: leiner Para manuel1 Contenido: hola manuel (desde /192.168.40.44:64485)
-2025-11-01T20:07:03.096-05:00  INFO 18824 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /192.168.40.44:61882
-2025-11-01T20:07:03.100-05:00  INFO 18824 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /192.168.40.44:61882
-2025-11-01T20:07:04.401-05:00  INFO 18824 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /192.168.40.44:61882
-2025-11-01T20:07:04.401-05:00  INFO 18824 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /192.168.40.44:61882
-2025-11-01T20:07:04.402-05:00  INFO 18824 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /192.168.40.44:61882
-2025-11-01T20:07:04.402-05:00  INFO 18824 --- [servidor] [pool-2-thread-3] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.44:61882 conectado y saludado.
-2025-11-01T20:07:04.404-05:00 ERROR 18824 --- [servidor] [pool-2-thread-3] com.proyecto.demo.server.ClientWorker    : Error en worker para cliente /192.168.40.44:61882: java.net.SocketException: Se ha anulado una conexión establecida por el software en su equipo host.
-2025-11-01T20:07:04.405-05:00  INFO 18824 --- [servidor] [pool-2-thread-3] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.44:61882 desconectado sin autenticarse.
-2025-11-01T20:07:06.735-05:00  INFO 18824 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /192.168.40.44:59408
-2025-11-01T20:07:06.739-05:00  INFO 18824 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /192.168.40.44:59408
-2025-11-01T20:07:07.843-05:00  INFO 18824 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /192.168.40.44:59408
-2025-11-01T20:07:07.843-05:00  INFO 18824 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /192.168.40.44:59408
-2025-11-01T20:07:07.843-05:00  INFO 18824 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /192.168.40.44:59408
-2025-11-01T20:07:07.844-05:00  INFO 18824 --- [servidor] [pool-2-thread-3] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.44:59408 conectado y saludado.
-2025-11-01T20:07:07.844-05:00  INFO 18824 --- [servidor] [pool-2-thread-3] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN hector|1234'
-2025-11-01T20:07:07.845-05:00  INFO 18824 --- [servidor] [pool-2-thread-3] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
-2025-11-01T20:07:07.845-05:00  WARN 18824 --- [servidor] [pool-2-thread-3] com.proyecto.demo.server.ClientWorker    : Login fallido: usuario='hector' desde /192.168.40.44:59408
-2025-11-01T20:07:07.846-05:00  INFO 18824 --- [servidor] [pool-2-thread-3] com.proyecto.demo.ui.UiServerWindow      : Login fallido: hector desde /192.168.40.44:59408
-2025-11-01T20:07:12.567-05:00  INFO 18824 --- [servidor] [pool-2-thread-3] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN hector|1234'
-2025-11-01T20:07:12.567-05:00  INFO 18824 --- [servidor] [pool-2-thread-3] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
-2025-11-01T20:07:12.568-05:00  WARN 18824 --- [servidor] [pool-2-thread-3] com.proyecto.demo.server.ClientWorker    : Login fallido: usuario='hector' desde /192.168.40.44:59408
-2025-11-01T20:07:12.568-05:00  INFO 18824 --- [servidor] [pool-2-thread-3] com.proyecto.demo.ui.UiServerWindow      : Login fallido: hector desde /192.168.40.44:59408
-2025-11-01T20:07:17.474-05:00 ERROR 18824 --- [servidor] [pool-2-thread-3] com.proyecto.demo.server.ClientWorker    : Error en worker para cliente /192.168.40.44:59408: java.net.SocketException: Connection reset
-2025-11-01T20:07:17.475-05:00  INFO 18824 --- [servidor] [pool-2-thread-3] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.44:59408 desconectado sin autenticarse.
-2025-11-01T20:07:24.518-05:00  INFO 18824 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /192.168.40.44:57215
-2025-11-01T20:07:24.522-05:00  INFO 18824 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /192.168.40.44:57215
-2025-11-01T20:07:25.453-05:00  INFO 18824 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /192.168.40.44:57215
-2025-11-01T20:07:25.453-05:00  INFO 18824 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /192.168.40.44:57215
-2025-11-01T20:07:25.453-05:00  INFO 18824 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /192.168.40.44:57215
-2025-11-01T20:07:25.454-05:00  INFO 18824 --- [servidor] [pool-2-thread-3] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.44:57215 conectado y saludado.
-2025-11-01T20:07:25.454-05:00  INFO 18824 --- [servidor] [pool-2-thread-3] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN hector|1234'
-2025-11-01T20:07:25.455-05:00  INFO 18824 --- [servidor] [pool-2-thread-3] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
-2025-11-01T20:07:25.455-05:00  WARN 18824 --- [servidor] [pool-2-thread-3] com.proyecto.demo.server.ClientWorker    : Login fallido: usuario='hector' desde /192.168.40.44:57215
-2025-11-01T20:07:25.456-05:00  INFO 18824 --- [servidor] [pool-2-thread-3] com.proyecto.demo.ui.UiServerWindow      : Login fallido: hector desde /192.168.40.44:57215
-2025-11-01T20:07:33.737-05:00  INFO 25132 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 25132 (C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\target\classes started by josem in C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal)
-2025-11-01T20:07:33.739-05:00 DEBUG 25132 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
-2025-11-01T20:07:33.739-05:00  INFO 25132 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
-2025-11-01T20:07:34.037-05:00  INFO 25132 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Iniciando servicio de autenticación. Archivo usuarios configurado en 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt'
-2025-11-01T20:07:34.038-05:00  INFO 25132 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
-2025-11-01T20:07:34.039-05:00  INFO 25132 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Carga de usuarios completada. Usuarios cargados: 6
-2025-11-01T20:07:34.063-05:00  INFO 25132 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 192.168.40.44:8080
-2025-11-01T20:07:34.149-05:00  INFO 25132 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 0.765 seconds (process running for 0.995)
-2025-11-01T20:07:34.151-05:00  INFO 25132 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=192.168.40.44, port=8080
-2025-11-01T20:07:34.151-05:00  INFO 25132 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Archivo de usuarios configurado: C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt
-2025-11-01T20:07:34.152-05:00  INFO 25132 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UI enabled property = true; intentando inicializar UI
-2025-11-01T20:07:34.156-05:00  INFO 25132 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : java.awt.headless=false | GraphicsEnvironment.isHeadless=false
-2025-11-01T20:07:34.201-05:00  INFO 25132 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
-2025-11-01T20:07:34.417-05:00  INFO 25132 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Panel iniciado
-2025-11-01T20:07:34.418-05:00  INFO 25132 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
-2025-11-01T20:07:34.418-05:00  INFO 25132 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (initialize)
-2025-11-01T20:07:34.418-05:00  INFO 25132 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UiServerWindow.initialize() invocado desde DemoApplication.run
-2025-11-01T20:07:34.418-05:00  INFO 25132 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
-2025-11-01T20:07:34.418-05:00  INFO 25132 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
-2025-11-01T20:07:40.911-05:00  INFO 25132 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /192.168.40.44:59900
-2025-11-01T20:07:40.915-05:00  INFO 25132 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /192.168.40.44:59900
-2025-11-01T20:07:42.237-05:00  INFO 25132 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /192.168.40.44:59900
-2025-11-01T20:07:42.238-05:00  INFO 25132 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /192.168.40.44:59900
-2025-11-01T20:07:42.238-05:00  INFO 25132 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /192.168.40.44:59900
-2025-11-01T20:07:42.241-05:00  INFO 25132 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.44:59900 conectado y saludado.
-2025-11-01T20:07:42.241-05:00  INFO 25132 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN hector|1234'
-2025-11-01T20:07:42.242-05:00  INFO 25132 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
-2025-11-01T20:07:42.242-05:00  WARN 25132 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Login fallido: usuario='hector' desde /192.168.40.44:59900
-2025-11-01T20:07:42.243-05:00  INFO 25132 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : Login fallido: hector desde /192.168.40.44:59900
-2025-11-01T20:08:06.455-05:00  INFO 25132 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN manuel2|1234'
-2025-11-01T20:08:06.456-05:00  INFO 25132 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
-2025-11-01T20:08:06.479-05:00  INFO 25132 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Login exitoso: usuario='manuel2' desde /192.168.40.44:59900
-2025-11-01T20:08:06.479-05:00  INFO 25132 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : Login exitoso: manuel2 desde /192.168.40.44:59900
-2025-11-01T20:08:06.480-05:00  INFO 25132 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Usuario registrado para broadcast: manuel2 (total=1)
-2025-11-01T20:08:06.480-05:00  INFO 25132 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 1 clients: manuel2
-2025-11-01T20:08:20.921-05:00 ERROR 25132 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Error en worker para cliente /192.168.40.44:59900: java.net.SocketException: Connection reset
-2025-11-01T20:08:20.921-05:00  INFO 25132 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Usuario 'manuel2' desconectado.
-2025-11-01T20:08:20.922-05:00  INFO 25132 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Usuario removido del registro: manuel2 (total=0)
-2025-11-01T20:08:20.922-05:00  INFO 25132 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 0 clients: 
-2025-11-01T20:08:26.689-05:00  INFO 24308 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 24308 (C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\target\classes started by josem in C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal)
-2025-11-01T20:08:26.691-05:00 DEBUG 24308 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
-2025-11-01T20:08:26.691-05:00  INFO 24308 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
-2025-11-01T20:08:27.028-05:00  INFO 24308 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Iniciando servicio de autenticación. Archivo usuarios configurado en 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt'
-2025-11-01T20:08:27.030-05:00  INFO 24308 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
-2025-11-01T20:08:27.031-05:00  INFO 24308 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Carga de usuarios completada. Usuarios cargados: 6
-2025-11-01T20:08:27.040-05:00  INFO 24308 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 192.168.40.44:8080
-2025-11-01T20:08:27.113-05:00  INFO 24308 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 0.767 seconds (process running for 1.068)
-2025-11-01T20:08:27.115-05:00  INFO 24308 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=192.168.40.44, port=8080
-2025-11-01T20:08:27.115-05:00  INFO 24308 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Archivo de usuarios configurado: C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt
-2025-11-01T20:08:27.115-05:00  INFO 24308 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UI enabled property = true; intentando inicializar UI
-2025-11-01T20:08:27.120-05:00  INFO 24308 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : java.awt.headless=false | GraphicsEnvironment.isHeadless=false
-2025-11-01T20:08:27.157-05:00  INFO 24308 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
-2025-11-01T20:08:27.362-05:00  INFO 24308 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Panel iniciado
-2025-11-01T20:08:27.363-05:00  INFO 24308 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
-2025-11-01T20:08:27.363-05:00  INFO 24308 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (initialize)
-2025-11-01T20:08:27.363-05:00  INFO 24308 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UiServerWindow.initialize() invocado desde DemoApplication.run
-2025-11-01T20:08:27.363-05:00  INFO 24308 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
-2025-11-01T20:08:27.363-05:00  INFO 24308 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
-2025-11-01T20:09:36.947-05:00  INFO 24308 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /192.168.40.44:57823
-2025-11-01T20:09:36.952-05:00  INFO 24308 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /192.168.40.44:57823
-2025-11-01T20:09:38.761-05:00  INFO 24308 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /192.168.40.44:57823
-2025-11-01T20:09:38.761-05:00  INFO 24308 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /192.168.40.44:57823
-2025-11-01T20:09:38.761-05:00  INFO 24308 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /192.168.40.44:57823
-2025-11-01T20:09:38.764-05:00  INFO 24308 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.44:57823 conectado y saludado.
-2025-11-01T20:09:38.764-05:00  INFO 24308 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN manuel1|1234'
-2025-11-01T20:09:38.765-05:00  INFO 24308 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
-2025-11-01T20:09:38.790-05:00  INFO 24308 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Login exitoso: usuario='manuel1' desde /192.168.40.44:57823
-2025-11-01T20:09:38.790-05:00  INFO 24308 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : Login exitoso: manuel1 desde /192.168.40.44:57823
-2025-11-01T20:09:38.791-05:00  INFO 24308 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Usuario registrado para broadcast: manuel1 (total=1)
-2025-11-01T20:09:38.791-05:00  INFO 24308 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 1 clients: manuel1
-2025-11-01T20:09:44.815-05:00  INFO 24308 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /192.168.40.44:63878
-2025-11-01T20:09:44.818-05:00  INFO 24308 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /192.168.40.44:63878
-2025-11-01T20:09:46.058-05:00  INFO 24308 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /192.168.40.44:63878
-2025-11-01T20:09:46.058-05:00  INFO 24308 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /192.168.40.44:63878
-2025-11-01T20:09:46.058-05:00  INFO 24308 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /192.168.40.44:63878
-2025-11-01T20:09:46.059-05:00  INFO 24308 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.44:63878 conectado y saludado.
-2025-11-01T20:09:46.059-05:00  INFO 24308 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN manuel2|1234'
-2025-11-01T20:09:46.060-05:00  INFO 24308 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
-2025-11-01T20:09:46.060-05:00  INFO 24308 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Login exitoso: usuario='manuel2' desde /192.168.40.44:63878
-2025-11-01T20:09:46.060-05:00  INFO 24308 --- [servidor] [pool-2-thread-2] com.proyecto.demo.ui.UiServerWindow      : Login exitoso: manuel2 desde /192.168.40.44:63878
-2025-11-01T20:09:46.061-05:00  INFO 24308 --- [servidor] [pool-2-thread-2] c.proyecto.demo.server.ConnectedClients  : Usuario registrado para broadcast: manuel2 (total=2)
-2025-11-01T20:09:46.061-05:00  INFO 24308 --- [servidor] [pool-2-thread-2] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 2 clients: manuel1,manuel2
-2025-11-01T20:09:51.583-05:00  INFO 24308 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /192.168.40.44:63044
-2025-11-01T20:09:51.587-05:00  INFO 24308 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /192.168.40.44:63044
-2025-11-01T20:09:52.757-05:00  INFO 24308 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /192.168.40.44:63044
-2025-11-01T20:09:52.757-05:00  INFO 24308 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /192.168.40.44:63044
-2025-11-01T20:09:52.757-05:00  INFO 24308 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /192.168.40.44:63044
-2025-11-01T20:09:52.758-05:00  INFO 24308 --- [servidor] [pool-2-thread-3] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.44:63044 conectado y saludado.
-2025-11-01T20:09:52.758-05:00  INFO 24308 --- [servidor] [pool-2-thread-3] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN leiner|1234'
-2025-11-01T20:09:52.759-05:00  INFO 24308 --- [servidor] [pool-2-thread-3] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
-2025-11-01T20:09:52.759-05:00  INFO 24308 --- [servidor] [pool-2-thread-3] com.proyecto.demo.server.ClientWorker    : Login exitoso: usuario='leiner' desde /192.168.40.44:63044
-2025-11-01T20:09:52.760-05:00  INFO 24308 --- [servidor] [pool-2-thread-3] com.proyecto.demo.ui.UiServerWindow      : Login exitoso: leiner desde /192.168.40.44:63044
-2025-11-01T20:09:52.760-05:00  INFO 24308 --- [servidor] [pool-2-thread-3] c.proyecto.demo.server.ConnectedClients  : Usuario registrado para broadcast: leiner (total=3)
-2025-11-01T20:09:52.761-05:00  INFO 24308 --- [servidor] [pool-2-thread-3] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 3 clients: leiner,manuel1,manuel2
-2025-11-01T20:09:59.895-05:00  INFO 24308 --- [servidor] [pool-2-thread-3] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleMessage correctamente. Raw='MSG manuel1|hola manuel1'
-2025-11-01T20:09:59.896-05:00  INFO 24308 --- [servidor] [pool-2-thread-3] com.proyecto.demo.server.ClientWorker    : [2025-11-01 20:09:59] Mensaje enviado por: leiner Para manuel1 Contenido: hola manuel1
-2025-11-01T20:09:59.896-05:00  INFO 24308 --- [servidor] [pool-2-thread-3] com.proyecto.demo.ui.UiServerWindow      : [MSG] 2025-11-01 20:09:59 Mensaje enviado por: leiner Para manuel1 Contenido: hola manuel1 (desde /192.168.40.44:63044)
-2025-11-01T20:10:09.223-05:00  INFO 24308 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleMessage correctamente. Raw='MSG leiner|hola leiner'
-2025-11-01T20:10:09.223-05:00  INFO 24308 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : [2025-11-01 20:10:09] Mensaje enviado por: manuel1 Para leiner Contenido: hola leiner
-2025-11-01T20:10:09.224-05:00  INFO 24308 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : [MSG] 2025-11-01 20:10:09 Mensaje enviado por: manuel1 Para leiner Contenido: hola leiner (desde /192.168.40.44:57823)
-2025-11-01T20:10:14.742-05:00  INFO 24308 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleMessage correctamente. Raw='MSG leiner|hola leiner'
-2025-11-01T20:10:14.742-05:00  INFO 24308 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : [2025-11-01 20:10:14] Mensaje enviado por: manuel2 Para leiner Contenido: hola leiner
-2025-11-01T20:10:14.742-05:00  INFO 24308 --- [servidor] [pool-2-thread-2] com.proyecto.demo.ui.UiServerWindow      : [MSG] 2025-11-01 20:10:14 Mensaje enviado por: manuel2 Para leiner Contenido: hola leiner (desde /192.168.40.44:63878)
-2025-11-01T20:10:22.318-05:00  INFO 24308 --- [servidor] [pool-2-thread-3] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleMessage correctamente. Raw='MSG manuel2|hola manuel2'
-2025-11-01T20:10:22.319-05:00  INFO 24308 --- [servidor] [pool-2-thread-3] com.proyecto.demo.server.ClientWorker    : [2025-11-01 20:10:22] Mensaje enviado por: leiner Para manuel2 Contenido: hola manuel2
-2025-11-01T20:10:22.319-05:00  INFO 24308 --- [servidor] [pool-2-thread-3] com.proyecto.demo.ui.UiServerWindow      : [MSG] 2025-11-01 20:10:22 Mensaje enviado por: leiner Para manuel2 Contenido: hola manuel2 (desde /192.168.40.44:63044)
-2025-11-01T20:10:28.688-05:00  INFO 24308 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleMessage correctamente. Raw='MSG manuel2|hola manuel2'
-2025-11-01T20:10:28.688-05:00  INFO 24308 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : [2025-11-01 20:10:28] Mensaje enviado por: manuel1 Para manuel2 Contenido: hola manuel2
-2025-11-01T20:10:28.689-05:00  INFO 24308 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : [MSG] 2025-11-01 20:10:28 Mensaje enviado por: manuel1 Para manuel2 Contenido: hola manuel2 (desde /192.168.40.44:57823)
-2025-11-01T20:10:34.405-05:00  INFO 24308 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleMessage correctamente. Raw='MSG manuel1|hola manuel1'
-2025-11-01T20:10:34.405-05:00  INFO 24308 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : [2025-11-01 20:10:34] Mensaje enviado por: manuel2 Para manuel1 Contenido: hola manuel1
-2025-11-01T20:10:34.406-05:00  INFO 24308 --- [servidor] [pool-2-thread-2] com.proyecto.demo.ui.UiServerWindow      : [MSG] 2025-11-01 20:10:34 Mensaje enviado por: manuel2 Para manuel1 Contenido: hola manuel1 (desde /192.168.40.44:63878)
-2025-11-01T20:10:40.235-05:00 ERROR 24308 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Error en worker para cliente /192.168.40.44:63878: java.net.SocketException: Connection reset
-2025-11-01T20:10:40.306-05:00  INFO 24308 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Usuario 'manuel2' desconectado.
-2025-11-01T20:10:40.329-05:00  INFO 24308 --- [servidor] [pool-2-thread-2] c.proyecto.demo.server.ConnectedClients  : Usuario removido del registro: manuel2 (total=2)
-2025-11-01T20:10:40.330-05:00  INFO 24308 --- [servidor] [pool-2-thread-2] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 2 clients: leiner,manuel1
-2025-11-01T20:10:40.434-05:00 ERROR 24308 --- [servidor] [pool-2-thread-3] com.proyecto.demo.server.ClientWorker    : Error en worker para cliente /192.168.40.44:63044: java.net.SocketException: Connection reset
-2025-11-01T20:10:40.434-05:00 ERROR 24308 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Error en worker para cliente /192.168.40.44:57823: java.net.SocketException: Connection reset
-2025-11-01T20:10:40.435-05:00  INFO 24308 --- [servidor] [pool-2-thread-3] com.proyecto.demo.server.ClientWorker    : Usuario 'leiner' desconectado.
-2025-11-01T20:10:40.435-05:00  INFO 24308 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Usuario 'manuel1' desconectado.
-2025-11-01T20:10:40.435-05:00  INFO 24308 --- [servidor] [pool-2-thread-3] c.proyecto.demo.server.ConnectedClients  : Usuario removido del registro: leiner (total=1)
-2025-11-01T20:10:40.435-05:00  INFO 24308 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Usuario removido del registro: manuel1 (total=0)
-2025-11-01T20:10:40.435-05:00  INFO 24308 --- [servidor] [pool-2-thread-3] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 0 clients: 
-2025-11-01T20:10:40.435-05:00  INFO 24308 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 0 clients: 
+2025-11-03T13:43:14.682-05:00  INFO 19564 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Shutting down TcpServer...
+2025-11-03T13:43:14.683-05:00  INFO 19564 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : TcpServer shutdown complete
+2025-11-03T13:43:14.763-05:00  INFO 19564 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 0.867 seconds (process running for 1.879)
+2025-11-03T13:43:14.765-05:00  INFO 19564 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=192.168.40.44, port=8080
+2025-11-03T13:43:14.766-05:00  INFO 19564 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Archivo de usuarios configurado: C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt
+2025-11-03T13:43:14.766-05:00  INFO 19564 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UI enabled property = true; intentando inicializar UI
+2025-11-03T13:43:14.771-05:00  INFO 19564 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : java.awt.headless=false | GraphicsEnvironment.isHeadless=false
+2025-11-03T13:43:14.811-05:00  INFO 19564 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
+2025-11-03T13:43:15.096-05:00  INFO 19564 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Panel iniciado
+2025-11-03T13:43:15.096-05:00  INFO 19564 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
+2025-11-03T13:43:15.096-05:00  INFO 19564 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (initialize)
+2025-11-03T13:43:15.096-05:00  INFO 19564 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UiServerWindow.initialize() invocado desde DemoApplication.run
+2025-11-03T13:43:15.097-05:00  INFO 19564 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
+2025-11-03T13:43:15.097-05:00  INFO 19564 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
+2025-11-03T13:43:38.362-05:00  INFO 22684 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /192.168.40.44:56202
+2025-11-03T13:43:38.366-05:00  INFO 22684 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /192.168.40.44:56202
+2025-11-03T13:43:40.534-05:00  INFO 22684 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /192.168.40.44:56202
+2025-11-03T13:43:40.535-05:00  INFO 22684 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /192.168.40.44:56202
+2025-11-03T13:43:40.535-05:00  INFO 22684 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /192.168.40.44:56202
+2025-11-03T13:43:40.538-05:00  INFO 22684 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.44:56202 conectado y saludado.
+2025-11-03T13:43:40.538-05:00  INFO 22684 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN manuel|1234'
+2025-11-03T13:43:40.538-05:00  INFO 22684 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
+2025-11-03T13:43:40.539-05:00  WARN 22684 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Login fallido: usuario='manuel' desde /192.168.40.44:56202
+2025-11-03T13:43:40.539-05:00  INFO 22684 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : Login fallido: manuel desde /192.168.40.44:56202
+2025-11-03T13:43:44.344-05:00  INFO 22684 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN manuel1|1234'
+2025-11-03T13:43:44.345-05:00  INFO 22684 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
+2025-11-03T13:43:44.371-05:00  INFO 22684 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Login exitoso: usuario='manuel1' desde /192.168.40.44:56202
+2025-11-03T13:43:44.372-05:00  INFO 22684 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : Login exitoso: manuel1 desde /192.168.40.44:56202
+2025-11-03T13:43:44.373-05:00  INFO 22684 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Usuario registrado para broadcast: manuel1 (total=1)
+2025-11-03T13:43:44.373-05:00  INFO 22684 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 1 clients: manuel1
+2025-11-03T13:43:56.102-05:00  INFO 22684 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /192.168.40.44:60079
+2025-11-03T13:43:56.104-05:00  INFO 22684 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /192.168.40.44:60079
+2025-11-03T13:43:57.506-05:00  INFO 22684 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /192.168.40.44:60079
+2025-11-03T13:43:57.507-05:00  INFO 22684 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /192.168.40.44:60079
+2025-11-03T13:43:57.507-05:00  INFO 22684 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /192.168.40.44:60079
+2025-11-03T13:43:57.508-05:00  INFO 22684 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.44:60079 conectado y saludado.
+2025-11-03T13:43:57.508-05:00  INFO 22684 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN hector|1234'
+2025-11-03T13:43:57.508-05:00  INFO 22684 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
+2025-11-03T13:43:57.509-05:00  WARN 22684 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Login fallido: usuario='hector' desde /192.168.40.44:60079
+2025-11-03T13:43:57.510-05:00  INFO 22684 --- [servidor] [pool-2-thread-2] com.proyecto.demo.ui.UiServerWindow      : Login fallido: hector desde /192.168.40.44:60079
+2025-11-03T13:44:00.204-05:00  INFO 22684 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN hector1|1234'
+2025-11-03T13:44:00.205-05:00  INFO 22684 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
+2025-11-03T13:44:00.205-05:00  WARN 22684 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Login fallido: usuario='hector1' desde /192.168.40.44:60079
+2025-11-03T13:44:00.206-05:00  INFO 22684 --- [servidor] [pool-2-thread-2] com.proyecto.demo.ui.UiServerWindow      : Login fallido: hector1 desde /192.168.40.44:60079
+2025-11-03T13:44:04.278-05:00  INFO 22684 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN laura|1234'
+2025-11-03T13:44:04.278-05:00  INFO 22684 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
+2025-11-03T13:44:04.278-05:00  WARN 22684 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Login fallido: usuario='laura' desde /192.168.40.44:60079
+2025-11-03T13:44:04.279-05:00  INFO 22684 --- [servidor] [pool-2-thread-2] com.proyecto.demo.ui.UiServerWindow      : Login fallido: laura desde /192.168.40.44:60079
+2025-11-03T13:44:07.901-05:00  INFO 22684 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN manuel2|1234'
+2025-11-03T13:44:07.902-05:00  INFO 22684 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
+2025-11-03T13:44:07.902-05:00  INFO 22684 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Login exitoso: usuario='manuel2' desde /192.168.40.44:60079
+2025-11-03T13:44:07.902-05:00  INFO 22684 --- [servidor] [pool-2-thread-2] com.proyecto.demo.ui.UiServerWindow      : Login exitoso: manuel2 desde /192.168.40.44:60079
+2025-11-03T13:44:07.902-05:00  INFO 22684 --- [servidor] [pool-2-thread-2] c.proyecto.demo.server.ConnectedClients  : Usuario registrado para broadcast: manuel2 (total=2)
+2025-11-03T13:44:07.902-05:00  INFO 22684 --- [servidor] [pool-2-thread-2] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 2 clients: manuel1,manuel2
+2025-11-03T13:55:20.145-05:00  INFO 22684 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleFile correctamente. Raw='FILE ALL|notas avanz.txt|Tm8gZGlzZcOxYXIgZGVzZGUgMCwgcmV1c2FyIHBhcmEgcXVlIHNlYSBtYXMgZsOhY2lsIG1hbnRlbmVyIGEgZnV0dXJvDQpDYWRhIHBhdHJvbiBkZXNjcmliZSB1biBwcm9ibGVtYSB5IHVuYSBzb2x1Y2nDs24sIGFwbGljYWJsZSBpbmZpbml0YXMgdmVjZXMNClBhcnRlcyBkZSB1biBwYXRyb24NCgkuTm9tYnJlOiBDb3J0bywgZGVzY3JpcHRpdm8geSBmw6FjaWwNCgkuUHJvYmxlbWE6IEN1YW5kbyBzZSBhcGxpY2EsIGNvbmRpY2lvbmVzIHNpIHRpZW5lDQoJLlNvbHVjacOzbjogRWxlbWVudG9zIHF1ZSBoYWNlbiBsYSBwbGFudGlsbGEgDQoJLkNvbnNlY3VlbmNpYXM6IHJlc3VsdGFkb3MsIHZlbnRhamFzIHkgZGVzdmVudGFqYXMNCg0KTVZDOiBBY29wbGFjaW9uZXMgeSBzdWJjbGFzZXMNCg0KTW90aXZhY2nDs246IGVzY2VuYXJpbyBxdWUgaWx1c3RyYSB1biBwcm9ibGVtYSBkZSBkaXNlw7FvIHkgY29tbyBzZSByZXN1ZWx2ZQ0KQXBsaWNhYmlsaWRhZDogQ3VhbmRvIHNlIHB1ZWRlIHVzYXINCkVzdHJ1Y3R1cmE6IFJlcHJlc2VudGFjacOzbiBncmFmaWNhIGRlIGxhcyBjbGFzZXMgdXNhbmRvIGVsIHBhdHJvbg0KUGFydGljaXBhbnRlczogQ2xhc2VzIHkgb2JqZXRvcyBxdWUgcGFydGljaXBhbiBlbiBlbCBkaXNlw7FvDQpDb2xhYm9yYWNpb25lczogQ29tbyBzZSByZWxhY2lvbmFuIGxvcyBwYXJ0aWNpcGFudGVzDQpJbXBsZW1lbnRhY2nDs246IERpZmljdWx0YWRlcw0KDQpDYXRhbG9nbw0KDQoNCkNvbnN0cnVjdG9yDQpTZXBhcmEgbGEgY29uc3RydWNjacOzbiBkZSBvYmpldG9zIGRlIGxhcyByZXByZXNlbnRhY2lvbmVzDQoNCnNlIHVzYSBjdWFuZG8NCmVsIGFsZ29yaXRtbyBwYXJhIGNyZWFyIHVuIG9iamV0byBjb21wbGVqbyBkZWJhIHNlciBpbmRlcGVuZGllbnRlIGRlIGxhcyBwYXJ0ZXMgcXVlIHNlIGNvbXBvbmUgZGljaG8gb2JqZXRvDQplbCBwcm9jZXNvIGRlIGNvbnN0cnVjY2lvbiBkZWJlIHBlcm1pdGlyIGRpZmVyZW50ZXMgcmVwcmVzZW50YWNpb25lcyBkZWwgb2JqZXRvDQoNCmVzdG95IDEzMQ0KDQpQcm94eQ0KU3VzdGl0dXRvIGRlIG9iamV0byBxdWUgYWN0w7phIGNvbW8gZWxsb3MsIHBhcmEgZXZpdGFyIHNvYnJlIGNhcmdhcyBvIG1hbmVqYXIgY3VhbmRvIHNlIGxsYW1hIGFsIG9iamV0byByZWFsL29iamV0aXZvDQpTZSBhcGxpY2EgY3VhbmRvIHNlIG5lY2VzaXRhIGNyZWFyIHVuIG9iamV0byBtYXMgdmVyc8OhdGlsIHF1ZSB1biBwdW50ZXJvDQoNClByZWd1bnRhcywgcG9ycXVlIGNvbiBsYSBjbGFzZSBhYnN0cmFjdGEgZXMgZXh0ZW5kcyB5IHBvcnF1ZSBjb24gbGEgaW50ZXJmYXogZXMgaW1wbGVtZW50cw0KUGFyYSBxdWUgc2UgdXNhIGVsIG92ZXJyaWRlPyBFcyBwYXJhIHVzYXIgbGEgZnVuY2nDs24gZGUgZGUgbGEgaW50ZXJmYXogcXVlIHNlIGVzdGEgaW1wbGVtZW50YW5kbz8NCg0KQ29tbWFuZA0KRW5jYXBzdWxhIHBldGljaW9uZXMgZW4gb2JqZXRvcywgZGVqYSBjcmVhciBjb2xhcyB5IHJlZ2lzdHJvcw0KU2UgZGVjbGFyYSB1bmEgY2xhc2UgYWJzdHIgb3JkZW4gcXVlIGRlY2xhcmEgdW5hIGludGVyZmF6IHBhcmEgcXVlIHNlIHB1ZWRhbiBlamVjdXRhciBvcGVyYWNpb25lcw=='
+2025-11-03T13:55:20.165-05:00  INFO 22684 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Archivo recibido guardado en uploads\1762196120148_manuel2_notas avanz.txt
+2025-11-03T13:55:38.268-05:00  INFO 22684 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleFile correctamente. Raw='FILE manuel1|notas avanz.txt|Tm8gZGlzZcOxYXIgZGVzZGUgMCwgcmV1c2FyIHBhcmEgcXVlIHNlYSBtYXMgZsOhY2lsIG1hbnRlbmVyIGEgZnV0dXJvDQpDYWRhIHBhdHJvbiBkZXNjcmliZSB1biBwcm9ibGVtYSB5IHVuYSBzb2x1Y2nDs24sIGFwbGljYWJsZSBpbmZpbml0YXMgdmVjZXMNClBhcnRlcyBkZSB1biBwYXRyb24NCgkuTm9tYnJlOiBDb3J0bywgZGVzY3JpcHRpdm8geSBmw6FjaWwNCgkuUHJvYmxlbWE6IEN1YW5kbyBzZSBhcGxpY2EsIGNvbmRpY2lvbmVzIHNpIHRpZW5lDQoJLlNvbHVjacOzbjogRWxlbWVudG9zIHF1ZSBoYWNlbiBsYSBwbGFudGlsbGEgDQoJLkNvbnNlY3VlbmNpYXM6IHJlc3VsdGFkb3MsIHZlbnRhamFzIHkgZGVzdmVudGFqYXMNCg0KTVZDOiBBY29wbGFjaW9uZXMgeSBzdWJjbGFzZXMNCg0KTW90aXZhY2nDs246IGVzY2VuYXJpbyBxdWUgaWx1c3RyYSB1biBwcm9ibGVtYSBkZSBkaXNlw7FvIHkgY29tbyBzZSByZXN1ZWx2ZQ0KQXBsaWNhYmlsaWRhZDogQ3VhbmRvIHNlIHB1ZWRlIHVzYXINCkVzdHJ1Y3R1cmE6IFJlcHJlc2VudGFjacOzbiBncmFmaWNhIGRlIGxhcyBjbGFzZXMgdXNhbmRvIGVsIHBhdHJvbg0KUGFydGljaXBhbnRlczogQ2xhc2VzIHkgb2JqZXRvcyBxdWUgcGFydGljaXBhbiBlbiBlbCBkaXNlw7FvDQpDb2xhYm9yYWNpb25lczogQ29tbyBzZSByZWxhY2lvbmFuIGxvcyBwYXJ0aWNpcGFudGVzDQpJbXBsZW1lbnRhY2nDs246IERpZmljdWx0YWRlcw0KDQpDYXRhbG9nbw0KDQoNCkNvbnN0cnVjdG9yDQpTZXBhcmEgbGEgY29uc3RydWNjacOzbiBkZSBvYmpldG9zIGRlIGxhcyByZXByZXNlbnRhY2lvbmVzDQoNCnNlIHVzYSBjdWFuZG8NCmVsIGFsZ29yaXRtbyBwYXJhIGNyZWFyIHVuIG9iamV0byBjb21wbGVqbyBkZWJhIHNlciBpbmRlcGVuZGllbnRlIGRlIGxhcyBwYXJ0ZXMgcXVlIHNlIGNvbXBvbmUgZGljaG8gb2JqZXRvDQplbCBwcm9jZXNvIGRlIGNvbnN0cnVjY2lvbiBkZWJlIHBlcm1pdGlyIGRpZmVyZW50ZXMgcmVwcmVzZW50YWNpb25lcyBkZWwgb2JqZXRvDQoNCmVzdG95IDEzMQ0KDQpQcm94eQ0KU3VzdGl0dXRvIGRlIG9iamV0byBxdWUgYWN0w7phIGNvbW8gZWxsb3MsIHBhcmEgZXZpdGFyIHNvYnJlIGNhcmdhcyBvIG1hbmVqYXIgY3VhbmRvIHNlIGxsYW1hIGFsIG9iamV0byByZWFsL29iamV0aXZvDQpTZSBhcGxpY2EgY3VhbmRvIHNlIG5lY2VzaXRhIGNyZWFyIHVuIG9iamV0byBtYXMgdmVyc8OhdGlsIHF1ZSB1biBwdW50ZXJvDQoNClByZWd1bnRhcywgcG9ycXVlIGNvbiBsYSBjbGFzZSBhYnN0cmFjdGEgZXMgZXh0ZW5kcyB5IHBvcnF1ZSBjb24gbGEgaW50ZXJmYXogZXMgaW1wbGVtZW50cw0KUGFyYSBxdWUgc2UgdXNhIGVsIG92ZXJyaWRlPyBFcyBwYXJhIHVzYXIgbGEgZnVuY2nDs24gZGUgZGUgbGEgaW50ZXJmYXogcXVlIHNlIGVzdGEgaW1wbGVtZW50YW5kbz8NCg0KQ29tbWFuZA0KRW5jYXBzdWxhIHBldGljaW9uZXMgZW4gb2JqZXRvcywgZGVqYSBjcmVhciBjb2xhcyB5IHJlZ2lzdHJvcw0KU2UgZGVjbGFyYSB1bmEgY2xhc2UgYWJzdHIgb3JkZW4gcXVlIGRlY2xhcmEgdW5hIGludGVyZmF6IHBhcmEgcXVlIHNlIHB1ZWRhbiBlamVjdXRhciBvcGVyYWNpb25lcw=='
+2025-11-03T13:55:38.271-05:00  INFO 22684 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Archivo recibido guardado en uploads\1762196138269_manuel2_notas avanz.txt
+2025-11-03T17:21:14.765-05:00  INFO 27608 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 27608 (C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\target\classes started by josem in C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal)
+2025-11-03T17:21:14.766-05:00 DEBUG 27608 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-11-03T17:21:14.767-05:00  INFO 27608 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-11-03T17:21:15.226-05:00  INFO 27608 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Iniciando servicio de autenticación. Archivo usuarios configurado en 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt'
+2025-11-03T17:21:15.228-05:00  INFO 27608 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
+2025-11-03T17:21:15.228-05:00  INFO 27608 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Carga de usuarios completada. Usuarios cargados: 6
+2025-11-03T17:21:15.238-05:00  INFO 27608 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 192.168.40.44:8080
+2025-11-03T17:21:15.314-05:00  INFO 27608 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 0.978 seconds (process running for 1.277)
+2025-11-03T17:21:15.316-05:00  INFO 27608 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=192.168.40.44, port=8080
+2025-11-03T17:21:15.317-05:00  INFO 27608 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Archivo de usuarios configurado: C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt
+2025-11-03T17:21:15.317-05:00  INFO 27608 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UI enabled property = true; intentando inicializar UI
+2025-11-03T17:21:15.323-05:00  INFO 27608 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : java.awt.headless=false | GraphicsEnvironment.isHeadless=false
+2025-11-03T17:21:15.365-05:00  INFO 27608 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
+2025-11-03T17:21:15.604-05:00  INFO 27608 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Panel iniciado
+2025-11-03T17:21:15.605-05:00  INFO 27608 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
+2025-11-03T17:21:15.605-05:00  INFO 27608 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (initialize)
+2025-11-03T17:21:15.605-05:00  INFO 27608 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UiServerWindow.initialize() invocado desde DemoApplication.run
+2025-11-03T17:21:15.605-05:00  INFO 27608 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
+2025-11-03T17:21:15.605-05:00  INFO 27608 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
+2025-11-03T17:21:28.202-05:00  INFO 27608 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /192.168.40.44:49816
+2025-11-03T17:21:28.207-05:00  INFO 27608 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /192.168.40.44:49816
+2025-11-03T17:21:30.220-05:00  INFO 27608 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /192.168.40.44:49816
+2025-11-03T17:21:30.220-05:00  INFO 27608 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /192.168.40.44:49816
+2025-11-03T17:21:30.221-05:00  INFO 27608 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /192.168.40.44:49816
+2025-11-03T17:21:30.224-05:00  INFO 27608 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.44:49816 conectado y saludado.
+2025-11-03T17:21:30.225-05:00  INFO 27608 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN manuel1|1234'
+2025-11-03T17:21:30.226-05:00  INFO 27608 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
+2025-11-03T17:21:30.258-05:00  INFO 27608 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Login exitoso: usuario='manuel1' desde /192.168.40.44:49816
+2025-11-03T17:21:30.258-05:00  INFO 27608 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : Login exitoso: manuel1 desde /192.168.40.44:49816
+2025-11-03T17:21:30.259-05:00  INFO 27608 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Usuario registrado para broadcast: manuel1 (total=1)
+2025-11-03T17:21:30.259-05:00  INFO 27608 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 1 clients: manuel1
+2025-11-03T17:21:35.283-05:00 ERROR 27608 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Error en worker para cliente /192.168.40.44:49816: java.net.SocketException: Connection reset
+2025-11-03T17:21:35.284-05:00  INFO 27608 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Usuario 'manuel1' desconectado.
+2025-11-03T17:21:35.284-05:00  INFO 27608 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Usuario removido del registro: manuel1 (total=0)
+2025-11-03T17:21:35.284-05:00  INFO 27608 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 0 clients: 

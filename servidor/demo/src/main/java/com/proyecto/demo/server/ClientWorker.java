@@ -45,6 +45,10 @@ public class ClientWorker implements Runnable {
                     handleMessage(line, out);
                     continue;
                 }
+                if (line.startsWith("FILE ")) {
+                    handleFile(line, out);
+                    continue;
+                }
                 if (line.equals("QUIT")) {
                     out.write("BYE\n");
                     out.flush();
@@ -67,6 +71,63 @@ public class ClientWorker implements Runnable {
                 log.info("Cliente {} desconectado sin autenticarse.", socket.getRemoteSocketAddress());
             }
         }
+    }
+
+    private void handleFile(String line, BufferedWriter out) throws IOException {
+        // Format: FILE recipient|filename|<base64payload>
+        log.info("mensaje llega a funcion de ClientWorker.handleFile correctamente. Raw='{}'", line);
+        if (authenticatedUser == null) {
+            out.write("ERROR no_autenticado\n");
+            out.flush();
+            return;
+        }
+        String payload = line.substring(5);
+        String[] parts = payload.split("\\|", 3);
+        if (parts.length < 3) {
+            out.write("ERROR formato FILE recipient|filename|base64\n");
+            out.flush();
+            return;
+        }
+        String recipient = parts[0];
+        String filename = parts[1];
+        String base64 = parts[2];
+
+        // ensure uploads directory exists
+        java.nio.file.Path uploadsDir = java.nio.file.Paths.get("uploads");
+        try {
+            if (!java.nio.file.Files.exists(uploadsDir)) {
+                java.nio.file.Files.createDirectories(uploadsDir);
+            }
+        } catch (Exception e) {
+            log.error("No se pudo crear uploads dir: {}", e.toString(), e);
+        }
+
+        // decode and save file on server (prefix with sender and timestamp to avoid collisions)
+        byte[] data = java.util.Base64.getDecoder().decode(base64);
+        String safeName = java.time.Instant.now().toEpochMilli() + "_" + authenticatedUser + "_" + filename;
+        java.nio.file.Path target = uploadsDir.resolve(safeName);
+        try {
+            java.nio.file.Files.write(target, data);
+            log.info("Archivo recibido guardado en {}", target.toString());
+        } catch (Exception e) {
+            log.error("Error guardando archivo: {}", e.toString(), e);
+        }
+
+        // forward to recipient(s): send FILEFROM sender|filename|base64
+        String forward = "FILEFROM " + authenticatedUser + "|" + filename + "|" + base64 + "\n";
+            if ("ALL".equalsIgnoreCase(recipient)) {
+            ConnectedClients.broadcastMessage(authenticatedUser, "(file) " + filename);
+            // broadcast the file itself
+            ConnectedClients.broadcastRaw(forward);
+        } else {
+            boolean sent = ConnectedClients.sendTo(recipient, forward);
+            if (!sent) {
+                log.warn("No se pudo entregar archivo a {} (no conectado)", recipient);
+            }
+        }
+
+        out.write("SENT\n");
+        out.flush();
     }
 
     private void handleRegister(String line, BufferedWriter out) throws Exception {

@@ -13,6 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 import com.cliente.cliente.service.ClientState;
 import com.cliente.cliente.dto.MessageDTO;
+import com.cliente.cliente.dto.FileDTO;
+import java.io.File;
+import java.nio.file.Files;
+import java.util.Base64;
 
 @Component
 public class MessageService {
@@ -83,6 +87,35 @@ public class MessageService {
         }
     }
 
+    public boolean sendFile(String recipient, File file) {
+        try {
+            if (!loggedIn) {
+                String err = "Debe iniciar sesión antes de enviar archivos";
+                persistence.appendMessage(err);
+                bus.publish("AUTH_ERROR", err);
+                log.warn("Intento de enviar archivo sin estar autenticado");
+                return false;
+            }
+            if (!conn.isConnected()) conn.connect();
+            byte[] data = Files.readAllBytes(file.toPath());
+            String b64 = Base64.getEncoder().encodeToString(data);
+            String to = (recipient == null || recipient.isEmpty()) ? "ALL" : recipient;
+            String line = "FILE " + to + "|" + file.getName() + "|" + b64;
+            conn.sendRaw(line);
+
+            String stamped = "[" + LocalDateTime.now().format(fmt) + "] Yo -> " + to + ": (archivo) " + file.getName();
+            persistence.appendMessage(stamped);
+            bus.publish("SERVER_LINE", stamped);
+            return true;
+        } catch (Exception e) {
+            String err = "Error enviar archivo: " + e.getMessage();
+            persistence.appendMessage(err);
+            bus.publish("AUTH_ERROR", err);
+            log.error("Error enviando archivo: {}", e.getMessage(), e);
+            return false;
+        }
+    }
+
     // MessageReceiver llamará a este método con cada línea cruda del servidor
     public void handleServerLine(String line) {
         if (line == null) return;
@@ -118,6 +151,23 @@ public class MessageService {
             log.info("Mensaje entrante de {}: {}", sender, text);
             // publicar como mensaje entrante para que la UI lo ubique en la conversación correcta
             bus.publish("INCOMING_MSG", dto);
+            return;
+        }
+
+        // archivos entrantes reenviados por el servidor: "FILEFROM sender|filename|base64"
+        if (trimmed.startsWith("FILEFROM ")) {
+            String payload = trimmed.length() > 9 ? trimmed.substring(9) : "";
+            String[] p = payload.split("\\|", 3);
+            String sender = p.length > 0 ? p[0] : "";
+            String filename = p.length > 1 ? p[1] : "";
+            String b64 = p.length > 2 ? p[2] : "";
+            try {
+                byte[] data = Base64.getDecoder().decode(b64);
+                com.cliente.cliente.dto.FileDTO fileDto = new com.cliente.cliente.dto.FileDTO(sender, filename, data, System.currentTimeMillis());
+                bus.publish("INCOMING_FILE", fileDto);
+            } catch (Exception e) {
+                log.error("Error decodificando archivo entrante: {}", e.toString(), e);
+            }
             return;
         }
 

@@ -36,6 +36,11 @@ public class ChatPanel {
     private volatile String targetUser = null; // null => ALL
     private final JLabel targetLabel;
     private final java.util.Map<String, java.util.List<String>> conversations = new java.util.concurrent.ConcurrentHashMap<>();
+    private final java.util.Map<String, java.util.List<com.cliente.cliente.dto.FileDTO>> filesPerConversation = new java.util.concurrent.ConcurrentHashMap<>();
+    private final DefaultListModel<String> filesModel = new DefaultListModel<>();
+    private final JList<String> filesList = new JList<>(filesModel);
+    private final JButton attachBtn = new JButton("Adjuntar");
+    private final JButton downloadBtn = new JButton("Descargar");
 
     // Executor para enviar mensajes evitando crear hilos por cada envío
     private final ExecutorService sendExec = Executors.newSingleThreadExecutor(r -> {
@@ -85,7 +90,12 @@ public class ChatPanel {
     inputWrap.add(targetLabel, BorderLayout.NORTH);
     inputWrap.add(inputField, BorderLayout.CENTER);
     bottom.add(inputWrap, BorderLayout.CENTER);
-    bottom.add(sendBtn, BorderLayout.EAST);
+    JPanel controls = new JPanel(new FlowLayout(FlowLayout.RIGHT, 6, 0));
+    attachBtn.setPreferredSize(new Dimension(100, 36));
+    attachBtn.setFocusPainted(false);
+    controls.add(attachBtn);
+    controls.add(sendBtn);
+    bottom.add(controls, BorderLayout.EAST);
 
         panel.add(new JScrollPane(chatArea), BorderLayout.CENTER);
     panel.add(bottom, BorderLayout.SOUTH);
@@ -109,6 +119,7 @@ public class ChatPanel {
                     targetLabel.setText("A: " + sel);
                     // refresh chat area with selected conversation
                     refreshChatFor(sel);
+                    refreshFilesListFor(sel);
                 }
             }
         });
@@ -117,6 +128,17 @@ public class ChatPanel {
     side.setBorder(new EmptyBorder(6,6,6,6));
     side.add(new JLabel("Usuarios conectados"), BorderLayout.NORTH);
     side.add(new JScrollPane(usersList), BorderLayout.CENTER);
+    // panel de archivos recibidos/enviados por conversación
+    JPanel filesPanel = new JPanel(new BorderLayout());
+    filesPanel.setBorder(new EmptyBorder(8,0,0,0));
+    filesPanel.add(new JLabel("Archivos"), BorderLayout.NORTH);
+    filesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+    filesList.setFixedCellWidth(160);
+    filesPanel.add(new JScrollPane(filesList), BorderLayout.CENTER);
+    JPanel filesBtns = new JPanel(new FlowLayout(FlowLayout.CENTER, 6, 0));
+    filesBtns.add(downloadBtn);
+    filesPanel.add(filesBtns, BorderLayout.SOUTH);
+    side.add(filesPanel, BorderLayout.SOUTH);
     side.setPreferredSize(new Dimension(180, 0));
 
     panel.add(side, BorderLayout.EAST);
@@ -124,6 +146,53 @@ public class ChatPanel {
         // Enviar con Enter y botón
         sendBtn.addActionListener(e -> doSend());
         inputField.addActionListener(e -> sendBtn.doClick());
+
+        // Adjuntar archivo
+        attachBtn.addActionListener(e -> {
+            JFileChooser chooser = new JFileChooser();
+            int res = chooser.showOpenDialog(panel);
+            if (res == JFileChooser.APPROVE_OPTION) {
+                java.io.File f = chooser.getSelectedFile();
+                sendExec.submit(() -> {
+                    try {
+                        messageService.sendFile(targetUser, f);
+                        // add to local files map
+                        String dest = targetUser == null ? "ALL" : targetUser;
+                        com.cliente.cliente.dto.FileDTO dto = new com.cliente.cliente.dto.FileDTO(clientState == null ? "Me" : clientState.getCurrentUser(), f.getName(), java.nio.file.Files.readAllBytes(f.toPath()), System.currentTimeMillis());
+                        filesPerConversation.computeIfAbsent(dest, k -> new java.util.ArrayList<>()).add(dto);
+                        // append to conversation
+                        String stamped = "[" + new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date(dto.getTimestamp())) + "] Yo -> " + dest + ": (archivo) " + f.getName();
+                        conversations.computeIfAbsent(dest, k -> new java.util.ArrayList<>()).add(stamped);
+                        if ((dest.equals("ALL") && targetUser==null) || dest.equals(targetUser)) {
+                            SwingUtilities.invokeLater(() -> { appendLineToChat(stamped); refreshFilesListFor(dest); });
+                        }
+                    } catch (Exception ex) {
+                        log.error("Error enviando archivo: {}", ex.toString(), ex);
+                    }
+                });
+            }
+        });
+
+        // Descargar archivo seleccionado
+        downloadBtn.addActionListener(e -> {
+            String sel = filesList.getSelectedValue();
+            if (sel == null) return;
+            String user = targetUser;
+            if (user == null) return;
+            java.util.List<com.cliente.cliente.dto.FileDTO> list = filesPerConversation.get(user);
+            if (list == null) return;
+            com.cliente.cliente.dto.FileDTO chosen = null;
+            for (com.cliente.cliente.dto.FileDTO fd : list) if (fd.getFilename().equals(sel)) { chosen = fd; break; }
+            if (chosen == null) return;
+            JFileChooser saver = new JFileChooser();
+            saver.setSelectedFile(new java.io.File(chosen.getFilename()));
+            int ret = saver.showSaveDialog(panel);
+            if (ret == JFileChooser.APPROVE_OPTION) {
+                java.io.File out = saver.getSelectedFile();
+                try { java.nio.file.Files.write(out.toPath(), chosen.getContent()); SwingUtilities.invokeLater(() -> JOptionPane.showMessageDialog(panel, "Archivo guardado: " + out.getAbsolutePath())); }
+                catch (Exception ex) { SwingUtilities.invokeLater(() -> JOptionPane.showMessageDialog(panel, "Error guardando archivo: " + ex.getMessage())); }
+            }
+        });
 
         // recibir mensajes entrantes y colocarlos en la conversación correspondiente
         bus.subscribe("INCOMING_MSG", payload -> {
@@ -136,6 +205,22 @@ public class ChatPanel {
                 // si estoy viendo la conversación con ese usuario, refrescar
                 if (from.equals(targetUser)) {
                     appendLineToChat(line);
+                }
+            });
+        });
+
+        // recibir archivos entrantes
+        bus.subscribe("INCOMING_FILE", payload -> {
+            if (!(payload instanceof com.cliente.cliente.dto.FileDTO)) return;
+            com.cliente.cliente.dto.FileDTO dto = (com.cliente.cliente.dto.FileDTO) payload;
+            SwingUtilities.invokeLater(() -> {
+                String from = dto.getSender();
+                String line = String.format("[%s] %s: (archivo) %s", new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date(dto.getTimestamp())), from, dto.getFilename());
+                filesPerConversation.computeIfAbsent(from, k -> new java.util.ArrayList<>()).add(dto);
+                conversations.computeIfAbsent(from, k -> new java.util.ArrayList<>()).add(line);
+                if (from.equals(targetUser)) {
+                    appendLineToChat(line);
+                    refreshFilesListFor(from);
                 }
             });
         });
@@ -179,6 +264,16 @@ public class ChatPanel {
         if (list == null) return;
         for (String l : list) chatArea.append(l + "\n");
         chatArea.setCaretPosition(chatArea.getDocument().getLength());
+    }
+
+    private void refreshFilesListFor(String user) {
+        filesModel.clear();
+        if (user == null) return;
+        java.util.List<com.cliente.cliente.dto.FileDTO> list = filesPerConversation.get(user);
+        if (list == null) return;
+        for (com.cliente.cliente.dto.FileDTO f : list) {
+            filesModel.addElement(f.getFilename());
+        }
     }
 
     private void doSend() {

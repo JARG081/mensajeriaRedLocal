@@ -87,4 +87,19 @@ public class ConnectedClients {
             }
         }
     }
+
+    public static void broadcastRaw(String line) {
+        if (line == null) return;
+        String payload = line.endsWith("\n") ? line : line + "\n";
+        for (var entry : new ArrayList<>(clients.entrySet())) {
+            try {
+                entry.getValue().write(payload);
+                entry.getValue().flush();
+            } catch (IOException ioe) {
+                log.warn("Failed to broadcast raw to {}: {}. Removing.", entry.getKey(), ioe.getMessage());
+                try { entry.getValue().close(); } catch (Exception ignored) {}
+                clients.remove(entry.getKey());
+            }
+        }
+    }
 }
