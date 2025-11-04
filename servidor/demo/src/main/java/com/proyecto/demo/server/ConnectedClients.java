@@ -1,11 +1,11 @@
 package com.proyecto.demo.server;
 
+import com.proyecto.demo.factory.ServerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 public class ConnectedClients {
     private static final Logger log = LoggerFactory.getLogger(ConnectedClients.class);
 
-    private static final ConcurrentHashMap<String, BufferedWriter> clients = new ConcurrentHashMap<>();
+    private static final ConcurrentHashMap<String, BufferedWriter> clients = ServerFactory.createConcurrentHashMap();
 
     public static void register(String user, BufferedWriter out) {
         if (user == null || out == null) return;
@@ -34,14 +34,14 @@ public class ConnectedClients {
     }
 
     public static void broadcastUserList() {
-        try {
-            List<String> users = new ArrayList<>(clients.keySet()).stream().sorted().collect(Collectors.toList());
+            try {
+                List<String> users = ServerFactory.createArrayList(clients.keySet()).stream().sorted().collect(Collectors.toList());
             String csv = String.join(",", users);
             String line = "USERS " + csv + "\n";
             log.info("Broadcasting USERS list to {} clients: {}", clients.size(), csv);
 
             // iterate over a snapshot of entries to avoid concurrent modification issues
-            for (var entry : new ArrayList<>(clients.entrySet())) {
+            for (var entry : ServerFactory.createArrayList(clients.entrySet())) {
                 String u = entry.getKey();
                 BufferedWriter w = entry.getValue();
                 try {
@@ -76,7 +76,7 @@ public class ConnectedClients {
 
     public static void broadcastMessage(String sender, String text) {
         String payload = "MSGFROM " + sender + "|" + (text == null ? "" : text) + "\n";
-        for (var entry : new ArrayList<>(clients.entrySet())) {
+        for (var entry : ServerFactory.createArrayList(clients.entrySet())) {
             try {
                 entry.getValue().write(payload);
                 entry.getValue().flush();
@@ -91,7 +91,7 @@ public class ConnectedClients {
     public static void broadcastRaw(String line) {
         if (line == null) return;
         String payload = line.endsWith("\n") ? line : line + "\n";
-        for (var entry : new ArrayList<>(clients.entrySet())) {
+        for (var entry : ServerFactory.createArrayList(clients.entrySet())) {
             try {
                 entry.getValue().write(payload);
                 entry.getValue().flush();

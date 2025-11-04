@@ -1,6 +1,7 @@
 package com.proyecto.demo.server;
 
 import com.proyecto.demo.auth.FileAuthService;
+import com.proyecto.demo.factory.ServerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.io.*;
@@ -24,8 +25,8 @@ public class ClientWorker implements Runnable {
 
     @Override
     public void run() {
-        try (BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-             BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()))) {
+       try (BufferedReader in = ServerFactory.createBufferedReader(socket);
+           BufferedWriter out = ServerFactory.createBufferedWriter(socket)) {
 
             out.write("WELCOME\n");
             out.flush();

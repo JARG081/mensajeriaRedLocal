@@ -2,6 +2,7 @@ package com.proyecto.demo.server;
 
 import com.proyecto.demo.ui.UiServerWindow;
 import com.proyecto.demo.auth.FileAuthService;
+import com.proyecto.demo.factory.ServerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,12 +11,10 @@ import org.springframework.stereotype.Component;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import java.io.IOException;
-import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.awt.GraphicsEnvironment;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 @Component
@@ -30,7 +29,7 @@ public class TcpServer implements Runnable {
     private static final Logger log = LoggerFactory.getLogger(TcpServer.class);
 
     private final FileAuthService authService;
-    private final ExecutorService pool = Executors.newCachedThreadPool();
+    private final ExecutorService pool = ServerFactory.createCachedThreadPool();
     private Thread serverThread;
     private volatile ServerSocket serverSocket;
     private volatile boolean running = true;
@@ -42,12 +41,11 @@ public class TcpServer implements Runnable {
     @PostConstruct
     public void startServerThread() {
         // Crear hilo NO-daemon. Spring mantiene el lifecycle; hilo no-daemon evita cierres inesperados.
-        serverThread = new Thread(this, "servidor");
-        serverThread.setDaemon(false);
+        serverThread = ServerFactory.createServerThread(this, "servidor");
         serverThread.start();
 
         // Registrar shutdown hook para cerrar recursos si la JVM termina
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+        Runtime.getRuntime().addShutdownHook(ServerFactory.createServerThread(() -> {
             try {
                 shutdown();
             } catch (Exception ignored) {}
@@ -57,9 +55,7 @@ public class TcpServer implements Runnable {
     @Override
     public void run() {
         try {
-            serverSocket = new ServerSocket();
-            // bind explicit to requested address
-            serverSocket.bind(new InetSocketAddress(bindAddress, port));
+            serverSocket = ServerFactory.createBoundServerSocket(bindAddress, port);
             log.info("Servidor TCP escuchando en {}:{}", bindAddress, port);
 
             while (running && !serverSocket.isClosed()) {
@@ -82,7 +78,7 @@ public class TcpServer implements Runnable {
                     }
 
                     log.info("Conexión aprobada desde {}", socket.getRemoteSocketAddress());
-                    pool.submit(new ClientWorker(socket, authService));
+                    pool.submit(ServerFactory.createClientWorker(socket, authService));
                 } catch (IOException e) {
                     if (!running) break; // shutdown in progres
                     log.error("Error aceptando conexión: {}", e.toString(), e);

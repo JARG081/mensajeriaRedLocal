@@ -41,19 +41,19 @@ public class DemoApplication implements CommandLineRunner {
 		}
 		try (java.io.InputStream is = DemoApplication.class.getResourceAsStream("/application.properties")) {
 			if (is != null) {
-				java.util.Properties p = new java.util.Properties();
+				var p = com.proyecto.demo.factory.ServerFactory.createProperties();
 				p.load(is);
 				String clear = p.getProperty("app.log.clearOnStartup", "false");
 				if ("true".equalsIgnoreCase(clear)) {
 					String logFile = System.getProperty("logging.file.name", p.getProperty("logging.file.name", "servidor.log"));
 					try {
-						java.io.File f = new java.io.File(logFile);
+						java.io.File f = com.proyecto.demo.factory.ServerFactory.createFile(logFile);
 						// Create if not exists
 						if (!f.exists()) {
 							if (f.getParentFile() != null) f.getParentFile().mkdirs();
 							f.createNewFile();
 						}
-						try (java.io.RandomAccessFile raf = new java.io.RandomAccessFile(f, "rw")) {
+						try (java.io.RandomAccessFile raf = com.proyecto.demo.factory.ServerFactory.createRandomAccessFile(f, "rw")) {
 							raf.setLength(0);
 						}
 						System.out.println("Log truncado en el arranque: " + f.getAbsolutePath());

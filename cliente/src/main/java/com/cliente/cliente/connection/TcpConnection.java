@@ -6,9 +6,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.io.*;
-import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
+import com.cliente.cliente.factory.ClientFactory;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 @Component
@@ -21,10 +21,10 @@ public class TcpConnection {
     private BufferedReader in;
     // usamos PrintWriter con autoFlush=true para evitar problemas de flush/buffering
     private PrintWriter pw;
-    private final AtomicBoolean connected = new AtomicBoolean(false);
+    private final AtomicBoolean connected = ClientFactory.createAtomicBoolean(false);
     // separate locks for read and write to avoid blocking send when a read is waiting
-    private final Object readLock = new Object();
-    private final Object writeLock = new Object();
+    private final Object readLock = ClientFactory.createLockObject();
+    private final Object writeLock = ClientFactory.createLockObject();
 
     public TcpConnection(ServerConfig serverConfig) {
         this.serverConfig = serverConfig;
@@ -37,14 +37,10 @@ public class TcpConnection {
         }
         try {
             log.info("Intentando conectar con servidor {}:{}", serverConfig.getServerIp(), serverConfig.getServerPort());
-            socket = new Socket();
-            socket.setReuseAddress(true);
-            socket.connect(new InetSocketAddress(serverConfig.getServerIp(), serverConfig.getServerPort()), 5000);
-            // Establecer timeout de lectura para detectar peers muertos y evitar bloqueos indefinidos
-            socket.setSoTimeout(60_000); // 60 segundos
-            in = new BufferedReader(new InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8));
+            socket = ClientFactory.createSocketWithTimeout(serverConfig.getServerIp(), serverConfig.getServerPort(), 5000, 60_000, true);
+            in = ClientFactory.createReader(socket, StandardCharsets.UTF_8);
             // PrintWriter autoFlush garantiza que println() haga flush
-            pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.UTF_8), true);
+            pw = ClientFactory.createPrintWriter(socket, StandardCharsets.UTF_8, true);
             connected.set(true);
             log.info("Conexión establecida correctamente con el servidor {}:{}", serverConfig.getServerIp(), serverConfig.getServerPort());
         } catch (IOException e) {

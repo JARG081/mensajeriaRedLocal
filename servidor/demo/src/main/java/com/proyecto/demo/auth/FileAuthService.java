@@ -1,5 +1,6 @@
 package com.proyecto.demo.auth;
 
+import com.proyecto.demo.factory.ServerFactory;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,8 +11,6 @@ import jakarta.annotation.PostConstruct;
 
 import java.io.*;
 import java.nio.file.*;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 @Component
 public class FileAuthService implements AuthService {
@@ -20,7 +19,7 @@ public class FileAuthService implements AuthService {
     @Value("${auth.users.file:usuarios.txt}")
     private String usersFile;
 
-    private final Map<String,String> users = new ConcurrentHashMap<>();
+    private final java.util.Map<String,String> users = ServerFactory.createConcurrentHashMap();
 
     public FileAuthService() {
         // constructor vacío, carga se hace en init

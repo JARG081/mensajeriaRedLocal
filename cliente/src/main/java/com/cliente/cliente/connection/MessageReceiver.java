@@ -10,7 +10,7 @@ import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import com.cliente.cliente.factory.ClientFactory;
 import java.util.concurrent.TimeUnit;
 
 @Component
@@ -27,11 +27,7 @@ public class MessageReceiver {
     public MessageReceiver(TcpConnection conn, MessageService messageService) {
         this.conn = conn;
         this.messageService = messageService;
-        this.exec = Executors.newSingleThreadExecutor(r -> {
-            Thread t = new Thread(r, "receiver-thread");
-            t.setDaemon(true);
-            return t;
-        });
+        this.exec = ClientFactory.createSingleThreadExecutor("receiver-thread", true);
     }
 
     @PostConstruct
