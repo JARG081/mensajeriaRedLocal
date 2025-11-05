@@ -10,6 +10,7 @@ import java.net.Socket;
 import java.lang.reflect.InvocationTargetException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import com.proyecto.demo.server.ConnectedClients;
 
 public class UiServerWindow {
 
@@ -54,7 +55,21 @@ public class UiServerWindow {
                 header.setBorder(new EmptyBorder(6,6,6,6));
 
                 JPanel p = new JPanel(new BorderLayout(6,6));
-                p.add(header, BorderLayout.NORTH);
+                // Top bar with header and a button to show connected users
+                JPanel topBar = new JPanel(new BorderLayout(6,6));
+                topBar.add(header, BorderLayout.CENTER);
+                JButton usersBtn = new JButton("Mostrar usuarios conectados");
+                usersBtn.addActionListener(ae -> {
+                    try {
+                        var users = ConnectedClients.getConnectedUsers();
+                        appendLog("Usuarios conectados: " + String.join(",", users));
+                    } catch (Exception e) {
+                        appendLog("Error obteniendo usuarios conectados: " + e.getMessage());
+                    }
+                });
+                topBar.add(usersBtn, BorderLayout.EAST);
+
+                p.add(topBar, BorderLayout.NORTH);
                 p.add(sp, BorderLayout.CENTER);
 
                 frame.getContentPane().add(p);

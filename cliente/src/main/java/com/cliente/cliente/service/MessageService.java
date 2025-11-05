@@ -183,6 +183,8 @@ public class MessageService {
         if ("REGISTERED".equalsIgnoreCase(trimmed)) {
             log.info("Server reported REGISTERED (user successfully registered)");
             bus.publish("AUTH_INFO", "Registro exitoso");
+            // publish a dedicated event so UI can clear registration fields
+            bus.publish("REGISTERED_SUCCESS", null);
             return;
         }
         if (trimmed.startsWith("ERROR")) {

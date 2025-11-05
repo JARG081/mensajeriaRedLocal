@@ -26,40 +26,30 @@ public class AuthClientService {
     }
 
     // Envía REGISTER y retorna true si comando fue enviado (la confirmación llega por MessageService)
-    public boolean register(String user, String pass) {
+    public boolean register(String id, String user, String pass) {
         try {
-            log.info("Register request for user='{}' (password masked)", user);
-            log.info("mensaje llega a funcion de AuthClientService.register correctamente for user='{}'", user);
+            log.info("Register request for user='{}' id='{}' (password masked)", user, id);
+            log.info("mensaje llega a funcion de AuthClientService.register correctamente for user='{}' id='{}'", user, id);
             ensureConnected();
-            String regLiteral = "REGISTER " + user + "|" + maskForLog(pass);
+            String regLiteral = "REGISTER " + id + "|" + user + "|" + maskForLog(pass);
             log.info("Enviando REGISTER al servidor (masked): {}", regLiteral);
             // send the real password to the server; only mask it in logs
             try {
-                conn.sendRaw("REGISTER " + user + "|" + pass);
+                conn.sendRaw("REGISTER " + id + "|" + user + "|" + pass);
             } catch (IOException ioe) {
                 log.warn("Enviar REGISTER falló con IOException: {}. Intentando reconectar y reenviar...", ioe.getMessage());
                 // marcar desconectado y reintentar una vez
-                try { conn.connect(); conn.sendRaw("REGISTER " + user + "|" + pass); }
+                try { conn.connect(); conn.sendRaw("REGISTER " + id + "|" + user + "|" + pass); }
                 catch (Exception retryEx) {
                     log.error("Reintento de REGISTER falló: {}", retryEx.getMessage(), retryEx);
                     throw retryEx;
                 }
             }
-            log.debug("REGISTER payload sent (masked) for user='{}': {}", user, regLiteral);
+            log.debug("REGISTER payload sent (masked) for user='{}' id='{}': {}", user, id, regLiteral);
             return true;
         } catch (Exception e) {
-            log.error("register error for user='{}': {}", user, e.getMessage(), e);
+            log.error("register error for user='{}' id='{}': {}", user, id, e.getMessage(), e);
             return false;
-        } finally {
-            // Cerrar la conexión tras el intento de registro (éxito o fallo)
-            try {
-                if (conn != null && conn.isConnected()) {
-                    log.info("Cerrando conexión al servidor tras intento de registro para '{}'", user);
-                    conn.disconnect();
-                }
-            } catch (Exception ex) {
-                log.warn("Error al cerrar la conexión después de register: {}", ex.getMessage());
-            }
         }
     }
 

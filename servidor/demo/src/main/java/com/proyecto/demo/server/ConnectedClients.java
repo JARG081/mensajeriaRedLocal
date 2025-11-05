@@ -102,4 +102,11 @@ public class ConnectedClients {
             }
         }
     }
+
+    /**
+     * Retorna una lista (nueva instancia) con los usuarios actualmente registrados.
+     */
+    public static java.util.List<String> getConnectedUsers() {
+        return ServerFactory.createArrayList(clients.keySet());
+    }
 }

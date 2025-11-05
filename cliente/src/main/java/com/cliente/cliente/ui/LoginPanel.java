@@ -21,6 +21,7 @@ public class LoginPanel {
     private final UiEventBus bus;
     private final JPanel panel;
     private final JTextField userField;
+    private final JTextField idField;
     private final JPasswordField passField;
     private final JButton loginBtn;
     private final JButton registerBtn;
@@ -90,25 +91,37 @@ public class LoginPanel {
         gbc.anchor = GridBagConstraints.WEST;
         gbc.fill = GridBagConstraints.NONE;
 
-        // Fila 0
-        gbc.gridx = 0; gbc.gridy = 0; gbc.weightx = 0;
-        panel.add(new JLabel("Usuario:"), gbc);
-        gbc.gridx = 1; gbc.fill = GridBagConstraints.HORIZONTAL; gbc.weightx = 1;
-        panel.add(userField, gbc);
+    // Fila 0 - ID
+    idField = new JTextField();
+    idField.setFont(fieldFont);
+    idField.setPreferredSize(fieldSize);
+    idField.setMaximumSize(fieldSize);
+    idField.setBorder(BorderFactory.createCompoundBorder(idField.getBorder(), new EmptyBorder(4,6,4,6)));
 
-        // Fila 1
-        gbc.gridx = 0; gbc.gridy = 1; gbc.weightx = 0; gbc.fill = GridBagConstraints.NONE;
-        panel.add(new JLabel("Contraseña:"), gbc);
-        gbc.gridx = 1; gbc.fill = GridBagConstraints.HORIZONTAL; gbc.weightx = 1;
-        panel.add(passField, gbc);
+    gbc.gridx = 0; gbc.gridy = 0; gbc.weightx = 0;
+    panel.add(new JLabel("ID:"), gbc);
+    gbc.gridx = 1; gbc.fill = GridBagConstraints.HORIZONTAL; gbc.weightx = 1;
+    panel.add(idField, gbc);
+
+    // Fila 1 - Usuario
+    gbc.gridx = 0; gbc.gridy = 1; gbc.weightx = 0; gbc.fill = GridBagConstraints.NONE;
+    panel.add(new JLabel("Usuario:"), gbc);
+    gbc.gridx = 1; gbc.fill = GridBagConstraints.HORIZONTAL; gbc.weightx = 1;
+    panel.add(userField, gbc);
+
+    // Fila 2 - Contraseña
+    gbc.gridx = 0; gbc.gridy = 2; gbc.weightx = 0; gbc.fill = GridBagConstraints.NONE;
+    panel.add(new JLabel("Contraseña:"), gbc);
+    gbc.gridx = 1; gbc.fill = GridBagConstraints.HORIZONTAL; gbc.weightx = 1;
+    panel.add(passField, gbc);
 
         // Fila 2
         JPanel btnRow = new JPanel(new FlowLayout(FlowLayout.LEFT, 8, 0));
         btnRow.setOpaque(false);
         btnRow.add(loginBtn);
         btnRow.add(registerBtn);
-        gbc.gridx = 1; gbc.gridy = 2; gbc.weightx = 1; gbc.fill = GridBagConstraints.NONE;
-        panel.add(btnRow, gbc);
+    gbc.gridx = 1; gbc.gridy = 3; gbc.weightx = 1; gbc.fill = GridBagConstraints.NONE;
+    panel.add(btnRow, gbc);
 
         // === SECCIÓN 5: ACCIONES ===
         loginBtn.addActionListener(e -> doLogin());
@@ -134,6 +147,16 @@ public class LoginPanel {
                 JOptionPane.showMessageDialog(panel, payload != null ? payload.toString() : "Info")
             );
         });
+        // Limpiar campos tras registro exitoso
+        bus.subscribe("REGISTERED_SUCCESS", payload -> {
+            log.info("Evento REGISTERED_SUCCESS recibido. Limpiando campos de registro.");
+            SwingUtilities.invokeLater(() -> {
+                idField.setText("");
+                userField.setText("");
+                passField.setText("");
+                JOptionPane.showMessageDialog(panel, "Registro exitoso. Puede iniciar sesión ahora.");
+            });
+        });
     }
 
     private void doLogin() {
@@ -151,16 +174,21 @@ public class LoginPanel {
     }
 
     private void doRegister() {
+        String id = idField.getText().trim();
         String u = userField.getText().trim();
         String p = new String(passField.getPassword()).trim();
         if (u.isEmpty() || p.isEmpty()) {
             JOptionPane.showMessageDialog(panel, "Usuario y contraseña requeridos");
             return;
         }
+        if (id.isEmpty()) {
+            JOptionPane.showMessageDialog(panel, "ID requerido (no es autoincremental)");
+            return;
+        }
         log.info("Intentando registrar nuevo usuario '{}'", u);
         new Thread(() -> {
-            boolean result = authService.register(u, p);
-            log.info("Resultado registro '{}': {}", u, result ? "registrado" : "rechazado (ya existe)");
+            boolean result = authService.register(id, u, p);
+            log.info("Resultado registro '{}' (id={}): {}", u, id, result ? "registrado" : "rechazado (ya existe)");
         }).start();
     }
 

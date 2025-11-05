@@ -1,6 +1,6 @@
 package com.proyecto.demo;
 
-import com.proyecto.demo.auth.FileAuthService;
+import com.proyecto.demo.auth.AuthService;
 import com.proyecto.demo.server.TcpServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.core.env.Environment;
+import org.springframework.jdbc.core.JdbcTemplate;
 import com.proyecto.demo.ui.UiServerWindow;
 
 @SpringBootApplication
@@ -23,18 +24,19 @@ public class DemoApplication implements CommandLineRunner {
 	private TcpServer tcpServer;
 
 	@Autowired(required = false)
-	private FileAuthService fileAuthService;
+	private AuthService authService;
+
+	@Autowired(required = false)
+	private JdbcTemplate jdbcTemplate;
 
 	public static void main(String[] args) {
 		try {
 			java.nio.file.Path root = locateProjectRoot();
 			if (root != null) {
-				String usersAbs = root.resolve("usuarios.txt").toAbsolutePath().toString();
 				String logAbs = root.resolve("servidor.log").toAbsolutePath().toString();
 				// Set system properties so Spring will pick them up as overrides
-				System.setProperty("auth.users.file", usersAbs);
 				System.setProperty("logging.file.name", logAbs);
-				System.out.println("Configuración absoluta aplicada: users=" + usersAbs + " log=" + logAbs);
+				System.out.println("Configuración absoluta aplicada: log=" + logAbs);
 			}
 		} catch (Exception e) {
 			System.err.println("No se pudo determinar project root: " + e.toString());
@@ -93,10 +95,7 @@ public class DemoApplication implements CommandLineRunner {
 		String appName = env.getProperty("spring.application.name", "<unknown>");
 		String host = env.getProperty("server.address", "0.0.0.0");
 		String port = env.getProperty("server.port", "");
-		String usersFile = env.getProperty("auth.users.file", "usuarios.txt");
-
 		log.info("Aplicación '{}' iniciada. Server address={}, port={}", appName, host, port);
-		log.info("Archivo de usuarios configurado: {}", usersFile);
 
 		// Intentar inicializar la UI de servidor de forma determinista si está habilitada
 		String uiEnabled = env.getProperty("server.ui.enabled", "true");
@@ -118,10 +117,26 @@ public class DemoApplication implements CommandLineRunner {
 			log.warn("Componente TcpServer no inyectado");
 		}
 
-		if (fileAuthService != null) {
+		if (authService != null) {
 			log.info("Servicio de autenticación activo");
 		} else {
 			log.warn("Servicio de autenticación no inyectado");
+		}
+
+		// Quick DB sanity check: query number of users
+		if (jdbcTemplate != null) {
+			try {
+				Long count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM usuarios", Long.class);
+				String msg = "DB check OK - usuarios count = " + (count == null ? 0 : count);
+				log.info(msg);
+				try { UiServerWindow.publishMessageToUi(msg); } catch (Exception ignored) {}
+			} catch (Exception e) {
+				String err = "DB check FAILED: " + e.getClass().getSimpleName() + " - " + e.getMessage();
+				log.error(err, e);
+				try { UiServerWindow.publishMessageToUi(err); } catch (Exception ignored) {}
+			}
+		} else {
+			log.warn("JdbcTemplate no inyectado - omitiendo DB check");
 		}
 	}
 

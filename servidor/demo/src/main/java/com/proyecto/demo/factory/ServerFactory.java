@@ -1,6 +1,6 @@
 package com.proyecto.demo.factory;
 
-import com.proyecto.demo.auth.FileAuthService;
+import com.proyecto.demo.auth.AuthService;
 import com.proyecto.demo.server.ClientWorker;
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -43,8 +43,8 @@ public final class ServerFactory {
     }
 
 
-    public static ClientWorker createClientWorker(Socket socket, FileAuthService authService) {
-        return new ClientWorker(socket, authService);
+    public static ClientWorker createClientWorker(Socket socket, AuthService authService, org.springframework.jdbc.core.JdbcTemplate jdbc) {
+        return new ClientWorker(socket, authService, jdbc);
     }
 
 

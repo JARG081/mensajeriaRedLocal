@@ -1,6 +1,7 @@
 package com.proyecto.demo.server;
 
-import com.proyecto.demo.auth.FileAuthService;
+import com.proyecto.demo.auth.AuthService;
+import org.springframework.jdbc.core.JdbcTemplate;
 import com.proyecto.demo.factory.ServerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,13 +15,15 @@ public class ClientWorker implements Runnable {
     private static final Logger log = LoggerFactory.getLogger(ClientWorker.class);
 
     private final Socket socket;
-    private final FileAuthService authService;
+    private final AuthService authService;
+    private final JdbcTemplate jdbc;
     private String authenticatedUser = null;
     private final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-    public ClientWorker(Socket socket, FileAuthService authService) {
+    public ClientWorker(Socket socket, AuthService authService, JdbcTemplate jdbc) {
         this.socket = socket;
         this.authService = authService;
+        this.jdbc = jdbc;
     }
 
     @Override
@@ -134,21 +137,39 @@ public class ClientWorker implements Runnable {
     private void handleRegister(String line, BufferedWriter out) throws Exception {
         log.info("mensaje llega a funcion de ClientWorker.handleRegister correctamente. Raw='{}'", line);
         String payload = line.substring(9);
-        String[] p = payload.split("\\|", 2);
-        if (p.length < 2) {
-            out.write("ERROR formato REGISTER usuario|password\n");
+        String[] p = payload.split("\\|", 3);
+        if (p.length < 3) {
+            out.write("ERROR formato REGISTER id|usuario|password\n");
             out.flush();
             return;
         }
 
-        boolean ok = authService.register(p[0], p[1]);
+        String id = p[0];
+        String usuario = p[1];
+        String password = p[2];
+
+        boolean ok = authService.register(id, usuario, password);
         if (ok) {
-            log.info("Registro exitoso de usuario '{}' desde {}", p[0], socket.getRemoteSocketAddress());
-            try { com.proyecto.demo.ui.UiServerWindow.publishMessageToUi("Registro exitoso: " + p[0] + " desde " + socket.getRemoteSocketAddress()); } catch (Exception ignored) {}
+            log.info("Registro exitoso de usuario '{}' (id={}) desde {}", usuario, id, socket.getRemoteSocketAddress());
+            try { com.proyecto.demo.ui.UiServerWindow.publishMessageToUi("Registro exitoso: " + usuario + " (id=" + id + ") desde " + socket.getRemoteSocketAddress()); } catch (Exception ignored) {}
             out.write("REGISTERED\n");
+
+            // perform DB sanity check (count users) if jdbc available
+            try {
+                if (jdbc != null) {
+                    Long count = jdbc.queryForObject("SELECT COUNT(*) FROM usuarios", Long.class);
+                    String msg = "Post-register DB check: usuarios count = " + (count == null ? 0 : count);
+                    log.info(msg);
+                    try { com.proyecto.demo.ui.UiServerWindow.publishMessageToUi(msg); } catch (Exception ignored) {}
+                }
+            } catch (Exception dbEx) {
+                log.warn("Post-register DB check failed: {}", dbEx.getMessage());
+                try { com.proyecto.demo.ui.UiServerWindow.publishMessageToUi("Post-register DB check failed: " + dbEx.getMessage()); } catch (Exception ignored) {}
+            }
+
         } else {
-            log.warn("Registro fallido (usuario existente): '{}' desde {}", p[0], socket.getRemoteSocketAddress());
-            try { com.proyecto.demo.ui.UiServerWindow.publishMessageToUi("Registro fallido (usuario existente): " + p[0] + " desde " + socket.getRemoteSocketAddress()); } catch (Exception ignored) {}
+            log.warn("Registro fallido (usuario existente o error): '{}' (id={}) desde {}", usuario, id, socket.getRemoteSocketAddress());
+            try { com.proyecto.demo.ui.UiServerWindow.publishMessageToUi("Registro fallido (usuario existente o error): " + usuario + " (id=" + id + ") desde " + socket.getRemoteSocketAddress()); } catch (Exception ignored) {}
             out.write("ERROR usuario_existente\n");
         }
         out.flush();

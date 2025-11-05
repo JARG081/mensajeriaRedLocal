@@ -1,196 +1,686 @@
-2025-11-03T12:42:56.790-05:00  INFO 14908 --- [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 14908 (C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\target\classes started by josem in C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal)
-2025-11-03T12:42:56.798-05:00  INFO 14908 --- [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
-2025-11-03T12:42:57.352-05:00  INFO 14908 --- [main] com.proyecto.demo.auth.FileAuthService   : Iniciando servicio de autenticación. Archivo usuarios configurado en 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt'
-2025-11-03T12:42:57.362-05:00  INFO 14908 --- [main] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
-2025-11-03T12:42:57.362-05:00  INFO 14908 --- [main] com.proyecto.demo.auth.FileAuthService   : Carga de usuarios completada. Usuarios cargados: 6
-2025-11-03T12:42:57.373-05:00  INFO 14908 --- [servidor] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 0.0.0.0:8080
-2025-11-03T12:42:57.468-05:00  INFO 14908 --- [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 1.199 seconds (process running for 1.756)
-2025-11-03T12:42:57.470-05:00  INFO 14908 --- [main] com.proyecto.demo.DemoApplication        : Aplicación '<unknown>' iniciada. Server address=0.0.0.0, port=
-2025-11-03T12:42:57.470-05:00  INFO 14908 --- [main] com.proyecto.demo.DemoApplication        : Archivo de usuarios configurado: C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt
-2025-11-03T12:42:57.470-05:00  INFO 14908 --- [main] com.proyecto.demo.DemoApplication        : UI enabled property = true; intentando inicializar UI
-2025-11-03T12:42:57.475-05:00  INFO 14908 --- [main] com.proyecto.demo.ui.UiServerWindow      : java.awt.headless=false | GraphicsEnvironment.isHeadless=false
-2025-11-03T12:42:57.566-05:00  INFO 14908 --- [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
-2025-11-03T12:42:58.118-05:00  INFO 14908 --- [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Panel iniciado
-2025-11-03T12:42:58.119-05:00  INFO 14908 --- [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
-2025-11-03T12:42:58.121-05:00  INFO 14908 --- [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (initialize)
-2025-11-03T12:42:58.122-05:00  INFO 14908 --- [main] com.proyecto.demo.DemoApplication        : UiServerWindow.initialize() invocado desde DemoApplication.run
-2025-11-03T12:42:58.123-05:00  INFO 14908 --- [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
-2025-11-03T12:42:58.124-05:00  INFO 14908 --- [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
-2025-11-03T13:04:49.581-05:00  INFO 13940 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 13940 (C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\target\classes started by josem in C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal)
-2025-11-03T13:04:49.582-05:00 DEBUG 13940 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
-2025-11-03T13:04:49.583-05:00  INFO 13940 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
-2025-11-03T13:04:49.913-05:00  INFO 13940 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Iniciando servicio de autenticación. Archivo usuarios configurado en 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt'
-2025-11-03T13:04:49.914-05:00  INFO 13940 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
-2025-11-03T13:04:49.915-05:00  INFO 13940 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Carga de usuarios completada. Usuarios cargados: 6
-2025-11-03T13:04:49.923-05:00  INFO 13940 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 192.168.40.44:8080
-2025-11-03T13:04:49.994-05:00  INFO 13940 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 0.754 seconds (process running for 1.008)
-2025-11-03T13:04:49.997-05:00  INFO 13940 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=192.168.40.44, port=8080
-2025-11-03T13:04:49.997-05:00  INFO 13940 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Archivo de usuarios configurado: C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt
-2025-11-03T13:04:49.998-05:00  INFO 13940 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UI enabled property = true; intentando inicializar UI
-2025-11-03T13:04:50.003-05:00  INFO 13940 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : java.awt.headless=false | GraphicsEnvironment.isHeadless=false
-2025-11-03T13:04:50.040-05:00  INFO 13940 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
-2025-11-03T13:04:50.272-05:00  INFO 13940 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Panel iniciado
-2025-11-03T13:04:50.273-05:00  INFO 13940 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
-2025-11-03T13:04:50.273-05:00  INFO 13940 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (initialize)
-2025-11-03T13:04:50.274-05:00  INFO 13940 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UiServerWindow.initialize() invocado desde DemoApplication.run
-2025-11-03T13:04:50.274-05:00  INFO 13940 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
-2025-11-03T13:04:50.274-05:00  INFO 13940 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
-2025-11-03T13:05:22.825-05:00  INFO 13940 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /192.168.40.44:57326
-2025-11-03T13:05:22.829-05:00  INFO 13940 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /192.168.40.44:57326
-2025-11-03T13:05:27.048-05:00  INFO 13940 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /192.168.40.44:57326
-2025-11-03T13:05:27.049-05:00  INFO 13940 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /192.168.40.44:57326
-2025-11-03T13:05:27.050-05:00  INFO 13940 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /192.168.40.44:57326
-2025-11-03T13:05:27.052-05:00  INFO 13940 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.44:57326 conectado y saludado.
-2025-11-03T13:05:27.054-05:00 ERROR 13940 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Error en worker para cliente /192.168.40.44:57326: java.net.SocketException: Se ha anulado una conexión establecida por el software en su equipo host.
-2025-11-03T13:05:27.054-05:00  INFO 13940 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.44:57326 desconectado sin autenticarse.
-2025-11-03T13:05:29.654-05:00  INFO 13940 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /192.168.40.44:51338
-2025-11-03T13:05:29.657-05:00  INFO 13940 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /192.168.40.44:51338
-2025-11-03T13:05:32.674-05:00  INFO 13940 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: RECHAZADA para /192.168.40.44:51338
-2025-11-03T13:05:32.674-05:00  INFO 13940 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión rechazada desde /192.168.40.44:51338
-2025-11-03T13:05:32.675-05:00  WARN 13940 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión rechazada manualmente desde /192.168.40.44:51338
-2025-11-03T13:05:33.543-05:00  INFO 13940 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /192.168.40.44:57698
-2025-11-03T13:05:33.546-05:00  INFO 13940 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /192.168.40.44:57698
-2025-11-03T13:05:34.368-05:00  INFO 13940 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /192.168.40.44:57698
-2025-11-03T13:05:34.368-05:00  INFO 13940 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /192.168.40.44:57698
-2025-11-03T13:05:34.368-05:00  INFO 13940 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /192.168.40.44:57698
-2025-11-03T13:05:34.369-05:00  INFO 13940 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.44:57698 conectado y saludado.
-2025-11-03T13:05:34.369-05:00  INFO 13940 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN laura|1234'
-2025-11-03T13:05:34.369-05:00  INFO 13940 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
-2025-11-03T13:05:34.371-05:00  WARN 13940 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Login fallido: usuario='laura' desde /192.168.40.44:57698
-2025-11-03T13:05:34.372-05:00  INFO 13940 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : Login fallido: laura desde /192.168.40.44:57698
-2025-11-03T13:05:38.766-05:00  INFO 13940 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN laura|1234'
-2025-11-03T13:05:38.767-05:00  INFO 13940 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
-2025-11-03T13:05:38.767-05:00  WARN 13940 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Login fallido: usuario='laura' desde /192.168.40.44:57698
-2025-11-03T13:05:38.767-05:00  INFO 13940 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : Login fallido: laura desde /192.168.40.44:57698
-2025-11-03T13:06:05.521-05:00 ERROR 13940 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Error en worker para cliente /192.168.40.44:57698: java.net.SocketException: Connection reset
-2025-11-03T13:06:05.521-05:00  INFO 13940 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.44:57698 desconectado sin autenticarse.
-2025-11-03T13:43:02.299-05:00  INFO 22684 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 22684 (C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\target\classes started by josem in C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal)
-2025-11-03T13:43:02.299-05:00 DEBUG 22684 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
-2025-11-03T13:43:02.301-05:00  INFO 22684 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
-2025-11-03T13:43:02.659-05:00  INFO 22684 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Iniciando servicio de autenticación. Archivo usuarios configurado en 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt'
-2025-11-03T13:43:02.660-05:00  INFO 22684 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
-2025-11-03T13:43:02.661-05:00  INFO 22684 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Carga de usuarios completada. Usuarios cargados: 6
-2025-11-03T13:43:02.672-05:00  INFO 22684 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 192.168.40.44:8080
-2025-11-03T13:43:02.753-05:00  INFO 22684 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 0.831 seconds (process running for 1.141)
-2025-11-03T13:43:02.756-05:00  INFO 22684 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=192.168.40.44, port=8080
-2025-11-03T13:43:02.756-05:00  INFO 22684 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Archivo de usuarios configurado: C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt
-2025-11-03T13:43:02.756-05:00  INFO 22684 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UI enabled property = true; intentando inicializar UI
-2025-11-03T13:43:02.761-05:00  INFO 22684 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : java.awt.headless=false | GraphicsEnvironment.isHeadless=false
-2025-11-03T13:43:02.805-05:00  INFO 22684 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
-2025-11-03T13:43:03.068-05:00  INFO 22684 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Panel iniciado
-2025-11-03T13:43:03.068-05:00  INFO 22684 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
-2025-11-03T13:43:03.069-05:00  INFO 22684 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (initialize)
-2025-11-03T13:43:03.069-05:00  INFO 22684 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UiServerWindow.initialize() invocado desde DemoApplication.run
-2025-11-03T13:43:03.069-05:00  INFO 22684 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
-2025-11-03T13:43:03.070-05:00  INFO 22684 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
-2025-11-03T13:43:14.265-05:00  INFO 19564 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 19564 (C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\target\classes started by josem in C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal)
-2025-11-03T13:43:14.266-05:00 DEBUG 19564 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
-2025-11-03T13:43:14.267-05:00  INFO 19564 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
-2025-11-03T13:43:14.653-05:00  INFO 19564 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Iniciando servicio de autenticación. Archivo usuarios configurado en 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt'
-2025-11-03T13:43:14.662-05:00  INFO 19564 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
-2025-11-03T13:43:14.663-05:00  INFO 19564 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Carga de usuarios completada. Usuarios cargados: 6
-2025-11-03T13:43:14.673-05:00 ERROR 19564 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Error en servidor TCP al iniciar: java.net.BindException: Address already in use: bind
+2025-11-04T19:54:35.218-05:00  INFO 11164 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 11164 (C:\Users\josem\OneDrive\Escritorio\ProyectoAvanzadas\mensajeriaRedLocal\servidor\demo\target\classes started by josem in C:\Users\josem\OneDrive\Escritorio\ProyectoAvanzadas\mensajeriaRedLocal)
+2025-11-04T19:54:35.224-05:00 DEBUG 11164 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-11-04T19:54:35.226-05:00  INFO 11164 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-11-04T19:54:35.889-05:00  INFO 11164 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-04T19:54:36.992-05:00 ERROR 11164 --- [servidor] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Exception during pool initialization.
 
-java.net.BindException: Address already in use: bind
-	at java.base/sun.nio.ch.Net.bind0(Native Method) ~[na:na]
-	at java.base/sun.nio.ch.Net.bind(Unknown Source) ~[na:na]
-	at java.base/sun.nio.ch.Net.bind(Unknown Source) ~[na:na]
-	at java.base/sun.nio.ch.NioSocketImpl.bind(Unknown Source) ~[na:na]
-	at java.base/java.net.ServerSocket.bind(Unknown Source) ~[na:na]
-	at java.base/java.net.ServerSocket.bind(Unknown Source) ~[na:na]
-	at com.proyecto.demo.server.TcpServer.run(TcpServer.java:62) ~[classes/:na]
-	at java.base/java.lang.Thread.run(Unknown Source) ~[na:na]
+java.sql.SQLException: Unsupported character encoding 'utf8mb4'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:130) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:98) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:90) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:64) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:74) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:85) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:436) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:239) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:188) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:100) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112) ~[HikariCP-5.0.1.jar:na]
+	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:160) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:118) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:81) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:388) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:444) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at com.proyecto.demo.auth.JdbcUserDao.ensureTable(JdbcUserDao.java:24) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source) ~[na:na]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMethod.invoke(InitDestroyAnnotationBeanPostProcessor.java:457) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:401) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:219) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:421) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1767) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:601) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1441) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1348) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:911) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:789) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:241) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1356) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1193) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1441) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1348) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:911) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:789) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:241) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1356) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1193) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1441) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1348) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:769) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:752) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:493) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1420) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:973) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:946) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:616) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:753) ~[spring-boot-3.2.0.jar:3.2.0]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:455) ~[spring-boot-3.2.0.jar:3.2.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:323) ~[spring-boot-3.2.0.jar:3.2.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1342) ~[spring-boot-3.2.0.jar:3.2.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1331) ~[spring-boot-3.2.0.jar:3.2.0]
+	at com.proyecto.demo.DemoApplication.main(DemoApplication.java:68) ~[classes/:na]
+Caused by: com.mysql.cj.exceptions.WrongArgumentException: Unsupported character encoding 'utf8mb4'
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(Unknown Source) ~[na:na]
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Unknown Source) ~[na:na]
+	at java.base/java.lang.reflect.Constructor.newInstance(Unknown Source) ~[na:na]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:62) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:105) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.util.StringUtils.getBytes(StringUtils.java:236) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.jdbc.JdbcPropertySetImpl.postInitialization(JdbcPropertySetImpl.java:66) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.conf.DefaultPropertySet.initializeProperties(DefaultPropertySet.java:231) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:385) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	... 79 common frames omitted
+Caused by: java.io.UnsupportedEncodingException: utf8mb4
+	at java.base/java.lang.String.lookupCharset(Unknown Source) ~[na:na]
+	at java.base/java.lang.String.getBytes(Unknown Source) ~[na:na]
+	at com.mysql.cj.util.StringUtils.getBytes(StringUtils.java:234) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	... 82 common frames omitted
 
-2025-11-03T13:43:14.682-05:00  INFO 19564 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Shutting down TcpServer...
-2025-11-03T13:43:14.683-05:00  INFO 19564 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : TcpServer shutdown complete
-2025-11-03T13:43:14.763-05:00  INFO 19564 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 0.867 seconds (process running for 1.879)
-2025-11-03T13:43:14.765-05:00  INFO 19564 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=192.168.40.44, port=8080
-2025-11-03T13:43:14.766-05:00  INFO 19564 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Archivo de usuarios configurado: C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt
-2025-11-03T13:43:14.766-05:00  INFO 19564 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UI enabled property = true; intentando inicializar UI
-2025-11-03T13:43:14.771-05:00  INFO 19564 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : java.awt.headless=false | GraphicsEnvironment.isHeadless=false
-2025-11-03T13:43:14.811-05:00  INFO 19564 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
-2025-11-03T13:43:15.096-05:00  INFO 19564 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Panel iniciado
-2025-11-03T13:43:15.096-05:00  INFO 19564 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
-2025-11-03T13:43:15.096-05:00  INFO 19564 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (initialize)
-2025-11-03T13:43:15.096-05:00  INFO 19564 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UiServerWindow.initialize() invocado desde DemoApplication.run
-2025-11-03T13:43:15.097-05:00  INFO 19564 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
-2025-11-03T13:43:15.097-05:00  INFO 19564 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
-2025-11-03T13:43:38.362-05:00  INFO 22684 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /192.168.40.44:56202
-2025-11-03T13:43:38.366-05:00  INFO 22684 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /192.168.40.44:56202
-2025-11-03T13:43:40.534-05:00  INFO 22684 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /192.168.40.44:56202
-2025-11-03T13:43:40.535-05:00  INFO 22684 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /192.168.40.44:56202
-2025-11-03T13:43:40.535-05:00  INFO 22684 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /192.168.40.44:56202
-2025-11-03T13:43:40.538-05:00  INFO 22684 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.44:56202 conectado y saludado.
-2025-11-03T13:43:40.538-05:00  INFO 22684 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN manuel|1234'
-2025-11-03T13:43:40.538-05:00  INFO 22684 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
-2025-11-03T13:43:40.539-05:00  WARN 22684 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Login fallido: usuario='manuel' desde /192.168.40.44:56202
-2025-11-03T13:43:40.539-05:00  INFO 22684 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : Login fallido: manuel desde /192.168.40.44:56202
-2025-11-03T13:43:44.344-05:00  INFO 22684 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN manuel1|1234'
-2025-11-03T13:43:44.345-05:00  INFO 22684 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
-2025-11-03T13:43:44.371-05:00  INFO 22684 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Login exitoso: usuario='manuel1' desde /192.168.40.44:56202
-2025-11-03T13:43:44.372-05:00  INFO 22684 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : Login exitoso: manuel1 desde /192.168.40.44:56202
-2025-11-03T13:43:44.373-05:00  INFO 22684 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Usuario registrado para broadcast: manuel1 (total=1)
-2025-11-03T13:43:44.373-05:00  INFO 22684 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 1 clients: manuel1
-2025-11-03T13:43:56.102-05:00  INFO 22684 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /192.168.40.44:60079
-2025-11-03T13:43:56.104-05:00  INFO 22684 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /192.168.40.44:60079
-2025-11-03T13:43:57.506-05:00  INFO 22684 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /192.168.40.44:60079
-2025-11-03T13:43:57.507-05:00  INFO 22684 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /192.168.40.44:60079
-2025-11-03T13:43:57.507-05:00  INFO 22684 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /192.168.40.44:60079
-2025-11-03T13:43:57.508-05:00  INFO 22684 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.44:60079 conectado y saludado.
-2025-11-03T13:43:57.508-05:00  INFO 22684 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN hector|1234'
-2025-11-03T13:43:57.508-05:00  INFO 22684 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
-2025-11-03T13:43:57.509-05:00  WARN 22684 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Login fallido: usuario='hector' desde /192.168.40.44:60079
-2025-11-03T13:43:57.510-05:00  INFO 22684 --- [servidor] [pool-2-thread-2] com.proyecto.demo.ui.UiServerWindow      : Login fallido: hector desde /192.168.40.44:60079
-2025-11-03T13:44:00.204-05:00  INFO 22684 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN hector1|1234'
-2025-11-03T13:44:00.205-05:00  INFO 22684 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
-2025-11-03T13:44:00.205-05:00  WARN 22684 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Login fallido: usuario='hector1' desde /192.168.40.44:60079
-2025-11-03T13:44:00.206-05:00  INFO 22684 --- [servidor] [pool-2-thread-2] com.proyecto.demo.ui.UiServerWindow      : Login fallido: hector1 desde /192.168.40.44:60079
-2025-11-03T13:44:04.278-05:00  INFO 22684 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN laura|1234'
-2025-11-03T13:44:04.278-05:00  INFO 22684 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
-2025-11-03T13:44:04.278-05:00  WARN 22684 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Login fallido: usuario='laura' desde /192.168.40.44:60079
-2025-11-03T13:44:04.279-05:00  INFO 22684 --- [servidor] [pool-2-thread-2] com.proyecto.demo.ui.UiServerWindow      : Login fallido: laura desde /192.168.40.44:60079
-2025-11-03T13:44:07.901-05:00  INFO 22684 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN manuel2|1234'
-2025-11-03T13:44:07.902-05:00  INFO 22684 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
-2025-11-03T13:44:07.902-05:00  INFO 22684 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Login exitoso: usuario='manuel2' desde /192.168.40.44:60079
-2025-11-03T13:44:07.902-05:00  INFO 22684 --- [servidor] [pool-2-thread-2] com.proyecto.demo.ui.UiServerWindow      : Login exitoso: manuel2 desde /192.168.40.44:60079
-2025-11-03T13:44:07.902-05:00  INFO 22684 --- [servidor] [pool-2-thread-2] c.proyecto.demo.server.ConnectedClients  : Usuario registrado para broadcast: manuel2 (total=2)
-2025-11-03T13:44:07.902-05:00  INFO 22684 --- [servidor] [pool-2-thread-2] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 2 clients: manuel1,manuel2
-2025-11-03T13:55:20.145-05:00  INFO 22684 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleFile correctamente. Raw='FILE ALL|notas avanz.txt|Tm8gZGlzZcOxYXIgZGVzZGUgMCwgcmV1c2FyIHBhcmEgcXVlIHNlYSBtYXMgZsOhY2lsIG1hbnRlbmVyIGEgZnV0dXJvDQpDYWRhIHBhdHJvbiBkZXNjcmliZSB1biBwcm9ibGVtYSB5IHVuYSBzb2x1Y2nDs24sIGFwbGljYWJsZSBpbmZpbml0YXMgdmVjZXMNClBhcnRlcyBkZSB1biBwYXRyb24NCgkuTm9tYnJlOiBDb3J0bywgZGVzY3JpcHRpdm8geSBmw6FjaWwNCgkuUHJvYmxlbWE6IEN1YW5kbyBzZSBhcGxpY2EsIGNvbmRpY2lvbmVzIHNpIHRpZW5lDQoJLlNvbHVjacOzbjogRWxlbWVudG9zIHF1ZSBoYWNlbiBsYSBwbGFudGlsbGEgDQoJLkNvbnNlY3VlbmNpYXM6IHJlc3VsdGFkb3MsIHZlbnRhamFzIHkgZGVzdmVudGFqYXMNCg0KTVZDOiBBY29wbGFjaW9uZXMgeSBzdWJjbGFzZXMNCg0KTW90aXZhY2nDs246IGVzY2VuYXJpbyBxdWUgaWx1c3RyYSB1biBwcm9ibGVtYSBkZSBkaXNlw7FvIHkgY29tbyBzZSByZXN1ZWx2ZQ0KQXBsaWNhYmlsaWRhZDogQ3VhbmRvIHNlIHB1ZWRlIHVzYXINCkVzdHJ1Y3R1cmE6IFJlcHJlc2VudGFjacOzbiBncmFmaWNhIGRlIGxhcyBjbGFzZXMgdXNhbmRvIGVsIHBhdHJvbg0KUGFydGljaXBhbnRlczogQ2xhc2VzIHkgb2JqZXRvcyBxdWUgcGFydGljaXBhbiBlbiBlbCBkaXNlw7FvDQpDb2xhYm9yYWNpb25lczogQ29tbyBzZSByZWxhY2lvbmFuIGxvcyBwYXJ0aWNpcGFudGVzDQpJbXBsZW1lbnRhY2nDs246IERpZmljdWx0YWRlcw0KDQpDYXRhbG9nbw0KDQoNCkNvbnN0cnVjdG9yDQpTZXBhcmEgbGEgY29uc3RydWNjacOzbiBkZSBvYmpldG9zIGRlIGxhcyByZXByZXNlbnRhY2lvbmVzDQoNCnNlIHVzYSBjdWFuZG8NCmVsIGFsZ29yaXRtbyBwYXJhIGNyZWFyIHVuIG9iamV0byBjb21wbGVqbyBkZWJhIHNlciBpbmRlcGVuZGllbnRlIGRlIGxhcyBwYXJ0ZXMgcXVlIHNlIGNvbXBvbmUgZGljaG8gb2JqZXRvDQplbCBwcm9jZXNvIGRlIGNvbnN0cnVjY2lvbiBkZWJlIHBlcm1pdGlyIGRpZmVyZW50ZXMgcmVwcmVzZW50YWNpb25lcyBkZWwgb2JqZXRvDQoNCmVzdG95IDEzMQ0KDQpQcm94eQ0KU3VzdGl0dXRvIGRlIG9iamV0byBxdWUgYWN0w7phIGNvbW8gZWxsb3MsIHBhcmEgZXZpdGFyIHNvYnJlIGNhcmdhcyBvIG1hbmVqYXIgY3VhbmRvIHNlIGxsYW1hIGFsIG9iamV0byByZWFsL29iamV0aXZvDQpTZSBhcGxpY2EgY3VhbmRvIHNlIG5lY2VzaXRhIGNyZWFyIHVuIG9iamV0byBtYXMgdmVyc8OhdGlsIHF1ZSB1biBwdW50ZXJvDQoNClByZWd1bnRhcywgcG9ycXVlIGNvbiBsYSBjbGFzZSBhYnN0cmFjdGEgZXMgZXh0ZW5kcyB5IHBvcnF1ZSBjb24gbGEgaW50ZXJmYXogZXMgaW1wbGVtZW50cw0KUGFyYSBxdWUgc2UgdXNhIGVsIG92ZXJyaWRlPyBFcyBwYXJhIHVzYXIgbGEgZnVuY2nDs24gZGUgZGUgbGEgaW50ZXJmYXogcXVlIHNlIGVzdGEgaW1wbGVtZW50YW5kbz8NCg0KQ29tbWFuZA0KRW5jYXBzdWxhIHBldGljaW9uZXMgZW4gb2JqZXRvcywgZGVqYSBjcmVhciBjb2xhcyB5IHJlZ2lzdHJvcw0KU2UgZGVjbGFyYSB1bmEgY2xhc2UgYWJzdHIgb3JkZW4gcXVlIGRlY2xhcmEgdW5hIGludGVyZmF6IHBhcmEgcXVlIHNlIHB1ZWRhbiBlamVjdXRhciBvcGVyYWNpb25lcw=='
-2025-11-03T13:55:20.165-05:00  INFO 22684 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Archivo recibido guardado en uploads\1762196120148_manuel2_notas avanz.txt
-2025-11-03T13:55:38.268-05:00  INFO 22684 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleFile correctamente. Raw='FILE manuel1|notas avanz.txt|Tm8gZGlzZcOxYXIgZGVzZGUgMCwgcmV1c2FyIHBhcmEgcXVlIHNlYSBtYXMgZsOhY2lsIG1hbnRlbmVyIGEgZnV0dXJvDQpDYWRhIHBhdHJvbiBkZXNjcmliZSB1biBwcm9ibGVtYSB5IHVuYSBzb2x1Y2nDs24sIGFwbGljYWJsZSBpbmZpbml0YXMgdmVjZXMNClBhcnRlcyBkZSB1biBwYXRyb24NCgkuTm9tYnJlOiBDb3J0bywgZGVzY3JpcHRpdm8geSBmw6FjaWwNCgkuUHJvYmxlbWE6IEN1YW5kbyBzZSBhcGxpY2EsIGNvbmRpY2lvbmVzIHNpIHRpZW5lDQoJLlNvbHVjacOzbjogRWxlbWVudG9zIHF1ZSBoYWNlbiBsYSBwbGFudGlsbGEgDQoJLkNvbnNlY3VlbmNpYXM6IHJlc3VsdGFkb3MsIHZlbnRhamFzIHkgZGVzdmVudGFqYXMNCg0KTVZDOiBBY29wbGFjaW9uZXMgeSBzdWJjbGFzZXMNCg0KTW90aXZhY2nDs246IGVzY2VuYXJpbyBxdWUgaWx1c3RyYSB1biBwcm9ibGVtYSBkZSBkaXNlw7FvIHkgY29tbyBzZSByZXN1ZWx2ZQ0KQXBsaWNhYmlsaWRhZDogQ3VhbmRvIHNlIHB1ZWRlIHVzYXINCkVzdHJ1Y3R1cmE6IFJlcHJlc2VudGFjacOzbiBncmFmaWNhIGRlIGxhcyBjbGFzZXMgdXNhbmRvIGVsIHBhdHJvbg0KUGFydGljaXBhbnRlczogQ2xhc2VzIHkgb2JqZXRvcyBxdWUgcGFydGljaXBhbiBlbiBlbCBkaXNlw7FvDQpDb2xhYm9yYWNpb25lczogQ29tbyBzZSByZWxhY2lvbmFuIGxvcyBwYXJ0aWNpcGFudGVzDQpJbXBsZW1lbnRhY2nDs246IERpZmljdWx0YWRlcw0KDQpDYXRhbG9nbw0KDQoNCkNvbnN0cnVjdG9yDQpTZXBhcmEgbGEgY29uc3RydWNjacOzbiBkZSBvYmpldG9zIGRlIGxhcyByZXByZXNlbnRhY2lvbmVzDQoNCnNlIHVzYSBjdWFuZG8NCmVsIGFsZ29yaXRtbyBwYXJhIGNyZWFyIHVuIG9iamV0byBjb21wbGVqbyBkZWJhIHNlciBpbmRlcGVuZGllbnRlIGRlIGxhcyBwYXJ0ZXMgcXVlIHNlIGNvbXBvbmUgZGljaG8gb2JqZXRvDQplbCBwcm9jZXNvIGRlIGNvbnN0cnVjY2lvbiBkZWJlIHBlcm1pdGlyIGRpZmVyZW50ZXMgcmVwcmVzZW50YWNpb25lcyBkZWwgb2JqZXRvDQoNCmVzdG95IDEzMQ0KDQpQcm94eQ0KU3VzdGl0dXRvIGRlIG9iamV0byBxdWUgYWN0w7phIGNvbW8gZWxsb3MsIHBhcmEgZXZpdGFyIHNvYnJlIGNhcmdhcyBvIG1hbmVqYXIgY3VhbmRvIHNlIGxsYW1hIGFsIG9iamV0byByZWFsL29iamV0aXZvDQpTZSBhcGxpY2EgY3VhbmRvIHNlIG5lY2VzaXRhIGNyZWFyIHVuIG9iamV0byBtYXMgdmVyc8OhdGlsIHF1ZSB1biBwdW50ZXJvDQoNClByZWd1bnRhcywgcG9ycXVlIGNvbiBsYSBjbGFzZSBhYnN0cmFjdGEgZXMgZXh0ZW5kcyB5IHBvcnF1ZSBjb24gbGEgaW50ZXJmYXogZXMgaW1wbGVtZW50cw0KUGFyYSBxdWUgc2UgdXNhIGVsIG92ZXJyaWRlPyBFcyBwYXJhIHVzYXIgbGEgZnVuY2nDs24gZGUgZGUgbGEgaW50ZXJmYXogcXVlIHNlIGVzdGEgaW1wbGVtZW50YW5kbz8NCg0KQ29tbWFuZA0KRW5jYXBzdWxhIHBldGljaW9uZXMgZW4gb2JqZXRvcywgZGVqYSBjcmVhciBjb2xhcyB5IHJlZ2lzdHJvcw0KU2UgZGVjbGFyYSB1bmEgY2xhc2UgYWJzdHIgb3JkZW4gcXVlIGRlY2xhcmEgdW5hIGludGVyZmF6IHBhcmEgcXVlIHNlIHB1ZWRhbiBlamVjdXRhciBvcGVyYWNpb25lcw=='
-2025-11-03T13:55:38.271-05:00  INFO 22684 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Archivo recibido guardado en uploads\1762196138269_manuel2_notas avanz.txt
-2025-11-03T17:21:14.765-05:00  INFO 27608 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 27608 (C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\target\classes started by josem in C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal)
-2025-11-03T17:21:14.766-05:00 DEBUG 27608 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
-2025-11-03T17:21:14.767-05:00  INFO 27608 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
-2025-11-03T17:21:15.226-05:00  INFO 27608 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Iniciando servicio de autenticación. Archivo usuarios configurado en 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt'
-2025-11-03T17:21:15.228-05:00  INFO 27608 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
-2025-11-03T17:21:15.228-05:00  INFO 27608 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Carga de usuarios completada. Usuarios cargados: 6
-2025-11-03T17:21:15.238-05:00  INFO 27608 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 192.168.40.44:8080
-2025-11-03T17:21:15.314-05:00  INFO 27608 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 0.978 seconds (process running for 1.277)
-2025-11-03T17:21:15.316-05:00  INFO 27608 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=192.168.40.44, port=8080
-2025-11-03T17:21:15.317-05:00  INFO 27608 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Archivo de usuarios configurado: C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt
-2025-11-03T17:21:15.317-05:00  INFO 27608 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UI enabled property = true; intentando inicializar UI
-2025-11-03T17:21:15.323-05:00  INFO 27608 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : java.awt.headless=false | GraphicsEnvironment.isHeadless=false
-2025-11-03T17:21:15.365-05:00  INFO 27608 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
-2025-11-03T17:21:15.604-05:00  INFO 27608 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Panel iniciado
-2025-11-03T17:21:15.605-05:00  INFO 27608 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
-2025-11-03T17:21:15.605-05:00  INFO 27608 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (initialize)
-2025-11-03T17:21:15.605-05:00  INFO 27608 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UiServerWindow.initialize() invocado desde DemoApplication.run
-2025-11-03T17:21:15.605-05:00  INFO 27608 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
-2025-11-03T17:21:15.605-05:00  INFO 27608 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
-2025-11-03T17:21:28.202-05:00  INFO 27608 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /192.168.40.44:49816
-2025-11-03T17:21:28.207-05:00  INFO 27608 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /192.168.40.44:49816
-2025-11-03T17:21:30.220-05:00  INFO 27608 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /192.168.40.44:49816
-2025-11-03T17:21:30.220-05:00  INFO 27608 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /192.168.40.44:49816
-2025-11-03T17:21:30.221-05:00  INFO 27608 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /192.168.40.44:49816
-2025-11-03T17:21:30.224-05:00  INFO 27608 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.44:49816 conectado y saludado.
-2025-11-03T17:21:30.225-05:00  INFO 27608 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN manuel1|1234'
-2025-11-03T17:21:30.226-05:00  INFO 27608 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\Nueva carpeta\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
-2025-11-03T17:21:30.258-05:00  INFO 27608 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Login exitoso: usuario='manuel1' desde /192.168.40.44:49816
-2025-11-03T17:21:30.258-05:00  INFO 27608 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : Login exitoso: manuel1 desde /192.168.40.44:49816
-2025-11-03T17:21:30.259-05:00  INFO 27608 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Usuario registrado para broadcast: manuel1 (total=1)
-2025-11-03T17:21:30.259-05:00  INFO 27608 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 1 clients: manuel1
-2025-11-03T17:21:35.283-05:00 ERROR 27608 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Error en worker para cliente /192.168.40.44:49816: java.net.SocketException: Connection reset
-2025-11-03T17:21:35.284-05:00  INFO 27608 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Usuario 'manuel1' desconectado.
-2025-11-03T17:21:35.284-05:00  INFO 27608 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Usuario removido del registro: manuel1 (total=0)
-2025-11-03T17:21:35.284-05:00  INFO 27608 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 0 clients: 
+2025-11-04T19:54:36.999-05:00  WARN 11164 --- [servidor] [main] s.c.a.AnnotationConfigApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'demoApplication': Unsatisfied dependency expressed through field 'tcpServer': Error creating bean with name 'tcpServer' defined in file [C:\Users\josem\OneDrive\Escritorio\ProyectoAvanzadas\mensajeriaRedLocal\servidor\demo\target\classes\com\proyecto\demo\server\TcpServer.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'authDbService' defined in file [C:\Users\josem\OneDrive\Escritorio\ProyectoAvanzadas\mensajeriaRedLocal\servidor\demo\target\classes\com\proyecto\demo\auth\AuthDbService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'jdbcUserDao': Invocation of init method failed
+2025-11-04T19:54:37.006-05:00  INFO 11164 --- [servidor] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-11-04T19:54:37.022-05:00 ERROR 11164 --- [servidor] [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'demoApplication': Unsatisfied dependency expressed through field 'tcpServer': Error creating bean with name 'tcpServer' defined in file [C:\Users\josem\OneDrive\Escritorio\ProyectoAvanzadas\mensajeriaRedLocal\servidor\demo\target\classes\com\proyecto\demo\server\TcpServer.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'authDbService' defined in file [C:\Users\josem\OneDrive\Escritorio\ProyectoAvanzadas\mensajeriaRedLocal\servidor\demo\target\classes\com\proyecto\demo\auth\AuthDbService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'jdbcUserDao': Invocation of init method failed
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:772) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:752) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:493) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1420) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:973) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:946) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:616) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:753) ~[spring-boot-3.2.0.jar:3.2.0]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:455) ~[spring-boot-3.2.0.jar:3.2.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:323) ~[spring-boot-3.2.0.jar:3.2.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1342) ~[spring-boot-3.2.0.jar:3.2.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1331) ~[spring-boot-3.2.0.jar:3.2.0]
+	at com.proyecto.demo.DemoApplication.main(DemoApplication.java:68) ~[classes/:na]
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'tcpServer' defined in file [C:\Users\josem\OneDrive\Escritorio\ProyectoAvanzadas\mensajeriaRedLocal\servidor\demo\target\classes\com\proyecto\demo\server\TcpServer.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'authDbService' defined in file [C:\Users\josem\OneDrive\Escritorio\ProyectoAvanzadas\mensajeriaRedLocal\servidor\demo\target\classes\com\proyecto\demo\auth\AuthDbService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'jdbcUserDao': Invocation of init method failed
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:802) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:241) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1356) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1193) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1441) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1348) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:769) ~[spring-beans-6.1.1.jar:6.1.1]
+	... 19 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'authDbService' defined in file [C:\Users\josem\OneDrive\Escritorio\ProyectoAvanzadas\mensajeriaRedLocal\servidor\demo\target\classes\com\proyecto\demo\auth\AuthDbService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'jdbcUserDao': Invocation of init method failed
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:802) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:241) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1356) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1193) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1441) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1348) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:911) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:789) ~[spring-beans-6.1.1.jar:6.1.1]
+	... 32 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdbcUserDao': Invocation of init method failed
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:222) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:421) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1767) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:601) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1441) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1348) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:911) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:789) ~[spring-beans-6.1.1.jar:6.1.1]
+	... 46 common frames omitted
+Caused by: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:84) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:388) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:444) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at com.proyecto.demo.auth.JdbcUserDao.ensureTable(JdbcUserDao.java:24) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source) ~[na:na]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMethod.invoke(InitDestroyAnnotationBeanPostProcessor.java:457) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:401) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:219) ~[spring-beans-6.1.1.jar:6.1.1]
+	... 59 common frames omitted
+Caused by: java.sql.SQLException: Unsupported character encoding 'utf8mb4'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:130) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:98) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:90) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:64) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:74) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:85) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:436) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:239) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:188) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:100) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112) ~[HikariCP-5.0.1.jar:na]
+	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:160) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:118) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:81) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	... 67 common frames omitted
+Caused by: com.mysql.cj.exceptions.WrongArgumentException: Unsupported character encoding 'utf8mb4'
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(Unknown Source) ~[na:na]
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Unknown Source) ~[na:na]
+	at java.base/java.lang.reflect.Constructor.newInstance(Unknown Source) ~[na:na]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:62) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:105) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.util.StringUtils.getBytes(StringUtils.java:236) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.jdbc.JdbcPropertySetImpl.postInitialization(JdbcPropertySetImpl.java:66) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.conf.DefaultPropertySet.initializeProperties(DefaultPropertySet.java:231) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:385) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	... 79 common frames omitted
+Caused by: java.io.UnsupportedEncodingException: utf8mb4
+	at java.base/java.lang.String.lookupCharset(Unknown Source) ~[na:na]
+	at java.base/java.lang.String.getBytes(Unknown Source) ~[na:na]
+	at com.mysql.cj.util.StringUtils.getBytes(StringUtils.java:234) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	... 82 common frames omitted
+
+2025-11-04T19:55:02.930-05:00  INFO 22964 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 22964 (C:\Users\josem\OneDrive\Escritorio\ProyectoAvanzadas\mensajeriaRedLocal\servidor\demo\target\classes started by josem in C:\Users\josem\OneDrive\Escritorio\ProyectoAvanzadas\mensajeriaRedLocal)
+2025-11-04T19:55:02.932-05:00 DEBUG 22964 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-11-04T19:55:02.932-05:00  INFO 22964 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-11-04T19:55:03.409-05:00  INFO 22964 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-04T19:55:04.501-05:00 ERROR 22964 --- [servidor] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Exception during pool initialization.
+
+java.sql.SQLException: Unsupported character encoding 'utf8mb4'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:130) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:98) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:90) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:64) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:74) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:85) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:436) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:239) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:188) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:100) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112) ~[HikariCP-5.0.1.jar:na]
+	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:160) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:118) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:81) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:388) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:444) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at com.proyecto.demo.auth.JdbcUserDao.ensureTable(JdbcUserDao.java:24) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source) ~[na:na]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMethod.invoke(InitDestroyAnnotationBeanPostProcessor.java:457) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:401) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:219) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:421) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1767) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:601) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1441) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1348) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:911) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:789) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:241) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1356) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1193) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1441) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1348) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:911) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:789) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:241) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1356) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1193) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1441) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1348) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:769) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:752) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:493) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1420) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:973) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:946) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:616) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:753) ~[spring-boot-3.2.0.jar:3.2.0]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:455) ~[spring-boot-3.2.0.jar:3.2.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:323) ~[spring-boot-3.2.0.jar:3.2.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1342) ~[spring-boot-3.2.0.jar:3.2.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1331) ~[spring-boot-3.2.0.jar:3.2.0]
+	at com.proyecto.demo.DemoApplication.main(DemoApplication.java:68) ~[classes/:na]
+Caused by: com.mysql.cj.exceptions.WrongArgumentException: Unsupported character encoding 'utf8mb4'
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(Unknown Source) ~[na:na]
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Unknown Source) ~[na:na]
+	at java.base/java.lang.reflect.Constructor.newInstance(Unknown Source) ~[na:na]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:62) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:105) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.util.StringUtils.getBytes(StringUtils.java:236) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.jdbc.JdbcPropertySetImpl.postInitialization(JdbcPropertySetImpl.java:66) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.conf.DefaultPropertySet.initializeProperties(DefaultPropertySet.java:231) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:385) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	... 79 common frames omitted
+Caused by: java.io.UnsupportedEncodingException: utf8mb4
+	at java.base/java.lang.String.lookupCharset(Unknown Source) ~[na:na]
+	at java.base/java.lang.String.getBytes(Unknown Source) ~[na:na]
+	at com.mysql.cj.util.StringUtils.getBytes(StringUtils.java:234) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	... 82 common frames omitted
+
+2025-11-04T19:55:04.509-05:00  WARN 22964 --- [servidor] [main] s.c.a.AnnotationConfigApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'demoApplication': Unsatisfied dependency expressed through field 'tcpServer': Error creating bean with name 'tcpServer' defined in file [C:\Users\josem\OneDrive\Escritorio\ProyectoAvanzadas\mensajeriaRedLocal\servidor\demo\target\classes\com\proyecto\demo\server\TcpServer.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'authDbService' defined in file [C:\Users\josem\OneDrive\Escritorio\ProyectoAvanzadas\mensajeriaRedLocal\servidor\demo\target\classes\com\proyecto\demo\auth\AuthDbService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'jdbcUserDao': Invocation of init method failed
+2025-11-04T19:55:04.515-05:00  INFO 22964 --- [servidor] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-11-04T19:55:04.533-05:00 ERROR 22964 --- [servidor] [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'demoApplication': Unsatisfied dependency expressed through field 'tcpServer': Error creating bean with name 'tcpServer' defined in file [C:\Users\josem\OneDrive\Escritorio\ProyectoAvanzadas\mensajeriaRedLocal\servidor\demo\target\classes\com\proyecto\demo\server\TcpServer.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'authDbService' defined in file [C:\Users\josem\OneDrive\Escritorio\ProyectoAvanzadas\mensajeriaRedLocal\servidor\demo\target\classes\com\proyecto\demo\auth\AuthDbService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'jdbcUserDao': Invocation of init method failed
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:772) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:752) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:493) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1420) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:973) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:946) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:616) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:753) ~[spring-boot-3.2.0.jar:3.2.0]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:455) ~[spring-boot-3.2.0.jar:3.2.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:323) ~[spring-boot-3.2.0.jar:3.2.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1342) ~[spring-boot-3.2.0.jar:3.2.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1331) ~[spring-boot-3.2.0.jar:3.2.0]
+	at com.proyecto.demo.DemoApplication.main(DemoApplication.java:68) ~[classes/:na]
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'tcpServer' defined in file [C:\Users\josem\OneDrive\Escritorio\ProyectoAvanzadas\mensajeriaRedLocal\servidor\demo\target\classes\com\proyecto\demo\server\TcpServer.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'authDbService' defined in file [C:\Users\josem\OneDrive\Escritorio\ProyectoAvanzadas\mensajeriaRedLocal\servidor\demo\target\classes\com\proyecto\demo\auth\AuthDbService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'jdbcUserDao': Invocation of init method failed
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:802) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:241) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1356) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1193) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1441) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1348) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:769) ~[spring-beans-6.1.1.jar:6.1.1]
+	... 19 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'authDbService' defined in file [C:\Users\josem\OneDrive\Escritorio\ProyectoAvanzadas\mensajeriaRedLocal\servidor\demo\target\classes\com\proyecto\demo\auth\AuthDbService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'jdbcUserDao': Invocation of init method failed
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:802) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:241) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1356) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1193) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1441) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1348) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:911) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:789) ~[spring-beans-6.1.1.jar:6.1.1]
+	... 32 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdbcUserDao': Invocation of init method failed
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:222) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:421) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1767) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:601) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1441) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1348) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:911) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:789) ~[spring-beans-6.1.1.jar:6.1.1]
+	... 46 common frames omitted
+Caused by: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:84) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:388) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:444) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at com.proyecto.demo.auth.JdbcUserDao.ensureTable(JdbcUserDao.java:24) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source) ~[na:na]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMethod.invoke(InitDestroyAnnotationBeanPostProcessor.java:457) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:401) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:219) ~[spring-beans-6.1.1.jar:6.1.1]
+	... 59 common frames omitted
+Caused by: java.sql.SQLException: Unsupported character encoding 'utf8mb4'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:130) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:98) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:90) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:64) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:74) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:85) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:436) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:239) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:188) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:100) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112) ~[HikariCP-5.0.1.jar:na]
+	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:160) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:118) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:81) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	... 67 common frames omitted
+Caused by: com.mysql.cj.exceptions.WrongArgumentException: Unsupported character encoding 'utf8mb4'
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(Unknown Source) ~[na:na]
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Unknown Source) ~[na:na]
+	at java.base/java.lang.reflect.Constructor.newInstance(Unknown Source) ~[na:na]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:62) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:105) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.util.StringUtils.getBytes(StringUtils.java:236) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.jdbc.JdbcPropertySetImpl.postInitialization(JdbcPropertySetImpl.java:66) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.conf.DefaultPropertySet.initializeProperties(DefaultPropertySet.java:231) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:385) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	... 79 common frames omitted
+Caused by: java.io.UnsupportedEncodingException: utf8mb4
+	at java.base/java.lang.String.lookupCharset(Unknown Source) ~[na:na]
+	at java.base/java.lang.String.getBytes(Unknown Source) ~[na:na]
+	at com.mysql.cj.util.StringUtils.getBytes(StringUtils.java:234) ~[mysql-connector-j-8.1.0.jar:8.1.0]
+	... 82 common frames omitted
+
+2025-11-04T19:56:20.118-05:00  INFO 20028 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 20028 (C:\Users\josem\OneDrive\Escritorio\ProyectoAvanzadas\mensajeriaRedLocal\servidor\demo\target\classes started by josem in C:\Users\josem\OneDrive\Escritorio\ProyectoAvanzadas\mensajeriaRedLocal)
+2025-11-04T19:56:20.120-05:00 DEBUG 20028 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-11-04T19:56:20.120-05:00  INFO 20028 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-11-04T19:56:20.635-05:00  INFO 20028 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-04T19:56:21.051-05:00  INFO 20028 --- [servidor] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@778d82e9
+2025-11-04T19:56:21.053-05:00  INFO 20028 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-04T19:56:21.100-05:00  INFO 20028 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 192.168.40.44:8080
+2025-11-04T19:56:21.102-05:00  INFO 20028 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Iniciando servicio de autenticación. Archivo usuarios configurado en 'C:\Users\josem\OneDrive\Escritorio\ProyectoAvanzadas\mensajeriaRedLocal\servidor\demo\usuarios.txt'
+2025-11-04T19:56:21.103-05:00  INFO 20028 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\ProyectoAvanzadas\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
+2025-11-04T19:56:21.103-05:00  INFO 20028 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Carga de usuarios completada. Usuarios cargados: 6
+2025-11-04T19:56:21.238-05:00  INFO 20028 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 1.527 seconds (process running for 1.798)
+2025-11-04T19:56:21.239-05:00  INFO 20028 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=192.168.40.44, port=8080
+2025-11-04T19:56:21.239-05:00  INFO 20028 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Archivo de usuarios configurado: C:\Users\josem\OneDrive\Escritorio\ProyectoAvanzadas\mensajeriaRedLocal\servidor\demo\usuarios.txt
+2025-11-04T19:56:21.240-05:00  INFO 20028 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UI enabled property = true; intentando inicializar UI
+2025-11-04T19:56:21.247-05:00  INFO 20028 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : java.awt.headless=false | GraphicsEnvironment.isHeadless=false
+2025-11-04T19:56:21.292-05:00  INFO 20028 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
+2025-11-04T19:56:21.642-05:00  INFO 20028 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Panel iniciado
+2025-11-04T19:56:21.642-05:00  INFO 20028 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
+2025-11-04T19:56:21.642-05:00  INFO 20028 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (initialize)
+2025-11-04T19:56:21.643-05:00  INFO 20028 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UiServerWindow.initialize() invocado desde DemoApplication.run
+2025-11-04T19:56:21.643-05:00  INFO 20028 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
+2025-11-04T19:56:21.644-05:00  INFO 20028 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
+2025-11-04T19:56:23.478-05:00  INFO 20028 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Usuarios conectados: 
+2025-11-04T20:04:40.717-05:00  INFO 20028 --- [servidor] [tcpserver-shutdown-hook] com.proyecto.demo.server.TcpServer       : Shutting down TcpServer...
+2025-11-04T20:04:40.719-05:00  INFO 20028 --- [servidor] [tcpserver-shutdown-hook] com.proyecto.demo.server.TcpServer       : TcpServer shutdown complete
+2025-11-04T20:04:40.722-05:00  INFO 20028 --- [servidor] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-11-04T20:04:40.734-05:00  INFO 20028 --- [servidor] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-11-04T20:05:06.136-05:00  INFO 7384 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 7384 (C:\Users\josem\OneDrive\Escritorio\ProyectoAvanzadas\mensajeriaRedLocal\servidor\demo\target\classes started by josem in C:\Users\josem\OneDrive\Escritorio\ProyectoAvanzadas\mensajeriaRedLocal)
+2025-11-04T20:05:06.137-05:00 DEBUG 7384 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-11-04T20:05:06.138-05:00  INFO 7384 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-11-04T20:05:06.669-05:00  INFO 7384 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-04T20:05:07.158-05:00  INFO 7384 --- [servidor] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@81b5db0
+2025-11-04T20:05:07.160-05:00  INFO 7384 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-04T20:05:07.206-05:00  INFO 7384 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 192.168.40.44:8080
+2025-11-04T20:05:07.208-05:00  INFO 7384 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Iniciando servicio de autenticación. Archivo usuarios configurado en 'C:\Users\josem\OneDrive\Escritorio\ProyectoAvanzadas\mensajeriaRedLocal\servidor\demo\usuarios.txt'
+2025-11-04T20:05:07.209-05:00  INFO 7384 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\ProyectoAvanzadas\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
+2025-11-04T20:05:07.209-05:00  INFO 7384 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Carga de usuarios completada. Usuarios cargados: 6
+2025-11-04T20:05:07.327-05:00  INFO 7384 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 1.578 seconds (process running for 1.855)
+2025-11-04T20:05:07.329-05:00  INFO 7384 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=192.168.40.44, port=8080
+2025-11-04T20:05:07.329-05:00  INFO 7384 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Archivo de usuarios configurado: C:\Users\josem\OneDrive\Escritorio\ProyectoAvanzadas\mensajeriaRedLocal\servidor\demo\usuarios.txt
+2025-11-04T20:05:07.329-05:00  INFO 7384 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UI enabled property = true; intentando inicializar UI
+2025-11-04T20:05:07.336-05:00  INFO 7384 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : java.awt.headless=false | GraphicsEnvironment.isHeadless=false
+2025-11-04T20:05:07.375-05:00  INFO 7384 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
+2025-11-04T20:05:07.613-05:00  INFO 7384 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Panel iniciado
+2025-11-04T20:05:07.614-05:00  INFO 7384 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
+2025-11-04T20:05:07.614-05:00  INFO 7384 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (initialize)
+2025-11-04T20:05:07.615-05:00  INFO 7384 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UiServerWindow.initialize() invocado desde DemoApplication.run
+2025-11-04T20:05:07.615-05:00  INFO 7384 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
+2025-11-04T20:05:07.616-05:00  INFO 7384 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
+2025-11-04T20:05:07.638-05:00  INFO 7384 --- [servidor] [main] com.proyecto.demo.DemoApplication        : DB check OK - usuarios count = 0
+2025-11-04T20:05:07.638-05:00  INFO 7384 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : DB check OK - usuarios count = 0
+2025-11-04T20:05:21.444-05:00  INFO 7384 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /192.168.40.44:64764
+2025-11-04T20:05:21.448-05:00  INFO 7384 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /192.168.40.44:64764
+2025-11-04T20:05:24.269-05:00  INFO 7384 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /192.168.40.44:64764
+2025-11-04T20:05:24.269-05:00  INFO 7384 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /192.168.40.44:64764
+2025-11-04T20:05:24.269-05:00  INFO 7384 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /192.168.40.44:64764
+2025-11-04T20:05:24.270-05:00  INFO 7384 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.44:64764 conectado y saludado.
+2025-11-04T20:05:24.271-05:00 ERROR 7384 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Error en worker para cliente /192.168.40.44:64764: java.net.SocketException: Se ha anulado una conexión establecida por el software en su equipo host.
+2025-11-04T20:05:24.272-05:00  INFO 7384 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.44:64764 desconectado sin autenticarse.
+2025-11-04T20:05:25.912-05:00  INFO 7384 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /192.168.40.44:59404
+2025-11-04T20:05:25.915-05:00  INFO 7384 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /192.168.40.44:59404
+2025-11-04T20:05:26.845-05:00  INFO 7384 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /192.168.40.44:59404
+2025-11-04T20:05:26.845-05:00  INFO 7384 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /192.168.40.44:59404
+2025-11-04T20:05:26.845-05:00  INFO 7384 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /192.168.40.44:59404
+2025-11-04T20:05:26.846-05:00  INFO 7384 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.44:59404 conectado y saludado.
+2025-11-04T20:05:26.846-05:00  INFO 7384 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN manuel1|1234'
+2025-11-04T20:05:26.857-05:00  WARN 7384 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Login fallido: usuario='manuel1' desde /192.168.40.44:59404
+2025-11-04T20:05:26.857-05:00  INFO 7384 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : Login fallido: manuel1 desde /192.168.40.44:59404
+2025-11-04T20:05:32.168-05:00  INFO 7384 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN manuel1|1234'
+2025-11-04T20:05:32.170-05:00  WARN 7384 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Login fallido: usuario='manuel1' desde /192.168.40.44:59404
+2025-11-04T20:05:32.170-05:00  INFO 7384 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : Login fallido: manuel1 desde /192.168.40.44:59404
+2025-11-04T20:05:36.803-05:00  INFO 7384 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Usuarios conectados: 
+2025-11-04T20:05:43.614-05:00 ERROR 7384 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Error en worker para cliente /192.168.40.44:59404: java.net.SocketException: Connection reset
+2025-11-04T20:05:43.615-05:00  INFO 7384 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.44:59404 desconectado sin autenticarse.
+2025-11-04T20:12:12.480-05:00  INFO 7384 --- [servidor] [tcpserver-shutdown-hook] com.proyecto.demo.server.TcpServer       : Shutting down TcpServer...
+2025-11-04T20:12:12.480-05:00  INFO 7384 --- [servidor] [tcpserver-shutdown-hook] com.proyecto.demo.server.TcpServer       : TcpServer shutdown complete
+2025-11-04T20:12:12.484-05:00  INFO 7384 --- [servidor] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-11-04T20:12:12.490-05:00  INFO 7384 --- [servidor] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-11-04T20:12:15.850-05:00  INFO 4040 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 4040 (C:\Users\josem\OneDrive\Escritorio\ProyectoAvanzadas\mensajeriaRedLocal\servidor\demo\target\classes started by josem in C:\Users\josem\OneDrive\Escritorio\ProyectoAvanzadas\mensajeriaRedLocal)
+2025-11-04T20:12:15.851-05:00 DEBUG 4040 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-11-04T20:12:15.851-05:00  INFO 4040 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-11-04T20:12:16.347-05:00  INFO 4040 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-04T20:12:16.732-05:00  INFO 4040 --- [servidor] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@168cd36b
+2025-11-04T20:12:16.733-05:00  INFO 4040 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-04T20:12:16.782-05:00  INFO 4040 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 192.168.40.44:8080
+2025-11-04T20:12:16.784-05:00  INFO 4040 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Iniciando servicio de autenticación. Archivo usuarios configurado en 'C:\Users\josem\OneDrive\Escritorio\ProyectoAvanzadas\mensajeriaRedLocal\servidor\demo\usuarios.txt'
+2025-11-04T20:12:16.785-05:00  INFO 4040 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Lectura de archivo 'C:\Users\josem\OneDrive\Escritorio\ProyectoAvanzadas\mensajeriaRedLocal\servidor\demo\usuarios.txt' finalizada. 6 registros leídos.
+2025-11-04T20:12:16.786-05:00  INFO 4040 --- [servidor] [main] com.proyecto.demo.auth.FileAuthService   : Carga de usuarios completada. Usuarios cargados: 6
+2025-11-04T20:12:16.898-05:00  INFO 4040 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 1.431 seconds (process running for 1.709)
+2025-11-04T20:12:16.899-05:00  INFO 4040 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=192.168.40.44, port=8080
+2025-11-04T20:12:16.900-05:00  INFO 4040 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Archivo de usuarios configurado: C:\Users\josem\OneDrive\Escritorio\ProyectoAvanzadas\mensajeriaRedLocal\servidor\demo\usuarios.txt
+2025-11-04T20:12:16.900-05:00  INFO 4040 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UI enabled property = true; intentando inicializar UI
+2025-11-04T20:12:16.908-05:00  INFO 4040 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : java.awt.headless=false | GraphicsEnvironment.isHeadless=false
+2025-11-04T20:12:16.950-05:00  INFO 4040 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
+2025-11-04T20:12:17.194-05:00  INFO 4040 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Panel iniciado
+2025-11-04T20:12:17.194-05:00  INFO 4040 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
+2025-11-04T20:12:17.195-05:00  INFO 4040 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (initialize)
+2025-11-04T20:12:17.195-05:00  INFO 4040 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UiServerWindow.initialize() invocado desde DemoApplication.run
+2025-11-04T20:12:17.195-05:00  INFO 4040 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
+2025-11-04T20:12:17.195-05:00  INFO 4040 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
+2025-11-04T20:12:17.220-05:00  INFO 4040 --- [servidor] [main] com.proyecto.demo.DemoApplication        : DB check OK - usuarios count = 0
+2025-11-04T20:12:17.220-05:00  INFO 4040 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : DB check OK - usuarios count = 0
+2025-11-04T20:12:35.398-05:00  INFO 4040 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /192.168.40.44:56282
+2025-11-04T20:12:35.402-05:00  INFO 4040 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /192.168.40.44:56282
+2025-11-04T20:12:37.268-05:00  INFO 4040 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /192.168.40.44:56282
+2025-11-04T20:12:37.268-05:00  INFO 4040 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /192.168.40.44:56282
+2025-11-04T20:12:37.268-05:00  INFO 4040 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /192.168.40.44:56282
+2025-11-04T20:12:37.269-05:00  INFO 4040 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.44:56282 conectado y saludado.
+2025-11-04T20:12:37.269-05:00  INFO 4040 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleRegister correctamente. Raw='REGISTER 1|manuel1|1234'
+2025-11-04T20:12:37.300-05:00  INFO 4040 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.AuthDbService     : Usuario 'manuel1' (id=1) registrado en DB
+2025-11-04T20:12:37.301-05:00  INFO 4040 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Registro exitoso de usuario 'manuel1' (id=1) desde /192.168.40.44:56282
+2025-11-04T20:12:37.301-05:00  INFO 4040 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : Registro exitoso: manuel1 (id=1) desde /192.168.40.44:56282
+2025-11-04T20:12:37.302-05:00  INFO 4040 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Post-register DB check: usuarios count = 1
+2025-11-04T20:12:37.302-05:00  INFO 4040 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : Post-register DB check: usuarios count = 1
+2025-11-04T20:12:45.950-05:00  INFO 4040 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN manuel1|1234'
+2025-11-04T20:12:45.952-05:00  INFO 4040 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Login exitoso: usuario='manuel1' desde /192.168.40.44:56282
+2025-11-04T20:12:45.952-05:00  INFO 4040 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : Login exitoso: manuel1 desde /192.168.40.44:56282
+2025-11-04T20:12:45.953-05:00  INFO 4040 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Usuario registrado para broadcast: manuel1 (total=1)
+2025-11-04T20:12:45.953-05:00  INFO 4040 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 1 clients: manuel1
+2025-11-04T20:12:57.534-05:00 ERROR 4040 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Error en worker para cliente /192.168.40.44:56282: java.net.SocketException: Connection reset
+2025-11-04T20:12:57.535-05:00  INFO 4040 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Usuario 'manuel1' desconectado.
+2025-11-04T20:12:57.535-05:00  INFO 4040 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Usuario removido del registro: manuel1 (total=0)
+2025-11-04T20:12:57.536-05:00  INFO 4040 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 0 clients: 
+2025-11-04T20:13:21.939-05:00  INFO 4040 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /192.168.40.44:56925
+2025-11-04T20:13:21.943-05:00  INFO 4040 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /192.168.40.44:56925
+2025-11-04T20:13:23.652-05:00  INFO 4040 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /192.168.40.44:56925
+2025-11-04T20:13:23.653-05:00  INFO 4040 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /192.168.40.44:56925
+2025-11-04T20:13:23.653-05:00  INFO 4040 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /192.168.40.44:56925
+2025-11-04T20:13:23.654-05:00  INFO 4040 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.44:56925 conectado y saludado.
+2025-11-04T20:13:23.654-05:00  INFO 4040 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN manuel1|1234'
+2025-11-04T20:13:23.656-05:00  INFO 4040 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Login exitoso: usuario='manuel1' desde /192.168.40.44:56925
+2025-11-04T20:13:23.656-05:00  INFO 4040 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : Login exitoso: manuel1 desde /192.168.40.44:56925
+2025-11-04T20:13:23.657-05:00  INFO 4040 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Usuario registrado para broadcast: manuel1 (total=1)
+2025-11-04T20:13:23.657-05:00  INFO 4040 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 1 clients: manuel1
+2025-11-04T20:13:35.476-05:00  INFO 4040 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /192.168.40.44:52115
+2025-11-04T20:13:35.479-05:00  INFO 4040 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /192.168.40.44:52115
+2025-11-04T20:13:37.164-05:00  INFO 4040 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /192.168.40.44:52115
+2025-11-04T20:13:37.164-05:00  INFO 4040 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /192.168.40.44:52115
+2025-11-04T20:13:37.165-05:00  INFO 4040 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /192.168.40.44:52115
+2025-11-04T20:13:37.166-05:00  INFO 4040 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.44:52115 conectado y saludado.
+2025-11-04T20:13:37.166-05:00  INFO 4040 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleRegister correctamente. Raw='REGISTER 2|manuel2|1234'
+2025-11-04T20:13:37.177-05:00  INFO 4040 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.AuthDbService     : Usuario 'manuel2' (id=2) registrado en DB
+2025-11-04T20:13:37.177-05:00  INFO 4040 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Registro exitoso de usuario 'manuel2' (id=2) desde /192.168.40.44:52115
+2025-11-04T20:13:37.177-05:00  INFO 4040 --- [servidor] [pool-2-thread-2] com.proyecto.demo.ui.UiServerWindow      : Registro exitoso: manuel2 (id=2) desde /192.168.40.44:52115
+2025-11-04T20:13:37.179-05:00  INFO 4040 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Post-register DB check: usuarios count = 2
+2025-11-04T20:13:37.179-05:00  INFO 4040 --- [servidor] [pool-2-thread-2] com.proyecto.demo.ui.UiServerWindow      : Post-register DB check: usuarios count = 2
+2025-11-04T20:13:48.074-05:00  INFO 4040 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN manuel2|1234'
+2025-11-04T20:13:48.077-05:00  INFO 4040 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Login exitoso: usuario='manuel2' desde /192.168.40.44:52115
+2025-11-04T20:13:48.077-05:00  INFO 4040 --- [servidor] [pool-2-thread-2] com.proyecto.demo.ui.UiServerWindow      : Login exitoso: manuel2 desde /192.168.40.44:52115
+2025-11-04T20:13:48.077-05:00  INFO 4040 --- [servidor] [pool-2-thread-2] c.proyecto.demo.server.ConnectedClients  : Usuario registrado para broadcast: manuel2 (total=2)
+2025-11-04T20:13:48.077-05:00  INFO 4040 --- [servidor] [pool-2-thread-2] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 2 clients: manuel1,manuel2
+2025-11-04T20:13:53.372-05:00  INFO 4040 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleMessage correctamente. Raw='MSG manuel1|hola manuel 1'
+2025-11-04T20:13:53.373-05:00  INFO 4040 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : [2025-11-04 20:13:53] Mensaje enviado por: manuel2 Para manuel1 Contenido: hola manuel 1
+2025-11-04T20:13:53.374-05:00  INFO 4040 --- [servidor] [pool-2-thread-2] com.proyecto.demo.ui.UiServerWindow      : [MSG] 2025-11-04 20:13:53 Mensaje enviado por: manuel2 Para manuel1 Contenido: hola manuel 1 (desde /192.168.40.44:52115)
+2025-11-04T20:14:19.062-05:00 ERROR 4040 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Error en worker para cliente /192.168.40.44:52115: java.net.SocketException: Connection reset
+2025-11-04T20:14:19.063-05:00  INFO 4040 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Usuario 'manuel2' desconectado.
+2025-11-04T20:14:19.063-05:00  INFO 4040 --- [servidor] [pool-2-thread-2] c.proyecto.demo.server.ConnectedClients  : Usuario removido del registro: manuel2 (total=1)
+2025-11-04T20:14:19.063-05:00  INFO 4040 --- [servidor] [pool-2-thread-2] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 1 clients: manuel1
+2025-11-04T20:14:19.140-05:00 ERROR 4040 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Error en worker para cliente /192.168.40.44:56925: java.net.SocketException: Connection reset
+2025-11-04T20:14:19.141-05:00  INFO 4040 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Usuario 'manuel1' desconectado.
+2025-11-04T20:14:19.141-05:00  INFO 4040 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Usuario removido del registro: manuel1 (total=0)
+2025-11-04T20:14:19.141-05:00  INFO 4040 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 0 clients: 
+2025-11-04T20:14:19.611-05:00  INFO 4040 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Usuarios conectados: 
+2025-11-04T20:23:54.264-05:00  INFO 4040 --- [servidor] [tcpserver-shutdown-hook] com.proyecto.demo.server.TcpServer       : Shutting down TcpServer...
+2025-11-04T20:23:54.265-05:00  INFO 4040 --- [servidor] [tcpserver-shutdown-hook] com.proyecto.demo.server.TcpServer       : TcpServer shutdown complete
+2025-11-04T20:23:54.267-05:00  INFO 4040 --- [servidor] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-11-04T20:23:54.276-05:00  INFO 4040 --- [servidor] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-11-04T20:23:56.208-05:00  INFO 25416 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 25416 (C:\Users\josem\OneDrive\Escritorio\ProyectoAvanzadas\mensajeriaRedLocal\servidor\demo\target\classes started by josem in C:\Users\josem\OneDrive\Escritorio\ProyectoAvanzadas\mensajeriaRedLocal)
+2025-11-04T20:23:56.209-05:00 DEBUG 25416 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-11-04T20:23:56.210-05:00  INFO 25416 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-11-04T20:23:56.831-05:00  INFO 25416 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-04T20:23:57.244-05:00  INFO 25416 --- [servidor] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@168cd36b
+2025-11-04T20:23:57.246-05:00  INFO 25416 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-04T20:23:57.291-05:00  INFO 25416 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 192.168.40.44:8080
+2025-11-04T20:23:57.400-05:00  INFO 25416 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 1.591 seconds (process running for 1.907)
+2025-11-04T20:23:57.402-05:00  INFO 25416 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=192.168.40.44, port=8080
+2025-11-04T20:23:57.402-05:00  INFO 25416 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UI enabled property = true; intentando inicializar UI
+2025-11-04T20:23:57.410-05:00  INFO 25416 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : java.awt.headless=false | GraphicsEnvironment.isHeadless=false
+2025-11-04T20:23:57.458-05:00  INFO 25416 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
+2025-11-04T20:23:57.699-05:00  INFO 25416 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Panel iniciado
+2025-11-04T20:23:57.699-05:00  INFO 25416 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
+2025-11-04T20:23:57.699-05:00  INFO 25416 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (initialize)
+2025-11-04T20:23:57.700-05:00  INFO 25416 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UiServerWindow.initialize() invocado desde DemoApplication.run
+2025-11-04T20:23:57.700-05:00  INFO 25416 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
+2025-11-04T20:23:57.700-05:00  INFO 25416 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
+2025-11-04T20:23:57.721-05:00  INFO 25416 --- [servidor] [main] com.proyecto.demo.DemoApplication        : DB check OK - usuarios count = 2
+2025-11-04T20:23:57.721-05:00  INFO 25416 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : DB check OK - usuarios count = 2
+2025-11-04T20:24:27.066-05:00  INFO 25416 --- [servidor] [tcpserver-shutdown-hook] com.proyecto.demo.server.TcpServer       : Shutting down TcpServer...
+2025-11-04T20:24:27.067-05:00  INFO 25416 --- [servidor] [tcpserver-shutdown-hook] com.proyecto.demo.server.TcpServer       : TcpServer shutdown complete
+2025-11-04T20:24:27.070-05:00  INFO 25416 --- [servidor] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-11-04T20:24:27.081-05:00  INFO 25416 --- [servidor] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-11-04T20:24:30.005-05:00  INFO 24676 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 24676 (C:\Users\josem\OneDrive\Escritorio\ProyectoAvanzadas\mensajeriaRedLocal\servidor\demo\target\classes started by josem in C:\Users\josem\OneDrive\Escritorio\ProyectoAvanzadas\mensajeriaRedLocal)
+2025-11-04T20:24:30.006-05:00 DEBUG 24676 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-11-04T20:24:30.007-05:00  INFO 24676 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-11-04T20:24:30.529-05:00  INFO 24676 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-04T20:24:30.971-05:00  INFO 24676 --- [servidor] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@37af1f93
+2025-11-04T20:24:30.973-05:00  INFO 24676 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-04T20:24:31.065-05:00  INFO 24676 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 192.168.40.44:8080
+2025-11-04T20:24:31.167-05:00  INFO 24676 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 1.538 seconds (process running for 1.806)
+2025-11-04T20:24:31.169-05:00  INFO 24676 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=192.168.40.44, port=8080
+2025-11-04T20:24:31.169-05:00  INFO 24676 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UI enabled property = true; intentando inicializar UI
+2025-11-04T20:24:31.176-05:00  INFO 24676 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : java.awt.headless=false | GraphicsEnvironment.isHeadless=false
+2025-11-04T20:24:31.215-05:00  INFO 24676 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
+2025-11-04T20:24:31.483-05:00  INFO 24676 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Panel iniciado
+2025-11-04T20:24:31.484-05:00  INFO 24676 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
+2025-11-04T20:24:31.484-05:00  INFO 24676 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (initialize)
+2025-11-04T20:24:31.484-05:00  INFO 24676 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UiServerWindow.initialize() invocado desde DemoApplication.run
+2025-11-04T20:24:31.484-05:00  INFO 24676 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
+2025-11-04T20:24:31.484-05:00  INFO 24676 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
+2025-11-04T20:24:31.507-05:00  INFO 24676 --- [servidor] [main] com.proyecto.demo.DemoApplication        : DB check OK - usuarios count = 2
+2025-11-04T20:24:31.507-05:00  INFO 24676 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : DB check OK - usuarios count = 2
+2025-11-04T20:24:33.677-05:00  INFO 24676 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Usuarios conectados: 
+2025-11-04T20:24:37.762-05:00  INFO 24676 --- [servidor] [tcpserver-shutdown-hook] com.proyecto.demo.server.TcpServer       : Shutting down TcpServer...
+2025-11-04T20:24:37.764-05:00  INFO 24676 --- [servidor] [tcpserver-shutdown-hook] com.proyecto.demo.server.TcpServer       : TcpServer shutdown complete
+2025-11-04T20:24:37.766-05:00  INFO 24676 --- [servidor] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-11-04T20:24:37.777-05:00  INFO 24676 --- [servidor] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

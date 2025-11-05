@@ -1,7 +1,7 @@
 package com.proyecto.demo.server;
 
 import com.proyecto.demo.ui.UiServerWindow;
-import com.proyecto.demo.auth.FileAuthService;
+import com.proyecto.demo.auth.AuthService;
 import com.proyecto.demo.factory.ServerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,14 +28,16 @@ public class TcpServer implements Runnable {
 
     private static final Logger log = LoggerFactory.getLogger(TcpServer.class);
 
-    private final FileAuthService authService;
+    private final com.proyecto.demo.auth.AuthService authService;
+    private final org.springframework.jdbc.core.JdbcTemplate jdbcTemplate;
     private final ExecutorService pool = ServerFactory.createCachedThreadPool();
     private Thread serverThread;
     private volatile ServerSocket serverSocket;
     private volatile boolean running = true;
 
-    public TcpServer(FileAuthService authService) {
+    public TcpServer(com.proyecto.demo.auth.AuthService authService, org.springframework.jdbc.core.JdbcTemplate jdbcTemplate) {
         this.authService = authService;
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     @PostConstruct
@@ -78,7 +80,7 @@ public class TcpServer implements Runnable {
                     }
 
                     log.info("Conexión aprobada desde {}", socket.getRemoteSocketAddress());
-                    pool.submit(ServerFactory.createClientWorker(socket, authService));
+                    pool.submit(ServerFactory.createClientWorker(socket, authService, jdbcTemplate));
                 } catch (IOException e) {
                     if (!running) break; // shutdown in progres
                     log.error("Error aceptando conexión: {}", e.toString(), e);
