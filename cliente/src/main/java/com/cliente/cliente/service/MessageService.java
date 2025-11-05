@@ -10,8 +10,7 @@ import org.slf4j.LoggerFactory;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import com.cliente.cliente.factory.ClientFactory;
-import com.cliente.cliente.service.ClientState;
+import java.util.ArrayList;
 import com.cliente.cliente.dto.MessageDTO;
 import com.cliente.cliente.dto.FileDTO;
 import java.io.File;
@@ -130,7 +129,7 @@ public class MessageService {
         // lista de usuarios conectados enviada por el servidor: "USERS user1,user2"
         if (trimmed.startsWith("USERS ")) {
             String payload = trimmed.length() > 6 ? trimmed.substring(6).trim() : "";
-            List<String> users = ClientFactory.createArrayList();
+            List<String> users = new ArrayList<>();
             if (!payload.isEmpty()) {
                 for (String u : payload.split(",")) {
                     users.add(u.trim());
@@ -147,7 +146,7 @@ public class MessageService {
             String[] p = payload.split("\\|", 2);
             String sender = p.length > 0 ? p[0] : "";
             String text = p.length > 1 ? p[1] : "";
-            MessageDTO dto = ClientFactory.createMessageDTO(sender, text, System.currentTimeMillis());
+            MessageDTO dto = new MessageDTO(sender, text, System.currentTimeMillis());
             log.info("Mensaje entrante de {}: {}", sender, text);
             // publicar como mensaje entrante para que la UI lo ubique en la conversación correcta
             bus.publish("INCOMING_MSG", dto);
@@ -163,7 +162,7 @@ public class MessageService {
             String b64 = p.length > 2 ? p[2] : "";
             try {
                 byte[] data = Base64.getDecoder().decode(b64);
-                com.cliente.cliente.dto.FileDTO fileDto = ClientFactory.createFileDTO(sender, filename, data, System.currentTimeMillis());
+                com.cliente.cliente.dto.FileDTO fileDto = new FileDTO(sender, filename, data, System.currentTimeMillis());
                 bus.publish("INCOMING_FILE", fileDto);
             } catch (Exception e) {
                 log.error("Error decodificando archivo entrante: {}", e.toString(), e);

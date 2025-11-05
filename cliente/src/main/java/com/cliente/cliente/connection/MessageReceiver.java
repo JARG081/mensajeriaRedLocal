@@ -5,12 +5,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
-import com.cliente.cliente.factory.ClientFactory;
 import java.util.concurrent.TimeUnit;
 
 @Component
@@ -24,10 +24,11 @@ public class MessageReceiver {
     private volatile boolean running = true;
 
     @Autowired
-    public MessageReceiver(TcpConnection conn, MessageService messageService) {
+    public MessageReceiver(TcpConnection conn, MessageService messageService,
+                           @Qualifier("receiverExecutor") ExecutorService exec) {
         this.conn = conn;
         this.messageService = messageService;
-        this.exec = ClientFactory.createSingleThreadExecutor("receiver-thread", true);
+        this.exec = exec;
     }
 
     @PostConstruct

@@ -3,7 +3,6 @@ package com.cliente.cliente.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.cliente.cliente.connection.TcpConnection;
-import com.cliente.cliente.service.ClientState;
 import com.cliente.cliente.events.UiEventBus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
