@@ -2,14 +2,18 @@ package com.proyecto.demo.server;
 
 import com.proyecto.demo.auth.AuthService;
 import org.springframework.jdbc.core.JdbcTemplate;
-import com.proyecto.demo.factory.ServerFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.io.*;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+@Component
+@Scope("prototype")  // Cada conexión de cliente necesita su propia instancia
 public class ClientWorker implements Runnable {
 
     private static final Logger log = LoggerFactory.getLogger(ClientWorker.class);
@@ -17,19 +21,21 @@ public class ClientWorker implements Runnable {
     private final Socket socket;
     private final AuthService authService;
     private final JdbcTemplate jdbc;
+    private final ConnectedClients connectedClients;
     private String authenticatedUser = null;
     private final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-    public ClientWorker(Socket socket, AuthService authService, JdbcTemplate jdbc) {
+    public ClientWorker(Socket socket, AuthService authService, JdbcTemplate jdbc, ConnectedClients connectedClients) {
         this.socket = socket;
         this.authService = authService;
         this.jdbc = jdbc;
+        this.connectedClients = connectedClients;
     }
 
     @Override
     public void run() {
-       try (BufferedReader in = ServerFactory.createBufferedReader(socket);
-           BufferedWriter out = ServerFactory.createBufferedWriter(socket)) {
+       try (BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8));
+           BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.UTF_8))) {
 
             out.write("WELCOME\n");
             out.flush();
@@ -70,7 +76,7 @@ public class ClientWorker implements Runnable {
             if (authenticatedUser != null) {
                 log.info("Usuario '{}' desconectado.", authenticatedUser);
                 // remove from registry and notify others
-                try { ConnectedClients.unregister(authenticatedUser); } catch (Exception ignored) {}
+                try { connectedClients.unregister(authenticatedUser); } catch (Exception ignored) {}
             } else {
                 log.info("Cliente {} desconectado sin autenticarse.", socket.getRemoteSocketAddress());
             }
@@ -120,11 +126,11 @@ public class ClientWorker implements Runnable {
         // forward to recipient(s): send FILEFROM sender|filename|base64
         String forward = "FILEFROM " + authenticatedUser + "|" + filename + "|" + base64 + "\n";
             if ("ALL".equalsIgnoreCase(recipient)) {
-            ConnectedClients.broadcastMessage(authenticatedUser, "(file) " + filename);
+            connectedClients.broadcastMessage(authenticatedUser, "(file) " + filename);
             // broadcast the file itself
-            ConnectedClients.broadcastRaw(forward);
+            connectedClients.broadcastRaw(forward);
         } else {
-            boolean sent = ConnectedClients.sendTo(recipient, forward);
+            boolean sent = connectedClients.sendTo(recipient, forward);
             if (!sent) {
                 log.warn("No se pudo entregar archivo a {} (no conectado)", recipient);
             }
@@ -192,7 +198,7 @@ public class ClientWorker implements Runnable {
             log.info("Login exitoso: usuario='{}' desde {}", authenticatedUser, socket.getRemoteSocketAddress());
             try { com.proyecto.demo.ui.UiServerWindow.publishMessageToUi("Login exitoso: " + authenticatedUser + " desde " + socket.getRemoteSocketAddress()); } catch (Exception ignored) {}
             // register the authenticated user so we can broadcast connected users
-            try { ConnectedClients.register(authenticatedUser, out); } catch (Exception ignored) {}
+            try { connectedClients.register(authenticatedUser, out); } catch (Exception ignored) {}
             out.write("LOGGED\n");
         } else {
             log.warn("Login fallido: usuario='{}' desde {}", p[0], socket.getRemoteSocketAddress());
@@ -235,9 +241,9 @@ public class ClientWorker implements Runnable {
         // Deliver message: if recipient == ALL => broadcast; else send only to recipient (if connected)
         String forwardLine = "MSGFROM " + authenticatedUser + "|" + messageText + "\n";
         if ("ALL".equalsIgnoreCase(recipient)) {
-            ConnectedClients.broadcastMessage(authenticatedUser, messageText);
+            connectedClients.broadcastMessage(authenticatedUser, messageText);
         } else {
-            boolean sent = ConnectedClients.sendTo(recipient, forwardLine);
+            boolean sent = connectedClients.sendTo(recipient, forwardLine);
             if (!sent) {
                 log.warn("No se pudo entregar mensaje a {} (no conectado)", recipient);
             }

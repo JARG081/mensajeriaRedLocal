@@ -2,15 +2,16 @@ package com.proyecto.demo.server;
 
 import com.proyecto.demo.ui.UiServerWindow;
 import com.proyecto.demo.auth.AuthService;
-import com.proyecto.demo.factory.ServerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import java.io.IOException;
+import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.awt.GraphicsEnvironment;
@@ -28,36 +29,49 @@ public class TcpServer implements Runnable {
 
     private static final Logger log = LoggerFactory.getLogger(TcpServer.class);
 
-    private final com.proyecto.demo.auth.AuthService authService;
+    private final AuthService authService;
     private final org.springframework.jdbc.core.JdbcTemplate jdbcTemplate;
-    private final ExecutorService pool = ServerFactory.createCachedThreadPool();
+    private final ExecutorService executorService;
+    private final ApplicationContext applicationContext;
+    private final ConnectedClients connectedClients;
     private Thread serverThread;
     private volatile ServerSocket serverSocket;
     private volatile boolean running = true;
 
-    public TcpServer(com.proyecto.demo.auth.AuthService authService, org.springframework.jdbc.core.JdbcTemplate jdbcTemplate) {
+    public TcpServer(AuthService authService, 
+                     org.springframework.jdbc.core.JdbcTemplate jdbcTemplate,
+                     ExecutorService executorService,
+                     ApplicationContext applicationContext,
+                     ConnectedClients connectedClients) {
         this.authService = authService;
         this.jdbcTemplate = jdbcTemplate;
+        this.executorService = executorService;
+        this.applicationContext = applicationContext;
+        this.connectedClients = connectedClients;
     }
 
     @PostConstruct
     public void startServerThread() {
         // Crear hilo NO-daemon. Spring mantiene el lifecycle; hilo no-daemon evita cierres inesperados.
-        serverThread = ServerFactory.createServerThread(this, "servidor");
+        serverThread = new Thread(this, "servidor");
+        serverThread.setDaemon(false);
         serverThread.start();
 
         // Registrar shutdown hook para cerrar recursos si la JVM termina
-        Runtime.getRuntime().addShutdownHook(ServerFactory.createServerThread(() -> {
+        Thread shutdownHook = new Thread(() -> {
             try {
                 shutdown();
             } catch (Exception ignored) {}
-        }, "tcpserver-shutdown-hook"));
+        }, "tcpserver-shutdown-hook");
+        shutdownHook.setDaemon(false);
+        Runtime.getRuntime().addShutdownHook(shutdownHook);
     }
 
     @Override
     public void run() {
         try {
-            serverSocket = ServerFactory.createBoundServerSocket(bindAddress, port);
+            serverSocket = new ServerSocket();
+            serverSocket.bind(new InetSocketAddress(bindAddress, port));
             log.info("Servidor TCP escuchando en {}:{}", bindAddress, port);
 
             while (running && !serverSocket.isClosed()) {
@@ -80,7 +94,9 @@ public class TcpServer implements Runnable {
                     }
 
                     log.info("Conexión aprobada desde {}", socket.getRemoteSocketAddress());
-                    pool.submit(ServerFactory.createClientWorker(socket, authService, jdbcTemplate));
+                    // Crear ClientWorker usando ApplicationContext para obtener un bean prototype
+                    ClientWorker worker = applicationContext.getBean(ClientWorker.class, socket, authService, jdbcTemplate, connectedClients);
+                    executorService.submit(worker);
                 } catch (IOException e) {
                     if (!running) break; // shutdown in progres
                     log.error("Error aceptando conexión: {}", e.toString(), e);
@@ -108,8 +124,8 @@ public class TcpServer implements Runnable {
             }
         } catch (Exception ignored) {}
         try {
-            pool.shutdownNow();
-            if (!pool.awaitTermination(2, TimeUnit.SECONDS)) {
+            executorService.shutdownNow();
+            if (!executorService.awaitTermination(2, TimeUnit.SECONDS)) {
                 log.warn("Executor pool did not terminate in time");
             }
         } catch (InterruptedException e) {

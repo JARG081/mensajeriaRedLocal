@@ -61,8 +61,13 @@ public class UiServerWindow {
                 JButton usersBtn = new JButton("Mostrar usuarios conectados");
                 usersBtn.addActionListener(ae -> {
                     try {
-                        var users = ConnectedClients.getConnectedUsers();
-                        appendLog("Usuarios conectados: " + String.join(",", users));
+                        ConnectedClients cc = ConnectedClients.getInstance();
+                        if (cc != null) {
+                            var users = cc.getConnectedUsers();
+                            appendLog("Usuarios conectados: " + String.join(",", users));
+                        } else {
+                            appendLog("Error: ConnectedClients no disponible aún");
+                        }
                     } catch (Exception e) {
                         appendLog("Error obteniendo usuarios conectados: " + e.getMessage());
                     }

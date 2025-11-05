@@ -1,47 +1,65 @@
 package com.proyecto.demo.server;
 
-import com.proyecto.demo.factory.ServerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
+import jakarta.annotation.PostConstruct;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
-/*
+/**
  * Registro simple de usuarios autenticados conectados.
  * Usado por cada ClientWorker para publicar la lista a todos los clientes.
  */
+@Component
 public class ConnectedClients {
     private static final Logger log = LoggerFactory.getLogger(ConnectedClients.class);
 
-    private static final ConcurrentHashMap<String, BufferedWriter> clients = ServerFactory.createConcurrentHashMap();
+    // Instancia estática para acceso desde código UI que no está en el contexto de Spring
+    private static ConnectedClients instance;
 
-    public static void register(String user, BufferedWriter out) {
+    private final ConcurrentHashMap<String, BufferedWriter> clients = new ConcurrentHashMap<>();
+
+    @PostConstruct
+    public void init() {
+        instance = this;
+    }
+
+    /**
+     * Método estático para obtener la instancia desde código no gestionado por Spring.
+     */
+    public static ConnectedClients getInstance() {
+        return instance;
+    }
+
+    public void register(String user, BufferedWriter out) {
         if (user == null || out == null) return;
         clients.put(user, out);
         log.info("Usuario registrado para broadcast: {} (total={})", user, clients.size());
         broadcastUserList();
     }
 
-    public static void unregister(String user) {
+    public void unregister(String user) {
         if (user == null) return;
         clients.remove(user);
         log.info("Usuario removido del registro: {} (total={})", user, clients.size());
         broadcastUserList();
     }
 
-    public static void broadcastUserList() {
+    public void broadcastUserList() {
             try {
-                List<String> users = ServerFactory.createArrayList(clients.keySet()).stream().sorted().collect(Collectors.toList());
+                List<String> users = new ArrayList<>(clients.keySet()).stream().sorted().collect(Collectors.toList());
             String csv = String.join(",", users);
             String line = "USERS " + csv + "\n";
             log.info("Broadcasting USERS list to {} clients: {}", clients.size(), csv);
 
             // iterate over a snapshot of entries to avoid concurrent modification issues
-            for (var entry : ServerFactory.createArrayList(clients.entrySet())) {
+            for (var entry : new ArrayList<>(clients.entrySet())) {
                 String u = entry.getKey();
                 BufferedWriter w = entry.getValue();
                 try {
@@ -58,7 +76,7 @@ public class ConnectedClients {
         }
     }
 
-    public static boolean sendTo(String user, String line) {
+    public boolean sendTo(String user, String line) {
         if (user == null || line == null) return false;
         BufferedWriter w = clients.get(user);
         if (w == null) return false;
@@ -74,9 +92,9 @@ public class ConnectedClients {
         }
     }
 
-    public static void broadcastMessage(String sender, String text) {
+    public void broadcastMessage(String sender, String text) {
         String payload = "MSGFROM " + sender + "|" + (text == null ? "" : text) + "\n";
-        for (var entry : ServerFactory.createArrayList(clients.entrySet())) {
+        for (var entry : new ArrayList<>(clients.entrySet())) {
             try {
                 entry.getValue().write(payload);
                 entry.getValue().flush();
@@ -88,10 +106,10 @@ public class ConnectedClients {
         }
     }
 
-    public static void broadcastRaw(String line) {
+    public void broadcastRaw(String line) {
         if (line == null) return;
         String payload = line.endsWith("\n") ? line : line + "\n";
-        for (var entry : ServerFactory.createArrayList(clients.entrySet())) {
+        for (var entry : new ArrayList<>(clients.entrySet())) {
             try {
                 entry.getValue().write(payload);
                 entry.getValue().flush();
@@ -106,7 +124,7 @@ public class ConnectedClients {
     /**
      * Retorna una lista (nueva instancia) con los usuarios actualmente registrados.
      */
-    public static java.util.List<String> getConnectedUsers() {
-        return ServerFactory.createArrayList(clients.keySet());
+    public List<String> getConnectedUsers() {
+        return new ArrayList<>(clients.keySet());
     }
 }

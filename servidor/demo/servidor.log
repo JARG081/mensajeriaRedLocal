@@ -684,3 +684,117 @@ Caused by: java.io.UnsupportedEncodingException: utf8mb4
 2025-11-04T20:24:37.764-05:00  INFO 24676 --- [servidor] [tcpserver-shutdown-hook] com.proyecto.demo.server.TcpServer       : TcpServer shutdown complete
 2025-11-04T20:24:37.766-05:00  INFO 24676 --- [servidor] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2025-11-04T20:24:37.777-05:00  INFO 24676 --- [servidor] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-11-05T09:23:08.705-05:00  INFO 8092 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.7 with PID 8092 (C:\Users\BRIAN\Documents\Repositorios\ProyectoFinalAvanzadas\mensajeriaRedLocal\servidor\demo\target\classes started by BRIAN in C:\Users\BRIAN\Documents\Repositorios\ProyectoFinalAvanzadas\mensajeriaRedLocal)
+2025-11-05T09:23:08.712-05:00 DEBUG 8092 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-11-05T09:23:08.715-05:00  INFO 8092 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-11-05T09:23:11.393-05:00  INFO 8092 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-05T09:23:12.858-05:00  INFO 8092 --- [servidor] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@43d38654
+2025-11-05T09:23:12.863-05:00  INFO 8092 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-05T09:23:13.119-05:00 ERROR 8092 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Error en servidor TCP al iniciar: java.net.BindException: Cannot assign requested address: bind
+
+java.net.BindException: Cannot assign requested address: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.bind(Net.java:565) ~[na:na]
+	at java.base/sun.nio.ch.Net.bind(Net.java:554) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.bind(NioSocketImpl.java:636) ~[na:na]
+	at java.base/java.net.ServerSocket.bind(ServerSocket.java:391) ~[na:na]
+	at java.base/java.net.ServerSocket.bind(ServerSocket.java:342) ~[na:na]
+	at com.proyecto.demo.server.TcpServer.run(TcpServer.java:74) ~[classes/:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2025-11-05T09:23:13.317-05:00  INFO 8092 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Shutting down TcpServer...
+2025-11-05T09:23:13.354-05:00  INFO 8092 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : TcpServer shutdown complete
+2025-11-05T09:23:13.582-05:00  INFO 8092 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 6.437 seconds (process running for 7.665)
+2025-11-05T09:23:13.582-05:00  INFO 8092 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=192.168.40.44, port=8080
+2025-11-05T09:23:13.582-05:00  INFO 8092 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UI enabled property = true; intentando inicializar UI
+2025-11-05T09:23:13.625-05:00  INFO 8092 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : java.awt.headless=false | GraphicsEnvironment.isHeadless=false
+2025-11-05T09:23:13.795-05:00  INFO 8092 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
+2025-11-05T09:23:14.444-05:00  INFO 8092 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Panel iniciado
+2025-11-05T09:23:14.445-05:00  INFO 8092 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
+2025-11-05T09:23:14.446-05:00  INFO 8092 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (initialize)
+2025-11-05T09:23:14.447-05:00  INFO 8092 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UiServerWindow.initialize() invocado desde DemoApplication.run
+2025-11-05T09:23:14.450-05:00  INFO 8092 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
+2025-11-05T09:23:14.455-05:00  INFO 8092 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
+2025-11-05T09:23:14.519-05:00  INFO 8092 --- [servidor] [main] com.proyecto.demo.DemoApplication        : DB check OK - usuarios count = 0
+2025-11-05T09:23:14.521-05:00  INFO 8092 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : DB check OK - usuarios count = 0
+2025-11-05T09:23:19.689-05:00  INFO 8092 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Usuarios conectados: 
+2025-11-05T09:24:52.850-05:00  INFO 8092 --- [servidor] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-11-05T09:24:52.870-05:00  INFO 8092 --- [servidor] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-11-05T09:26:01.287-05:00  INFO 15500 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 25 with PID 15500 (C:\Users\BRIAN\Documents\Repositorios\ProyectoFinalAvanzadas\mensajeriaRedLocal\servidor\demo\target\classes started by BRIAN in C:\Users\BRIAN\Documents\Repositorios\ProyectoFinalAvanzadas\mensajeriaRedLocal\servidor\demo)
+2025-11-05T09:26:01.292-05:00 DEBUG 15500 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-11-05T09:26:01.294-05:00  INFO 15500 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-11-05T09:26:02.561-05:00  INFO 15500 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-05T09:26:03.607-05:00  INFO 15500 --- [servidor] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2015b2cd
+2025-11-05T09:26:03.612-05:00  INFO 15500 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-05T09:26:03.740-05:00  INFO 15500 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 0.0.0.0:8080
+2025-11-05T09:26:04.145-05:00  INFO 15500 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 4.065 seconds (process running for 4.8)
+2025-11-05T09:26:04.190-05:00  INFO 15500 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=0.0.0.0, port=8080
+2025-11-05T09:26:04.193-05:00  INFO 15500 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UI enabled property = true; intentando inicializar UI
+2025-11-05T09:26:04.254-05:00  INFO 15500 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : java.awt.headless=false | GraphicsEnvironment.isHeadless=false
+2025-11-05T09:26:04.461-05:00  INFO 15500 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
+2025-11-05T09:26:05.031-05:00  INFO 15500 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Panel iniciado
+2025-11-05T09:26:05.060-05:00  INFO 15500 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
+2025-11-05T09:26:05.062-05:00  INFO 15500 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (initialize)
+2025-11-05T09:26:05.066-05:00  INFO 15500 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UiServerWindow.initialize() invocado desde DemoApplication.run
+2025-11-05T09:26:05.071-05:00  INFO 15500 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
+2025-11-05T09:26:05.080-05:00  INFO 15500 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
+2025-11-05T09:26:05.142-05:00  INFO 15500 --- [servidor] [main] com.proyecto.demo.DemoApplication        : DB check OK - usuarios count = 0
+2025-11-05T09:26:05.149-05:00  INFO 15500 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : DB check OK - usuarios count = 0
+2025-11-05T09:26:37.599-05:00  INFO 15500 --- [servidor] [tcpserver-shutdown-hook] com.proyecto.demo.server.TcpServer       : Shutting down TcpServer...
+2025-11-05T09:26:37.614-05:00  INFO 15500 --- [servidor] [tcpserver-shutdown-hook] com.proyecto.demo.server.TcpServer       : TcpServer shutdown complete
+2025-11-05T09:26:37.621-05:00  INFO 15500 --- [servidor] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-11-05T09:26:37.650-05:00  INFO 15500 --- [servidor] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-11-05T09:27:29.372-05:00  INFO 3716 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.7 with PID 3716 (C:\Users\BRIAN\Documents\Repositorios\ProyectoFinalAvanzadas\mensajeriaRedLocal\servidor\demo\target\classes started by BRIAN in C:\Users\BRIAN\Documents\Repositorios\ProyectoFinalAvanzadas\mensajeriaRedLocal)
+2025-11-05T09:27:29.375-05:00 DEBUG 3716 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-11-05T09:27:29.377-05:00  INFO 3716 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-11-05T09:27:30.963-05:00  INFO 3716 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-05T09:27:31.886-05:00  INFO 3716 --- [servidor] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@710d89e2
+2025-11-05T09:27:31.886-05:00  INFO 3716 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-05T09:27:32.049-05:00  INFO 3716 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 0.0.0.0:8080
+2025-11-05T09:27:32.478-05:00  INFO 3716 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 4.21 seconds (process running for 5.204)
+2025-11-05T09:27:32.493-05:00  INFO 3716 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=0.0.0.0, port=8080
+2025-11-05T09:27:32.508-05:00  INFO 3716 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UI enabled property = true; intentando inicializar UI
+2025-11-05T09:27:32.535-05:00  INFO 3716 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : java.awt.headless=false | GraphicsEnvironment.isHeadless=false
+2025-11-05T09:27:32.715-05:00  INFO 3716 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
+2025-11-05T09:27:33.138-05:00  INFO 3716 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Panel iniciado
+2025-11-05T09:27:33.162-05:00  INFO 3716 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
+2025-11-05T09:27:33.164-05:00  INFO 3716 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (initialize)
+2025-11-05T09:27:33.166-05:00  INFO 3716 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UiServerWindow.initialize() invocado desde DemoApplication.run
+2025-11-05T09:27:33.171-05:00  INFO 3716 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
+2025-11-05T09:27:33.172-05:00  INFO 3716 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
+2025-11-05T09:27:33.230-05:00  INFO 3716 --- [servidor] [main] com.proyecto.demo.DemoApplication        : DB check OK - usuarios count = 0
+2025-11-05T09:27:33.259-05:00  INFO 3716 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : DB check OK - usuarios count = 0
+2025-11-05T09:27:43.919-05:00  INFO 3716 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /[0:0:0:0:0:0:0:1]:62773
+2025-11-05T09:27:43.925-05:00  INFO 3716 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /[0:0:0:0:0:0:0:1]:62773
+2025-11-05T09:27:57.885-05:00  INFO 3716 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /[0:0:0:0:0:0:0:1]:62773
+2025-11-05T09:27:57.887-05:00  INFO 3716 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /[0:0:0:0:0:0:0:1]:62773
+2025-11-05T09:27:57.888-05:00  INFO 3716 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /[0:0:0:0:0:0:0:1]:62773
+2025-11-05T09:27:57.902-05:00  INFO 3716 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /[0:0:0:0:0:0:0:1]:62773 conectado y saludado.
+2025-11-05T09:27:57.922-05:00  INFO 3716 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /[0:0:0:0:0:0:0:1]:62773 desconectado sin autenticarse.
+2025-11-05T09:27:59.010-05:00  INFO 3716 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /[0:0:0:0:0:0:0:1]:62776
+2025-11-05T09:27:59.024-05:00  INFO 3716 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /[0:0:0:0:0:0:0:1]:62776
+2025-11-05T09:28:05.367-05:00  INFO 3716 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /[0:0:0:0:0:0:0:1]:62776
+2025-11-05T09:28:05.368-05:00  INFO 3716 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /[0:0:0:0:0:0:0:1]:62776
+2025-11-05T09:28:05.369-05:00  INFO 3716 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /[0:0:0:0:0:0:0:1]:62776
+2025-11-05T09:28:05.372-05:00  INFO 3716 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /[0:0:0:0:0:0:0:1]:62776 conectado y saludado.
+2025-11-05T09:28:05.394-05:00 ERROR 3716 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Error en worker para cliente /[0:0:0:0:0:0:0:1]:62776: java.net.SocketException: Se ha anulado una conexión establecida por el software en su equipo host.
+2025-11-05T09:28:05.399-05:00  INFO 3716 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /[0:0:0:0:0:0:0:1]:62776 desconectado sin autenticarse.
+2025-11-05T09:28:10.428-05:00  INFO 3716 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /[0:0:0:0:0:0:0:1]:62778
+2025-11-05T09:28:10.428-05:00  INFO 3716 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /[0:0:0:0:0:0:0:1]:62778
+2025-11-05T09:28:26.664-05:00  INFO 3716 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /[0:0:0:0:0:0:0:1]:62778
+2025-11-05T09:28:26.679-05:00  INFO 3716 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /[0:0:0:0:0:0:0:1]:62778
+2025-11-05T09:28:26.682-05:00  INFO 3716 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /[0:0:0:0:0:0:0:1]:62778
+2025-11-05T09:28:26.687-05:00  INFO 3716 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /[0:0:0:0:0:0:0:1]:62778 conectado y saludado.
+2025-11-05T09:28:26.712-05:00  INFO 3716 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /[0:0:0:0:0:0:0:1]:62778 desconectado sin autenticarse.
+2025-11-05T09:28:56.748-05:00  INFO 3716 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /[0:0:0:0:0:0:0:1]:62785
+2025-11-05T09:28:56.768-05:00  INFO 3716 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /[0:0:0:0:0:0:0:1]:62785
+2025-11-05T09:29:03.799-05:00  INFO 3716 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /[0:0:0:0:0:0:0:1]:62785
+2025-11-05T09:29:03.819-05:00  INFO 3716 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /[0:0:0:0:0:0:0:1]:62785
+2025-11-05T09:29:03.820-05:00  INFO 3716 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /[0:0:0:0:0:0:0:1]:62785
+2025-11-05T09:29:03.840-05:00  INFO 3716 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /[0:0:0:0:0:0:0:1]:62785 conectado y saludado.
+2025-11-05T09:29:03.847-05:00 ERROR 3716 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Error en worker para cliente /[0:0:0:0:0:0:0:1]:62785: java.net.SocketException: Se ha anulado una conexión establecida por el software en su equipo host.
+2025-11-05T09:29:03.861-05:00  INFO 3716 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /[0:0:0:0:0:0:0:1]:62785 desconectado sin autenticarse.
+2025-11-05T09:29:14.410-05:00  INFO 3716 --- [servidor] [tcpserver-shutdown-hook] com.proyecto.demo.server.TcpServer       : Shutting down TcpServer...
+2025-11-05T09:29:14.441-05:00  INFO 3716 --- [servidor] [tcpserver-shutdown-hook] com.proyecto.demo.server.TcpServer       : TcpServer shutdown complete
+2025-11-05T09:29:14.446-05:00  INFO 3716 --- [servidor] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-11-05T09:29:14.474-05:00  INFO 3716 --- [servidor] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
