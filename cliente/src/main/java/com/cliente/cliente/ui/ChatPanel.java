@@ -156,16 +156,9 @@ public class ChatPanel {
                 sendExec.submit(() -> {
                     try {
                         messageService.sendFile(targetUser, f);
-                        // add to local files map
-                        String dest = targetUser == null ? "ALL" : targetUser;
-                        com.cliente.cliente.dto.FileDTO dto = new com.cliente.cliente.dto.FileDTO(clientState == null ? "Me" : clientState.getCurrentUser(), f.getName(), java.nio.file.Files.readAllBytes(f.toPath()), System.currentTimeMillis());
-                        filesPerConversation.computeIfAbsent(dest, k -> new java.util.ArrayList<>()).add(dto);
-                        // append to conversation
-                        String stamped = "[" + new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date(dto.getTimestamp())) + "] Yo -> " + dest + ": (archivo) " + f.getName();
-                        conversations.computeIfAbsent(dest, k -> new java.util.ArrayList<>()).add(stamped);
-                        if ((dest.equals("ALL") && targetUser==null) || dest.equals(targetUser)) {
-                            SwingUtilities.invokeLater(() -> { appendLineToChat(stamped); refreshFilesListFor(dest); });
-                        }
+                        // Do not show a generic dialog here on failure; MessageService will publish detailed errors
+                        // and the UI subscribes to AUTH_ERROR to display them. This avoids duplicate alerts.
+                        // On success, MessageService will publish FILE_SENT event and UI will update via subscription
                     } catch (Exception ex) {
                         log.error("Error enviando archivo: {}", ex.toString(), ex);
                     }
@@ -209,18 +202,32 @@ public class ChatPanel {
             });
         });
 
-        // recibir archivos entrantes
-        bus.subscribe("INCOMING_FILE", payload -> {
+        // recibir archivos entrantes: almacenar archivo y refrescar lista, pero no añadir una línea de chat
+        // porque el servidor ya envía un MSGFROM "(file) filename" que se muestra como mensaje.
+            bus.subscribe("INCOMING_FILE", payload -> {
+                if (!(payload instanceof com.cliente.cliente.dto.FileDTO)) return;
+                com.cliente.cliente.dto.FileDTO dto = (com.cliente.cliente.dto.FileDTO) payload;
+                SwingUtilities.invokeLater(() -> {
+                    String from = dto.getSender();
+                    filesPerConversation.computeIfAbsent(from, k -> new java.util.ArrayList<>()).add(dto);
+                    // actualizar lista de archivos si la conversación visible corresponde
+                    if (from.equals(targetUser)) {
+                        refreshFilesListFor(from);
+                    }
+                });
+            });
+
+        // archivo enviado con éxito (confirmación del servidor)
+        // Add file to local files list, but DO NOT add a chat line because the server will broadcast a MSGFROM (file) which
+        // will be shown in the conversation. This avoids duplicate messages for the sender.
+        bus.subscribe("FILE_SENT", payload -> {
             if (!(payload instanceof com.cliente.cliente.dto.FileDTO)) return;
             com.cliente.cliente.dto.FileDTO dto = (com.cliente.cliente.dto.FileDTO) payload;
             SwingUtilities.invokeLater(() -> {
-                String from = dto.getSender();
-                String line = String.format("[%s] %s: (archivo) %s", new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date(dto.getTimestamp())), from, dto.getFilename());
-                filesPerConversation.computeIfAbsent(from, k -> new java.util.ArrayList<>()).add(dto);
-                conversations.computeIfAbsent(from, k -> new java.util.ArrayList<>()).add(line);
-                if (from.equals(targetUser)) {
-                    appendLineToChat(line);
-                    refreshFilesListFor(from);
+                String dest = targetUser == null ? "ALL" : targetUser;
+                filesPerConversation.computeIfAbsent(dest, k -> new java.util.ArrayList<>()).add(dto);
+                if ((dest.equals("ALL") && targetUser==null) || dest.equals(targetUser)) {
+                    refreshFilesListFor(dest);
                 }
             });
         });

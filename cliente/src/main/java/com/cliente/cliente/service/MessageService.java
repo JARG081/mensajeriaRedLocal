@@ -16,6 +16,9 @@ import com.cliente.cliente.dto.FileDTO;
 import java.io.File;
 import java.nio.file.Files;
 import java.util.Base64;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
 
 @Component
 public class MessageService {
@@ -28,6 +31,14 @@ public class MessageService {
     private final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     // Track whether the client is logged in (set when server responds LOGGED)
     private volatile boolean loggedIn = false;
+
+    // Pending file send futures keyed by filename
+    private final ConcurrentHashMap<String, CompletableFuture<String>> pendingFileFutures = new ConcurrentHashMap<>();
+    // Pending header futures (FILE_HDR) keyed by filename. Value is either "OK" or "ERROR|reason"
+    private final ConcurrentHashMap<String, CompletableFuture<String>> pendingHdrFutures = new ConcurrentHashMap<>();
+
+    // NOTE: validation is performed on the server side. The client will always send
+    // the FILE_HDR and then the FILE_DATA; the server decides to accept or reject.
 
     @Autowired
     public MessageService(TcpConnection conn, LocalPersistenceService persistence, UiEventBus bus, ClientState clientState){
@@ -96,16 +107,66 @@ public class MessageService {
                 return false;
             }
             if (!conn.isConnected()) conn.connect();
+            String to = (recipient == null || recipient.isEmpty()) ? "ALL" : recipient;
+
+            long size = Files.size(file.toPath());
+
+            // Step 1: send header and wait for header acceptance (server will validate extension & size)
+            String hdrLine = "FILE_HDR " + to + "|" + file.getName() + "|" + size;
+            CompletableFuture<String> hdrFut = new CompletableFuture<>();
+            pendingHdrFutures.put(file.getName(), hdrFut);
+            try {
+                conn.sendRaw(hdrLine);
+                String hdrResp = hdrFut.get(30, TimeUnit.SECONDS); // e.g. "OK" or "ERROR|reason"
+                if (hdrResp == null) {
+                    String err = "Envio de archivo: timeout en etapa de cabecera";
+                    persistence.appendMessage(err);
+                    bus.publish("AUTH_ERROR", err);
+                    return false;
+                }
+                if (!hdrResp.startsWith("OK")) {
+                    String reason = hdrResp.contains("|") ? hdrResp.substring(hdrResp.indexOf('|')+1) : hdrResp;
+                    String err = "Envio de archivo rechazado en cabecera: " + reason;
+                    persistence.appendMessage(err);
+                    bus.publish("AUTH_ERROR", err);
+                    log.warn("Archivo HEADER rechazado por servidor: {} -> {} reason={}", file.getName(), to, reason);
+                    return false;
+                }
+            } finally {
+                pendingHdrFutures.remove(file.getName());
+            }
+
+            // Step 2: server accepted header, now send payload and wait final FILE_STATUS
             byte[] data = Files.readAllBytes(file.toPath());
             String b64 = Base64.getEncoder().encodeToString(data);
-            String to = (recipient == null || recipient.isEmpty()) ? "ALL" : recipient;
-            String line = "FILE " + to + "|" + file.getName() + "|" + b64;
-            conn.sendRaw(line);
+            String dataLine = "FILE_DATA " + to + "|" + file.getName() + "|" + b64;
 
-            String stamped = "[" + LocalDateTime.now().format(fmt) + "] Yo -> " + to + ": (archivo) " + file.getName();
-            persistence.appendMessage(stamped);
-            bus.publish("SERVER_LINE", stamped);
-            return true;
+            CompletableFuture<String> fut = new CompletableFuture<>();
+            pendingFileFutures.put(file.getName(), fut);
+            try {
+                conn.sendRaw(dataLine);
+                // wait up to 30 seconds for server response
+                String resp = fut.get(30, TimeUnit.SECONDS);
+                if (resp != null && resp.startsWith("OK")) {
+                    String stamped = "[" + LocalDateTime.now().format(fmt) + "] Yo -> " + to + ": (archivo) " + file.getName();
+                    persistence.appendMessage(stamped);
+                    // publish a dedicated event so the UI can add the file to the conversation
+                    com.cliente.cliente.dto.FileDTO fileDto = new FileDTO(clientState == null ? "Me" : clientState.getCurrentUser(), file.getName(), data, System.currentTimeMillis());
+                    bus.publish("FILE_SENT", fileDto);
+                    bus.publish("SERVER_LINE", stamped);
+                    return true;
+                } else {
+                    // resp format: ERROR|reason
+                    String reason = (resp == null) ? "timeout" : (resp.contains("|") ? resp.substring(resp.indexOf('|')+1) : resp);
+                    String err = "Envio de archivo rechazado: " + reason;
+                    persistence.appendMessage(err);
+                    bus.publish("AUTH_ERROR", err);
+                    log.warn("Archivo rechazado por servidor: {} -> {} reason={}", file.getName(), to, reason);
+                    return false;
+                }
+            } finally {
+                pendingFileFutures.remove(file.getName());
+            }
         } catch (Exception e) {
             String err = "Error enviar archivo: " + e.getMessage();
             persistence.appendMessage(err);
@@ -163,9 +224,49 @@ public class MessageService {
             try {
                 byte[] data = Base64.getDecoder().decode(b64);
                 com.cliente.cliente.dto.FileDTO fileDto = new FileDTO(sender, filename, data, System.currentTimeMillis());
-                bus.publish("INCOMING_FILE", fileDto);
+                // If the FILEFROM comes from ourselves (the sender), ignore it to avoid duplicate entries
+                String me = clientState == null ? null : clientState.getCurrentUser();
+                if (me != null && me.equals(sender)) {
+                    log.debug("Ignorando FILEFROM propio para archivo {}", filename);
+                } else {
+                    bus.publish("INCOMING_FILE", fileDto);
+                }
             } catch (Exception e) {
                 log.error("Error decodificando archivo entrante: {}", e.toString(), e);
+            }
+            return;
+        }
+
+        // FILE_STATUS filename|OK  OR FILE_STATUS filename|ERROR|reason
+        if (trimmed.startsWith("FILE_STATUS ")) {
+            String payload = trimmed.substring(12);
+            String[] parts = payload.split("\\|", 3);
+            String fname = parts.length > 0 ? parts[0] : "";
+            String status = parts.length > 1 ? parts[1] : "";
+            String reason = parts.length > 2 ? parts[2] : "";
+            CompletableFuture<String> fut = pendingFileFutures.get(fname);
+            if (fut != null) {
+                if ("OK".equalsIgnoreCase(status)) fut.complete("OK");
+                else fut.complete("ERROR|" + reason);
+            } else {
+                log.debug("FILE_STATUS recibido pero no hay futuro pendiente para {}: {}", fname, status);
+            }
+            return;
+        }
+
+        // FILE_HDR_STATUS filename|OK OR FILE_HDR_STATUS filename|ERROR|reason
+        if (trimmed.startsWith("FILE_HDR_STATUS ")) {
+            String payload = trimmed.substring(16);
+            String[] parts = payload.split("\\|", 3);
+            String fname = parts.length > 0 ? parts[0] : "";
+            String status = parts.length > 1 ? parts[1] : "";
+            String reason = parts.length > 2 ? parts[2] : "";
+            CompletableFuture<String> hf = pendingHdrFutures.get(fname);
+            if (hf != null) {
+                if ("OK".equalsIgnoreCase(status)) hf.complete("OK");
+                else hf.complete("ERROR|" + reason);
+            } else {
+                log.debug("FILE_HDR_STATUS recibido pero no hay futuro pendiente para {}: {}", fname, status);
             }
             return;
         }

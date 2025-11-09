@@ -24,13 +24,17 @@ public class TcpServer implements Runnable {
     @Value("${server.address:0.0.0.0}")
     private String bindAddress;
 
-    @Value("${server.port:8080}")
+    // Use a dedicated property for the raw TCP server so it doesn't conflict with Spring's HTTP server port
+    @Value("${app.tcp.port:9001}")
     private int port;
 
     private static final Logger log = LoggerFactory.getLogger(TcpServer.class);
 
     private final AuthService authService;
     private final org.springframework.jdbc.core.JdbcTemplate jdbcTemplate;
+    private final com.proyecto.demo.dao.MessageDao messageDao;
+    private final com.proyecto.demo.dao.ArchivoDao archivoDao;
+    private final com.proyecto.demo.auth.UserDao userDao;
     private final ExecutorService executorService;
     private final ApplicationContext applicationContext;
     private final ConnectedClients connectedClients;
@@ -40,11 +44,17 @@ public class TcpServer implements Runnable {
 
     public TcpServer(AuthService authService, 
                      org.springframework.jdbc.core.JdbcTemplate jdbcTemplate,
+                     com.proyecto.demo.dao.MessageDao messageDao,
+                     com.proyecto.demo.dao.ArchivoDao archivoDao,
+                     com.proyecto.demo.auth.UserDao userDao,
                      ExecutorService executorService,
                      ApplicationContext applicationContext,
                      ConnectedClients connectedClients) {
         this.authService = authService;
         this.jdbcTemplate = jdbcTemplate;
+        this.messageDao = messageDao;
+        this.archivoDao = archivoDao;
+        this.userDao = userDao;
         this.executorService = executorService;
         this.applicationContext = applicationContext;
         this.connectedClients = connectedClients;
@@ -95,7 +105,7 @@ public class TcpServer implements Runnable {
 
                     log.info("Conexión aprobada desde {}", socket.getRemoteSocketAddress());
                     // Crear ClientWorker usando ApplicationContext para obtener un bean prototype
-                    ClientWorker worker = applicationContext.getBean(ClientWorker.class, socket, authService, jdbcTemplate, connectedClients);
+                    ClientWorker worker = applicationContext.getBean(ClientWorker.class, socket, authService, jdbcTemplate, connectedClients, messageDao, archivoDao, userDao);
                     executorService.submit(worker);
                 } catch (IOException e) {
                     if (!running) break; // shutdown in progres

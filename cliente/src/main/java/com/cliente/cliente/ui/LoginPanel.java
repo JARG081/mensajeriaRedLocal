@@ -141,12 +141,8 @@ public class LoginPanel {
             );
         });
 
-        bus.subscribe("AUTH_INFO", payload -> {
-            log.info("Mensaje informativo recibido del servidor: {}", payload);
-            SwingUtilities.invokeLater(() ->
-                JOptionPane.showMessageDialog(panel, payload != null ? payload.toString() : "Info")
-            );
-        });
+        // NOTE: AUTH_INFO messages are handled elsewhere (e.g. REGISTERED_SUCCESS) to avoid duplicate dialogs.
+        // Removed generic AUTH_INFO dialog here to prevent showing duplicate registration messages.
         // Limpiar campos tras registro exitoso
         bus.subscribe("REGISTERED_SUCCESS", payload -> {
             log.info("Evento REGISTERED_SUCCESS recibido. Limpiando campos de registro.");

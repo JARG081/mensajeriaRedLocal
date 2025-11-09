@@ -1,11 +1,19 @@
 package com.proyecto.demo.server;
 
 import com.proyecto.demo.auth.AuthService;
+import com.proyecto.demo.auth.UserDao;
+import com.proyecto.demo.dao.MessageDao;
+import com.proyecto.demo.dao.ArchivoDao;
+import com.proyecto.demo.model.MessageRecord;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import java.util.Arrays;
+import java.util.Set;
+import java.util.stream.Collectors;
 import java.io.*;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
@@ -22,14 +30,27 @@ public class ClientWorker implements Runnable {
     private final AuthService authService;
     private final JdbcTemplate jdbc;
     private final ConnectedClients connectedClients;
+    private final MessageDao messageDao;
+    private final ArchivoDao archivoDao;
+    private final UserDao userDao;
+    // configurable limits (injected from application.properties)
+    @Value("${app.upload.maxSizeMb:200}")
+    private long maxSizeMb;
+
+    @Value("${app.upload.blockedExtensions:exe,dll,bat,sh,jar,msi,com,scr}")
+    private String blockedExtensionsProp;
     private String authenticatedUser = null;
     private final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-    public ClientWorker(Socket socket, AuthService authService, JdbcTemplate jdbc, ConnectedClients connectedClients) {
+    public ClientWorker(Socket socket, AuthService authService, JdbcTemplate jdbc, ConnectedClients connectedClients,
+                        MessageDao messageDao, ArchivoDao archivoDao, UserDao userDao) {
         this.socket = socket;
         this.authService = authService;
         this.jdbc = jdbc;
         this.connectedClients = connectedClients;
+        this.messageDao = messageDao;
+        this.archivoDao = archivoDao;
+        this.userDao = userDao;
     }
 
     @Override
@@ -56,7 +77,18 @@ public class ClientWorker implements Runnable {
                     continue;
                 }
                 if (line.startsWith("FILE ")) {
+                    // legacy single-step file transfer (payload included)
                     handleFile(line, out);
+                    continue;
+                }
+                if (line.startsWith("FILE_HDR ")) {
+                    // new two-step: header first (recipient|filename|size)
+                    handleFileHeader(line, out);
+                    continue;
+                }
+                if (line.startsWith("FILE_DATA ")) {
+                    // new two-step: actual payload (recipient|filename|base64)
+                    handleFileData(line, out);
                     continue;
                 }
                 if (line.equals("QUIT")) {
@@ -113,19 +145,320 @@ public class ClientWorker implements Runnable {
         }
 
         // decode and save file on server (prefix with sender and timestamp to avoid collisions)
-        byte[] data = java.util.Base64.getDecoder().decode(base64);
+        byte[] data;
+        try {
+            data = java.util.Base64.getDecoder().decode(base64);
+            try { com.proyecto.demo.ui.UiServerWindow.publishMessageToUi("Intento de envío de archivo: " + authenticatedUser + " -> " + recipient + " : " + filename + " (" + data.length + " bytes)"); } catch (Exception ignored) {}
+        } catch (IllegalArgumentException iae) {
+            String reason = "base64_invalido";
+            try { com.proyecto.demo.ui.UiServerWindow.publishMessageToUi("Rechazado: " + filename + " motivo: " + reason + " desde " + socket.getRemoteSocketAddress()); } catch (Exception ignored) {}
+            out.write("FILE_STATUS " + filename + "|ERROR|" + reason + "\n");
+            out.flush();
+            return;
+        }
+
+        // Enforce size limit (configurable, default 200 MB)
+        final long MAX_BYTES = Math.max(1L, maxSizeMb) * 1024L * 1024L;
+        if (data.length > MAX_BYTES) {
+            String reason = "tamano_excedido";
+            log.warn("Rechazando archivo grande de {} bytes desde {} (límite {})", data.length, socket.getRemoteSocketAddress(), MAX_BYTES);
+            try { com.proyecto.demo.ui.UiServerWindow.publishMessageToUi("Rechazado: " + filename + " motivo: " + reason + " desde " + socket.getRemoteSocketAddress()); } catch (Exception ignored) {}
+            out.write("FILE_STATUS " + filename + "|ERROR|" + reason + "\n");
+            out.flush();
+            return;
+        }
+
+        // Sanitize filename to avoid path traversal
+        filename = filename.replaceAll("[\\\\/]+", "_");
+
+        // Block dangerous extensions (configurable)
+        String ext = "";
+        int idx = filename.lastIndexOf('.');
+        if (idx >= 0 && idx < filename.length() - 1) {
+            ext = filename.substring(idx + 1).toLowerCase();
+        }
+        Set<String> blocked = Arrays.stream(blockedExtensionsProp.split(","))
+                .map(String::trim)
+                .filter(s -> !s.isEmpty())
+                .map(String::toLowerCase)
+                .collect(Collectors.toSet());
+        if (!ext.isEmpty() && blocked.contains(ext)) {
+            String reason = "ext_bloqueada";
+            log.warn("Rechazando archivo por extensión bloqueada (.{}) nombre='{}' desde {}", ext, filename, socket.getRemoteSocketAddress());
+            try { com.proyecto.demo.ui.UiServerWindow.publishMessageToUi("Rechazado: " + filename + " motivo: " + reason + " desde " + socket.getRemoteSocketAddress()); } catch (Exception ignored) {}
+            out.write("FILE_STATUS " + filename + "|ERROR|" + reason + "\n");
+            out.flush();
+            return;
+        }
+
+
+        // solo .txt .bin
+        boolean allowedByExt = "txt".equals(ext) || "bin".equals(ext);
+        if (!allowedByExt) {
+            String reason = "ext_no_permitida";
+            log.warn("Rechazando archivo por extensión no permitida (.{}) nombre='{}' desde {}", ext, filename, socket.getRemoteSocketAddress());
+            try { com.proyecto.demo.ui.UiServerWindow.publishMessageToUi("Rechazado: " + filename + " motivo: " + reason + " desde " + socket.getRemoteSocketAddress()); } catch (Exception ignored) {}
+            out.write("FILE_STATUS " + filename + "|ERROR|" + reason + "\n");
+            out.flush();
+            return;
+        }
+
+        // At this point extension is .txt or .bin. For .txt we prefer text MIME, but we accept as requested.
+        try { com.proyecto.demo.ui.UiServerWindow.publishMessageToUi("Archivo recibido y aceptado para guardado: " + filename + " desde " + socket.getRemoteSocketAddress()); } catch (Exception ignored) {}
+
         String safeName = java.time.Instant.now().toEpochMilli() + "_" + authenticatedUser + "_" + filename;
         java.nio.file.Path target = uploadsDir.resolve(safeName);
         try {
             java.nio.file.Files.write(target, data);
             log.info("Archivo recibido guardado en {}", target.toString());
+            // Inform sender of success
+            out.write("FILE_STATUS " + filename + "|OK\n");
+            out.flush();
+            // persist archivo and mensaje
+            try {
+                long archivoId = archivoDao.insertArchivo(filename, target.toString(), data.length);
+                var senderOpt = userDao.findByUsername(authenticatedUser);
+                if (senderOpt.isPresent()) {
+                    Long senderId = senderOpt.get().getId();
+                    if ("ALL".equalsIgnoreCase(recipient)) {
+                        for (String r : connectedClients.getConnectedUsers()) {
+                            if (r.equalsIgnoreCase(authenticatedUser)) continue;
+                            var recipOpt = userDao.findByUsername(r);
+                            if (recipOpt.isPresent()) {
+                                MessageRecord mr = new MessageRecord();
+                                mr.setEmisorId(senderId);
+                                mr.setReceptorId(recipOpt.get().getId());
+                                mr.setTipoMensaje("ARCHIVO");
+                                mr.setContenido(filename);
+                                mr.setArchivoId(archivoId);
+                                messageDao.insertMessage(mr);
+                            }
+                        }
+                    } else {
+                        var recipOpt = userDao.findByUsername(recipient);
+                        if (recipOpt.isPresent()) {
+                            MessageRecord mr = new MessageRecord();
+                            mr.setEmisorId(senderId);
+                            mr.setReceptorId(recipOpt.get().getId());
+                            mr.setTipoMensaje("ARCHIVO");
+                            mr.setContenido(filename);
+                            mr.setArchivoId(archivoId);
+                            messageDao.insertMessage(mr);
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                log.warn("No se pudo persistir archivo/mensaje en BD: {}", e.getMessage());
+            }
         } catch (Exception e) {
             log.error("Error guardando archivo: {}", e.toString(), e);
+            String reason = "save_error";
+            try { com.proyecto.demo.ui.UiServerWindow.publishMessageToUi("Rechazado: " + filename + " motivo: " + reason + " desde " + socket.getRemoteSocketAddress()); } catch (Exception ignored) {}
+            out.write("FILE_STATUS " + filename + "|ERROR|" + reason + "\n");
+            out.flush();
+            return;
         }
 
         // forward to recipient(s): send FILEFROM sender|filename|base64
         String forward = "FILEFROM " + authenticatedUser + "|" + filename + "|" + base64 + "\n";
             if ("ALL".equalsIgnoreCase(recipient)) {
+            connectedClients.broadcastMessage(authenticatedUser, "(file) " + filename);
+            // broadcast the file itself
+            connectedClients.broadcastRaw(forward);
+        } else {
+            boolean sent = connectedClients.sendTo(recipient, forward);
+            if (!sent) {
+                log.warn("No se pudo entregar archivo a {} (no conectado)", recipient);
+            }
+        }
+
+        out.write("SENT\n");
+        out.flush();
+    }
+
+    private void handleFileHeader(String line, BufferedWriter out) throws IOException {
+        // Format: FILE_HDR recipient|filename|sizeBytes
+        log.info("mensaje llega a funcion de ClientWorker.handleFileHeader. Raw='{}'", line);
+        if (authenticatedUser == null) {
+            out.write("ERROR no_autenticado\n");
+            out.flush();
+            return;
+        }
+        String payload = line.substring(9);
+        String[] parts = payload.split("\\|", 3);
+        if (parts.length < 3) {
+            out.write("FILE_HDR_STATUS " + "|ERROR|formato_hdr_invalido\n");
+            out.flush();
+            return;
+        }
+        String recipient = parts[0];
+        String filename = parts[1];
+        String sizeStr = parts[2];
+    log.debug("FILE_HDR parsed recipient='{}' filename='{}' size='{}'", recipient, filename, sizeStr);
+        long declaredSize = 0L;
+        try {
+            declaredSize = Long.parseLong(sizeStr);
+        } catch (NumberFormatException nfe) {
+            out.write("FILE_HDR_STATUS " + filename + "|ERROR|size_no_valido\n");
+            out.flush();
+            return;
+        }
+
+        // quick validation of extension and size
+        String ext = "";
+        int idx = filename.lastIndexOf('.');
+        if (idx >= 0 && idx < filename.length() - 1) {
+            ext = filename.substring(idx + 1).toLowerCase();
+        }
+
+        Set<String> blocked = Arrays.stream(blockedExtensionsProp.split(","))
+                .map(String::trim)
+                .filter(s -> !s.isEmpty())
+                .map(String::toLowerCase)
+                .collect(Collectors.toSet());
+        if (!ext.isEmpty() && blocked.contains(ext)) {
+            String reason = "ext_bloqueada";
+            try { com.proyecto.demo.ui.UiServerWindow.publishMessageToUi("Rechazado HDR: " + filename + " motivo: " + reason + " desde " + socket.getRemoteSocketAddress()); } catch (Exception ignored) {}
+            out.write("FILE_HDR_STATUS " + filename + "|ERROR|" + reason + "\n");
+            out.flush();
+            return;
+        }
+        boolean allowedByExt = "txt".equals(ext) || "bin".equals(ext);
+        if (!allowedByExt) {
+            String reason = "ext_no_permitida";
+            try { com.proyecto.demo.ui.UiServerWindow.publishMessageToUi("Rechazado HDR: " + filename + " motivo: " + reason + " desde " + socket.getRemoteSocketAddress()); } catch (Exception ignored) {}
+            out.write("FILE_HDR_STATUS " + filename + "|ERROR|" + reason + "\n");
+            out.flush();
+            return;
+        }
+
+        final long MAX_BYTES = Math.max(1L, maxSizeMb) * 1024L * 1024L;
+        if (declaredSize > MAX_BYTES) {
+            String reason = "tamano_excedido";
+            try { com.proyecto.demo.ui.UiServerWindow.publishMessageToUi("Rechazado HDR: " + filename + " motivo: " + reason + " desde " + socket.getRemoteSocketAddress()); } catch (Exception ignored) {}
+            out.write("FILE_HDR_STATUS " + filename + "|ERROR|" + reason + "\n");
+            out.flush();
+            return;
+        }
+
+        try { com.proyecto.demo.ui.UiServerWindow.publishMessageToUi("HDR aceptado: " + filename + " size=" + declaredSize + " desde " + socket.getRemoteSocketAddress()); } catch (Exception ignored) {}
+        out.write("FILE_HDR_STATUS " + filename + "|OK\n");
+        out.flush();
+    }
+
+    private void handleFileData(String line, BufferedWriter out) throws IOException {
+        // Format: FILE_DATA recipient|filename|<base64payload>
+        log.info("mensaje llega a funcion de ClientWorker.handleFileData. Raw='{}'", line);
+        if (authenticatedUser == null) {
+            out.write("ERROR no_autenticado\n");
+            out.flush();
+            return;
+        }
+        String payload = line.substring(10);
+        String[] parts = payload.split("\\|", 3);
+        if (parts.length < 3) {
+            out.write("ERROR formato FILE_DATA recipient|filename|base64\n");
+            out.flush();
+            return;
+        }
+        String recipient = parts[0];
+        String filename = parts[1];
+        String base64 = parts[2];
+
+        // ensure uploads directory exists
+        java.nio.file.Path uploadsDir = java.nio.file.Paths.get("uploads");
+        try {
+            if (!java.nio.file.Files.exists(uploadsDir)) {
+                java.nio.file.Files.createDirectories(uploadsDir);
+            }
+        } catch (Exception e) {
+            log.error("No se pudo crear uploads dir: {}", e.toString(), e);
+        }
+
+        // decode and save file on server
+        byte[] data;
+        try {
+            data = java.util.Base64.getDecoder().decode(base64);
+            try { com.proyecto.demo.ui.UiServerWindow.publishMessageToUi("Archivo DATA recibido: " + authenticatedUser + " -> " + recipient + " : " + filename + " (" + data.length + " bytes)"); } catch (Exception ignored) {}
+        } catch (IllegalArgumentException iae) {
+            String reason = "base64_invalido";
+            try { com.proyecto.demo.ui.UiServerWindow.publishMessageToUi("Rechazado DATA: " + filename + " motivo: " + reason + " desde " + socket.getRemoteSocketAddress()); } catch (Exception ignored) {}
+            out.write("FILE_STATUS " + filename + "|ERROR|" + reason + "\n");
+            out.flush();
+            return;
+        }
+
+        // Enforce size limit (configurable, default 200 MB)
+        final long MAX_BYTES = Math.max(1L, maxSizeMb) * 1024L * 1024L;
+        if (data.length > MAX_BYTES) {
+            String reason = "tamano_excedido";
+            log.warn("Rechazando archivo grande de {} bytes desde {} (límite {})", data.length, socket.getRemoteSocketAddress(), MAX_BYTES);
+            try { com.proyecto.demo.ui.UiServerWindow.publishMessageToUi("Rechazado DATA: " + filename + " motivo: " + reason + " desde " + socket.getRemoteSocketAddress()); } catch (Exception ignored) {}
+            out.write("FILE_STATUS " + filename + "|ERROR|" + reason + "\n");
+            out.flush();
+            return;
+        }
+
+        // Sanitize filename to avoid path traversal
+        filename = filename.replaceAll("[\\\\/]+", "_");
+
+        // save
+        String safeName = java.time.Instant.now().toEpochMilli() + "_" + authenticatedUser + "_" + filename;
+        java.nio.file.Path target = uploadsDir.resolve(safeName);
+        try {
+            java.nio.file.Files.write(target, data);
+            log.info("Archivo DATA recibido guardado en {}", target.toString());
+            // Inform sender of success (final)
+            out.write("FILE_STATUS " + filename + "|OK\n");
+            out.flush();
+            // persist archivo and mensaje
+            try {
+                long archivoId = archivoDao.insertArchivo(filename, target.toString(), data.length);
+                var senderOpt = userDao.findByUsername(authenticatedUser);
+                if (senderOpt.isPresent()) {
+                    Long senderId = senderOpt.get().getId();
+                    if ("ALL".equalsIgnoreCase(recipient)) {
+                        for (String r : connectedClients.getConnectedUsers()) {
+                            if (r.equalsIgnoreCase(authenticatedUser)) continue;
+                            var recipOpt = userDao.findByUsername(r);
+                            if (recipOpt.isPresent()) {
+                                MessageRecord mr = new MessageRecord();
+                                mr.setEmisorId(senderId);
+                                mr.setReceptorId(recipOpt.get().getId());
+                                mr.setTipoMensaje("ARCHIVO");
+                                mr.setContenido(filename);
+                                mr.setArchivoId(archivoId);
+                                messageDao.insertMessage(mr);
+                            }
+                        }
+                    } else {
+                        var recipOpt = userDao.findByUsername(recipient);
+                        if (recipOpt.isPresent()) {
+                            MessageRecord mr = new MessageRecord();
+                            mr.setEmisorId(senderId);
+                            mr.setReceptorId(recipOpt.get().getId());
+                            mr.setTipoMensaje("ARCHIVO");
+                            mr.setContenido(filename);
+                            mr.setArchivoId(archivoId);
+                            messageDao.insertMessage(mr);
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                log.warn("No se pudo persistir archivo/mensaje en BD: {}", e.getMessage());
+            }
+        } catch (Exception e) {
+            log.error("Error guardando archivo DATA: {}", e.toString(), e);
+            String reason = "save_error";
+            try { com.proyecto.demo.ui.UiServerWindow.publishMessageToUi("Rechazado DATA: " + filename + " motivo: " + reason + " desde " + socket.getRemoteSocketAddress()); } catch (Exception ignored) {}
+            out.write("FILE_STATUS " + filename + "|ERROR|" + reason + "\n");
+            out.flush();
+            return;
+        }
+
+        // forward to recipient(s): send FILEFROM sender|filename|base64
+        String forward = "FILEFROM " + authenticatedUser + "|" + filename + "|" + base64 + "\n";
+        if ("ALL".equalsIgnoreCase(recipient)) {
             connectedClients.broadcastMessage(authenticatedUser, "(file) " + filename);
             // broadcast the file itself
             connectedClients.broadcastRaw(forward);
@@ -247,6 +580,44 @@ public class ClientWorker implements Runnable {
             if (!sent) {
                 log.warn("No se pudo entregar mensaje a {} (no conectado)", recipient);
             }
+        }
+
+        // persist message(s) to DB (best-effort, non-blocking for the protocol)
+        try {
+            var senderOpt = userDao.findByUsername(authenticatedUser);
+            if (senderOpt.isPresent()) {
+                Long senderId = senderOpt.get().getId();
+                if ("ALL".equalsIgnoreCase(recipient)) {
+                    for (String r : connectedClients.getConnectedUsers()) {
+                        if (r.equalsIgnoreCase(authenticatedUser)) continue;
+                        var recipOpt = userDao.findByUsername(r);
+                        if (recipOpt.isPresent()) {
+                            MessageRecord mr = new MessageRecord();
+                            mr.setEmisorId(senderId);
+                            mr.setReceptorId(recipOpt.get().getId());
+                            mr.setTipoMensaje("TEXTO");
+                            mr.setContenido(messageText);
+                            mr.setArchivoId(null);
+                            messageDao.insertMessage(mr);
+                        }
+                    }
+                } else {
+                    var recipOpt = userDao.findByUsername(recipient);
+                    if (recipOpt.isPresent()) {
+                        MessageRecord mr = new MessageRecord();
+                        mr.setEmisorId(senderId);
+                        mr.setReceptorId(recipOpt.get().getId());
+                        mr.setTipoMensaje("TEXTO");
+                        mr.setContenido(messageText);
+                        mr.setArchivoId(null);
+                        messageDao.insertMessage(mr);
+                    }
+                }
+            } else {
+                log.warn("No se encontró usuario emisor en BD para persistencia: {}", authenticatedUser);
+            }
+        } catch (Exception e) {
+            log.warn("Error guardando mensaje en BD: {}", e.getMessage());
         }
 
         out.write("SENT\n");

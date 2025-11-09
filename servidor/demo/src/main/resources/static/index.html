@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Servidor - Panel de control (web)</title>
+  <style>
+    body { font-family: Arial, Helvetica, sans-serif; margin: 12px; }
+    #log { width: 100%; height: 80vh; border: 1px solid #ccc; padding: 8px; overflow:auto; background:#111; color:#ddd; font-family: monospace; font-size: 13px }
+    .line { padding:2px 0 }
+    .ts { color:#6cf }
+  </style>
+</head>
+<body>
+  <h2>Servidor - Panel de control (Web)</h2>
+  <p>Mostrando contenido del log configurado (archivo: <span id="logpath"></span>). Se actualiza en tiempo real.</p>
+  <div id="log"></div>
+<script>
+async function loadTail() {
+  try {
+    const res = await fetch('/api/logs?lines=500');
+    const lines = await res.json();
+    const logEl = document.getElementById('log');
+    logEl.innerHTML = '';
+    for (const l of lines) {
+      const d = document.createElement('div'); d.className = 'line'; d.textContent = l; logEl.appendChild(d);
+    }
+    logEl.scrollTop = logEl.scrollHeight;
+  } catch(e) { console.error(e); }
+}
+
+function startSSE() {
+  const es = new EventSource('/api/logs/stream');
+  es.onmessage = function(ev) {
+    const logEl = document.getElementById('log');
+    const d = document.createElement('div'); d.className='line'; d.textContent = ev.data; logEl.appendChild(d);
+    while (logEl.children.length > 2000) logEl.removeChild(logEl.children[0]);
+    logEl.scrollTop = logEl.scrollHeight;
+  };
+  es.onerror = function(e) { console.warn('SSE error', e); es.close(); setTimeout(startSSE,2000); };
+}
+
+loadTail(); startSSE();
+</script>
+</body>
+</html>

@@ -101,6 +101,8 @@ public class UiServerWindow {
                     logArea.setCaretPosition(logArea.getDocument().getLength());
                 });
             }
+            // Mirror UI lines into the shared in-memory buffer used by the web dashboard
+            try { LogBuffer.add(line); } catch (Throwable ignored) {}
             log.info(s);
         } catch (Exception e) {
             log.warn("appendLog fallo: {}", e.toString());
