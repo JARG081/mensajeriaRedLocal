@@ -1,210 +1,61 @@
-2025-11-09T17:40:19.009-05:00  INFO 7792 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 7792 (C:\Users\josem\Desktop\avanzadasDevelop\mensajeriaRedLocal\servidor\demo\target\classes started by josem in C:\Users\josem\Desktop\avanzadasDevelop\mensajeriaRedLocal)
-2025-11-09T17:40:19.023-05:00 DEBUG 7792 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
-2025-11-09T17:40:19.026-05:00  INFO 7792 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
-2025-11-09T17:40:21.223-05:00  INFO 7792 --- [servidor] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9010 (http)
-2025-11-09T17:40:21.246-05:00  INFO 7792 --- [servidor] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-11-09T17:40:21.246-05:00  INFO 7792 --- [servidor] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
-2025-11-09T17:40:21.392-05:00  INFO 7792 --- [servidor] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-11-09T17:40:21.392-05:00  INFO 7792 --- [servidor] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2277 ms
-2025-11-09T17:40:21.606-05:00  INFO 7792 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-11-09T17:40:22.247-05:00  INFO 7792 --- [servidor] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@10b4e7f8
-2025-11-09T17:40:22.251-05:00  INFO 7792 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-11-09T17:40:22.397-05:00 ERROR 7792 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Error en servidor TCP al iniciar: java.net.BindException: Cannot assign requested address: bind
-
-java.net.BindException: Cannot assign requested address: bind
-	at java.base/sun.nio.ch.Net.bind0(Native Method) ~[na:na]
-	at java.base/sun.nio.ch.Net.bind(Net.java:565) ~[na:na]
-	at java.base/sun.nio.ch.Net.bind(Net.java:554) ~[na:na]
-	at java.base/sun.nio.ch.NioSocketImpl.bind(NioSocketImpl.java:636) ~[na:na]
-	at java.base/java.net.ServerSocket.bind(ServerSocket.java:391) ~[na:na]
-	at java.base/java.net.ServerSocket.bind(ServerSocket.java:342) ~[na:na]
-	at com.proyecto.demo.server.TcpServer.run(TcpServer.java:84) ~[classes/:na]
-	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
-
-2025-11-09T17:40:22.408-05:00  INFO 7792 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Shutting down TcpServer...
-2025-11-09T17:40:22.410-05:00  INFO 7792 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : TcpServer shutdown complete
-2025-11-09T17:40:22.530-05:00  INFO 7792 --- [servidor] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
-2025-11-09T17:40:22.994-05:00  WARN 7792 --- [servidor] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
-2025-11-09T17:40:22.998-05:00  INFO 7792 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2025-11-09T17:40:23.017-05:00  INFO 7792 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2025-11-09T17:40:23.042-05:00  INFO 7792 --- [servidor] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2025-11-09T17:40:23.083-05:00 ERROR 7792 --- [servidor] [main] o.s.boot.SpringApplication               : Application run failed
-
-org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
-	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:287) ~[spring-context-6.1.1.jar:6.1.1]
-	at org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.start(DefaultLifecycleProcessor.java:467) ~[spring-context-6.1.1.jar:6.1.1]
-	at java.base/java.lang.Iterable.forEach(Iterable.java:75) ~[na:na]
-	at org.springframework.context.support.DefaultLifecycleProcessor.startBeans(DefaultLifecycleProcessor.java:256) ~[spring-context-6.1.1.jar:6.1.1]
-	at org.springframework.context.support.DefaultLifecycleProcessor.onRefresh(DefaultLifecycleProcessor.java:201) ~[spring-context-6.1.1.jar:6.1.1]
-	at org.springframework.context.support.AbstractApplicationContext.finishRefresh(AbstractApplicationContext.java:965) ~[spring-context-6.1.1.jar:6.1.1]
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:619) ~[spring-context-6.1.1.jar:6.1.1]
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.2.0.jar:3.2.0]
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:753) ~[spring-boot-3.2.0.jar:3.2.0]
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:455) ~[spring-boot-3.2.0.jar:3.2.0]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:323) ~[spring-boot-3.2.0.jar:3.2.0]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1342) ~[spring-boot-3.2.0.jar:3.2.0]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1331) ~[spring-boot-3.2.0.jar:3.2.0]
-	at com.proyecto.demo.DemoApplication.main(DemoApplication.java:70) ~[classes/:na]
-Caused by: org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat server
-	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:229) ~[spring-boot-3.2.0.jar:3.2.0]
-	at org.springframework.boot.web.servlet.context.WebServerStartStopLifecycle.start(WebServerStartStopLifecycle.java:44) ~[spring-boot-3.2.0.jar:3.2.0]
-	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:284) ~[spring-context-6.1.1.jar:6.1.1]
-	... 13 common frames omitted
-Caused by: java.lang.IllegalArgumentException: standardService.connector.startFailed
-	at org.apache.catalina.core.StandardService.addConnector(StandardService.java:235) ~[tomcat-embed-core-10.1.16.jar:10.1.16]
-	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.addPreviouslyRemovedConnectors(TomcatWebServer.java:286) ~[spring-boot-3.2.0.jar:3.2.0]
-	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:214) ~[spring-boot-3.2.0.jar:3.2.0]
-	... 15 common frames omitted
-Caused by: org.apache.catalina.LifecycleException: Protocol handler start failed
-	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1046) ~[tomcat-embed-core-10.1.16.jar:10.1.16]
-	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171) ~[tomcat-embed-core-10.1.16.jar:10.1.16]
-	at org.apache.catalina.core.StandardService.addConnector(StandardService.java:232) ~[tomcat-embed-core-10.1.16.jar:10.1.16]
-	... 17 common frames omitted
-Caused by: java.net.BindException: Cannot assign requested address: bind
-	at java.base/sun.nio.ch.Net.bind0(Native Method) ~[na:na]
-	at java.base/sun.nio.ch.Net.bind(Net.java:565) ~[na:na]
-	at java.base/sun.nio.ch.ServerSocketChannelImpl.netBind(ServerSocketChannelImpl.java:344) ~[na:na]
-	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:301) ~[na:na]
-	at org.apache.tomcat.util.net.NioEndpoint.initServerSocket(NioEndpoint.java:247) ~[tomcat-embed-core-10.1.16.jar:10.1.16]
-	at org.apache.tomcat.util.net.NioEndpoint.bind(NioEndpoint.java:202) ~[tomcat-embed-core-10.1.16.jar:10.1.16]
-	at org.apache.tomcat.util.net.AbstractEndpoint.bindWithCleanup(AbstractEndpoint.java:1280) ~[tomcat-embed-core-10.1.16.jar:10.1.16]
-	at org.apache.tomcat.util.net.AbstractEndpoint.start(AbstractEndpoint.java:1366) ~[tomcat-embed-core-10.1.16.jar:10.1.16]
-	at org.apache.coyote.AbstractProtocol.start(AbstractProtocol.java:635) ~[tomcat-embed-core-10.1.16.jar:10.1.16]
-	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1043) ~[tomcat-embed-core-10.1.16.jar:10.1.16]
-	... 19 common frames omitted
-
-2025-11-09T17:40:37.441-05:00  INFO 2968 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 2968 (C:\Users\josem\Desktop\avanzadasDevelop\mensajeriaRedLocal\servidor\demo\target\classes started by josem in C:\Users\josem\Desktop\avanzadasDevelop\mensajeriaRedLocal)
-2025-11-09T17:40:37.443-05:00 DEBUG 2968 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
-2025-11-09T17:40:37.443-05:00  INFO 2968 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
-2025-11-09T17:40:39.325-05:00  INFO 2968 --- [servidor] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9010 (http)
-2025-11-09T17:40:39.343-05:00  INFO 2968 --- [servidor] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-11-09T17:40:39.345-05:00  INFO 2968 --- [servidor] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
-2025-11-09T17:40:39.428-05:00  INFO 2968 --- [servidor] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-11-09T17:40:39.428-05:00  INFO 2968 --- [servidor] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1894 ms
-2025-11-09T17:40:39.642-05:00  INFO 2968 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-11-09T17:40:40.149-05:00  INFO 2968 --- [servidor] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@d919544
-2025-11-09T17:40:40.153-05:00  INFO 2968 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-11-09T17:40:40.407-05:00 ERROR 2968 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Error en servidor TCP al iniciar: java.net.BindException: Cannot assign requested address: bind
-
-java.net.BindException: Cannot assign requested address: bind
-	at java.base/sun.nio.ch.Net.bind0(Native Method) ~[na:na]
-	at java.base/sun.nio.ch.Net.bind(Net.java:565) ~[na:na]
-	at java.base/sun.nio.ch.Net.bind(Net.java:554) ~[na:na]
-	at java.base/sun.nio.ch.NioSocketImpl.bind(NioSocketImpl.java:636) ~[na:na]
-	at java.base/java.net.ServerSocket.bind(ServerSocket.java:391) ~[na:na]
-	at java.base/java.net.ServerSocket.bind(ServerSocket.java:342) ~[na:na]
-	at com.proyecto.demo.server.TcpServer.run(TcpServer.java:84) ~[classes/:na]
-	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
-
-2025-11-09T17:40:40.416-05:00  INFO 2968 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Shutting down TcpServer...
-2025-11-09T17:40:40.416-05:00  INFO 2968 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : TcpServer shutdown complete
-2025-11-09T17:40:40.521-05:00  INFO 2968 --- [servidor] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
-2025-11-09T17:40:41.020-05:00  WARN 2968 --- [servidor] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
-2025-11-09T17:40:41.025-05:00  INFO 2968 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2025-11-09T17:40:41.048-05:00  INFO 2968 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2025-11-09T17:40:41.065-05:00  INFO 2968 --- [servidor] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2025-11-09T17:40:41.110-05:00 ERROR 2968 --- [servidor] [main] o.s.boot.SpringApplication               : Application run failed
-
-org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
-	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:287) ~[spring-context-6.1.1.jar:6.1.1]
-	at org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.start(DefaultLifecycleProcessor.java:467) ~[spring-context-6.1.1.jar:6.1.1]
-	at java.base/java.lang.Iterable.forEach(Iterable.java:75) ~[na:na]
-	at org.springframework.context.support.DefaultLifecycleProcessor.startBeans(DefaultLifecycleProcessor.java:256) ~[spring-context-6.1.1.jar:6.1.1]
-	at org.springframework.context.support.DefaultLifecycleProcessor.onRefresh(DefaultLifecycleProcessor.java:201) ~[spring-context-6.1.1.jar:6.1.1]
-	at org.springframework.context.support.AbstractApplicationContext.finishRefresh(AbstractApplicationContext.java:965) ~[spring-context-6.1.1.jar:6.1.1]
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:619) ~[spring-context-6.1.1.jar:6.1.1]
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.2.0.jar:3.2.0]
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:753) ~[spring-boot-3.2.0.jar:3.2.0]
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:455) ~[spring-boot-3.2.0.jar:3.2.0]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:323) ~[spring-boot-3.2.0.jar:3.2.0]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1342) ~[spring-boot-3.2.0.jar:3.2.0]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1331) ~[spring-boot-3.2.0.jar:3.2.0]
-	at com.proyecto.demo.DemoApplication.main(DemoApplication.java:70) ~[classes/:na]
-Caused by: org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat server
-	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:229) ~[spring-boot-3.2.0.jar:3.2.0]
-	at org.springframework.boot.web.servlet.context.WebServerStartStopLifecycle.start(WebServerStartStopLifecycle.java:44) ~[spring-boot-3.2.0.jar:3.2.0]
-	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:284) ~[spring-context-6.1.1.jar:6.1.1]
-	... 13 common frames omitted
-Caused by: java.lang.IllegalArgumentException: standardService.connector.startFailed
-	at org.apache.catalina.core.StandardService.addConnector(StandardService.java:235) ~[tomcat-embed-core-10.1.16.jar:10.1.16]
-	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.addPreviouslyRemovedConnectors(TomcatWebServer.java:286) ~[spring-boot-3.2.0.jar:3.2.0]
-	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:214) ~[spring-boot-3.2.0.jar:3.2.0]
-	... 15 common frames omitted
-Caused by: org.apache.catalina.LifecycleException: Protocol handler start failed
-	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1046) ~[tomcat-embed-core-10.1.16.jar:10.1.16]
-	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171) ~[tomcat-embed-core-10.1.16.jar:10.1.16]
-	at org.apache.catalina.core.StandardService.addConnector(StandardService.java:232) ~[tomcat-embed-core-10.1.16.jar:10.1.16]
-	... 17 common frames omitted
-Caused by: java.net.BindException: Cannot assign requested address: bind
-	at java.base/sun.nio.ch.Net.bind0(Native Method) ~[na:na]
-	at java.base/sun.nio.ch.Net.bind(Net.java:565) ~[na:na]
-	at java.base/sun.nio.ch.ServerSocketChannelImpl.netBind(ServerSocketChannelImpl.java:344) ~[na:na]
-	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:301) ~[na:na]
-	at org.apache.tomcat.util.net.NioEndpoint.initServerSocket(NioEndpoint.java:247) ~[tomcat-embed-core-10.1.16.jar:10.1.16]
-	at org.apache.tomcat.util.net.NioEndpoint.bind(NioEndpoint.java:202) ~[tomcat-embed-core-10.1.16.jar:10.1.16]
-	at org.apache.tomcat.util.net.AbstractEndpoint.bindWithCleanup(AbstractEndpoint.java:1280) ~[tomcat-embed-core-10.1.16.jar:10.1.16]
-	at org.apache.tomcat.util.net.AbstractEndpoint.start(AbstractEndpoint.java:1366) ~[tomcat-embed-core-10.1.16.jar:10.1.16]
-	at org.apache.coyote.AbstractProtocol.start(AbstractProtocol.java:635) ~[tomcat-embed-core-10.1.16.jar:10.1.16]
-	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1043) ~[tomcat-embed-core-10.1.16.jar:10.1.16]
-	... 19 common frames omitted
-
-2025-11-09T17:41:49.597-05:00  INFO 2020 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 2020 (C:\Users\josem\Desktop\avanzadasDevelop\mensajeriaRedLocal\servidor\demo\target\classes started by josem in C:\Users\josem\Desktop\avanzadasDevelop\mensajeriaRedLocal)
-2025-11-09T17:41:49.601-05:00 DEBUG 2020 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
-2025-11-09T17:41:49.601-05:00  INFO 2020 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
-2025-11-09T17:41:51.456-05:00  INFO 2020 --- [servidor] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9010 (http)
-2025-11-09T17:41:51.481-05:00  INFO 2020 --- [servidor] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-11-09T17:41:51.483-05:00  INFO 2020 --- [servidor] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
-2025-11-09T17:41:51.579-05:00  INFO 2020 --- [servidor] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-11-09T17:41:51.580-05:00  INFO 2020 --- [servidor] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1895 ms
-2025-11-09T17:41:51.911-05:00  INFO 2020 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-11-09T17:41:52.419-05:00  INFO 2020 --- [servidor] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6361b799
-2025-11-09T17:41:52.429-05:00  INFO 2020 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-11-09T17:41:52.576-05:00  INFO 2020 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 192.168.40.12:9001
-2025-11-09T17:41:52.710-05:00  INFO 2020 --- [servidor] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
-2025-11-09T17:41:53.229-05:00  INFO 2020 --- [servidor] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9010 (http) with context path ''
-2025-11-09T17:41:53.240-05:00  INFO 2020 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 4.332 seconds (process running for 4.72)
-2025-11-09T17:41:53.245-05:00  INFO 2020 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=192.168.40.12, port=9010
-2025-11-09T17:41:53.245-05:00  INFO 2020 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UI enabled property = true; intentando inicializar UI
-2025-11-09T17:41:53.250-05:00  INFO 2020 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : java.awt.headless=false | GraphicsEnvironment.isHeadless=false
-2025-11-09T17:41:53.338-05:00  INFO 2020 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
-2025-11-09T17:41:53.775-05:00  INFO 2020 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Panel iniciado
-2025-11-09T17:41:53.777-05:00  INFO 2020 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
-2025-11-09T17:41:53.781-05:00  INFO 2020 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (initialize)
-2025-11-09T17:41:53.784-05:00  INFO 2020 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UiServerWindow.initialize() invocado desde DemoApplication.run
-2025-11-09T17:41:53.784-05:00  INFO 2020 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
-2025-11-09T17:41:53.786-05:00  INFO 2020 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
-2025-11-09T17:41:53.846-05:00  INFO 2020 --- [servidor] [main] com.proyecto.demo.DemoApplication        : DB check OK - usuarios count = 6
-2025-11-09T17:41:53.847-05:00  INFO 2020 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : DB check OK - usuarios count = 6
-2025-11-09T17:42:19.302-05:00  INFO 2020 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Usuarios conectados: 
-2025-11-09T17:42:49.266-05:00  INFO 2020 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /192.168.40.12:50326
-2025-11-09T17:42:49.269-05:00  INFO 2020 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /192.168.40.12:50326
-2025-11-09T17:42:52.976-05:00  INFO 2020 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /192.168.40.12:50326
-2025-11-09T17:42:52.976-05:00  INFO 2020 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /192.168.40.12:50326
-2025-11-09T17:42:52.978-05:00  INFO 2020 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /192.168.40.12:50326
-2025-11-09T17:42:53.000-05:00  INFO 2020 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.12:50326 conectado y saludado.
-2025-11-09T17:42:53.000-05:00  INFO 2020 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN manuel|1234'
-2025-11-09T17:42:53.045-05:00  INFO 2020 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Login exitoso: usuario='manuel' desde /192.168.40.12:50326
-2025-11-09T17:42:53.045-05:00  INFO 2020 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : Login exitoso: manuel desde /192.168.40.12:50326
-2025-11-09T17:42:53.045-05:00  INFO 2020 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Usuario registrado para broadcast: manuel (total=1)
-2025-11-09T17:42:53.045-05:00  INFO 2020 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 1 clients: manuel
-2025-11-09T17:43:02.078-05:00  INFO 2020 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /192.168.40.12:50327
-2025-11-09T17:43:02.086-05:00  INFO 2020 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /192.168.40.12:50327
-2025-11-09T17:43:04.211-05:00  INFO 2020 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /192.168.40.12:50327
-2025-11-09T17:43:04.220-05:00  INFO 2020 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /192.168.40.12:50327
-2025-11-09T17:43:04.220-05:00  INFO 2020 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /192.168.40.12:50327
-2025-11-09T17:43:04.220-05:00  INFO 2020 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.12:50327 conectado y saludado.
-2025-11-09T17:43:04.225-05:00  INFO 2020 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN manuel2|1234'
-2025-11-09T17:43:04.233-05:00  INFO 2020 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Login exitoso: usuario='manuel2' desde /192.168.40.12:50327
-2025-11-09T17:43:04.235-05:00  INFO 2020 --- [servidor] [pool-2-thread-2] com.proyecto.demo.ui.UiServerWindow      : Login exitoso: manuel2 desde /192.168.40.12:50327
-2025-11-09T17:43:04.237-05:00  INFO 2020 --- [servidor] [pool-2-thread-2] c.proyecto.demo.server.ConnectedClients  : Usuario registrado para broadcast: manuel2 (total=2)
-2025-11-09T17:43:04.239-05:00  INFO 2020 --- [servidor] [pool-2-thread-2] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 2 clients: manuel,manuel2
-2025-11-09T17:43:20.129-05:00  INFO 2020 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleMessage correctamente. Raw='MSG manuel|hola desde manuel2 a manuel'
-2025-11-09T17:43:20.137-05:00  INFO 2020 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : [2025-11-09 17:43:20] Mensaje enviado por: manuel2 Para manuel Contenido: hola desde manuel2 a manuel
-2025-11-09T17:43:20.139-05:00  INFO 2020 --- [servidor] [pool-2-thread-2] com.proyecto.demo.ui.UiServerWindow      : [MSG] 2025-11-09 17:43:20 Mensaje enviado por: manuel2 Para manuel Contenido: hola desde manuel2 a manuel (desde /192.168.40.12:50327)
-2025-11-09T17:43:44.514-05:00  INFO 2020 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleMessage correctamente. Raw='MSG manuel2|hola desde manuel a manuel2'
-2025-11-09T17:43:44.515-05:00  INFO 2020 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : [2025-11-09 17:43:44] Mensaje enviado por: manuel Para manuel2 Contenido: hola desde manuel a manuel2
-2025-11-09T17:43:44.524-05:00  INFO 2020 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : [MSG] 2025-11-09 17:43:44 Mensaje enviado por: manuel Para manuel2 Contenido: hola desde manuel a manuel2 (desde /192.168.40.12:50326)
+2025-11-10T17:02:12.792-05:00  INFO 16272 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 16272 (C:\Users\josem\Desktop\avanzadasDevelop\mensajeriaRedLocal\servidor\demo\target\classes started by josem in C:\Users\josem\Desktop\avanzadasDevelop\mensajeriaRedLocal)
+2025-11-10T17:02:12.810-05:00 DEBUG 16272 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-11-10T17:02:12.819-05:00  INFO 16272 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-11-10T17:02:14.712-05:00  INFO 16272 --- [servidor] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9010 (http)
+2025-11-10T17:02:14.726-05:00  INFO 16272 --- [servidor] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-10T17:02:14.726-05:00  INFO 16272 --- [servidor] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
+2025-11-10T17:02:14.849-05:00  INFO 16272 --- [servidor] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-10T17:02:14.858-05:00  INFO 16272 --- [servidor] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1963 ms
+2025-11-10T17:02:15.012-05:00  INFO 16272 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-10T17:02:15.519-05:00  INFO 16272 --- [servidor] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@10b4e7f8
+2025-11-10T17:02:15.524-05:00  INFO 16272 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-10T17:02:15.621-05:00  INFO 16272 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 192.168.40.12:9001
+2025-11-10T17:02:15.718-05:00  INFO 16272 --- [servidor] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-11-10T17:02:16.190-05:00  INFO 16272 --- [servidor] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9010 (http) with context path ''
+2025-11-10T17:02:16.200-05:00  INFO 16272 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 4.029 seconds (process running for 4.427)
+2025-11-10T17:02:16.204-05:00  INFO 16272 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=192.168.40.12, port=9010
+2025-11-10T17:02:16.206-05:00  INFO 16272 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UI enabled property = true; intentando inicializar UI
+2025-11-10T17:02:16.219-05:00  INFO 16272 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : java.awt.headless=false | GraphicsEnvironment.isHeadless=false
+2025-11-10T17:02:16.336-05:00  INFO 16272 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
+2025-11-10T17:02:16.821-05:00  INFO 16272 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Panel iniciado
+2025-11-10T17:02:16.829-05:00  INFO 16272 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
+2025-11-10T17:02:16.831-05:00  INFO 16272 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (initialize)
+2025-11-10T17:02:16.837-05:00  INFO 16272 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UiServerWindow.initialize() invocado desde DemoApplication.run
+2025-11-10T17:02:16.845-05:00  INFO 16272 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
+2025-11-10T17:02:16.852-05:00  INFO 16272 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
+2025-11-10T17:02:16.892-05:00  INFO 16272 --- [servidor] [main] com.proyecto.demo.DemoApplication        : DB check OK - usuarios count = 6
+2025-11-10T17:02:16.892-05:00  INFO 16272 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : DB check OK - usuarios count = 6
+2025-11-10T17:04:21.956-05:00  INFO 16272 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Usuarios conectados: 
+2025-11-10T17:05:22.862-05:00  INFO 16272 --- [servidor] [http-nio-192.168.40.12-9010-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-10T17:05:22.864-05:00  INFO 16272 --- [servidor] [http-nio-192.168.40.12-9010-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-10T17:05:22.875-05:00  INFO 16272 --- [servidor] [http-nio-192.168.40.12-9010-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 7 ms
+2025-11-10T17:09:04.236-05:00  INFO 8248 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 8248 (C:\Users\josem\Desktop\avanzadasDevelop\mensajeriaRedLocal\servidor\demo\target\classes started by josem in C:\Users\josem\Desktop\avanzadasDevelop\mensajeriaRedLocal)
+2025-11-10T17:09:04.236-05:00 DEBUG 8248 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-11-10T17:09:04.236-05:00  INFO 8248 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-11-10T17:09:06.300-05:00  INFO 8248 --- [servidor] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9010 (http)
+2025-11-10T17:09:06.321-05:00  INFO 8248 --- [servidor] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-10T17:09:06.321-05:00  INFO 8248 --- [servidor] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
+2025-11-10T17:09:06.405-05:00  INFO 8248 --- [servidor] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-10T17:09:06.416-05:00  INFO 8248 --- [servidor] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2106 ms
+2025-11-10T17:09:06.603-05:00  INFO 8248 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-10T17:09:07.088-05:00  INFO 8248 --- [servidor] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@35b17c06
+2025-11-10T17:09:07.088-05:00  INFO 8248 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-10T17:09:07.209-05:00  INFO 8248 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 192.168.40.12:9001
+2025-11-10T17:09:07.313-05:00  INFO 8248 --- [servidor] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-11-10T17:09:07.753-05:00  INFO 8248 --- [servidor] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9010 (http) with context path ''
+2025-11-10T17:09:07.766-05:00  INFO 8248 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 4.232 seconds (process running for 4.651)
+2025-11-10T17:09:07.770-05:00  INFO 8248 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=192.168.40.12, port=9010
+2025-11-10T17:09:07.770-05:00  INFO 8248 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UI enabled property = true; intentando inicializar UI
+2025-11-10T17:09:07.789-05:00  INFO 8248 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : java.awt.headless=false | GraphicsEnvironment.isHeadless=false
+2025-11-10T17:09:07.851-05:00  INFO 8248 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
+2025-11-10T17:09:07.886-05:00  INFO 8248 --- [servidor] [http-nio-192.168.40.12-9010-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-10T17:09:07.889-05:00  INFO 8248 --- [servidor] [http-nio-192.168.40.12-9010-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-10T17:09:07.891-05:00  INFO 8248 --- [servidor] [http-nio-192.168.40.12-9010-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-11-10T17:09:08.195-05:00  INFO 8248 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Panel iniciado
+2025-11-10T17:09:08.195-05:00  INFO 8248 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
+2025-11-10T17:09:08.195-05:00  INFO 8248 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (initialize)
+2025-11-10T17:09:08.195-05:00  INFO 8248 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UiServerWindow.initialize() invocado desde DemoApplication.run
+2025-11-10T17:09:08.195-05:00  INFO 8248 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
+2025-11-10T17:09:08.195-05:00  INFO 8248 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
+2025-11-10T17:09:08.202-05:00  INFO 8248 --- [servidor] [main] com.proyecto.demo.DemoApplication        : DB check OK - usuarios count = 6
+2025-11-10T17:09:08.202-05:00  INFO 8248 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : DB check OK - usuarios count = 6
