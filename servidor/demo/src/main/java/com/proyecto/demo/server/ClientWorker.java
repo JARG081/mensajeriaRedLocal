@@ -40,6 +40,7 @@ public class ClientWorker implements Runnable {
     @Value("${app.upload.blockedExtensions:exe,dll,bat,sh,jar,msi,com,scr}")
     private String blockedExtensionsProp;
     private String authenticatedUser = null;
+    private String authenticatedUserIp = null;
     private final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     public ClientWorker(Socket socket, AuthService authService, JdbcTemplate jdbc, ConnectedClients connectedClients,
@@ -107,8 +108,8 @@ public class ClientWorker implements Runnable {
             try { socket.close(); } catch (IOException ignored) {}
             if (authenticatedUser != null) {
                 log.info("Usuario '{}' desconectado.", authenticatedUser);
-                // remove from registry and notify others
-                try { connectedClients.unregister(authenticatedUser); } catch (Exception ignored) {}
+                // remove from registry and notify others (use saved IP)
+                try { connectedClients.unregister(authenticatedUser, authenticatedUserIp); } catch (Exception ignored) {}
             } else {
                 log.info("Cliente {} desconectado sin autenticarse.", socket.getRemoteSocketAddress());
             }
@@ -525,13 +526,25 @@ public class ClientWorker implements Runnable {
         }
 
         boolean ok = authService.login(p[0], p[1]);
-
         if (ok) {
-            authenticatedUser = p[0];
-            log.info("Login exitoso: usuario='{}' desde {}", authenticatedUser, socket.getRemoteSocketAddress());
-            try { com.proyecto.demo.ui.UiServerWindow.publishMessageToUi("Login exitoso: " + authenticatedUser + " desde " + socket.getRemoteSocketAddress()); } catch (Exception ignored) {}
-            // register the authenticated user so we can broadcast connected users
-            try { connectedClients.register(authenticatedUser, out); } catch (Exception ignored) {}
+            String user = p[0];
+            String remoteIp = socket.getInetAddress() == null ? socket.getRemoteSocketAddress().toString() : socket.getInetAddress().getHostAddress();
+            log.info("Login exitoso (provisional): usuario='{}' desde {}", user, socket.getRemoteSocketAddress());
+            try { com.proyecto.demo.ui.UiServerWindow.publishMessageToUi("Login exitoso: " + user + " desde " + socket.getRemoteSocketAddress()); } catch (Exception ignored) {}
+            // attempt to register the authenticated user so we can broadcast connected users
+            try {
+                String regErr = connectedClients.register(user, out, remoteIp);
+                if (regErr != null) {
+                    log.warn("Registro rechazado para usuario '{}' desde {} motivo={}", user, remoteIp, regErr);
+                    out.write("ERROR " + regErr + "\n");
+                    out.flush();
+                    return;
+                }
+                authenticatedUser = user;
+                authenticatedUserIp = remoteIp;
+            } catch (Exception e) {
+                log.warn("Error registrando usuario en ConnectedClients: {}", e.getMessage());
+            }
             out.write("LOGGED\n");
         } else {
             log.warn("Login fallido: usuario='{}' desde {}", p[0], socket.getRemoteSocketAddress());

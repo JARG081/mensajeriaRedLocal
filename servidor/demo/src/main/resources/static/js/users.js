@@ -11,6 +11,18 @@ async function loadUsers(){
       const tdUser = document.createElement('td'); tdUser.textContent = u.username; tr.appendChild(tdUser);
       const tdState = document.createElement('td'); tdState.textContent = u.connected ? 'Conectado' : 'Desconectado';
       tdState.className = u.connected ? 'connected' : 'disconnected'; tr.appendChild(tdState);
+      // sessions column
+      const tdSess = document.createElement('td');
+      if (u.sessions && u.sessions.length) {
+        const ul = document.createElement('ul');
+        for (const ip of u.sessions) {
+          const li = document.createElement('li'); li.textContent = ip; ul.appendChild(li);
+        }
+        tdSess.appendChild(ul);
+      } else {
+        tdSess.textContent = '-'; tdSess.className = 'disconnected';
+      }
+      tr.appendChild(tdSess);
       tbody.appendChild(tr);
     }
     document.getElementById('status').textContent = 'Cargado ' + arr.length + ' usuarios.';

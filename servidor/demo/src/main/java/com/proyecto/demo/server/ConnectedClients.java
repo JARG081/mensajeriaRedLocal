@@ -23,7 +23,12 @@ public class ConnectedClients {
     // Instancia estática para acceso desde código UI que no está en el contexto de Spring
     private static ConnectedClients instance;
 
-    private final ConcurrentHashMap<String, BufferedWriter> clients = new ConcurrentHashMap<>();
+    // Map: username -> (ip -> BufferedWriter)
+    private final ConcurrentHashMap<String, ConcurrentHashMap<String, BufferedWriter>> clients = new ConcurrentHashMap<>();
+
+    // max distinct IP connections per username
+    @org.springframework.beans.factory.annotation.Value("${app.user.maxConnections:3}")
+    private int maxConnectionsPerUser = 3;
 
     @PostConstruct
     public void init() {
@@ -37,17 +42,47 @@ public class ConnectedClients {
         return instance;
     }
 
-    public void register(String user, BufferedWriter out) {
-        if (user == null || out == null) return;
-        clients.put(user, out);
-        log.info("Usuario registrado para broadcast: {} (total={})", user, clients.size());
+    /**
+     * Register a connection for a username coming from a specific IP.
+     * Returns true if registration accepted; false if rejected (same IP already connected or limit exceeded).
+     */
+    /**
+     * Register a connection for a username coming from a specific IP.
+     * Returns null if accepted; otherwise returns an error code string describing the rejection.
+     */
+    public String register(String user, BufferedWriter out, String ip) {
+        if (user == null || out == null || ip == null) return "invalid_params";
+        clients.putIfAbsent(user, new ConcurrentHashMap<>());
+        var map = clients.get(user);
+        // same IP already connected => reject
+        if (map.containsKey(ip)) {
+            log.info("Rechazando registro para usuario '{}' desde la misma IP {} (ya conectado)", user, ip);
+            return "ya_conectado_misma_ip";
+        }
+        // enforce max distinct IPs per user
+        if (map.size() >= maxConnectionsPerUser) {
+            log.info("Rechazando registro para usuario '{}' desde {} (limite {} conexiones)", user, ip, maxConnectionsPerUser);
+            return "limite_conexiones";
+        }
+        map.put(ip, out);
+        log.info("Usuario registrado para broadcast: {} (user-conns={})", user, map.size());
         broadcastUserList();
+        return null;
     }
 
-    public void unregister(String user) {
-        if (user == null) return;
-        clients.remove(user);
-        log.info("Usuario removido del registro: {} (total={})", user, clients.size());
+    /**
+     * Unregister the connection for a username coming from a specific IP.
+     */
+    public void unregister(String user, String ip) {
+        if (user == null || ip == null) return;
+        var map = clients.get(user);
+        if (map == null) return;
+        var removed = map.remove(ip);
+        try { if (removed != null) removed.close(); } catch (Exception ignored) {}
+        if (map.isEmpty()) {
+            clients.remove(user);
+        }
+        log.info("Usuario {} desconectado desde {} (user-conns={})", user, ip, map == null ? 0 : map.size());
         broadcastUserList();
     }
 
@@ -59,17 +94,22 @@ public class ConnectedClients {
             log.info("Broadcasting USERS list to {} clients: {}", clients.size(), csv);
 
             // iterate over a snapshot of entries to avoid concurrent modification issues
-            for (var entry : new ArrayList<>(clients.entrySet())) {
-                String u = entry.getKey();
-                BufferedWriter w = entry.getValue();
-                try {
-                    w.write(line);
-                    w.flush();
-                } catch (IOException ioe) {
-                    log.warn("Failed to send USERS to {}: {}. Removing.", u, ioe.getMessage());
-                    try { w.close(); } catch (Exception ignored) {}
-                    clients.remove(u);
+            // iterate over all writers for all users
+            for (var userEntry : new ArrayList<>(clients.entrySet())) {
+                String u = userEntry.getKey();
+                var ipMap = userEntry.getValue();
+                for (var e2 : new ArrayList<>(ipMap.entrySet())) {
+                    BufferedWriter w = e2.getValue();
+                    try {
+                        w.write(line);
+                        w.flush();
+                    } catch (IOException ioe) {
+                        log.warn("Failed to send USERS to {}@{}: {}. Removing.", u, e2.getKey(), ioe.getMessage());
+                        try { w.close(); } catch (Exception ignored) {}
+                        ipMap.remove(e2.getKey());
+                    }
                 }
+                if (ipMap.isEmpty()) clients.remove(u);
             }
         } catch (Exception e) {
             log.error("Error broadcasting user list: {}", e.toString(), e);
@@ -78,46 +118,61 @@ public class ConnectedClients {
 
     public boolean sendTo(String user, String line) {
         if (user == null || line == null) return false;
-        BufferedWriter w = clients.get(user);
-        if (w == null) return false;
-        try {
-            w.write(line);
-            w.flush();
-            return true;
-        } catch (IOException e) {
-            log.warn("Failed to send message to {}: {}. Removing.", user, e.getMessage());
-            try { w.close(); } catch (Exception ignored) {}
-            clients.remove(user);
-            return false;
-        }
+            if (user == null || line == null) return false;
+            var map = clients.get(user);
+            if (map == null || map.isEmpty()) return false;
+            boolean atLeastOne = false;
+            for (var entry : new ArrayList<>(map.entrySet())) {
+                try {
+                    entry.getValue().write(line);
+                    entry.getValue().flush();
+                    atLeastOne = true;
+                } catch (IOException e) {
+                    log.warn("Failed to send message to {}@{}: {}. Removing.", user, entry.getKey(), e.getMessage());
+                    try { entry.getValue().close(); } catch (Exception ignored) {}
+                    map.remove(entry.getKey());
+                }
+            }
+            if (map.isEmpty()) clients.remove(user);
+            return atLeastOne;
     }
 
     public void broadcastMessage(String sender, String text) {
         String payload = "MSGFROM " + sender + "|" + (text == null ? "" : text) + "\n";
-        for (var entry : new ArrayList<>(clients.entrySet())) {
-            try {
-                entry.getValue().write(payload);
-                entry.getValue().flush();
-            } catch (IOException ioe) {
-                log.warn("Failed to broadcast MSG to {}: {}. Removing.", entry.getKey(), ioe.getMessage());
-                try { entry.getValue().close(); } catch (Exception ignored) {}
-                clients.remove(entry.getKey());
+        for (var userEntry : new ArrayList<>(clients.entrySet())) {
+            String u = userEntry.getKey();
+            var ipMap = userEntry.getValue();
+            for (var e2 : new ArrayList<>(ipMap.entrySet())) {
+                try {
+                    e2.getValue().write(payload);
+                    e2.getValue().flush();
+                } catch (IOException ioe) {
+                    log.warn("Failed to broadcast MSG to {}@{}: {}. Removing.", u, e2.getKey(), ioe.getMessage());
+                    try { e2.getValue().close(); } catch (Exception ignored) {}
+                    ipMap.remove(e2.getKey());
+                }
             }
+            if (ipMap.isEmpty()) clients.remove(u);
         }
     }
 
     public void broadcastRaw(String line) {
         if (line == null) return;
         String payload = line.endsWith("\n") ? line : line + "\n";
-        for (var entry : new ArrayList<>(clients.entrySet())) {
-            try {
-                entry.getValue().write(payload);
-                entry.getValue().flush();
-            } catch (IOException ioe) {
-                log.warn("Failed to broadcast raw to {}: {}. Removing.", entry.getKey(), ioe.getMessage());
-                try { entry.getValue().close(); } catch (Exception ignored) {}
-                clients.remove(entry.getKey());
+        for (var userEntry : new ArrayList<>(clients.entrySet())) {
+            String u = userEntry.getKey();
+            var ipMap = userEntry.getValue();
+            for (var e2 : new ArrayList<>(ipMap.entrySet())) {
+                try {
+                    e2.getValue().write(payload);
+                    e2.getValue().flush();
+                } catch (IOException ioe) {
+                    log.warn("Failed to broadcast raw to {}@{}: {}. Removing.", u, e2.getKey(), ioe.getMessage());
+                    try { e2.getValue().close(); } catch (Exception ignored) {}
+                    ipMap.remove(e2.getKey());
+                }
             }
+            if (ipMap.isEmpty()) clients.remove(u);
         }
     }
 
@@ -126,5 +181,16 @@ public class ConnectedClients {
      */
     public List<String> getConnectedUsers() {
         return new ArrayList<>(clients.keySet());
+    }
+
+    /**
+     * Return a map username -> list of active IPs for that user.
+     */
+    public java.util.Map<String, java.util.List<String>> getUserSessions() {
+        var out = new java.util.HashMap<String, java.util.List<String>>();
+        for (var e : clients.entrySet()) {
+            out.put(e.getKey(), new java.util.ArrayList<>(e.getValue().keySet()));
+        }
+        return out;
     }
 }
