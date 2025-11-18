@@ -293,7 +293,8 @@ public class ChatPanel {
                     messageService.sendMessage(targetUser, msg);
                     // add to local conversation history so it persists when switching
                     String dest = targetUser == null ? "ALL" : targetUser;
-                    String stamped = "[" + new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date()) + "] Yo -> " + dest + ": " + msg;
+                    String sender = clientState == null ? "Yo" : clientState.getCurrentUser();
+                    String stamped = "[" + new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date()) + "] " + sender + ": " + msg;
                     conversations.computeIfAbsent(dest, k -> new java.util.ArrayList<>()).add(stamped);
                     if ( (dest.equals("ALL") && targetUser==null) || dest.equals(targetUser) ) {
                         SwingUtilities.invokeLater(() -> appendLineToChat(stamped));

@@ -9,6 +9,7 @@ public class MessageRecord {
     private String tipoMensaje; // 'TEXTO'|'ARCHIVO'
     private String contenido;
     private Long archivoId;
+    private String sesionId;
     private LocalDateTime creadoEn;
 
     public MessageRecord() {}
@@ -30,6 +31,9 @@ public class MessageRecord {
 
     public Long getArchivoId() { return archivoId; }
     public void setArchivoId(Long archivoId) { this.archivoId = archivoId; }
+
+    public String getSesionId() { return sesionId; }
+    public void setSesionId(String sesionId) { this.sesionId = sesionId; }
 
     public LocalDateTime getCreadoEn() { return creadoEn; }
     public void setCreadoEn(LocalDateTime creadoEn) { this.creadoEn = creadoEn; }

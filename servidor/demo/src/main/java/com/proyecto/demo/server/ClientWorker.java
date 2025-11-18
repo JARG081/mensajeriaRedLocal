@@ -19,6 +19,8 @@ import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.Instant;
+import java.sql.Timestamp;
 
 @Component
 @Scope("prototype")  // Cada conexión de cliente necesita su propia instancia
@@ -33,6 +35,7 @@ public class ClientWorker implements Runnable {
     private final MessageDao messageDao;
     private final ArchivoDao archivoDao;
     private final UserDao userDao;
+    private final com.proyecto.demo.dao.JdbcSesionDao sesionDao;
     // configurable limits (injected from application.properties)
     @Value("${app.upload.maxSizeMb:200}")
     private long maxSizeMb;
@@ -42,9 +45,10 @@ public class ClientWorker implements Runnable {
     private String authenticatedUser = null;
     private String authenticatedUserIp = null;
     private final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    private String sessionId = null;
 
     public ClientWorker(Socket socket, AuthService authService, JdbcTemplate jdbc, ConnectedClients connectedClients,
-                        MessageDao messageDao, ArchivoDao archivoDao, UserDao userDao) {
+                        MessageDao messageDao, ArchivoDao archivoDao, UserDao userDao, com.proyecto.demo.dao.JdbcSesionDao sesionDao) {
         this.socket = socket;
         this.authService = authService;
         this.jdbc = jdbc;
@@ -52,6 +56,7 @@ public class ClientWorker implements Runnable {
         this.messageDao = messageDao;
         this.archivoDao = archivoDao;
         this.userDao = userDao;
+        this.sesionDao = sesionDao;
     }
 
     @Override
@@ -110,6 +115,12 @@ public class ClientWorker implements Runnable {
                 log.info("Usuario '{}' desconectado.", authenticatedUser);
                 // remove from registry and notify others (use saved IP)
                 try { connectedClients.unregister(authenticatedUser, authenticatedUserIp); } catch (Exception ignored) {}
+                // close DB session if present
+                try {
+                    if (sessionId != null) {
+                        sesionDao.closeSession(sessionId, Timestamp.from(Instant.now()), "CERRADA");
+                    }
+                } catch (Exception ignored) {}
             } else {
                 log.info("Cliente {} desconectado sin autenticarse.", socket.getRemoteSocketAddress());
             }
@@ -232,6 +243,8 @@ public class ClientWorker implements Runnable {
                                 mr.setTipoMensaje("ARCHIVO");
                                 mr.setContenido(filename);
                                 mr.setArchivoId(archivoId);
+                                mr.setSesionId(sessionId);
+                                log.debug("Persistiendo mensaje archivo: emisorId={} receptorId={} archivoId={} sesionId={}", senderId, recipOpt.get().getId(), archivoId, sessionId);
                                 messageDao.insertMessage(mr);
                             }
                         }
@@ -244,12 +257,14 @@ public class ClientWorker implements Runnable {
                             mr.setTipoMensaje("ARCHIVO");
                             mr.setContenido(filename);
                             mr.setArchivoId(archivoId);
+                            mr.setSesionId(sessionId);
+                            log.debug("Persistiendo mensaje archivo: emisorId={} receptorId={} archivoId={} sesionId={}", senderId, recipOpt.get().getId(), archivoId, sessionId);
                             messageDao.insertMessage(mr);
                         }
                     }
                 }
             } catch (Exception e) {
-                log.warn("No se pudo persistir archivo/mensaje en BD: {}", e.getMessage());
+                log.error("No se pudo persistir archivo/mensaje en BD", e);
             }
         } catch (Exception e) {
             log.error("Error guardando archivo: {}", e.toString(), e);
@@ -429,6 +444,7 @@ public class ClientWorker implements Runnable {
                                 mr.setTipoMensaje("ARCHIVO");
                                 mr.setContenido(filename);
                                 mr.setArchivoId(archivoId);
+                                log.debug("Persistiendo mensaje archivo (DATA): emisorId={} receptorId={} archivoId={}", senderId, recipOpt.get().getId(), archivoId);
                                 messageDao.insertMessage(mr);
                             }
                         }
@@ -441,12 +457,13 @@ public class ClientWorker implements Runnable {
                             mr.setTipoMensaje("ARCHIVO");
                             mr.setContenido(filename);
                             mr.setArchivoId(archivoId);
+                            log.debug("Persistiendo mensaje archivo (DATA): emisorId={} receptorId={} archivoId={}", senderId, recipOpt.get().getId(), archivoId);
                             messageDao.insertMessage(mr);
                         }
                     }
                 }
             } catch (Exception e) {
-                log.warn("No se pudo persistir archivo/mensaje en BD: {}", e.getMessage());
+                log.error("No se pudo persistir archivo/mensaje en BD", e);
             }
         } catch (Exception e) {
             log.error("Error guardando archivo DATA: {}", e.toString(), e);
@@ -542,6 +559,18 @@ public class ClientWorker implements Runnable {
                 }
                 authenticatedUser = user;
                 authenticatedUserIp = remoteIp;
+                // create a DB session row and store sessionId
+                try {
+                    var uOpt = userDao.findByUsername(authenticatedUser);
+                    if (uOpt.isPresent()) {
+                        Long uid = uOpt.get().getId();
+                        // token is optional for TCP sessions; leave null for now
+                        sessionId = sesionDao.createSession(uid, authenticatedUserIp, null);
+                        log.info("Sesion creada para usuario {} id={}", authenticatedUser, sessionId);
+                    }
+                } catch (Exception e) {
+                    log.warn("No se pudo crear sesion en BD: {}", e.getMessage());
+                }
             } catch (Exception e) {
                 log.warn("Error registrando usuario en ConnectedClients: {}", e.getMessage());
             }
@@ -611,6 +640,8 @@ public class ClientWorker implements Runnable {
                             mr.setTipoMensaje("TEXTO");
                             mr.setContenido(messageText);
                             mr.setArchivoId(null);
+                            mr.setSesionId(sessionId);
+                            log.debug("Persistiendo mensaje: emisorId={} receptorId={} sesionId={} contenido='{}'", senderId, recipOpt.get().getId(), sessionId, messageText);
                             messageDao.insertMessage(mr);
                         }
                     }
@@ -623,6 +654,8 @@ public class ClientWorker implements Runnable {
                         mr.setTipoMensaje("TEXTO");
                         mr.setContenido(messageText);
                         mr.setArchivoId(null);
+                        mr.setSesionId(sessionId);
+                        log.debug("Persistiendo mensaje: emisorId={} receptorId={} sesionId={} contenido='{}'", senderId, recipOpt.get().getId(), sessionId, messageText);
                         messageDao.insertMessage(mr);
                     }
                 }
@@ -630,7 +663,7 @@ public class ClientWorker implements Runnable {
                 log.warn("No se encontró usuario emisor en BD para persistencia: {}", authenticatedUser);
             }
         } catch (Exception e) {
-            log.warn("Error guardando mensaje en BD: {}", e.getMessage());
+            log.error("Error guardando mensaje en BD", e);
         }
 
         out.write("SENT\n");

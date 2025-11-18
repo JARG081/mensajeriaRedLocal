@@ -35,6 +35,7 @@ public class TcpServer implements Runnable {
     private final com.proyecto.demo.dao.MessageDao messageDao;
     private final com.proyecto.demo.dao.ArchivoDao archivoDao;
     private final com.proyecto.demo.auth.UserDao userDao;
+    private final com.proyecto.demo.dao.JdbcSesionDao sesionDao;
     private final ExecutorService executorService;
     private final ApplicationContext applicationContext;
     private final ConnectedClients connectedClients;
@@ -47,6 +48,7 @@ public class TcpServer implements Runnable {
                      com.proyecto.demo.dao.MessageDao messageDao,
                      com.proyecto.demo.dao.ArchivoDao archivoDao,
                      com.proyecto.demo.auth.UserDao userDao,
+                     com.proyecto.demo.dao.JdbcSesionDao sesionDao,
                      ExecutorService executorService,
                      ApplicationContext applicationContext,
                      ConnectedClients connectedClients) {
@@ -55,6 +57,7 @@ public class TcpServer implements Runnable {
         this.messageDao = messageDao;
         this.archivoDao = archivoDao;
         this.userDao = userDao;
+        this.sesionDao = sesionDao;
         this.executorService = executorService;
         this.applicationContext = applicationContext;
         this.connectedClients = connectedClients;
@@ -105,7 +108,7 @@ public class TcpServer implements Runnable {
 
                     log.info("Conexión aprobada desde {}", socket.getRemoteSocketAddress());
                     // Crear ClientWorker usando ApplicationContext para obtener un bean prototype
-                    ClientWorker worker = applicationContext.getBean(ClientWorker.class, socket, authService, jdbcTemplate, connectedClients, messageDao, archivoDao, userDao);
+                    ClientWorker worker = applicationContext.getBean(ClientWorker.class, socket, authService, jdbcTemplate, connectedClients, messageDao, archivoDao, userDao, sesionDao);
                     executorService.submit(worker);
                 } catch (IOException e) {
                     if (!running) break; // shutdown in progres
