@@ -14,6 +14,11 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.http.MediaType;
+import java.nio.charset.StandardCharsets;
+import java.io.InputStream;
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/api")
@@ -28,6 +33,21 @@ public class ApiUsuarioController {
     public ApiUsuarioController(JdbcTemplate jdbc) {
         this.jdbc = jdbc;
         this.rest = new RestTemplate();
+    }
+
+    @GetMapping(value = "/response", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> obtenerResponseFixture() {
+        try {
+            ClassPathResource r = new ClassPathResource("response.json");
+            if (!r.exists()) return ResponseEntity.notFound().build();
+            try (InputStream is = r.getInputStream()) {
+                byte[] data = is.readAllBytes();
+                String s = new String(data, StandardCharsets.UTF_8);
+                return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(s);
+            }
+        } catch (IOException e) {
+            return ResponseEntity.status(500).body("{\"error\":\"no se pudo leer fixture\"}");
+        }
     }
 
     @GetMapping("/usuarios/{id}")

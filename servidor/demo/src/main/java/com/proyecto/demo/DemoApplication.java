@@ -33,7 +33,14 @@ public class DemoApplication implements CommandLineRunner {
 		try {
 			java.nio.file.Path root = locateProjectRoot();
 			if (root != null) {
-				String logAbs = root.resolve("servidor.log").toAbsolutePath().toString();
+				// Force logs to a single file under <repo>/servidor/server_logs.txt
+				java.nio.file.Path logsDir = root.resolve("servidor");
+				try {
+					if (!java.nio.file.Files.exists(logsDir)) java.nio.file.Files.createDirectories(logsDir);
+				} catch (Exception ex) {
+					System.err.println("No se pudo crear carpeta de logs: " + ex.toString());
+				}
+				String logAbs = logsDir.resolve("server_logs.txt").toAbsolutePath().toString();
 				// Set system properties so Spring will pick them up as overrides
 				System.setProperty("logging.file.name", logAbs);
 				System.out.println("Configuración absoluta aplicada: log=" + logAbs);
@@ -45,23 +52,19 @@ public class DemoApplication implements CommandLineRunner {
 			if (is != null) {
 				var p = new java.util.Properties();
 				p.load(is);
-				String clear = p.getProperty("app.log.clearOnStartup", "false");
-				if ("true".equalsIgnoreCase(clear)) {
-					String logFile = System.getProperty("logging.file.name", p.getProperty("logging.file.name", "servidor.log"));
-					try {
-						java.io.File f = new java.io.File(logFile);
-						// Create if not exists
-						if (!f.exists()) {
-							if (f.getParentFile() != null) f.getParentFile().mkdirs();
-							f.createNewFile();
-						}
-						try (java.io.RandomAccessFile raf = new java.io.RandomAccessFile(f, "rw")) {
-							raf.setLength(0);
-						}
-						System.out.println("Log truncado en el arranque: " + f.getAbsolutePath());
-					} catch (Exception ex) {
-						System.err.println("No se pudo truncar el log al inicio: " + ex.toString());
+				// Ensure the log file exists but do NOT truncate or delete existing content
+				String logFile = System.getProperty("logging.file.name", p.getProperty("logging.file.name", "servidor.log"));
+				try {
+					java.io.File f = new java.io.File(logFile);
+					if (!f.exists()) {
+						if (f.getParentFile() != null) f.getParentFile().mkdirs();
+						f.createNewFile();
+						System.out.println("Log file creado en el arranque: " + f.getAbsolutePath());
+					} else {
+						System.out.println("Log file existente detectado: " + f.getAbsolutePath());
 					}
+				} catch (Exception ex) {
+					System.err.println("No se pudo asegurar existencia del archivo de log al inicio: " + ex.toString());
 				}
 			}
 		} catch (Exception ignored) {}

@@ -1,0 +1,29 @@
+2025-11-20T19:58:30.167-05:00  INFO 20516 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 20516 (C:\Users\josem\Desktop\avanzadasDevelop\mensajeriaRedLocal\servidor\demo\target\classes started by josem in C:\Users\josem\Desktop\avanzadasDevelop\mensajeriaRedLocal)
+2025-11-20T19:58:30.167-05:00 DEBUG 20516 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-11-20T19:58:30.167-05:00  INFO 20516 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-11-20T19:58:31.857-05:00  INFO 20516 --- [servidor] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9010 (http)
+2025-11-20T19:58:31.877-05:00  INFO 20516 --- [servidor] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-20T19:58:31.878-05:00  INFO 20516 --- [servidor] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
+2025-11-20T19:58:31.946-05:00  INFO 20516 --- [servidor] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-20T19:58:31.947-05:00  INFO 20516 --- [servidor] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1687 ms
+2025-11-20T19:58:32.090-05:00  INFO 20516 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-20T19:58:32.514-05:00  INFO 20516 --- [servidor] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@ebda593
+2025-11-20T19:58:32.514-05:00  INFO 20516 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-20T19:58:32.640-05:00 DEBUG 20516 --- [servidor] [main] com.proyecto.demo.dao.JdbcMessageDao     : No se pudo ejecutar ALTER TABLE para agregar 'sesion_id' (posiblemente versión antigua de MySQL). Continuando: StatementCallback; bad SQL grammar [ALTER TABLE mensajes ADD COLUMN IF NOT EXISTS sesion_id CHAR(36) NULL]
+2025-11-20T19:58:32.730-05:00  INFO 20516 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 192.168.40.12:9001
+2025-11-20T19:58:32.824-05:00  INFO 20516 --- [servidor] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-11-20T19:58:33.178-05:00  INFO 20516 --- [servidor] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9010 (http) with context path ''
+2025-11-20T19:58:33.194-05:00  INFO 20516 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 3.704 seconds (process running for 4.117)
+2025-11-20T19:58:33.202-05:00  INFO 20516 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=192.168.40.12, port=9010
+2025-11-20T19:58:33.203-05:00  INFO 20516 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UI enabled property = true; intentando inicializar UI
+2025-11-20T19:58:33.216-05:00  INFO 20516 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : java.awt.headless=false | GraphicsEnvironment.isHeadless=false
+2025-11-20T19:58:33.260-05:00  INFO 20516 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
+2025-11-20T19:58:33.514-05:00  INFO 20516 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Panel iniciado
+2025-11-20T19:58:33.515-05:00  INFO 20516 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
+2025-11-20T19:58:33.516-05:00  INFO 20516 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (initialize)
+2025-11-20T19:58:33.516-05:00  INFO 20516 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UiServerWindow.initialize() invocado desde DemoApplication.run
+2025-11-20T19:58:33.517-05:00  INFO 20516 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
+2025-11-20T19:58:33.518-05:00  INFO 20516 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
+2025-11-20T19:58:33.529-05:00  INFO 20516 --- [servidor] [main] com.proyecto.demo.DemoApplication        : DB check OK - usuarios count = 2
+2025-11-20T19:58:33.530-05:00  INFO 20516 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : DB check OK - usuarios count = 2
+2025-11-20T19:58:33.534-05:00  INFO 20516 --- [servidor] [main] com.proyecto.demo.web.LogStartup         : LogStartup initialized. includePast=true, startPosition=0, path=C:\Users\josem\Desktop\avanzadasDevelop\mensajeriaRedLocal\servidor\demo\servidor\server_logs.txt
