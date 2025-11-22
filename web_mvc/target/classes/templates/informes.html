@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Informes</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.2.3/css/bootstrap.min.css" />
+</head>
+<body>
+<div class="container mt-4">
+    <h2>Informes</h2>
+    <h4>Archivos enviados (por tamaño)</h4>
+    <h4>Usuario con más mensajes enviados</h4>
+    <div th:if="${topUser} != null">
+        <p> <strong th:text="${topUser.nombre}"></strong> - <span th:text="${topUser.cantidad}"></span> mensajes</p>
+    </div>
+    <div th:if="${topUser} == null">
+        <p>No hay datos</p>
+    </div>
+    <table class="table table-sm table-striped">
+        <thead><tr><th>ID</th><th>Nombre</th><th>Tamaño</th><th>Propietario</th><th>Acciones</th></tr></thead>
+        <tbody>
+        <tr th:each="a : ${archivos}">
+            <td th:text="${a.id}"></td>
+            <td th:text="${a.nombre}"></td>
+            <td th:text="${a.tamano}"></td>
+            <td th:text="${a.propietarioId}"></td>
+            <td><a th:href="@{/web/archivos/{id}/download(id=${a.id})}" class="btn btn-sm btn-outline-primary">Descargar</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="/webjars/bootstrap/5.2.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

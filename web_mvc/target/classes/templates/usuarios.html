@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de Usuarios</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.2.3/css/bootstrap.min.css" />
+</head>
+<body>
+<div class="container mt-4">
+    <h1>Usuarios registrados</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="u : ${usuarios}">
+            <td th:text="${u.id}"></td>
+            <td th:text="${u.nombre}"></td>
+            <td th:text="${u.enviados}"></td>
+            <td>
+                <a th:href="@{/web/usuarios/{id}/mensajes(id=${u.id})}" class="btn btn-sm btn-primary">Ver mensajes</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="/webjars/bootstrap/5.2.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

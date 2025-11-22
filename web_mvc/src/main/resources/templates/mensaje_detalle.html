@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle Mensaje</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.2.3/css/bootstrap.min.css" />
+</head>
+<body>
+<div class="container mt-4">
+    <h2>Mensaje [[${mensaje.id}]]</h2>
+    <dl class="row">
+        <dt class="col-sm-3">Emisor</dt><dd class="col-sm-9" th:text="${mensaje.emisorId}"></dd>
+        <dt class="col-sm-3">Receptor</dt><dd class="col-sm-9" th:text="${mensaje.receptorId}"></dd>
+        <dt class="col-sm-3">Tipo</dt><dd class="col-sm-9" th:text="${mensaje.tipoMensaje}"></dd>
+        <dt class="col-sm-3">Contenido</dt><dd class="col-sm-9" th:text="${mensaje.contenido}"></dd>
+        <dt class="col-sm-3">Archivo</dt><dd class="col-sm-9">
+            <span th:if="${mensaje.archivoId} != null">
+                <a th:href="@{/web/archivos/{id}/download(id=${mensaje.archivoId})}" class="btn btn-sm btn-outline-primary">Descargar</a>
+            </span>
+            <span th:if="${mensaje.archivoId} == null">(sin archivo)</span>
+        </dd>
+    </dl>
+</div>
+<script src="/webjars/bootstrap/5.2.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

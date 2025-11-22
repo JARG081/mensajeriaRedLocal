@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Usuarios Desconectados</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.2.3/css/bootstrap.min.css" />
+</head>
+<body>
+<div class="container mt-4">
+    <h2>Usuarios desconectados</h2>
+    <table class="table table-sm table-striped">
+        <thead><tr><th>Sesion ID</th><th>Usuario ID</th><th>IP</th><th>Hora conexion</th><th>Hora desconexion</th></tr></thead>
+        <tbody>
+        <tr th:each="s : ${sesiones}">
+            <td th:text="${s.id}"></td>
+            <td th:text="${s.usuario_id}"></td>
+            <td th:text="${s.ip}"></td>
+            <td th:text="${s.fecha_inicio}"></td>
+            <td th:text="${s.fecha_fin}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="/webjars/bootstrap/5.2.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

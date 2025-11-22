@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mensajes</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.2.3/css/bootstrap.min.css" />
+</head>
+<body>
+<div class="container mt-4">
+    <h2>Mensajes (usuario [[${usuarioId}]]) - tipo: [[${tipo}]]</h2>
+    <table class="table table-sm table-striped">
+        <thead>
+        <tr><th>ID</th><th>Emisor</th><th>Receptor</th><th>Tipo</th><th>Contenido</th><th>Fecha</th><th>Acciones</th></tr>
+        </thead>
+        <tbody>
+        <tr th:each="m : ${mensajes}">
+            <td th:text="${m.id}"></td>
+            <td th:text="${m.emisorId}"></td>
+            <td th:text="${m.receptorId}"></td>
+            <td th:text="${m.tipoMensaje}"></td>
+            <td th:text="${m.contenido}"></td>
+            <td th:text="${m.creadoEn}"></td>
+            <td><a th:href="@{/web/mensajes/{id}(id=${m.id})}" class="btn btn-sm btn-info">Ver</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="/webjars/bootstrap/5.2.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
