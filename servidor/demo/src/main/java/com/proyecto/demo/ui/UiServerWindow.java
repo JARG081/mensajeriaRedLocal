@@ -165,14 +165,19 @@ public class UiServerWindow {
                     } catch (Exception ignored) {}
                 }
                 appendLog("Solicitud de conexión desde " + socket.getRemoteSocketAddress());
-                int answer = JOptionPane.showConfirmDialog(
-                        frame,
-                        msg,
-                        "Solicitud de conexión",
-                        JOptionPane.YES_NO_OPTION,
-                        JOptionPane.QUESTION_MESSAGE
+                Object[] options = new Object[]{"Si", "No"};
+                int answer = JOptionPane.showOptionDialog(
+                    frame,
+                    msg,
+                    "Solicitud de conexión",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    options,
+                    options[0]
                 );
-                resultHolder[0] = answer == JOptionPane.YES_OPTION;
+                // showOptionDialog returns the index of the selected option (0 -> "Si")
+                resultHolder[0] = answer == 0;
                 appendLog("Decisión: " + (resultHolder[0] ? "APROBADA" : "RECHAZADA") + " para " + socket.getRemoteSocketAddress());
             });
         } catch (InterruptedException ie) {

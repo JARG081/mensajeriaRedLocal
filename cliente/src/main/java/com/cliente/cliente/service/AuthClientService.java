@@ -84,6 +84,25 @@ public class AuthClientService {
         }
     }
 
+    /**
+     * Cerrar sesión: desconectar la conexión TCP, limpiar estado local y notificar la UI.
+     */
+    public void logout() {
+        String prev = clientState.getCurrentUser();
+        try {
+            log.info("Logout request for user='{}'", prev);
+            try {
+                conn.disconnect();
+            } catch (Exception e) {
+                log.warn("Error during disconnect: {}", e.getMessage());
+            }
+        } finally {
+            try { clientState.setCurrentUser(null); } catch (Exception ignored) {}
+            try { bus.publish("USER_LOGOUT", prev); } catch (Exception ignored) {}
+            log.info("Logout completed for user='{}'", prev);
+        }
+    }
+
     private void ensureConnected() throws IOException {
         // Intentos de conexión con reintentos cortos para mejorar resiliencia en redes inestables
         if (conn.isConnected()) {

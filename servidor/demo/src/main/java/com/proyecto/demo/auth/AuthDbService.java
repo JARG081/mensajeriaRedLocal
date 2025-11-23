@@ -41,8 +41,24 @@ public class AuthDbService implements AuthService {
     public synchronized boolean login(String usuario, String password) throws Exception {
         if (usuario == null || password == null) return false;
         var existing = userDao.findByUsername(usuario);
-        if (existing.isEmpty()) return false;
+        if (existing.isEmpty()) {
+            log.warn("Login intento para usuario desconocido: {}", usuario);
+            return false;
+        }
         String provided = DigestUtils.sha256Hex(password);
-        return provided.equals(existing.get().getPasswordHash());
+        String stored = existing.get().getPasswordHash();
+        if (stored != null) stored = stored.trim();
+        if (provided != null) provided = provided.trim();
+        // Log only safe metadata (do not log full hashes or passwords)
+        try {
+            String provPrefix = provided.length() > 8 ? provided.substring(0, 8) : provided;
+            int storedLen = stored == null ? 0 : stored.length();
+            log.debug("Auth attempt user='{}' providedHashPrefix='{}' storedHashLen={}", usuario, provPrefix, storedLen);
+        } catch (Exception ignored) {}
+        // Compare case-insensitively to avoid hex-case mismatches
+        boolean ok = (provided == null && stored == null) || (provided != null && stored != null && provided.equalsIgnoreCase(stored));
+        if (ok) log.info("Login exitoso para usuario='{}'", usuario);
+        else log.warn("Login fallido por hash mismatch para usuario='{}'", usuario);
+        return ok;
     }
 }

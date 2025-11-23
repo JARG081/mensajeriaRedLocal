@@ -231,6 +231,9 @@ public class ClientWorker implements Runnable {
                 var senderOpt = userDao.findByUsername(authenticatedUser);
                 Long senderId = senderOpt.isPresent() ? senderOpt.get().getId() : null;
                 long archivoId = archivoDao.insertArchivo(filename, target.toString(), data.length, senderId);
+                if (archivoId <= 0) {
+                    log.warn("insertArchivo devolvió id no válido ({}) para archivo {}", archivoId, filename);
+                }
                 if (senderId != null) {
                     if ("ALL".equalsIgnoreCase(recipient)) {
                         for (String r : connectedClients.getConnectedUsers()) {
@@ -245,7 +248,8 @@ public class ClientWorker implements Runnable {
                                 mr.setArchivoId(archivoId);
                                 mr.setSesionId(sessionId);
                                 log.debug("Persistiendo mensaje archivo: emisorId={} receptorId={} archivoId={} sesionId={}", senderId, recipOpt.get().getId(), archivoId, sessionId);
-                                messageDao.insertMessage(mr);
+                                long mid = messageDao.insertMessage(mr);
+                                if (mid <= 0) log.warn("insertMessage devolvió id no válido ({}) para mensaje archivo (archivoId={})", mid, archivoId);
                             }
                         }
                     } else {
@@ -259,7 +263,8 @@ public class ClientWorker implements Runnable {
                             mr.setArchivoId(archivoId);
                             mr.setSesionId(sessionId);
                             log.debug("Persistiendo mensaje archivo: emisorId={} receptorId={} archivoId={} sesionId={}", senderId, recipOpt.get().getId(), archivoId, sessionId);
-                            messageDao.insertMessage(mr);
+                            long mid = messageDao.insertMessage(mr);
+                            if (mid <= 0) log.warn("insertMessage devolvió id no válido ({}) para mensaje archivo (archivoId={})", mid, archivoId);
                         }
                     }
                 }
@@ -285,6 +290,26 @@ public class ClientWorker implements Runnable {
             boolean sent = connectedClients.sendTo(recipient, forward);
             if (!sent) {
                 log.warn("No se pudo entregar archivo a {} (no conectado)", recipient);
+            }
+            // Also send a textual notification MSGFROM so the recipient sees a chat line like "(file) filename"
+            try {
+                String note = "MSGFROM " + authenticatedUser + "|" + "(file) " + filename + "\n";
+                boolean noteSent = connectedClients.sendTo(recipient, note);
+                if (noteSent) {
+                    log.debug("Sent file notification MSGFROM to {} for file {}", recipient, filename);
+                } else {
+                    log.debug("Could not send file notification MSGFROM to {}", recipient);
+                }
+            } catch (Exception e) {
+                log.warn("Error sending file notification to {}: {}", recipient, e.getMessage());
+            }
+            // send an immediate echo to the sender so their UI shows the outgoing file line
+            try {
+                String echo = "MSG_ECHO " + authenticatedUser + "|" + recipient + "|" + "(file) " + filename + "\n";
+                out.write(echo);
+                out.flush();
+            } catch (Exception ee) {
+                log.warn("No se pudo enviar echo de archivo al emisor {}: {}", authenticatedUser, ee.getMessage());
             }
         }
 
@@ -431,6 +456,9 @@ public class ClientWorker implements Runnable {
                 var senderOpt = userDao.findByUsername(authenticatedUser);
                 Long senderId = senderOpt.isPresent() ? senderOpt.get().getId() : null;
                 long archivoId = archivoDao.insertArchivo(filename, target.toString(), data.length, senderId);
+                if (archivoId <= 0) {
+                    log.warn("insertArchivo devolvió id no válido ({}) para archivo {}", archivoId, filename);
+                }
                 if (senderId != null) {
                     if ("ALL".equalsIgnoreCase(recipient)) {
                         for (String r : connectedClients.getConnectedUsers()) {
@@ -444,7 +472,8 @@ public class ClientWorker implements Runnable {
                                 mr.setContenido(filename);
                                 mr.setArchivoId(archivoId);
                                 log.debug("Persistiendo mensaje archivo (DATA): emisorId={} receptorId={} archivoId={}", senderId, recipOpt.get().getId(), archivoId);
-                                messageDao.insertMessage(mr);
+                                long mid = messageDao.insertMessage(mr);
+                                if (mid <= 0) log.warn("insertMessage devolvió id no válido ({}) para mensaje archivo (archivoId={})", mid, archivoId);
                             }
                         }
                     } else {
@@ -457,7 +486,8 @@ public class ClientWorker implements Runnable {
                             mr.setContenido(filename);
                             mr.setArchivoId(archivoId);
                             log.debug("Persistiendo mensaje archivo (DATA): emisorId={} receptorId={} archivoId={}", senderId, recipOpt.get().getId(), archivoId);
-                            messageDao.insertMessage(mr);
+                            long mid = messageDao.insertMessage(mr);
+                            if (mid <= 0) log.warn("insertMessage devolvió id no válido ({}) para mensaje archivo (archivoId={})", mid, archivoId);
                         }
                     }
                 }
@@ -483,6 +513,16 @@ public class ClientWorker implements Runnable {
             boolean sent = connectedClients.sendTo(recipient, forward);
             if (!sent) {
                 log.warn("No se pudo entregar archivo a {} (no conectado)", recipient);
+            }
+            // Also send a textual notification MSGFROM so the recipient sees a chat line like "(file) filename"
+            try {
+                String note = "MSGFROM " + authenticatedUser + "|" + "(file) " + filename + "\n";
+                boolean noteSent = connectedClients.sendTo(recipient, note);
+                if (!noteSent) {
+                    log.debug("Could not send file notification MSGFROM to {}", recipient);
+                }
+            } catch (Exception e) {
+                log.warn("Error sending file notification to {}: {}", recipient, e.getMessage());
             }
         }
 
@@ -574,6 +614,91 @@ public class ClientWorker implements Runnable {
                 log.warn("Error registrando usuario en ConnectedClients: {}", e.getMessage());
             }
             out.write("LOGGED\n");
+                out.flush();
+                // After login, attempt to load recent messages for this user from DB and send them
+                try {
+                    var uOpt = userDao.findByUsername(user);
+                    if (uOpt.isPresent()) {
+                        Long uid = uOpt.get().getId();
+                        // fetch up to 200 recent messages involving this user
+                        java.util.List<com.proyecto.demo.model.MessageRecord> recent = messageDao.findForUser(uid, 200);
+                        if (recent != null && !recent.isEmpty()) {
+                            log.info("Enviando {} mensajes históricos desde BD a {}", recent.size(), user);
+                            for (com.proyecto.demo.model.MessageRecord mr : recent) {
+                                try {
+                                    // get sender username via JDBC (handle nombre/nombre_usuario)
+                                    String sender = null;
+                                    try {
+                                        var senderOpt = userDao.findById(mr.getEmisorId());
+                                        if (senderOpt.isPresent()) sender = senderOpt.get().getUsername(); else sender = String.valueOf(mr.getEmisorId());
+                                    } catch (Exception exu) {
+                                        try { sender = String.valueOf(mr.getEmisorId()); } catch (Exception ign) { sender = "?"; }
+                                    }
+                                    // resolve receptor username (prefer readable name over numeric id)
+                                    String receptor = "";
+                                    try {
+                                        if (mr.getReceptorId() != null) {
+                                            var recipOpt = userDao.findById(mr.getReceptorId());
+                                            if (recipOpt.isPresent()) receptor = recipOpt.get().getUsername();
+                                            else receptor = String.valueOf(mr.getReceptorId());
+                                        }
+                                    } catch (Exception exr) {
+                                        try { receptor = mr.getReceptorId() == null ? "" : String.valueOf(mr.getReceptorId()); } catch (Exception ign) { receptor = ""; }
+                                    }
+
+                                    if ("ARCHIVO".equalsIgnoreCase(mr.getTipoMensaje()) && mr.getArchivoId() != null) {
+                                        var ainfo = archivoDao.findById(mr.getArchivoId());
+                                        if (ainfo != null) {
+                                            java.nio.file.Path pathCandidate = null;
+                                            try {
+                                                if (ainfo.path != null && !ainfo.path.isBlank()) {
+                                                    pathCandidate = java.nio.file.Paths.get(ainfo.path);
+                                                    if (!java.nio.file.Files.exists(pathCandidate)) {
+                                                        // try relative uploads dir
+                                                        pathCandidate = java.nio.file.Paths.get("Archivos_enviados").resolve(ainfo.path);
+                                                        if (!java.nio.file.Files.exists(pathCandidate)) pathCandidate = null;
+                                                    }
+                                                }
+                                                if (pathCandidate == null && ainfo.filename != null) {
+                                                    // try to find file in uploads dir by pattern
+                                                    java.nio.file.Path uploads = java.nio.file.Paths.get("Archivos_enviados");
+                                                    if (java.nio.file.Files.exists(uploads) && java.nio.file.Files.isDirectory(uploads)) {
+                                                        try (java.util.stream.Stream<java.nio.file.Path> s = java.nio.file.Files.list(uploads)) {
+                                                            java.util.Optional<java.nio.file.Path> found = s.filter(pp -> pp.getFileName().toString().endsWith("_" + ainfo.filename) || pp.getFileName().toString().equals(ainfo.filename)).findFirst();
+                                                            if (found.isPresent()) pathCandidate = found.get();
+                                                        }
+                                                    }
+                                                }
+                                                if (pathCandidate != null) {
+                                                    byte[] content = java.nio.file.Files.readAllBytes(pathCandidate);
+                                                    String b64 = java.util.Base64.getEncoder().encodeToString(content);
+                                                    // Send HISTFILE with emisor|receptor|filename|base64|timestamp
+                                                    String ts = mr.getCreadoEn() == null ? java.time.Instant.now().toString() : mr.getCreadoEn().toString();
+                                                    out.write("HISTFILE " + sender + "|" + receptor + "|" + ainfo.filename + "|" + b64 + "|" + ts + "\n");
+                                                    out.flush();
+                                                } else {
+                                                    log.warn("Archivo histórico no encontrado en FS para archivo id={} nombre='{}'", ainfo.id, ainfo.filename);
+                                                }
+                                            } catch (Exception re) {
+                                                log.warn("No se pudo leer archivo histórico {} desde path {}: {}", ainfo.filename, ainfo.path, re.getMessage());
+                                            }
+                                        }
+                                    } else {
+                                        String content = mr.getContenido() == null ? "" : mr.getContenido();
+                                        // Send HISTMSG with emisor|receptor|content|timestamp
+                                        String ts = mr.getCreadoEn() == null ? java.time.Instant.now().toString() : mr.getCreadoEn().toString();
+                                        out.write("HISTMSG " + sender + "|" + receptor + "|" + content + "|" + ts + "\n");
+                                        out.flush();
+                                    }
+                                } catch (Exception inner) {
+                                    log.warn("Error enviando mensaje histórico al cliente {}: {}", user, inner.getMessage());
+                                }
+                            }
+                        }
+                    }
+                } catch (Exception e) {
+                    log.warn("No se pudo enviar historial de mensajes desde BD tras login para user {}: {}", user, e.getMessage());
+                }
         } else {
             log.warn("Login fallido: usuario='{}' desde {}", p[0], socket.getRemoteSocketAddress());
             try { com.proyecto.demo.ui.UiServerWindow.publishMessageToUi("Login fallido: " + p[0] + " desde " + socket.getRemoteSocketAddress()); } catch (Exception ignored) {}
@@ -620,6 +745,14 @@ public class ClientWorker implements Runnable {
             boolean sent = connectedClients.sendTo(recipient, forwardLine);
             if (!sent) {
                 log.warn("No se pudo entregar mensaje a {} (no conectado)", recipient);
+            }
+            // ensure the sender also receives an echo with recipient info so their UI can show the sent message
+            try {
+                String echo = "MSG_ECHO " + authenticatedUser + "|" + recipient + "|" + messageText + "\n";
+                out.write(echo);
+                out.flush();
+            } catch (Exception ew) {
+                log.warn("No se pudo enviar echo de mensaje al emisor {}: {}", authenticatedUser, ew.getMessage());
             }
         }
 

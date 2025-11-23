@@ -56,6 +56,11 @@ public class MainWindow {
             }
             showChat();
         }));
+        // Manejar logout desde el cliente: mostrar login y limpiar título
+        bus.subscribe("USER_LOGOUT", payload -> SwingUtilities.invokeLater(() -> {
+            frame.setTitle("Cliente Chat");
+            showLogin();
+        }));
     }
 
     public void show() {

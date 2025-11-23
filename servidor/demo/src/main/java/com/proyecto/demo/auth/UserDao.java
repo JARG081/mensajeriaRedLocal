@@ -4,6 +4,7 @@ import java.util.Optional;
 
 public interface UserDao {
     Optional<UserDto> findByUsername(String username);
+    Optional<UserDto> findById(Long id);
     /**
      * Crea un usuario con un id opcional (si id es null se debe fallar en este proyecto porque no queremos auto_increment).
      */

@@ -57,12 +57,12 @@ public class ConnectedClients {
         // same IP already connected => reject
         if (map.containsKey(ip)) {
             log.info("Rechazando registro para usuario '{}' desde la misma IP {} (ya conectado)", user, ip);
-            return "ya_conectado_misma_ip";
+            return "Error: Limite de ips excedido, no puede ingresar en este equipo";
         }
         // enforce max distinct IPs per user
         if (map.size() >= maxConnectionsPerUser) {
             log.info("Rechazando registro para usuario '{}' desde {} (limite {} conexiones)", user, ip, maxConnectionsPerUser);
-            return "limite_conexiones";
+            return "Error: Limite de ips excedido, no puede ingresar en este equipo";
         }
         map.put(ip, out);
         log.info("Usuario registrado para broadcast: {} (user-conns={})", user, map.size());

@@ -43,6 +43,19 @@ public class ArchivoDao {
         }
     }
 
+    public java.util.List<Archivo> findReceivedByUser(Long usuarioId) {
+        // Join mensajes -> archivos to find files received by a given user
+        String sql = "SELECT a.id, a.nombre, a.tamano, a.propietario_id, a.ruta, a.creado_en " +
+            "FROM archivos a JOIN mensajes m ON m.archivo_id = a.id " +
+            "WHERE m.receptor_id = ? AND m.tipo_mensaje = 'ARCHIVO' " +
+            "ORDER BY m.creado_en DESC";
+        try {
+            return jdbc.query(sql, new Object[]{usuarioId}, (rs, i) -> mapArchivoWithOwnerName(rs));
+        } catch (org.springframework.dao.DataAccessException ex) {
+            return java.util.Collections.emptyList();
+        }
+    }
+
     private Archivo mapArchivoWithOwnerName(java.sql.ResultSet rs) throws java.sql.SQLException {
         Archivo a = new Archivo();
         a.setId(rs.getLong("id"));

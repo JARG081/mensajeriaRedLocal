@@ -18,6 +18,8 @@ import java.nio.file.Files;
 import java.util.Base64;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.Map;
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 @Component
@@ -36,6 +38,8 @@ public class MessageService {
     private final ConcurrentHashMap<String, CompletableFuture<String>> pendingFileFutures = new ConcurrentHashMap<>();
     // Pending header futures (FILE_HDR) keyed by filename. Value is either "OK" or "ERROR|reason"
     private final ConcurrentHashMap<String, CompletableFuture<String>> pendingHdrFutures = new ConcurrentHashMap<>();
+    // recent sent messages fingerprints to avoid duplicate echo when server forwards our own message
+    private final ConcurrentHashMap<String, Long> recentSent = new ConcurrentHashMap<>();
 
     // NOTE: validation is performed on the server side. The client will always send
     // the FILE_HDR and then the FILE_DATA; the server decides to accept or reject.
@@ -78,15 +82,13 @@ public class MessageService {
                 throw e;
             }
 
-            // traza inmediata de post-envío
-            log.info("Mensaje enviado localmente: [{}] (no confundir con confirmación del servidor)", lineToSend);
-
-            // persistir y publicar localmente para que el ChatPanel muestre el propio mensaje
-            String stamped = "[" + LocalDateTime.now().format(fmt) + "] Yo -> " + (recipient == null || recipient.isEmpty() ? "ALL" : recipient) + ": " + text;
-            persistence.appendMessage(stamped);
-            bus.publish("SERVER_LINE", stamped);
-
-            log.debug("Message persisted and published locally: {}", stamped);
+            // store fingerprint of recently sent message to avoid duplicate when server echoes our own message
+            try {
+                String who = clientState == null ? "" : (clientState.getCurrentUser() == null ? "" : clientState.getCurrentUser());
+                String key = who + "|" + (text == null ? "" : text).trim();
+                if (!key.isEmpty()) recentSent.put(key, System.currentTimeMillis());
+            } catch (Exception ignored) {}
+            log.debug("Message sent; stored fingerprint for dedupe: {}", (clientState==null?"":clientState.getCurrentUser()));
             return true;
         } catch (Exception e) {
             String err = "Error enviar: " + e.getMessage();
@@ -207,10 +209,82 @@ public class MessageService {
             String[] p = payload.split("\\|", 2);
             String sender = p.length > 0 ? p[0] : "";
             String text = p.length > 1 ? p[1] : "";
+            // deduplicate: if this message comes from myself and matches a recently-sent message, ignore it
+                try {
+                    String key = sender + "|" + (text == null ? "" : text).trim();
+                    Long t = recentSent.get(key);
+                    if (t != null && (System.currentTimeMillis() - t) < 5_000L) {
+                        recentSent.remove(key);
+                        log.debug("Ignorando echo de mensaje propio detectado (sender={}, text={})", sender, key);
+                        return;
+                    }
+                } catch (Exception ex) {
+                    // fall back to publishing
+                }
             MessageDTO dto = new MessageDTO(sender, text, System.currentTimeMillis());
             log.info("Mensaje entrante de {}: {}", sender, text);
             // publicar como mensaje entrante para que la UI lo ubique en la conversación correcta
             bus.publish("INCOMING_MSG", dto);
+            return;
+        }
+
+        // Echo for messages we sent, with receptor info: "MSG_ECHO sender|receptor|text"
+        if (trimmed.startsWith("MSG_ECHO ")) {
+            String payload = trimmed.length() > 9 ? trimmed.substring(9) : "";
+            String[] p = payload.split("\\|", 3);
+            String receptor = p.length > 1 ? p[1] : "";
+            String text = p.length > 2 ? p[2] : "";
+            try {
+                // publish as outgoing so UI places it under the receptor conversation
+                MessageDTO dto = new MessageDTO("Yo", text, System.currentTimeMillis());
+                java.util.Map<String, Object> m = new java.util.HashMap<>();
+                m.put("receptor", receptor == null ? "" : receptor);
+                m.put("dto", dto);
+                bus.publish("OUTGOING_MSG", m);
+            } catch (Exception ex) {
+                log.debug("Failed processing MSG_ECHO: {}", ex.getMessage());
+            }
+            return;
+        }
+
+        // historical messages from DB: "HISTMSG sender|receptor|content|timestamp"
+        if (trimmed.startsWith("HISTMSG ")) {
+            String payload = trimmed.length() > 8 ? trimmed.substring(8) : "";
+            String[] p = payload.split("\\|", 4);
+            String sender = p.length > 0 ? p[0] : "";
+            String receptor = p.length > 1 ? p[1] : "";
+            String text = p.length > 2 ? p[2] : "";
+            // deduplicate if this is our own recent message
+            try {
+                String me = clientState == null ? null : clientState.getCurrentUser();
+                String key = sender + "|" + (text == null ? "" : text).trim();
+                if (me != null && me.equals(sender)) {
+                    Long t = recentSent.get(key);
+                    if (t != null && (System.currentTimeMillis() - t) < 5_000L) {
+                        recentSent.remove(key);
+                        log.debug("Ignorando HISTMSG echo propio (sender={}, text={})", sender, key);
+                        return;
+                    }
+                }
+            } catch (Exception ex) {
+                // fallthrough to publish
+            }
+
+            String me = clientState == null ? null : clientState.getCurrentUser();
+            // If I'm the receptor -> incoming message, else if I'm the sender -> it's my historic sent message
+            if (me != null && me.equals(receptor)) {
+                MessageDTO dto = new MessageDTO(sender, text, System.currentTimeMillis());
+                bus.publish("INCOMING_MSG", dto);
+            } else if (me != null && me.equals(sender)) {
+                // historic message sent by me: publish a HIST_SENT event with receptor and dto
+                MessageDTO dto = new MessageDTO("Yo", text, System.currentTimeMillis());
+                Map<String, Object> m = new HashMap<>();
+                m.put("receptor", receptor == null ? "" : receptor);
+                m.put("dto", dto);
+                bus.publish("HIST_SENT", m);
+            } else {
+                // Not directly related to this client session (shouldn't happen), ignore
+            }
             return;
         }
 
@@ -233,6 +307,38 @@ public class MessageService {
                 }
             } catch (Exception e) {
                 log.error("Error decodificando archivo entrante: {}", e.toString(), e);
+            }
+            return;
+        }
+
+        // historical files from DB: "HISTFILE sender|receptor|filename|base64|timestamp"
+        if (trimmed.startsWith("HISTFILE ")) {
+            String payload = trimmed.length() > 9 ? trimmed.substring(9) : "";
+            String[] p = payload.split("\\|", 5);
+            String sender = p.length > 0 ? p[0] : "";
+            String receptor = p.length > 1 ? p[1] : "";
+            String filename = p.length > 2 ? p[2] : "";
+            String b64 = p.length > 3 ? p[3] : "";
+            try {
+                byte[] data = Base64.getDecoder().decode(b64);
+                com.cliente.cliente.dto.FileDTO fileDto = new FileDTO(sender, filename, data, System.currentTimeMillis());
+                String me = clientState == null ? null : clientState.getCurrentUser();
+                if (me != null && me.equals(receptor)) {
+                    // incoming historic file for me
+                    bus.publish("INCOMING_FILE", fileDto);
+                } else if (me != null && me.equals(sender)) {
+                    // historic file I sent previously: publish HIST_FILE_SENT with receptor and file DTO
+                    Map<String, Object> fm = new HashMap<>();
+                    fm.put("receptor", receptor == null ? "" : receptor);
+                    // set sender on FileDTO as "Yo" to indicate outgoing
+                    com.cliente.cliente.dto.FileDTO f2 = new com.cliente.cliente.dto.FileDTO("Yo", filename, data, System.currentTimeMillis());
+                    fm.put("file", f2);
+                    bus.publish("HIST_FILE_SENT", fm);
+                } else {
+                    // not relevant to this user session
+                }
+            } catch (Exception e) {
+                log.error("Error decodificando HISTFILE entrante: {}", e.toString(), e);
             }
             return;
         }
@@ -278,19 +384,8 @@ public class MessageService {
             // publish username so UI can update title and other components
             String user = clientState == null ? null : clientState.getCurrentUser();
             bus.publish("USER_LOGGED", user);
-            // After login, load local persisted history and publish to UI so previous messages appear
-            try {
-                java.util.List<String> lines = persistence.readAllMessages();
-                if (lines != null && !lines.isEmpty()) {
-                    log.info("Loading {} persisted lines into UI after login", lines.size());
-                    for (String l : lines) {
-                        // publish each persisted line as if it were a server line
-                        bus.publish("SERVER_LINE", l);
-                    }
-                }
-            } catch (Exception e) {
-                log.warn("Error loading persisted history after login: {}", e.toString());
-            }
+            // Note: Do not preload local persistence here. Server will send historical messages
+            // from the DB after login (MSGFROM/FILEFROM). This ensures UI reflects DB state.
             return;
         }
         if ("REGISTERED".equalsIgnoreCase(trimmed)) {
@@ -302,7 +397,9 @@ public class MessageService {
         }
         if (trimmed.startsWith("ERROR")) {
             log.warn("Server returned error: {}", trimmed);
-            bus.publish("AUTH_ERROR", trimmed);
+            // publish only the payload part after the 'ERROR ' prefix so UI dialogs don't duplicate 'Error:'
+            String payload = trimmed.length() > 6 ? trimmed.substring(6).trim() : trimmed;
+            bus.publish("AUTH_ERROR", payload);
             return;
         }
         // otros casos: SENT, etc. ya se publicaron como SERVER_LINE

@@ -50,4 +50,17 @@ public class ArchivoController {
             return "archivos";
         }
     }
+
+    @GetMapping("/web/archivos/usuario/{id}")
+    public String listArchivosRecibidosPorUsuario(@PathVariable("id") Long id, org.springframework.ui.Model m) {
+        try {
+            java.util.List<Archivo> archivos = archivoDao.findReceivedByUser(id);
+            m.addAttribute("archivos", archivos);
+            m.addAttribute("filtroUsuarioId", id);
+            return "archivos";
+        } catch (Exception e) {
+            m.addAttribute("error", "No se pudo listar archivos recibidos: " + e.getMessage());
+            return "archivos";
+        }
+    }
 }

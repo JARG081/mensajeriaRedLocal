@@ -27,6 +27,8 @@ public class ChatPanel {
     private final UiEventBus bus;
     @SuppressWarnings("unused")
     private final com.cliente.cliente.service.ClientState clientState;
+    @SuppressWarnings("unused")
+    private final com.cliente.cliente.service.AuthClientService authService;
     private final JPanel panel;
     private final JTextArea chatArea;
     private final JTextField inputField;
@@ -50,10 +52,11 @@ public class ChatPanel {
     });
 
     @Autowired
-    public ChatPanel(MessageService messageService, UiEventBus bus, com.cliente.cliente.service.ClientState clientState) {
+    public ChatPanel(MessageService messageService, UiEventBus bus, com.cliente.cliente.service.ClientState clientState, com.cliente.cliente.service.AuthClientService authService) {
         this.messageService = messageService;
         this.bus = bus;
         this.clientState = clientState;
+        this.authService = authService;
         panel = new JPanel(new BorderLayout());
         panel.setBorder(new EmptyBorder(8,8,8,8));
 
@@ -126,7 +129,15 @@ public class ChatPanel {
 
     JPanel side = new JPanel(new BorderLayout());
     side.setBorder(new EmptyBorder(6,6,6,6));
-    side.add(new JLabel("Usuarios conectados"), BorderLayout.NORTH);
+    JPanel northPanel = new JPanel(new BorderLayout(6,0));
+    northPanel.setOpaque(false);
+    JLabel usersLabel = new JLabel("Usuarios conectados");
+    JButton logoutBtn = new JButton("Cerrar sesión");
+    logoutBtn.setToolTipText("Cerrar sesión y volver a la ventana de inicio");
+    logoutBtn.setPreferredSize(new Dimension(130, 28));
+    northPanel.add(usersLabel, BorderLayout.CENTER);
+    northPanel.add(logoutBtn, BorderLayout.EAST);
+    side.add(northPanel, BorderLayout.NORTH);
     side.add(new JScrollPane(usersList), BorderLayout.CENTER);
     // panel de archivos recibidos/enviados por conversación
     JPanel filesPanel = new JPanel(new BorderLayout());
@@ -140,6 +151,35 @@ public class ChatPanel {
     filesPanel.add(filesBtns, BorderLayout.SOUTH);
     side.add(filesPanel, BorderLayout.SOUTH);
     side.setPreferredSize(new Dimension(180, 0));
+
+    // Acción de logout: confirmar, desconectar, limpiar estado y volver al login
+    logoutBtn.addActionListener(e -> {
+        Object[] options = new Object[]{"Si", "No"};
+        int opt = JOptionPane.showOptionDialog(panel,
+                "¿Cerrar sesión?",
+                "Confirmar",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                options,
+                options[0]);
+        if (opt != 0) return; // 0 == "Si"
+        // deshabilitar UI inmediatamente
+        SwingUtilities.invokeLater(() -> {
+            inputField.setEnabled(false);
+            sendBtn.setEnabled(false);
+        });
+        try {
+            // solicitar logout al servicio de autenticación (cerrará la conexión TCP)
+            try { authService.logout(); } catch (Exception ex) { log.warn("Logout error: {}", ex.getMessage()); }
+        } finally {
+            // limpiar estado local
+            try { usersModel.clear(); } catch (Exception ignored) {}
+            try { conversations.clear(); filesPerConversation.clear(); filesModel.clear(); } catch (Exception ignored) {}
+            // notificar al bus para que la ventana principal muestre login
+            try { bus.publish("USER_LOGOUT", null); } catch (Exception ignored) {}
+        }
+    });
 
     panel.add(side, BorderLayout.EAST);
 
@@ -216,6 +256,68 @@ public class ChatPanel {
                     }
                 });
             });
+
+        // Historic sent messages: payload is a Map with keys: "receptor" -> String, "dto" -> MessageDTO
+        bus.subscribe("HIST_SENT", payload -> {
+            if (!(payload instanceof java.util.Map)) return;
+            try {
+                @SuppressWarnings("unchecked")
+                java.util.Map<String, Object> m = (java.util.Map<String, Object>) payload;
+                String receptor = (String) m.get("receptor");
+                if (receptor == null) return;
+                Object dtoObj = m.get("dto");
+                if (!(dtoObj instanceof com.cliente.cliente.dto.MessageDTO)) return;
+                com.cliente.cliente.dto.MessageDTO dto = (com.cliente.cliente.dto.MessageDTO) dtoObj;
+                SwingUtilities.invokeLater(() -> {
+                    String line = String.format("[%s] %s: %s", new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date(dto.getTimestamp())), dto.getSender(), dto.getContent());
+                    conversations.computeIfAbsent(receptor, k -> new java.util.ArrayList<>()).add(line);
+                    if (receptor.equals(targetUser)) appendLineToChat(line);
+                });
+            } catch (Exception ignored) {}
+        });
+
+        // Historic sent files: payload is a Map with keys: "receptor" -> String, "file" -> FileDTO
+        bus.subscribe("HIST_FILE_SENT", payload -> {
+            if (!(payload instanceof java.util.Map)) return;
+            try {
+                @SuppressWarnings("unchecked")
+                java.util.Map<String, Object> m = (java.util.Map<String, Object>) payload;
+                String receptor = (String) m.get("receptor");
+                if (receptor == null) return;
+                Object fileObj = m.get("file");
+                if (!(fileObj instanceof com.cliente.cliente.dto.FileDTO)) return;
+                com.cliente.cliente.dto.FileDTO fd = (com.cliente.cliente.dto.FileDTO) fileObj;
+                SwingUtilities.invokeLater(() -> {
+                    filesPerConversation.computeIfAbsent(receptor, k -> new java.util.ArrayList<>()).add(fd);
+                    // add a chat line note for the file
+                    String line = String.format("[%s] Yo: (archivo) %s", new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date(fd.getTimestamp())), fd.getFilename());
+                    conversations.computeIfAbsent(receptor, k -> new java.util.ArrayList<>()).add(line);
+                    if (receptor.equals(targetUser)) {
+                        refreshFilesListFor(receptor);
+                        appendLineToChat(line);
+                    }
+                });
+            } catch (Exception ignored) {}
+        });
+
+        // Immediate outgoing messages echo: payload is Map with keys: "receptor" -> String, "dto" -> MessageDTO
+        bus.subscribe("OUTGOING_MSG", payload -> {
+            if (!(payload instanceof java.util.Map)) return;
+            try {
+                @SuppressWarnings("unchecked")
+                java.util.Map<String, Object> m = (java.util.Map<String, Object>) payload;
+                String receptor = (String) m.get("receptor");
+                if (receptor == null) return;
+                Object dtoObj = m.get("dto");
+                if (!(dtoObj instanceof com.cliente.cliente.dto.MessageDTO)) return;
+                com.cliente.cliente.dto.MessageDTO dto = (com.cliente.cliente.dto.MessageDTO) dtoObj;
+                SwingUtilities.invokeLater(() -> {
+                    String line = String.format("[%s] %s: %s", new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date(dto.getTimestamp())), dto.getSender(), dto.getContent());
+                    conversations.computeIfAbsent(receptor, k -> new java.util.ArrayList<>()).add(line);
+                    if (receptor.equals(targetUser)) appendLineToChat(line);
+                });
+            } catch (Exception ignored) {}
+        });
 
         // archivo enviado con éxito (confirmación del servidor)
         // Add file to local files list, but DO NOT add a chat line because the server will broadcast a MSGFROM (file) which
@@ -356,14 +458,7 @@ public class ChatPanel {
             sendExec.submit(() -> {
                 try {
                     messageService.sendMessage(targetUser, msg);
-                    // add to local conversation history so it persists when switching
-                    String dest = targetUser == null ? "ALL" : targetUser;
-                    String sender = clientState == null ? "Yo" : clientState.getCurrentUser();
-                    String stamped = "[" + new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date()) + "] " + sender + ": " + msg;
-                    conversations.computeIfAbsent(dest, k -> new java.util.ArrayList<>()).add(stamped);
-                    if ( (dest.equals("ALL") && targetUser==null) || dest.equals(targetUser) ) {
-                        SwingUtilities.invokeLater(() -> appendLineToChat(stamped));
-                    }
+                    // Do not add local 'Yo' message here; server will echo via MSGFROM
                 } catch (Exception e) {
                     log.error("send failed: {}", e.toString(), e);
                 }
