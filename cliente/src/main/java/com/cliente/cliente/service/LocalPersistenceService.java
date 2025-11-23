@@ -33,4 +33,18 @@ public class LocalPersistenceService {
             log.error("Persist error: {}", e.toString(), e);
         }
     }
+
+    /**
+     * Lee todas las líneas del fichero de persistencia local y las devuelve.
+     * Si el fichero no existe, devuelve una lista vacía.
+     */
+    public synchronized java.util.List<String> readAllMessages() {
+        try {
+            if (!Files.exists(LOG)) return java.util.Collections.emptyList();
+            return Files.readAllLines(LOG);
+        } catch (IOException e) {
+            log.error("Read history error: {}", e.toString(), e);
+            return java.util.Collections.emptyList();
+        }
+    }
 }

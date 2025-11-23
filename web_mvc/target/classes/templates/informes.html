@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/webjars/bootstrap/5.2.3/css/bootstrap.min.css" />
 </head>
 <body>
+<div th:replace="~{fragments/nav :: nav}"></div>
 <div class="container mt-4">
     <h2>Informes</h2>
     <h4>Archivos enviados (por tamaño)</h4>
@@ -23,7 +24,7 @@
             <td th:text="${a.id}"></td>
             <td th:text="${a.nombre}"></td>
             <td th:text="${a.tamano}"></td>
-            <td th:text="${a.propietarioId}"></td>
+            <td th:text="${a.propietarioNombre}"></td>
             <td><a th:href="@{/web/archivos/{id}/download(id=${a.id})}" class="btn btn-sm btn-outline-primary">Descargar</a></td>
         </tr>
         </tbody>

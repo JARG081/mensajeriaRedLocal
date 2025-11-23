@@ -248,6 +248,71 @@ public class ChatPanel {
             });
         });
 
+        // Procesar líneas crudas del servidor o histórico guardado
+        bus.subscribe("SERVER_LINE", payload -> {
+            if (!(payload instanceof String)) return;
+            String raw = (String) payload;
+            // quitar timestamp inicial si existe (formato: <ts> <rest>)
+            String afterTs = raw;
+            int idx = raw.indexOf(' ');
+            if (idx > 0 && idx < raw.length()-1) afterTs = raw.substring(idx+1);
+            // si viene con marcador [SRV] quitarlo
+            if (afterTs.startsWith("[SRV] ")) afterTs = afterTs.substring(6);
+
+            // manejar MSGFROM (servidor) -> publicar como mensaje entrante
+            if (afterTs.startsWith("MSGFROM ")) {
+                String payloadStr = afterTs.substring(8);
+                String[] p = payloadStr.split("\\|", 2);
+                String sender = p.length > 0 ? p[0] : "";
+                String text = p.length > 1 ? p[1] : "";
+                String line = String.format("[%s] %s: %s", new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date()), sender, text);
+                conversations.computeIfAbsent(sender, k -> new java.util.ArrayList<>()).add(line);
+                // si estoy viendo esa conversación, añadirla
+                SwingUtilities.invokeLater(() -> {
+                    if (sender.equals(targetUser)) appendLineToChat(line);
+                });
+                return;
+            }
+
+            // FILEFROM historic or live
+            if (afterTs.startsWith("FILEFROM ")) {
+                try {
+                    String payloadStr = afterTs.substring(9);
+                    String[] p = payloadStr.split("\\|", 3);
+                    String sender = p.length > 0 ? p[0] : "";
+                    String filename = p.length > 1 ? p[1] : "";
+                    String line = String.format("[%s] %s: (archivo) %s", new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date()), sender, filename);
+                    conversations.computeIfAbsent(sender, k -> new java.util.ArrayList<>()).add(line);
+                    SwingUtilities.invokeLater(() -> { if (sender.equals(targetUser)) appendLineToChat(line); });
+                } catch (Exception ignored) {}
+                return;
+            }
+
+            // Mensajes que se guardaron localmente con formato "... Yo -> dest: text" o similares
+            if (afterTs.contains("Yo -> ") || afterTs.contains("->")) {
+                try {
+                    String work = afterTs;
+                    // si tiene un timestamp extra entre corchetes, quitar hasta "] "
+                    int rb = work.indexOf("] ");
+                    if (rb >= 0 && rb < work.length()-2) work = work.substring(rb+2);
+                    // ahora buscar "Yo -> "
+                    int yoIdx = work.indexOf("Yo -> ");
+                    String sender = "Yo";
+                    String rest = work;
+                    if (yoIdx >= 0) rest = work.substring(yoIdx + "Yo -> ".length());
+                    // rest expected like "DEST: message"
+                    int colon = rest.indexOf(":");
+                    String dest = (colon > 0) ? rest.substring(0, colon).trim() : "ALL";
+                    String msg = (colon > 0 && colon < rest.length()-1) ? rest.substring(colon+1).trim() : rest.trim();
+                    String line = String.format("[%s] %s: %s", new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date()), sender, msg);
+                    // conversation key: dest (use "ALL" for broadcast)
+                    String key = dest.equalsIgnoreCase("ALL") ? "ALL" : dest;
+                    conversations.computeIfAbsent(key, k -> new java.util.ArrayList<>()).add(line);
+                    SwingUtilities.invokeLater(() -> { if (key.equals(targetUser) || (key.equals("ALL") && targetUser==null)) appendLineToChat(line); });
+                } catch (Exception ignored) {}
+            }
+        });
+
         // habilitar la UI de envío cuando el servidor confirme login
         bus.subscribe("USER_LOGGED", payload -> {
             SwingUtilities.invokeLater(() -> {

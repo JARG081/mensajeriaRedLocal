@@ -27,32 +27,36 @@ public class JdbcMessageDao implements MessageDao {
     public void ensureTables() {
         // create sesiones table to track user sessions (UUID primary key)
         jdbc.execute("CREATE TABLE IF NOT EXISTS sesiones (" +
-                "id CHAR(36) NOT NULL PRIMARY KEY, " +
-                "usuario_id BIGINT NOT NULL, " +
-                "token VARCHAR(1024), " +
-                "direccion_ip VARCHAR(45) NOT NULL, " +
-                "creado_en DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6), " +
-                "desconectado_en DATETIME(6), " +
-                "estado VARCHAR(20) NOT NULL DEFAULT 'ACTIVA', " +
-                "INDEX idx_sesiones_usuario_ip (usuario_id, direccion_ip), " +
-                "CONSTRAINT fk_sesiones_usuario FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE" +
-                ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci");
+            "id CHAR(36) NOT NULL PRIMARY KEY, " +
+            "usuario_id BIGINT NOT NULL, " +
+            "token VARCHAR(1024), " +
+            "ip VARCHAR(45) NOT NULL, " +
+            "fecha_inicio DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6), " +
+            "fecha_fin DATETIME(6), " +
+            "estado VARCHAR(20) NOT NULL DEFAULT 'ACTIVA', " +
+            "INDEX idx_sesiones_usuario_ip (usuario_id, ip), " +
+            "CONSTRAINT fk_sesiones_usuario FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE" +
+            ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci");
 
         // create archivos table (referenced by mensajes)
         jdbc.execute("CREATE TABLE IF NOT EXISTS archivos (" +
-                "id BIGINT AUTO_INCREMENT PRIMARY KEY, " +
-                "filename VARCHAR(512) NOT NULL, " +
-                "path VARCHAR(1024), " +
-                "size BIGINT, " +
-                "creado_en DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)" +
-                ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
+            "id BIGINT AUTO_INCREMENT PRIMARY KEY, " +
+            "propietario_id BIGINT, " +
+            "nombre VARCHAR(1000) NOT NULL, " +
+            "ruta VARCHAR(2000) NOT NULL, " +
+            "tipo_mime VARCHAR(255), " +
+            "tamano BIGINT, " +
+            "creado_en DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6), " +
+            "INDEX idx_archivos_propietario (propietario_id), " +
+            "CONSTRAINT fk_archivos_propietario FOREIGN KEY (propietario_id) REFERENCES usuarios(id) ON DELETE SET NULL" +
+            ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci");
 
     // create mensajes table according to the provided DDL (includes sesion_id FK)
     jdbc.execute("CREATE TABLE IF NOT EXISTS mensajes (" +
         "id BIGINT AUTO_INCREMENT PRIMARY KEY, " +
         "emisor_id BIGINT NOT NULL, " +
         "receptor_id BIGINT NOT NULL, " +
-        "tipo_mensaje ENUM('TEXTO','ARCHIVO') NOT NULL DEFAULT 'TEXTO', " +
+        "tipo ENUM('TEXTO','ARCHIVO') NOT NULL DEFAULT 'TEXTO', " +
         "contenido TEXT, " +
         "archivo_id BIGINT, " +
         "sesion_id CHAR(36), " +
@@ -94,7 +98,7 @@ public class JdbcMessageDao implements MessageDao {
             m.setId(rs.getLong("id"));
             m.setEmisorId(rs.getLong("emisor_id"));
             m.setReceptorId(rs.getLong("receptor_id"));
-            m.setTipoMensaje(rs.getString("tipo_mensaje"));
+            m.setTipoMensaje(rs.getString("tipo"));
             m.setContenido(rs.getString("contenido"));
             long a = rs.getLong("archivo_id");
             if (rs.wasNull()) m.setArchivoId(null); else m.setArchivoId(a);
@@ -108,7 +112,7 @@ public class JdbcMessageDao implements MessageDao {
 
     @Override
     public long insertMessage(MessageRecord m) {
-        String sql = "INSERT INTO mensajes (emisor_id,receptor_id,tipo_mensaje,contenido,archivo_id,sesion_id) VALUES (?,?,?,?,?,?)";
+        String sql = "INSERT INTO mensajes (emisor_id,receptor_id,tipo,contenido,archivo_id,sesion_id) VALUES (?,?,?,?,?,?)";
         var keyHolder = new org.springframework.jdbc.support.GeneratedKeyHolder();
         org.springframework.jdbc.core.PreparedStatementCreator psc = conn -> {
             var ps = conn.prepareStatement(sql, new String[]{"id"});

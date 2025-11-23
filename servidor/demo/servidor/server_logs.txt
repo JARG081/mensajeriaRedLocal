@@ -1,29 +1,152 @@
-2025-11-20T19:58:30.167-05:00  INFO 20516 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 20516 (C:\Users\josem\Desktop\avanzadasDevelop\mensajeriaRedLocal\servidor\demo\target\classes started by josem in C:\Users\josem\Desktop\avanzadasDevelop\mensajeriaRedLocal)
-2025-11-20T19:58:30.167-05:00 DEBUG 20516 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
-2025-11-20T19:58:30.167-05:00  INFO 20516 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
-2025-11-20T19:58:31.857-05:00  INFO 20516 --- [servidor] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9010 (http)
-2025-11-20T19:58:31.877-05:00  INFO 20516 --- [servidor] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-11-20T19:58:31.878-05:00  INFO 20516 --- [servidor] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
-2025-11-20T19:58:31.946-05:00  INFO 20516 --- [servidor] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-11-20T19:58:31.947-05:00  INFO 20516 --- [servidor] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1687 ms
-2025-11-20T19:58:32.090-05:00  INFO 20516 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-11-20T19:58:32.514-05:00  INFO 20516 --- [servidor] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@ebda593
-2025-11-20T19:58:32.514-05:00  INFO 20516 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-11-20T19:58:32.640-05:00 DEBUG 20516 --- [servidor] [main] com.proyecto.demo.dao.JdbcMessageDao     : No se pudo ejecutar ALTER TABLE para agregar 'sesion_id' (posiblemente versión antigua de MySQL). Continuando: StatementCallback; bad SQL grammar [ALTER TABLE mensajes ADD COLUMN IF NOT EXISTS sesion_id CHAR(36) NULL]
-2025-11-20T19:58:32.730-05:00  INFO 20516 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 192.168.40.12:9001
-2025-11-20T19:58:32.824-05:00  INFO 20516 --- [servidor] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
-2025-11-20T19:58:33.178-05:00  INFO 20516 --- [servidor] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9010 (http) with context path ''
-2025-11-20T19:58:33.194-05:00  INFO 20516 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 3.704 seconds (process running for 4.117)
-2025-11-20T19:58:33.202-05:00  INFO 20516 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=192.168.40.12, port=9010
-2025-11-20T19:58:33.203-05:00  INFO 20516 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UI enabled property = true; intentando inicializar UI
-2025-11-20T19:58:33.216-05:00  INFO 20516 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : java.awt.headless=false | GraphicsEnvironment.isHeadless=false
-2025-11-20T19:58:33.260-05:00  INFO 20516 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
-2025-11-20T19:58:33.514-05:00  INFO 20516 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Panel iniciado
-2025-11-20T19:58:33.515-05:00  INFO 20516 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
-2025-11-20T19:58:33.516-05:00  INFO 20516 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (initialize)
-2025-11-20T19:58:33.516-05:00  INFO 20516 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UiServerWindow.initialize() invocado desde DemoApplication.run
-2025-11-20T19:58:33.517-05:00  INFO 20516 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
-2025-11-20T19:58:33.518-05:00  INFO 20516 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
-2025-11-20T19:58:33.529-05:00  INFO 20516 --- [servidor] [main] com.proyecto.demo.DemoApplication        : DB check OK - usuarios count = 2
-2025-11-20T19:58:33.530-05:00  INFO 20516 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : DB check OK - usuarios count = 2
-2025-11-20T19:58:33.534-05:00  INFO 20516 --- [servidor] [main] com.proyecto.demo.web.LogStartup         : LogStartup initialized. includePast=true, startPosition=0, path=C:\Users\josem\Desktop\avanzadasDevelop\mensajeriaRedLocal\servidor\demo\servidor\server_logs.txt
+2025-11-22T16:49:43.248-05:00  INFO 3612 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 3612 (C:\Users\josem\Desktop\avanzadasDevelop\mensajeriaRedLocal\servidor\demo\target\classes started by josem in C:\Users\josem\Desktop\avanzadasDevelop\mensajeriaRedLocal)
+2025-11-22T16:49:43.260-05:00 DEBUG 3612 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-11-22T16:49:43.265-05:00  INFO 3612 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-11-22T16:49:45.477-05:00  INFO 3612 --- [servidor] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9010 (http)
+2025-11-22T16:49:45.495-05:00  INFO 3612 --- [servidor] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-22T16:49:45.496-05:00  INFO 3612 --- [servidor] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
+2025-11-22T16:49:45.572-05:00  INFO 3612 --- [servidor] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-22T16:49:45.573-05:00  INFO 3612 --- [servidor] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2214 ms
+2025-11-22T16:49:45.760-05:00  INFO 3612 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-22T16:49:46.348-05:00  INFO 3612 --- [servidor] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@68b366e2
+2025-11-22T16:49:46.352-05:00  INFO 3612 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-22T16:49:46.492-05:00 DEBUG 3612 --- [servidor] [main] com.proyecto.demo.dao.JdbcMessageDao     : No se pudo ejecutar ALTER TABLE para agregar 'sesion_id' (posiblemente versión antigua de MySQL). Continuando: StatementCallback; bad SQL grammar [ALTER TABLE mensajes ADD COLUMN IF NOT EXISTS sesion_id CHAR(36) NULL]
+2025-11-22T16:49:46.578-05:00  INFO 3612 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 192.168.40.12:9001
+2025-11-22T16:49:46.688-05:00  INFO 3612 --- [servidor] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-11-22T16:49:47.103-05:00  INFO 3612 --- [servidor] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9010 (http) with context path ''
+2025-11-22T16:49:47.116-05:00  INFO 3612 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 4.536 seconds (process running for 4.953)
+2025-11-22T16:49:47.120-05:00  INFO 3612 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=192.168.40.12, port=9010
+2025-11-22T16:49:47.120-05:00  INFO 3612 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UI enabled property = true; intentando inicializar UI
+2025-11-22T16:49:47.132-05:00  INFO 3612 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : java.awt.headless=false | GraphicsEnvironment.isHeadless=false
+2025-11-22T16:49:47.216-05:00  INFO 3612 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
+2025-11-22T16:49:47.660-05:00  INFO 3612 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Panel iniciado
+2025-11-22T16:49:47.661-05:00  INFO 3612 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
+2025-11-22T16:49:47.662-05:00  INFO 3612 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (initialize)
+2025-11-22T16:49:47.663-05:00  INFO 3612 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UiServerWindow.initialize() invocado desde DemoApplication.run
+2025-11-22T16:49:47.663-05:00  INFO 3612 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
+2025-11-22T16:49:47.664-05:00  INFO 3612 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
+2025-11-22T16:49:47.674-05:00  INFO 3612 --- [servidor] [main] com.proyecto.demo.DemoApplication        : DB check OK - usuarios count = 2
+2025-11-22T16:49:47.675-05:00  INFO 3612 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : DB check OK - usuarios count = 2
+2025-11-22T16:49:47.679-05:00  INFO 3612 --- [servidor] [main] com.proyecto.demo.web.LogStartup         : LogStartup initialized. includePast=true, startPosition=0, path=C:\Users\josem\Desktop\avanzadasDevelop\mensajeriaRedLocal\servidor\demo\servidor\server_logs.txt
+2025-11-22T16:50:01.859-05:00  INFO 3612 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /192.168.40.12:56529
+2025-11-22T16:50:01.865-05:00  INFO 3612 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /192.168.40.12:56529
+2025-11-22T16:50:04.422-05:00  INFO 3612 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /192.168.40.12:56529
+2025-11-22T16:50:04.423-05:00  INFO 3612 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /192.168.40.12:56529
+2025-11-22T16:50:04.424-05:00  INFO 3612 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /192.168.40.12:56529
+2025-11-22T16:50:04.452-05:00  INFO 3612 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.12:56529 conectado y saludado.
+2025-11-22T16:50:04.453-05:00  INFO 3612 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN manuel|1234'
+2025-11-22T16:50:04.474-05:00  INFO 3612 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Login exitoso (provisional): usuario='manuel' desde /192.168.40.12:56529
+2025-11-22T16:50:04.475-05:00  INFO 3612 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : Login exitoso: manuel desde /192.168.40.12:56529
+2025-11-22T16:50:04.476-05:00  INFO 3612 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Usuario registrado para broadcast: manuel (user-conns=1)
+2025-11-22T16:50:04.477-05:00  INFO 3612 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 1 clients: manuel
+2025-11-22T16:50:04.528-05:00  INFO 3612 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Sesion creada para usuario manuel id=9fdc1885-f341-461f-9ac9-8fdf20683a31
+2025-11-22T16:50:22.380-05:00 ERROR 3612 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Error en worker para cliente /192.168.40.12:56529: java.net.SocketException: Connection reset
+2025-11-22T16:50:22.381-05:00  INFO 3612 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Usuario 'manuel' desconectado.
+2025-11-22T16:50:22.382-05:00  INFO 3612 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Usuario manuel desconectado desde 192.168.40.12 (user-conns=0)
+2025-11-22T16:50:22.382-05:00  INFO 3612 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 0 clients: 
+2025-11-22T16:50:35.184-05:00  INFO 3612 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /192.168.40.12:58770
+2025-11-22T16:50:35.188-05:00  INFO 3612 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /192.168.40.12:58770
+2025-11-22T16:50:39.162-05:00  INFO 3612 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /192.168.40.12:58770
+2025-11-22T16:50:39.163-05:00  INFO 3612 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /192.168.40.12:58770
+2025-11-22T16:50:39.163-05:00  INFO 3612 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /192.168.40.12:58770
+2025-11-22T16:50:39.165-05:00  INFO 3612 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.12:58770 conectado y saludado.
+2025-11-22T16:50:39.166-05:00  INFO 3612 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN manuel|1234'
+2025-11-22T16:50:39.173-05:00  INFO 3612 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Login exitoso (provisional): usuario='manuel' desde /192.168.40.12:58770
+2025-11-22T16:50:39.175-05:00  INFO 3612 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : Login exitoso: manuel desde /192.168.40.12:58770
+2025-11-22T16:50:39.176-05:00  INFO 3612 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Usuario registrado para broadcast: manuel (user-conns=1)
+2025-11-22T16:50:39.178-05:00  INFO 3612 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 1 clients: manuel
+2025-11-22T16:50:39.219-05:00  INFO 3612 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Sesion creada para usuario manuel id=6f0fc015-ce03-4a13-9657-13db6d47c845
+2025-11-22T16:51:13.806-05:00  INFO 3612 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /192.168.40.12:53944
+2025-11-22T16:51:13.810-05:00  INFO 3612 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /192.168.40.12:53944
+2025-11-22T16:51:16.828-05:00  INFO 3612 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /192.168.40.12:53944
+2025-11-22T16:51:16.829-05:00  INFO 3612 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /192.168.40.12:53944
+2025-11-22T16:51:16.830-05:00  INFO 3612 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /192.168.40.12:53944
+2025-11-22T16:51:16.832-05:00  INFO 3612 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.12:53944 conectado y saludado.
+2025-11-22T16:51:16.833-05:00  INFO 3612 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN laura|1234'
+2025-11-22T16:51:16.839-05:00  INFO 3612 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Login exitoso (provisional): usuario='laura' desde /192.168.40.12:53944
+2025-11-22T16:51:16.843-05:00  INFO 3612 --- [servidor] [pool-2-thread-2] com.proyecto.demo.ui.UiServerWindow      : Login exitoso: laura desde /192.168.40.12:53944
+2025-11-22T16:51:16.843-05:00  INFO 3612 --- [servidor] [pool-2-thread-2] c.proyecto.demo.server.ConnectedClients  : Usuario registrado para broadcast: laura (user-conns=1)
+2025-11-22T16:51:16.846-05:00  INFO 3612 --- [servidor] [pool-2-thread-2] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 2 clients: laura,manuel
+2025-11-22T16:51:16.884-05:00  INFO 3612 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Sesion creada para usuario laura id=1fd736cc-2545-4791-b4b6-f90136aad4bf
+2025-11-22T16:51:24.904-05:00  INFO 3612 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleMessage correctamente. Raw='MSG manuel|hola manuel, como anda'
+2025-11-22T16:51:24.904-05:00  INFO 3612 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : [2025-11-22 16:51:24] Mensaje enviado por: laura Para manuel Contenido: hola manuel, como anda
+2025-11-22T16:51:24.904-05:00  INFO 3612 --- [servidor] [pool-2-thread-2] com.proyecto.demo.ui.UiServerWindow      : [MSG] 2025-11-22 16:51:24 Mensaje enviado por: laura Para manuel Contenido: hola manuel, como anda (desde /192.168.40.12:53944)
+2025-11-22T16:51:24.921-05:00 DEBUG 3612 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Persistiendo mensaje: emisorId=2 receptorId=1 sesionId=1fd736cc-2545-4791-b4b6-f90136aad4bf contenido='hola manuel, como anda'
+2025-11-22T16:51:24.925-05:00 DEBUG 3612 --- [servidor] [pool-2-thread-2] com.proyecto.demo.dao.JdbcMessageDao     : Executing SQL: INSERT INTO mensajes (emisor_id,receptor_id,tipo_mensaje,contenido,archivo_id,sesion_id) VALUES (?,?,?,?,?,?) with emisorId=2, receptorId=1, tipo=TEXTO, sesionId=1fd736cc-2545-4791-b4b6-f90136aad4bf
+2025-11-22T16:51:34.065-05:00  INFO 3612 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleMessage correctamente. Raw='MSG laura|hola laura, bien'
+2025-11-22T16:51:34.065-05:00  INFO 3612 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : [2025-11-22 16:51:34] Mensaje enviado por: manuel Para laura Contenido: hola laura, bien
+2025-11-22T16:51:34.065-05:00  INFO 3612 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : [MSG] 2025-11-22 16:51:34 Mensaje enviado por: manuel Para laura Contenido: hola laura, bien (desde /192.168.40.12:58770)
+2025-11-22T16:51:34.083-05:00 DEBUG 3612 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Persistiendo mensaje: emisorId=1 receptorId=2 sesionId=6f0fc015-ce03-4a13-9657-13db6d47c845 contenido='hola laura, bien'
+2025-11-22T16:51:34.085-05:00 DEBUG 3612 --- [servidor] [pool-2-thread-1] com.proyecto.demo.dao.JdbcMessageDao     : Executing SQL: INSERT INTO mensajes (emisor_id,receptor_id,tipo_mensaje,contenido,archivo_id,sesion_id) VALUES (?,?,?,?,?,?) with emisorId=1, receptorId=2, tipo=TEXTO, sesionId=6f0fc015-ce03-4a13-9657-13db6d47c845
+2025-11-22T16:51:39.105-05:00 ERROR 3612 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Error en worker para cliente /192.168.40.12:58770: java.net.SocketException: Connection reset
+2025-11-22T16:51:39.105-05:00  INFO 3612 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Usuario 'manuel' desconectado.
+2025-11-22T16:51:39.105-05:00  INFO 3612 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Usuario manuel desconectado desde 192.168.40.12 (user-conns=0)
+2025-11-22T16:51:39.105-05:00  INFO 3612 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 1 clients: laura
+2025-11-22T16:51:52.827-05:00  INFO 3612 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /192.168.40.12:55772
+2025-11-22T16:51:52.831-05:00  INFO 3612 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /192.168.40.12:55772
+2025-11-22T16:51:56.011-05:00  INFO 3612 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /192.168.40.12:55772
+2025-11-22T16:51:56.012-05:00  INFO 3612 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /192.168.40.12:55772
+2025-11-22T16:51:56.012-05:00  INFO 3612 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /192.168.40.12:55772
+2025-11-22T16:51:56.014-05:00  INFO 3612 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.12:55772 conectado y saludado.
+2025-11-22T16:51:56.015-05:00  INFO 3612 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN manuel|1234'
+2025-11-22T16:51:56.019-05:00  INFO 3612 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Login exitoso (provisional): usuario='manuel' desde /192.168.40.12:55772
+2025-11-22T16:51:56.021-05:00  INFO 3612 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : Login exitoso: manuel desde /192.168.40.12:55772
+2025-11-22T16:51:56.023-05:00  INFO 3612 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Usuario registrado para broadcast: manuel (user-conns=1)
+2025-11-22T16:51:56.026-05:00  INFO 3612 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 2 clients: laura,manuel
+2025-11-22T16:51:56.064-05:00  INFO 3612 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Sesion creada para usuario manuel id=3a79cbcb-e3b1-49cb-a656-b16d3b339589
+2025-11-22T16:54:35.464-05:00  INFO 16952 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 16952 (C:\Users\josem\Desktop\avanzadasDevelop\mensajeriaRedLocal\servidor\demo\target\classes started by josem in C:\Users\josem\Desktop\avanzadasDevelop\mensajeriaRedLocal)
+2025-11-22T16:54:35.468-05:00 DEBUG 16952 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-11-22T16:54:35.470-05:00  INFO 16952 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-11-22T16:54:37.111-05:00  INFO 16952 --- [servidor] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9010 (http)
+2025-11-22T16:54:37.124-05:00  INFO 16952 --- [servidor] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-22T16:54:37.124-05:00  INFO 16952 --- [servidor] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
+2025-11-22T16:54:37.199-05:00  INFO 16952 --- [servidor] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-22T16:54:37.199-05:00  INFO 16952 --- [servidor] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1651 ms
+2025-11-22T16:54:37.382-05:00  INFO 16952 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-22T16:54:37.764-05:00  INFO 16952 --- [servidor] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5be052ca
+2025-11-22T16:54:37.764-05:00  INFO 16952 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-22T16:54:37.898-05:00 DEBUG 16952 --- [servidor] [main] com.proyecto.demo.dao.JdbcMessageDao     : No se pudo ejecutar ALTER TABLE para agregar 'sesion_id' (posiblemente versión antigua de MySQL). Continuando: StatementCallback; bad SQL grammar [ALTER TABLE mensajes ADD COLUMN IF NOT EXISTS sesion_id CHAR(36) NULL]
+2025-11-22T16:54:37.982-05:00  INFO 16952 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 192.168.40.12:9001
+2025-11-22T16:54:38.084-05:00  INFO 16952 --- [servidor] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-11-22T16:54:38.864-05:00  INFO 16952 --- [servidor] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9010 (http) with context path ''
+2025-11-22T16:54:38.880-05:00  INFO 16952 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 4.253 seconds (process running for 4.734)
+2025-11-22T16:54:38.893-05:00  INFO 16952 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=192.168.40.12, port=9010
+2025-11-22T16:54:38.895-05:00  INFO 16952 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UI enabled property = true; intentando inicializar UI
+2025-11-22T16:54:38.913-05:00  INFO 16952 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : java.awt.headless=false | GraphicsEnvironment.isHeadless=false
+2025-11-22T16:54:38.984-05:00  INFO 16952 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
+2025-11-22T16:54:39.315-05:00  INFO 16952 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Panel iniciado
+2025-11-22T16:54:39.316-05:00  INFO 16952 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
+2025-11-22T16:54:39.317-05:00  INFO 16952 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (initialize)
+2025-11-22T16:54:39.318-05:00  INFO 16952 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UiServerWindow.initialize() invocado desde DemoApplication.run
+2025-11-22T16:54:39.319-05:00  INFO 16952 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
+2025-11-22T16:54:39.319-05:00  INFO 16952 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
+2025-11-22T16:54:39.330-05:00  INFO 16952 --- [servidor] [main] com.proyecto.demo.DemoApplication        : DB check OK - usuarios count = 2
+2025-11-22T16:54:39.331-05:00  INFO 16952 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : DB check OK - usuarios count = 2
+2025-11-22T16:54:39.334-05:00  INFO 16952 --- [servidor] [main] com.proyecto.demo.web.LogStartup         : LogStartup initialized. includePast=true, startPosition=0, path=C:\Users\josem\Desktop\avanzadasDevelop\mensajeriaRedLocal\servidor\demo\servidor\server_logs.txt
+2025-11-22T16:54:51.055-05:00  INFO 16952 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /192.168.40.12:49851
+2025-11-22T16:54:51.061-05:00  INFO 16952 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /192.168.40.12:49851
+2025-11-22T16:54:53.585-05:00  INFO 16952 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /192.168.40.12:49851
+2025-11-22T16:54:53.586-05:00  INFO 16952 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /192.168.40.12:49851
+2025-11-22T16:54:53.587-05:00  INFO 16952 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /192.168.40.12:49851
+2025-11-22T16:54:53.591-05:00  INFO 16952 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.12:49851 conectado y saludado.
+2025-11-22T16:54:53.591-05:00  INFO 16952 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN manuel|1234'
+2025-11-22T16:54:53.622-05:00  INFO 16952 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Login exitoso (provisional): usuario='manuel' desde /192.168.40.12:49851
+2025-11-22T16:54:53.623-05:00  INFO 16952 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : Login exitoso: manuel desde /192.168.40.12:49851
+2025-11-22T16:54:53.623-05:00  INFO 16952 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Usuario registrado para broadcast: manuel (user-conns=1)
+2025-11-22T16:54:53.625-05:00  INFO 16952 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 1 clients: manuel
+2025-11-22T16:54:53.641-05:00  INFO 16952 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Sesion creada para usuario manuel id=29ddf1d0-a821-40c2-b3e2-558b2a40e787
+2025-11-22T16:55:00.043-05:00  INFO 16952 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /192.168.40.12:53399
+2025-11-22T16:55:00.051-05:00  INFO 16952 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /192.168.40.12:53399
+2025-11-22T16:55:02.327-05:00  INFO 16952 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /192.168.40.12:53399
+2025-11-22T16:55:02.328-05:00  INFO 16952 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /192.168.40.12:53399
+2025-11-22T16:55:02.328-05:00  INFO 16952 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /192.168.40.12:53399
+2025-11-22T16:55:02.331-05:00  INFO 16952 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.12:53399 conectado y saludado.
+2025-11-22T16:55:02.332-05:00  INFO 16952 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN laura|1234'
+2025-11-22T16:55:02.340-05:00  INFO 16952 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Login exitoso (provisional): usuario='laura' desde /192.168.40.12:53399
+2025-11-22T16:55:02.342-05:00  INFO 16952 --- [servidor] [pool-2-thread-2] com.proyecto.demo.ui.UiServerWindow      : Login exitoso: laura desde /192.168.40.12:53399
+2025-11-22T16:55:02.343-05:00  INFO 16952 --- [servidor] [pool-2-thread-2] c.proyecto.demo.server.ConnectedClients  : Usuario registrado para broadcast: laura (user-conns=1)
+2025-11-22T16:55:02.346-05:00  INFO 16952 --- [servidor] [pool-2-thread-2] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 2 clients: laura,manuel
+2025-11-22T16:55:02.376-05:00  INFO 16952 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Sesion creada para usuario laura id=9b8e2e65-0fc9-4300-8f26-f44b1314232d
+2025-11-22T16:55:18.414-05:00 ERROR 16952 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Error en worker para cliente /192.168.40.12:49851: java.net.SocketException: Connection reset
+2025-11-22T16:55:18.415-05:00  INFO 16952 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Usuario 'manuel' desconectado.
+2025-11-22T16:55:18.415-05:00  INFO 16952 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Usuario manuel desconectado desde 192.168.40.12 (user-conns=0)
+2025-11-22T16:55:18.416-05:00  INFO 16952 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 1 clients: laura

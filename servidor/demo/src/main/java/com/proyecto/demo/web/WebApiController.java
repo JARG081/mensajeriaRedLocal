@@ -25,13 +25,13 @@ public class WebApiController {
 
     @GetMapping("/users")
     public List<Map<String, Object>> users() {
-        List<Map<String,Object>> rows = jdbc.queryForList("SELECT id, nombre_usuario FROM usuarios ORDER BY nombre_usuario ASC");
+        List<Map<String,Object>> rows = jdbc.queryForList("SELECT id, nombre FROM usuarios ORDER BY nombre ASC");
         var sessions = connectedClients.getUserSessions();
         return rows.stream().map(r -> {
             Map<String,Object> m = new HashMap<>();
             m.put("id", r.get("id"));
-            m.put("username", r.get("nombre_usuario"));
-            Object u = r.get("nombre_usuario");
+            m.put("username", r.get("nombre"));
+            Object u = r.get("nombre");
             java.util.List<String> s = u == null ? java.util.List.of() : sessions.getOrDefault(u.toString(), java.util.List.of());
             m.put("connected", !s.isEmpty());
             m.put("sessions", s);

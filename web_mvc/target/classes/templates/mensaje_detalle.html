@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/webjars/bootstrap/5.2.3/css/bootstrap.min.css" />
 </head>
 <body>
+<div th:replace="~{fragments/nav :: nav}"></div>
 <div class="container mt-4">
     <h2>Mensaje [[${mensaje.id}]]</h2>
     <dl class="row">

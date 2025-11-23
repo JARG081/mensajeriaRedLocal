@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ver Mensaje por ID</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.2.3/css/bootstrap.min.css" />
+    <script>
+        function goToMensaje(e){
+            e.preventDefault();
+            var id = document.getElementById('id').value;
+            if(id && id.trim() !== ''){
+                window.location.href = '/web/mensajes/' + encodeURIComponent(id);
+            }
+        }
+    </script>
+</head>
+<body>
+<div th:replace="~{fragments/nav :: nav}"></div>
+<div class="container mt-4">
+    <h2>Ver detalle de mensaje</h2>
+    <form onsubmit="goToMensaje(event)">
+        <div class="mb-3">
+            <label for="id" class="form-label">Ingrese el ID del mensaje</label>
+            <input id="id" name="id" class="form-control" placeholder="ID del mensaje" />
+        </div>
+        <button class="btn btn-primary" type="submit">Ver mensaje</button>
+        <a class="btn btn-secondary ms-2" th:href="@{/web/mensajes}">Volver</a>
+    </form>
+</div>
+<script src="/webjars/bootstrap/5.2.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

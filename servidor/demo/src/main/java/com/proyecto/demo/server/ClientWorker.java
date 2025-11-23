@@ -146,8 +146,8 @@ public class ClientWorker implements Runnable {
         String filename = parts[1];
         String base64 = parts[2];
 
-        // ensure uploads directory exists
-        java.nio.file.Path uploadsDir = java.nio.file.Paths.get("uploads");
+        // ensure Archivos_enviados directory exists (centralized storage for accepted files)
+        java.nio.file.Path uploadsDir = java.nio.file.Paths.get("Archivos_enviados");
         try {
             if (!java.nio.file.Files.exists(uploadsDir)) {
                 java.nio.file.Files.createDirectories(uploadsDir);
@@ -228,10 +228,10 @@ public class ClientWorker implements Runnable {
             out.flush();
             // persist archivo and mensaje
             try {
-                long archivoId = archivoDao.insertArchivo(filename, target.toString(), data.length);
                 var senderOpt = userDao.findByUsername(authenticatedUser);
-                if (senderOpt.isPresent()) {
-                    Long senderId = senderOpt.get().getId();
+                Long senderId = senderOpt.isPresent() ? senderOpt.get().getId() : null;
+                long archivoId = archivoDao.insertArchivo(filename, target.toString(), data.length, senderId);
+                if (senderId != null) {
                     if ("ALL".equalsIgnoreCase(recipient)) {
                         for (String r : connectedClients.getConnectedUsers()) {
                             if (r.equalsIgnoreCase(authenticatedUser)) continue;
@@ -380,9 +380,8 @@ public class ClientWorker implements Runnable {
         String recipient = parts[0];
         String filename = parts[1];
         String base64 = parts[2];
-
-        // ensure uploads directory exists
-        java.nio.file.Path uploadsDir = java.nio.file.Paths.get("uploads");
+        // ensure Archivos_enviados directory exists (centralized storage for accepted files)
+        java.nio.file.Path uploadsDir = java.nio.file.Paths.get("Archivos_enviados");
         try {
             if (!java.nio.file.Files.exists(uploadsDir)) {
                 java.nio.file.Files.createDirectories(uploadsDir);
@@ -395,7 +394,7 @@ public class ClientWorker implements Runnable {
         byte[] data;
         try {
             data = java.util.Base64.getDecoder().decode(base64);
-            try { com.proyecto.demo.ui.UiServerWindow.publishMessageToUi("Archivo DATA recibido: " + authenticatedUser + " -> " + recipient + " : " + filename + " (" + data.length + " bytes)"); } catch (Exception ignored) {}
+            try { com.proyecto.demo.ui.UiServerWindow.publishMessageToUi("Archivo DATA recibido: " + authenticatedUser + " -> " + recipient + " : " + filename + " (" + data.length + " bytes)" ); } catch (Exception ignored) {}
         } catch (IllegalArgumentException iae) {
             String reason = "base64_invalido";
             try { com.proyecto.demo.ui.UiServerWindow.publishMessageToUi("Rechazado DATA: " + filename + " motivo: " + reason + " desde " + socket.getRemoteSocketAddress()); } catch (Exception ignored) {}
@@ -429,10 +428,10 @@ public class ClientWorker implements Runnable {
             out.flush();
             // persist archivo and mensaje
             try {
-                long archivoId = archivoDao.insertArchivo(filename, target.toString(), data.length);
                 var senderOpt = userDao.findByUsername(authenticatedUser);
-                if (senderOpt.isPresent()) {
-                    Long senderId = senderOpt.get().getId();
+                Long senderId = senderOpt.isPresent() ? senderOpt.get().getId() : null;
+                long archivoId = archivoDao.insertArchivo(filename, target.toString(), data.length, senderId);
+                if (senderId != null) {
                     if ("ALL".equalsIgnoreCase(recipient)) {
                         for (String r : connectedClients.getConnectedUsers()) {
                             if (r.equalsIgnoreCase(authenticatedUser)) continue;

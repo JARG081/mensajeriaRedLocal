@@ -7,6 +7,7 @@ public class Archivo {
     private Long propietarioId;
     private String ruta; // optional filesystem path
     private String propietarioNombre;
+    private java.time.LocalDateTime creadoEn;
 
     public Archivo() {}
 
@@ -22,4 +23,6 @@ public class Archivo {
     public void setRuta(String ruta) { this.ruta = ruta; }
     public String getPropietarioNombre() { return propietarioNombre; }
     public void setPropietarioNombre(String propietarioNombre) { this.propietarioNombre = propietarioNombre; }
+    public java.time.LocalDateTime getCreadoEn() { return creadoEn; }
+    public void setCreadoEn(java.time.LocalDateTime creadoEn) { this.creadoEn = creadoEn; }
 }

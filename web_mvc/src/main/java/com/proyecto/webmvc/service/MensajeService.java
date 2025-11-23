@@ -37,6 +37,37 @@ public class MensajeService {
 
     public List<Map<String,Object>> usuariosDesconectados() { return sesionDao.findDisconnectedSessions(); }
 
+    public List<Map<String,Object>> usuariosDesconectadosAgrupados() {
+        List<Map<String,Object>> rows = sesionDao.findLastDisconnectionsPerUser();
+        java.util.List<java.util.Map<String,Object>> out = new java.util.ArrayList<>();
+        for (Map<String,Object> r : rows) {
+            Object uidObj = r.get("usuario_id");
+            if (uidObj == null) continue;
+            Long uid = Long.valueOf(uidObj.toString());
+            Object ultima = r.get("ultima_desconexion");
+            String nombre = null;
+            try {
+                com.proyecto.webmvc.model.Usuario u = usuarioDao.findById(uid);
+                if (u != null) nombre = u.getNombre();
+            } catch (Exception ex) {
+                nombre = null;
+            }
+            Long mensajes = 0L;
+            try {
+                mensajes = usuarioDao.countMensajesEnviados(uid);
+            } catch (Exception e) {
+                mensajes = 0L;
+            }
+            java.util.Map<String,Object> m = new java.util.HashMap<>();
+            m.put("usuario_id", uid);
+            m.put("nombre", nombre);
+            m.put("ultima_desconexion", ultima);
+            m.put("mensajes_enviados", mensajes);
+            out.add(m);
+        }
+        return out;
+    }
+
     public Map<String,Object> usuarioMasEnvios() {
         java.util.Map<String,Object> row = mensajeDao.topSender();
         if (row == null) return null;
@@ -46,6 +77,6 @@ public class MensajeService {
         Long emisorId = Long.valueOf(emisorIdObj.toString());
         Long cnt = cntObj == null ? 0L : Long.valueOf(cntObj.toString());
         com.proyecto.webmvc.model.Usuario usuario = usuarioDao.findById(emisorId);
-        return java.util.Map.of("id", emisorId, "nombre", usuario.getNombreUsuario(), "cantidad", cnt);
+        return java.util.Map.of("id", emisorId, "nombre", usuario.getNombre(), "cantidad", cnt);
     }
 }

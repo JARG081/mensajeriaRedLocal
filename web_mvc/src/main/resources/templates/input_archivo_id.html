@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Descargar Archivo por ID</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.2.3/css/bootstrap.min.css" />
+    <script>
+        function goToArchivo(e){
+            e.preventDefault();
+            var id = document.getElementById('id').value;
+            if(id && id.trim() !== ''){
+                window.location.href = '/web/archivos/' + encodeURIComponent(id) + '/download';
+            }
+        }
+    </script>
+</head>
+<body>
+<div th:replace="~{fragments/nav :: nav}"></div>
+<div class="container mt-4">
+    <h2>Descargar archivo por ID</h2>
+    <form onsubmit="goToArchivo(event)">
+        <div class="mb-3">
+            <label for="id" class="form-label">Ingrese el ID del archivo</label>
+            <input id="id" name="id" class="form-control" placeholder="ID del archivo" />
+        </div>
+        <button class="btn btn-primary" type="submit">Descargar</button>
+        <a class="btn btn-secondary ms-2" th:href="@{/web/archivos}">Volver</a>
+    </form>
+</div>
+<script src="/webjars/bootstrap/5.2.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

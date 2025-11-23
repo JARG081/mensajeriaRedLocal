@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body>
+<nav th:fragment="nav" class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/web/usuarios}">Mensajería</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link" th:href="@{/web/usuarios}">Usuarios</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/web/informes}">Informes</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/web/archivos}">Archivos</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/web/conectados}">Conectados</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/web/desconectados}">Desconectados</a></li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="idDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Ir por ID</a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="idDropdown">
+                        <li><a class="dropdown-item" th:href="@{/web/input-usuario-id}">Usuario -> Mensajes</a></li>
+                        <li><a class="dropdown-item" th:href="@{/web/input-mensaje-id}">Ver Mensaje</a></li>
+                        <li><a class="dropdown-item" th:href="@{/web/input-archivo-id}">Descargar Archivo</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+</body>
+</html>

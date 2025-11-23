@@ -17,7 +17,9 @@ public class MensajeController {
     public MensajeController(MensajeService service) { this.service = service; }
 
     @GetMapping("/web/usuarios/{id}/mensajes")
-    public String mensajesPorUsuario(@PathVariable("id") Long id, @RequestParam(name="tipo", required=false, defaultValue="texto") String tipo, Model m) {
+    public String mensajesPorUsuario(@PathVariable("id") Long id, @RequestParam(name="tipo", required=false, defaultValue="TEXTO") String tipo, Model m) {
+        if (tipo == null) tipo = "TEXTO";
+        tipo = tipo.toUpperCase();
         List<Mensaje> mensajes = service.mensajesPorEmisorYTipo(id, tipo);
         m.addAttribute("mensajes", mensajes);
         m.addAttribute("usuarioId", id);

@@ -278,6 +278,19 @@ public class MessageService {
             // publish username so UI can update title and other components
             String user = clientState == null ? null : clientState.getCurrentUser();
             bus.publish("USER_LOGGED", user);
+            // After login, load local persisted history and publish to UI so previous messages appear
+            try {
+                java.util.List<String> lines = persistence.readAllMessages();
+                if (lines != null && !lines.isEmpty()) {
+                    log.info("Loading {} persisted lines into UI after login", lines.size());
+                    for (String l : lines) {
+                        // publish each persisted line as if it were a server line
+                        bus.publish("SERVER_LINE", l);
+                    }
+                }
+            } catch (Exception e) {
+                log.warn("Error loading persisted history after login: {}", e.toString());
+            }
             return;
         }
         if ("REGISTERED".equalsIgnoreCase(trimmed)) {

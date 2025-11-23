@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Buscar Mensajes por Usuario ID</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.2.3/css/bootstrap.min.css" />
+    <script>
+        function goToUserMessages(e){
+            e.preventDefault();
+            var id = document.getElementById('id').value;
+            if(id && id.trim() !== ''){
+                window.location.href = '/web/usuarios/' + encodeURIComponent(id) + '/mensajes';
+            }
+        }
+    </script>
+</head>
+<body>
+<div th:replace="~{fragments/nav :: nav}"></div>
+<div class="container mt-4">
+    <h2>Ir a mensajes de un usuario</h2>
+    <form onsubmit="goToUserMessages(event)">
+        <div class="mb-3">
+            <label for="id" class="form-label">Ingrese el ID del usuario</label>
+            <input id="id" name="id" class="form-control" placeholder="ID de usuario" />
+        </div>
+        <button class="btn btn-primary" type="submit">Ver mensajes</button>
+        <a class="btn btn-secondary ms-2" th:href="@{/web/usuarios}">Volver</a>
+    </form>
+    <p class="mt-3 text-muted">Ejemplo: introducir el número de usuario y presionar "Ver mensajes".</p>
+</div>
+<script src="/webjars/bootstrap/5.2.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

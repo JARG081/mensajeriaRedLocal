@@ -21,7 +21,7 @@ public class UsuarioController {
         java.util.List<java.util.Map<String,Object>> rows = new java.util.ArrayList<>();
         for (Usuario u : usuarios) {
             Long cnt = service.countSent(u.getId());
-            rows.add(java.util.Map.of("id", u.getId(), "nombre", u.getNombreUsuario(), "enviados", cnt == null ? 0L : cnt));
+            rows.add(java.util.Map.of("id", u.getId(), "nombre", u.getNombre(), "enviados", cnt == null ? 0L : cnt));
         }
         m.addAttribute("usuarios", rows);
         return "usuarios";

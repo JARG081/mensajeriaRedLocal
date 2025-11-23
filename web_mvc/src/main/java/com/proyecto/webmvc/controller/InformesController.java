@@ -27,7 +27,7 @@ public class InformesController {
 
     @GetMapping("/web/desconectados")
     public String desconectados(Model m) {
-        m.addAttribute("sesiones", service.usuariosDesconectados());
+        m.addAttribute("sesiones", service.usuariosDesconectadosAgrupados());
         return "desconectados";
     }
 }

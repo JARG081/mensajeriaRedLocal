@@ -19,22 +19,24 @@ public class JdbcArchivoDao implements ArchivoDao {
     private void ensureTable() {
         jdbc.execute("CREATE TABLE IF NOT EXISTS archivos (" +
                 "id BIGINT AUTO_INCREMENT PRIMARY KEY, " +
-                "filename VARCHAR(512) NOT NULL, " +
-                "path VARCHAR(1024), " +
-                "size BIGINT, " +
+                "nombre VARCHAR(512) NOT NULL, " +
+                "ruta VARCHAR(1024), " +
+                "tamano BIGINT, " +
+                "propietario_id BIGINT, " +
                 "creado_en DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)" +
                 ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
     }
 
     @Override
-    public long insertArchivo(String filename, String path, long size) {
-        final String sql = "INSERT INTO archivos (filename,path,size) VALUES (?,?,?)";
+    public long insertArchivo(String filename, String path, long size, Long propietarioId) {
+        final String sql = "INSERT INTO archivos (nombre,ruta,tamano,propietario_id) VALUES (?,?,?,?)";
         GeneratedKeyHolder kh = new GeneratedKeyHolder();
         PreparedStatementCreator psc = con -> {
             PreparedStatement ps = con.prepareStatement(sql, new String[]{"id"});
             ps.setString(1, filename);
             ps.setString(2, path);
             ps.setLong(3, size);
+            if (propietarioId != null) ps.setLong(4, propietarioId); else ps.setNull(4, java.sql.Types.BIGINT);
             return ps;
         };
         jdbc.update(psc, kh);
@@ -46,7 +48,7 @@ public class JdbcArchivoDao implements ArchivoDao {
     public ArchivoInfo findById(long id) {
         try {
             return jdbc.queryForObject(
-                    "SELECT id, filename, path, size FROM archivos WHERE id = ?",
+                    "SELECT id, nombre as filename, ruta as path, tamano as size, creado_en FROM archivos WHERE id = ?",
                     new Object[]{id},
                     (rs, rn) -> {
                         ArchivoInfo a = new ArchivoInfo();
@@ -54,6 +56,8 @@ public class JdbcArchivoDao implements ArchivoDao {
                         a.filename = rs.getString("filename");
                         a.path = rs.getString("path");
                         a.size = rs.getLong("size");
+                        java.sql.Timestamp ts = rs.getTimestamp("creado_en");
+                        if (ts != null) a.creadoEn = ts.toLocalDateTime();
                         return a;
                     }
             );

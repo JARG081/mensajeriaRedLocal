@@ -20,11 +20,11 @@ public class JdbcUserDao implements UserDao {
 
     @PostConstruct
     public void ensureTable() {
-        // Create table if not exists using explicit id (no AUTO_INCREMENT)
+        // Create table if not exists using generated id (AUTO_INCREMENT)
         jdbc.execute("CREATE TABLE IF NOT EXISTS usuarios (" +
-                "id BIGINT NOT NULL PRIMARY KEY, " +
-                "nombre_usuario VARCHAR(100) NOT NULL UNIQUE, " +
-                "contrasena_hash VARCHAR(512) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8");
+            "id BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT, " +
+            "nombre VARCHAR(100) NOT NULL UNIQUE, " +
+            "contrasena_hash VARCHAR(512) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci");
     }
 
     private final RowMapper<UserDto> mapper = new RowMapper<>() {
@@ -32,7 +32,7 @@ public class JdbcUserDao implements UserDao {
         public UserDto mapRow(ResultSet rs, int rowNum) throws SQLException {
             UserDto u = new UserDto();
             u.setId(rs.getLong("id"));
-            u.setUsername(rs.getString("nombre_usuario"));
+            u.setUsername(rs.getString("nombre"));
             u.setPasswordHash(rs.getString("contrasena_hash"));
             return u;
         }
@@ -41,7 +41,7 @@ public class JdbcUserDao implements UserDao {
     @Override
     public Optional<UserDto> findByUsername(String username) {
         try {
-            UserDto u = jdbc.queryForObject("SELECT id, nombre_usuario, contrasena_hash FROM usuarios WHERE nombre_usuario = ?", new Object[]{username}, mapper);
+            UserDto u = jdbc.queryForObject("SELECT id, nombre, contrasena_hash FROM usuarios WHERE nombre = ?", new Object[]{username}, mapper);
             return Optional.ofNullable(u);
         } catch (Exception e) {
             return Optional.empty();
@@ -52,7 +52,7 @@ public class JdbcUserDao implements UserDao {
     public boolean createUser(Long id, String username, String passwordHash) {
         if (id == null) return false; // we do not allow null id in this schema
         try {
-            int updated = jdbc.update("INSERT INTO usuarios (id, nombre_usuario, contrasena_hash) VALUES (?, ?, ?)", id, username, passwordHash);
+            int updated = jdbc.update("INSERT INTO usuarios (id, nombre, contrasena_hash) VALUES (?, ?, ?)", id, username, passwordHash);
             return updated == 1;
         } catch (Exception e) {
             return false;

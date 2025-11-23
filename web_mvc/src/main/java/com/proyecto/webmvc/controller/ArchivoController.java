@@ -38,4 +38,16 @@ public class ArchivoController {
             return ResponseEntity.status(500).body("Error descargando archivo");
         }
     }
+
+    @GetMapping("/web/archivos")
+    public String listArchivos(org.springframework.ui.Model m) {
+        try {
+            java.util.List<Archivo> archivos = archivoDao.findAllOrderByDateDesc();
+            m.addAttribute("archivos", archivos);
+            return "archivos";
+        } catch (Exception e) {
+            m.addAttribute("error", "No se pudo listar archivos: " + e.getMessage());
+            return "archivos";
+        }
+    }
 }

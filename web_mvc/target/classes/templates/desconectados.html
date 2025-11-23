@@ -6,17 +6,17 @@
     <link rel="stylesheet" href="/webjars/bootstrap/5.2.3/css/bootstrap.min.css" />
 </head>
 <body>
+<div th:replace="~{fragments/nav :: nav}"></div>
 <div class="container mt-4">
     <h2>Usuarios desconectados</h2>
     <table class="table table-sm table-striped">
-        <thead><tr><th>Sesion ID</th><th>Usuario ID</th><th>IP</th><th>Hora conexion</th><th>Hora desconexion</th></tr></thead>
+        <thead><tr><th>Usuario ID</th><th>Nombre</th><th>Última desconexión</th><th>Mensajes enviados</th></tr></thead>
         <tbody>
         <tr th:each="s : ${sesiones}">
-            <td th:text="${s.id}"></td>
             <td th:text="${s.usuario_id}"></td>
-            <td th:text="${s.ip}"></td>
-            <td th:text="${s.fecha_inicio}"></td>
-            <td th:text="${s.fecha_fin}"></td>
+            <td th:text="${s.nombre}"></td>
+            <td th:text="${s.ultima_desconexion}"></td>
+            <td th:text="${s.mensajes_enviados}"></td>
         </tr>
         </tbody>
     </table>
