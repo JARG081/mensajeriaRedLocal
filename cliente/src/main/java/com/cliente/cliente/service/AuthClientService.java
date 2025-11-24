@@ -53,13 +53,13 @@ public class AuthClientService {
     }
 
     // Envía LOGIN y retorna true si el comando fue enviado
-    public boolean login(String user, String pass) {
+    public boolean login(String id, String user, String pass) {
         try {
-            log.info("Login request for user='{}' (password masked)", user);
-            log.info("mensaje llega a funcion de AuthClientService.login correctamente for user='{}'", user);
+            log.info("Login request for user='{}' id='{}' (password masked)", user, id);
+            log.info("mensaje llega a funcion de AuthClientService.login correctamente for user='{}' id='{}'", user, id);
             ensureConnected();
             // prepare masked literal for logging (but send full password)
-            String loginLiteral = "LOGIN " + user + "|" + maskForLog(pass);
+            String loginLiteral = "LOGIN " + id + "|" + user + "|" + maskForLog(pass);
             log.info("Enviando LOGIN al servidor (masked): {}", loginLiteral);
             // send the real password to the server; only mask it in logs
             try {
@@ -67,19 +67,19 @@ public class AuthClientService {
                 clientState.setCurrentUser(user);
                 // notify UI that login was requested
                 bus.publish("LOGIN_REQUESTED", user);
-                conn.sendRaw("LOGIN " + user + "|" + pass);
+                conn.sendRaw("LOGIN " + id + "|" + user + "|" + pass);
             } catch (IOException ioe) {
                 log.warn("Enviar LOGIN falló con IOException: {}. Intentando reconectar y reenviar...", ioe.getMessage());
-                try { conn.connect(); conn.sendRaw("LOGIN " + user + "|" + pass); }
+                try { conn.connect(); conn.sendRaw("LOGIN " + id + "|" + user + "|" + pass); }
                 catch (Exception retryEx) {
                     log.error("Reintento de LOGIN falló: {}", retryEx.getMessage(), retryEx);
                     throw retryEx;
                 }
             }
-            log.debug("LOGIN payload sent (masked) for user='{}': {}", user, loginLiteral);
+            log.debug("LOGIN payload sent (masked) for user='{}' id={} : {}", user, id, loginLiteral);
             return true;
         } catch (Exception e) {
-            log.error("login error for user='{}': {}", user, e.getMessage(), e);
+            log.error("login error for user='{}' id='{}': {}", user, id, e.getMessage(), e);
             return false;
         }
     }

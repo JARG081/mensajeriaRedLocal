@@ -52,14 +52,8 @@ public class JdbcArchivoDao implements ArchivoDao {
     }
 
     private void ensureTable() {
-        jdbc.execute("CREATE TABLE IF NOT EXISTS archivos (" +
-                "id BIGINT AUTO_INCREMENT PRIMARY KEY, " +
-                "nombre VARCHAR(512) NOT NULL, " +
-                "ruta VARCHAR(1024), " +
-                "tamano BIGINT, " +
-                "propietario_id BIGINT, " +
-                "creado_en DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)" +
-                ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
+        // Skipping DDL execution for 'archivos' table; schema must be created externally
+        log.info("ensureTable skipped for 'archivos' - DDL is managed outside the application");
     }
 
     @Override

@@ -156,16 +156,17 @@ public class LoginPanel {
     }
 
     private void doLogin() {
+        String id = idField.getText().trim();
         String u = userField.getText().trim();
         String p = new String(passField.getPassword()).trim();
-        if (u.isEmpty() || p.isEmpty()) {
-            JOptionPane.showMessageDialog(panel, "Usuario y contraseña requeridos");
+        if (id.isEmpty() || u.isEmpty() || p.isEmpty()) {
+            JOptionPane.showMessageDialog(panel, "ID, usuario y contraseña requeridos");
             return;
         }
-        log.info("Intentando iniciar sesión con usuario '{}'", u);
+        log.info("Intentando iniciar sesión con usuario '{}' id='{}'", u, id);
         new Thread(() -> {
-            boolean result = authService.login(u, p);
-            log.info("Resultado login '{}': {}", u, result ? "éxito" : "fallo");
+            boolean result = authService.login(id, u, p);
+            log.info("Resultado login '{}' (id={}): {}", u, id, result ? "éxito" : "fallo");
         }).start();
     }
 

@@ -173,10 +173,9 @@ public class ChatPanel {
             // solicitar logout al servicio de autenticación (cerrará la conexión TCP)
             try { authService.logout(); } catch (Exception ex) { log.warn("Logout error: {}", ex.getMessage()); }
         } finally {
-            // limpiar estado local
+            // keep in-memory conversation and files so the user can see them if they re-open the UI
             try { usersModel.clear(); } catch (Exception ignored) {}
-            try { conversations.clear(); filesPerConversation.clear(); filesModel.clear(); } catch (Exception ignored) {}
-            // notificar al bus para que la ventana principal muestre login
+            // do NOT clear conversations/filesPerConversation/filesModel here to preserve message history in the UI
             try { bus.publish("USER_LOGOUT", null); } catch (Exception ignored) {}
         }
     });
@@ -254,6 +253,12 @@ public class ChatPanel {
                     if (from.equals(targetUser)) {
                         refreshFilesListFor(from);
                     }
+                    // Notify user with an alert instead of adding a chat line for file receipts
+                    try {
+                        String title = "Archivo recibido";
+                        String message = "Has recibido un archivo de '" + from + "': " + dto.getFilename();
+                        JOptionPane.showMessageDialog(panel, message, title, JOptionPane.INFORMATION_MESSAGE);
+                    } catch (Exception ignored) {}
                 });
             });
 
@@ -361,34 +366,25 @@ public class ChatPanel {
             // si viene con marcador [SRV] quitarlo
             if (afterTs.startsWith("[SRV] ")) afterTs = afterTs.substring(6);
 
-            // manejar MSGFROM (servidor) -> publicar como mensaje entrante
-            if (afterTs.startsWith("MSGFROM ")) {
-                String payloadStr = afterTs.substring(8);
-                String[] p = payloadStr.split("\\|", 2);
-                String sender = p.length > 0 ? p[0] : "";
-                String text = p.length > 1 ? p[1] : "";
-                String line = String.format("[%s] %s: %s", new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date()), sender, text);
-                conversations.computeIfAbsent(sender, k -> new java.util.ArrayList<>()).add(line);
-                // si estoy viendo esa conversación, añadirla
-                SwingUtilities.invokeLater(() -> {
-                    if (sender.equals(targetUser)) appendLineToChat(line);
-                });
-                return;
-            }
-
-            // FILEFROM historic or live
-            if (afterTs.startsWith("FILEFROM ")) {
-                try {
-                    String payloadStr = afterTs.substring(9);
-                    String[] p = payloadStr.split("\\|", 3);
+                // manejar MSGFROM (servidor) -> publicar como mensaje entrante
+                if (afterTs.startsWith("MSGFROM ")) {
+                    String payloadStr = afterTs.substring(8);
+                    String[] p = payloadStr.split("\\|", 2);
                     String sender = p.length > 0 ? p[0] : "";
-                    String filename = p.length > 1 ? p[1] : "";
-                    String line = String.format("[%s] %s: (archivo) %s", new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date()), sender, filename);
+                    String text = p.length > 1 ? p[1] : "";
+                    // If server sent a textual notification for a file like "(file) filename", do not show it in chat.
+                    if (text != null && text.startsWith("(file) ")) {
+                        // Ignore server-side textual file notice; the actual file will arrive via FILEFROM/HISTFILE
+                        return;
+                    }
+                    String line = String.format("[%s] %s: %s", new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date()), sender, text);
                     conversations.computeIfAbsent(sender, k -> new java.util.ArrayList<>()).add(line);
-                    SwingUtilities.invokeLater(() -> { if (sender.equals(targetUser)) appendLineToChat(line); });
-                } catch (Exception ignored) {}
-                return;
-            }
+                    // si estoy viendo esa conversación, añadirla
+                    SwingUtilities.invokeLater(() -> {
+                        if (sender.equals(targetUser)) appendLineToChat(line);
+                    });
+                    return;
+                }
 
             // Mensajes que se guardaron localmente con formato "... Yo -> dest: text" o similares
             if (afterTs.contains("Yo -> ") || afterTs.contains("->")) {

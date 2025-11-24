@@ -35,18 +35,26 @@ public class ApiUsuarioController {
         this.rest = new RestTemplate();
     }
 
+    // API assumes the database schema provided by the Workbench SQL script.
+    // The `mensajes` table contains a `tipo` column (ENUM). Queries below use `m.tipo`.
+
     @GetMapping(value = "/response", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> obtenerResponseFixture() {
         try {
-            ClassPathResource r = new ClassPathResource("response.json");
-            if (!r.exists()) return ResponseEntity.notFound().build();
-            try (InputStream is = r.getInputStream()) {
-                byte[] data = is.readAllBytes();
-                String s = new String(data, StandardCharsets.UTF_8);
-                return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(s);
-            }
-        } catch (IOException e) {
-            return ResponseEntity.status(500).body("{\"error\":\"no se pudo leer fixture\"}");
+            // Obtener primer usuario disponible en la BD y delegar a /usuarios/{id}
+            List<Map<String,Object>> rows = jdbc.queryForList("SELECT id FROM usuarios ORDER BY id ASC LIMIT 1");
+            if (rows == null || rows.isEmpty()) return ResponseEntity.notFound().build();
+            Object idObj = rows.get(0).get("id");
+            if (idObj == null) return ResponseEntity.notFound().build();
+            long id = Long.parseLong(idObj.toString());
+            ResponseEntity<?> resp = obtenerInfoUsuario(id);
+            if (!resp.getStatusCode().is2xxSuccessful()) return ResponseEntity.status(resp.getStatusCode()).build();
+            // Convertir el body a JSON string
+            Object body = resp.getBody();
+            String json = body == null ? "{}" : new com.fasterxml.jackson.databind.ObjectMapper().writeValueAsString(body);
+            return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(json);
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("{\"error\":\"Error interno al obtener datos desde la BD\"}");
         }
     }
 
@@ -100,8 +108,7 @@ public class ApiUsuarioController {
 
     @GetMapping("/usuarios/{id}/mensajes/enviados")
     public List<Map<String, Object>> mensajesEnviados(@PathVariable("id") long id) {
-        String sql = "SELECT m.id, m.emisor_id, m.receptor_id, m.tipo_mensaje, m.contenido, m.archivo_id, m.creado_en " +
-                "FROM mensajes m WHERE m.emisor_id = ? ORDER BY m.creado_en DESC LIMIT 500";
+        String sql = "SELECT m.id, m.emisor_id, m.receptor_id, m.tipo AS tipo_mensaje, m.contenido, m.archivo_id, m.creado_en FROM mensajes m WHERE m.emisor_id = ? ORDER BY m.creado_en DESC LIMIT 500";
         List<Map<String, Object>> rows = jdbc.queryForList(sql, id);
         for (Map<String, Object> r : rows) {
             r.put("ip_emisor", null);
@@ -112,8 +119,7 @@ public class ApiUsuarioController {
 
     @GetMapping("/usuarios/{id}/mensajes/recibidos")
     public List<Map<String, Object>> mensajesRecibidos(@PathVariable("id") long id) {
-        String sql = "SELECT m.id, m.emisor_id, m.receptor_id, m.tipo_mensaje, m.contenido, m.archivo_id, m.creado_en " +
-                "FROM mensajes m WHERE m.receptor_id = ? ORDER BY m.creado_en DESC LIMIT 500";
+        String sql = "SELECT m.id, m.emisor_id, m.receptor_id, m.tipo AS tipo_mensaje, m.contenido, m.archivo_id, m.creado_en FROM mensajes m WHERE m.receptor_id = ? ORDER BY m.creado_en DESC LIMIT 500";
         List<Map<String, Object>> rows = jdbc.queryForList(sql, id);
         for (Map<String, Object> r : rows) {
             r.put("ip_emisor", null);

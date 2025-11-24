@@ -38,27 +38,30 @@ public class AuthDbService implements AuthService {
     }
 
     @Override
-    public synchronized boolean login(String usuario, String password) throws Exception {
-        if (usuario == null || password == null) return false;
-        var existing = userDao.findByUsername(usuario);
+    public synchronized boolean login(String id, String usuario, String password) throws Exception {
+        if (id == null || usuario == null || password == null) return false;
+        Long lid = null;
+        try { lid = Long.parseLong(id); } catch (NumberFormatException nfe) { log.warn("Login intent with non-numeric id: {}", id); return false; }
+
+        // find by id and verify username + password hash match exactly
+        var existing = userDao.findById(lid);
         if (existing.isEmpty()) {
-            log.warn("Login intento para usuario desconocido: {}", usuario);
+            log.warn("Login intento para id desconocido: {}", lid);
+            return false;
+        }
+        var u = existing.get();
+        String dbUser = u.getUsername();
+        String stored = u.getPasswordHash();
+        if (dbUser == null || !dbUser.equals(usuario)) {
+            log.warn("Login fallo: usuario proporcionado no coincide con BD (proporcionado='{}' vs bd='{}') for id={}", usuario, dbUser, lid);
             return false;
         }
         String provided = DigestUtils.sha256Hex(password);
-        String stored = existing.get().getPasswordHash();
         if (stored != null) stored = stored.trim();
         if (provided != null) provided = provided.trim();
-        // Log only safe metadata (do not log full hashes or passwords)
-        try {
-            String provPrefix = provided.length() > 8 ? provided.substring(0, 8) : provided;
-            int storedLen = stored == null ? 0 : stored.length();
-            log.debug("Auth attempt user='{}' providedHashPrefix='{}' storedHashLen={}", usuario, provPrefix, storedLen);
-        } catch (Exception ignored) {}
-        // Compare case-insensitively to avoid hex-case mismatches
         boolean ok = (provided == null && stored == null) || (provided != null && stored != null && provided.equalsIgnoreCase(stored));
-        if (ok) log.info("Login exitoso para usuario='{}'", usuario);
-        else log.warn("Login fallido por hash mismatch para usuario='{}'", usuario);
+        if (ok) log.info("Login exitoso para usuario='{}' id={}", usuario, lid);
+        else log.warn("Login fallido por hash mismatch para usuario='{}' id={}", usuario, lid);
         return ok;
     }
 }

@@ -16,20 +16,14 @@ public class JdbcSesionDao {
 
     public JdbcSesionDao(JdbcTemplate jdbc) {
         this.jdbc = jdbc;
-        ensureTable();
+        // Do not execute DDL at runtime; assume DB schema is managed externally
+        // ensureTable();
     }
 
     private void ensureTable() {
-        jdbc.execute("CREATE TABLE IF NOT EXISTS sesiones (" +
-            "id CHAR(36) NOT NULL PRIMARY KEY, " +
-            "usuario_id BIGINT NOT NULL, " +
-            "token VARCHAR(1024), " +
-            "ip VARCHAR(45) NOT NULL, " +
-            "fecha_inicio DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6), " +
-            "fecha_fin DATETIME(6), " +
-            "estado VARCHAR(20) NOT NULL DEFAULT 'ACTIVA', " +
-            "INDEX idx_sesiones_usuario_ip (usuario_id, ip)" +
-            ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci");
+        // Skipping DDL execution for 'sesiones' table; DB schema is external
+        // jdbc.execute(...) intentionally disabled
+    
     }
 
     public String createSession(long usuarioId, String ip, String token) {

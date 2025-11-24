@@ -574,19 +574,19 @@ public class ClientWorker implements Runnable {
     private void handleLogin(String line, BufferedWriter out) throws Exception {
         log.info("mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='{}'", line);
         String payload = line.substring(6);
-        String[] p = payload.split("\\|", 2);
-        if (p.length < 2) {
-            out.write("ERROR formato LOGIN usuario|password\n");
+        String[] p = payload.split("\\|", 3);
+        if (p.length < 3) {
+            out.write("ERROR formato LOGIN id|usuario|password\n");
             out.flush();
             return;
         }
 
-        boolean ok = authService.login(p[0], p[1]);
+        boolean ok = authService.login(p[0], p[1], p[2]);
         if (ok) {
-            String user = p[0];
+            String user = p[1];
             String remoteIp = socket.getInetAddress() == null ? socket.getRemoteSocketAddress().toString() : socket.getInetAddress().getHostAddress();
-            log.info("Login exitoso (provisional): usuario='{}' desde {}", user, socket.getRemoteSocketAddress());
-            try { com.proyecto.demo.ui.UiServerWindow.publishMessageToUi("Login exitoso: " + user + " desde " + socket.getRemoteSocketAddress()); } catch (Exception ignored) {}
+            log.info("Login exitoso: usuario='{}' id={} desde {}", user, p[0], socket.getRemoteSocketAddress());
+            try { com.proyecto.demo.ui.UiServerWindow.publishMessageToUi("Login exitoso: " + user + " (id=" + p[0] + ") desde " + socket.getRemoteSocketAddress()); } catch (Exception ignored) {}
             // attempt to register the authenticated user so we can broadcast connected users
             try {
                 String regErr = connectedClients.register(user, out, remoteIp);

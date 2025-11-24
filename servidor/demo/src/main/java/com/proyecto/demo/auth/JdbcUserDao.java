@@ -4,15 +4,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import jakarta.annotation.PostConstruct;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Optional;
 import java.sql.ResultSetMetaData;
 
@@ -29,11 +25,8 @@ public class JdbcUserDao implements UserDao {
 
     @PostConstruct
     public void ensureTable() {
-        // Create table if not exists using generated id (AUTO_INCREMENT)
-        jdbc.execute("CREATE TABLE IF NOT EXISTS usuarios (" +
-            "id BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT, " +
-            "nombre VARCHAR(100) NOT NULL UNIQUE, " +
-            "contrasena_hash VARCHAR(512) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci");
+        // Skipping DDL execution: schema management is performed externally (no CREATE/ALTER at runtime)
+        log.info("ensureTable skipped for 'usuarios' - DDL is managed outside the application");
     }
 
     private final RowMapper<UserDto> mapper = new RowMapper<>() {
@@ -161,22 +154,13 @@ public class JdbcUserDao implements UserDao {
             detectUsernameColumn();
             String col = usernameColumn == null ? "nombre" : usernameColumn;
             if (id == null) {
-                // Let DB assign AUTO_INCREMENT id and return success if a key was generated
-                KeyHolder keyHolder = new GeneratedKeyHolder();
-                String sql = "INSERT INTO usuarios (" + col + ", contrasena_hash) VALUES (?, ?)";
-                jdbc.update(conn -> {
-                    PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-                    ps.setString(1, username);
-                    ps.setString(2, passwordHash);
-                    return ps;
-                }, keyHolder);
-                Number key = keyHolder.getKey();
-                return key != null;
-            } else {
-                String sql = "INSERT INTO usuarios (id, " + col + ", contrasena_hash) VALUES (?, ?, ?)";
-                int updated = jdbc.update(sql, id, username, passwordHash);
-                return updated == 1;
+                // Application must not rely on DB auto-increment for usuarios.id
+                log.warn("createUser called without id: this application requires explicit id (no AUTO_INCREMENT)");
+                return false;
             }
+            String sql = "INSERT INTO usuarios (id, " + col + ", contrasena_hash) VALUES (?, ?, ?)";
+            int updated = jdbc.update(sql, id, username, passwordHash);
+            return updated == 1;
         } catch (Exception e) {
             return false;
         }
