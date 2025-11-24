@@ -9,6 +9,7 @@ public class Mensaje {
     private String tipoMensaje;
     private String contenido;
     private Long archivoId;
+    private String archivoNombre;
     private LocalDateTime creadoEn;
 
     public Mensaje() {}
@@ -26,6 +27,8 @@ public class Mensaje {
     public void setContenido(String contenido) { this.contenido = contenido; }
     public Long getArchivoId() { return archivoId; }
     public void setArchivoId(Long archivoId) { this.archivoId = archivoId; }
+    public String getArchivoNombre() { return archivoNombre; }
+    public void setArchivoNombre(String archivoNombre) { this.archivoNombre = archivoNombre; }
     public LocalDateTime getCreadoEn() { return creadoEn; }
     public void setCreadoEn(LocalDateTime creadoEn) { this.creadoEn = creadoEn; }
 }

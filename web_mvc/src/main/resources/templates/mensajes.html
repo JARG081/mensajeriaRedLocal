@@ -8,10 +8,10 @@
 <body>
 <div th:replace="~{fragments/nav :: nav}"></div>
 <div class="container mt-4">
-    <h2>Mensajes (usuario [[${usuarioId}]]) - tipo: [[${tipo}]]</h2>
+    <h2>Mensajes ([[${usuarioNombre}]]) - [[${tipoDisplay}]]</h2>
     <table class="table table-sm table-striped">
         <thead>
-        <tr><th>ID</th><th>Emisor</th><th>Receptor</th><th>Tipo</th><th>Contenido</th><th>Fecha</th><th>Acciones</th></tr>
+        <tr><th>ID</th><th>Emisor</th><th>Receptor</th><th>Tipo</th><th>Contenido</th><th>Archivo</th><th>Fecha</th><th>Acciones</th></tr>
         </thead>
         <tbody>
         <tr th:each="m : ${mensajes}">
@@ -20,6 +20,12 @@
             <td th:text="${m.receptorId}"></td>
             <td th:text="${m.tipoMensaje}"></td>
             <td th:text="${m.contenido}"></td>
+            <td>
+                <span th:if="${m.archivoId} != null">
+                    <a th:href="@{/web/archivos/{id}/download(id=${m.archivoId})}" class="btn btn-sm btn-outline-primary" th:text="${m.archivoNombre != null} ? ${m.archivoNombre} : 'Descargar'"></a>
+                </span>
+                <span th:if="${m.archivoId} == null">(sin archivo)</span>
+            </td>
             <td th:text="${m.creadoEn}"></td>
             <td><a th:href="@{/web/mensajes/{id}(id=${m.id})}" class="btn btn-sm btn-info">Ver</a></td>
         </tr>

@@ -2237,3 +2237,76 @@ Caused by: java.sql.SQLSyntaxErrorException: Unknown column 'nombre' in 'field l
 2025-11-23T19:04:26.982-05:00  INFO 12856 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Usuario 'manuel' desconectado.
 2025-11-23T19:04:26.982-05:00  INFO 12856 --- [servidor] [pool-2-thread-2] c.proyecto.demo.server.ConnectedClients  : Usuario manuel desconectado desde 192.168.40.12 (user-conns=0)
 2025-11-23T19:04:26.983-05:00  INFO 12856 --- [servidor] [pool-2-thread-2] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 0 clients: 
+2025-11-23T19:59:47.097-05:00  INFO 16044 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 16044 (C:\Users\josem\Desktop\avanzadasDevelop\mensajeriaRedLocal\servidor\demo\target\classes started by josem in C:\Users\josem\Desktop\avanzadasDevelop\mensajeriaRedLocal)
+2025-11-23T19:59:47.097-05:00 DEBUG 16044 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-11-23T19:59:47.097-05:00  INFO 16044 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-11-23T19:59:48.836-05:00  INFO 16044 --- [servidor] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9010 (http)
+2025-11-23T19:59:48.853-05:00  INFO 16044 --- [servidor] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-23T19:59:48.853-05:00  INFO 16044 --- [servidor] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
+2025-11-23T19:59:48.930-05:00  INFO 16044 --- [servidor] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-23T19:59:48.931-05:00  INFO 16044 --- [servidor] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1760 ms
+2025-11-23T19:59:49.091-05:00  INFO 16044 --- [servidor] [main] com.proyecto.demo.auth.JdbcUserDao       : ensureTable skipped for 'usuarios' - DDL is managed outside the application
+2025-11-23T19:59:49.132-05:00  INFO 16044 --- [servidor] [main] com.proyecto.demo.dao.JdbcMessageDao     : ensureTables skipped for messaging-related tables - DDL is managed outside the application
+2025-11-23T19:59:49.132-05:00  INFO 16044 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-23T19:59:49.535-05:00  INFO 16044 --- [servidor] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4ed9f7b1
+2025-11-23T19:59:49.546-05:00  INFO 16044 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-23T19:59:49.598-05:00  INFO 16044 --- [servidor] [main] com.proyecto.demo.dao.JdbcArchivoDao     : ensureTable skipped for 'archivos' - DDL is managed outside the application
+2025-11-23T19:59:49.663-05:00  INFO 16044 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 192.168.40.12:9001
+2025-11-23T19:59:49.769-05:00  INFO 16044 --- [servidor] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-11-23T19:59:50.187-05:00  INFO 16044 --- [servidor] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9010 (http) with context path ''
+2025-11-23T19:59:50.197-05:00  INFO 16044 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 3.93 seconds (process running for 4.593)
+2025-11-23T19:59:50.197-05:00  INFO 16044 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=192.168.40.12, port=9010
+2025-11-23T19:59:50.197-05:00  INFO 16044 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UI enabled property = true; intentando inicializar UI
+2025-11-23T19:59:50.212-05:00  INFO 16044 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : java.awt.headless=false | GraphicsEnvironment.isHeadless=false
+2025-11-23T19:59:50.264-05:00  INFO 16044 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
+2025-11-23T19:59:50.653-05:00  INFO 16044 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Panel iniciado
+2025-11-23T19:59:50.653-05:00  INFO 16044 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
+2025-11-23T19:59:50.653-05:00  INFO 16044 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (initialize)
+2025-11-23T19:59:50.660-05:00  INFO 16044 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UiServerWindow.initialize() invocado desde DemoApplication.run
+2025-11-23T19:59:50.660-05:00  INFO 16044 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
+2025-11-23T19:59:50.660-05:00  INFO 16044 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
+2025-11-23T19:59:50.693-05:00  INFO 16044 --- [servidor] [main] com.proyecto.demo.DemoApplication        : DB check OK - usuarios count = 3
+2025-11-23T19:59:50.697-05:00  INFO 16044 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : DB check OK - usuarios count = 3
+2025-11-23T19:59:50.699-05:00  INFO 16044 --- [servidor] [main] com.proyecto.demo.web.LogStartup         : LogStartup initialized. includePast=true, startPosition=0, path=C:\Users\josem\Desktop\avanzadasDevelop\mensajeriaRedLocal\servidor\demo\servidor\server_logs.txt
+2025-11-23T20:00:12.608-05:00  INFO 16044 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /192.168.40.12:64099
+2025-11-23T20:00:12.620-05:00  INFO 16044 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /192.168.40.12:64099
+2025-11-23T20:00:14.962-05:00  INFO 16044 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /192.168.40.12:64099
+2025-11-23T20:00:14.962-05:00  INFO 16044 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /192.168.40.12:64099
+2025-11-23T20:00:14.962-05:00  INFO 16044 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /192.168.40.12:64099
+2025-11-23T20:00:14.990-05:00  INFO 16044 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.12:64099 conectado y saludado.
+2025-11-23T20:00:14.994-05:00  INFO 16044 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN 1|manuel|1234'
+2025-11-23T20:00:15.030-05:00  INFO 16044 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.AuthDbService     : Login exitoso para usuario='manuel' id=1
+2025-11-23T20:00:15.032-05:00  INFO 16044 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Login exitoso: usuario='manuel' id=1 desde /192.168.40.12:64099
+2025-11-23T20:00:15.034-05:00  INFO 16044 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : Login exitoso: manuel (id=1) desde /192.168.40.12:64099
+2025-11-23T20:00:15.034-05:00  INFO 16044 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Usuario registrado para broadcast: manuel (user-conns=1)
+2025-11-23T20:00:15.038-05:00  INFO 16044 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 1 clients: manuel
+2025-11-23T20:00:15.040-05:00 DEBUG 16044 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: buscando usuario='manuel' usando columna='nombre_usuario'
+2025-11-23T20:00:15.046-05:00 DEBUG 16044 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: encontrado id=1 usuario='manuel'
+2025-11-23T20:00:15.080-05:00  INFO 16044 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Sesion creada para usuario manuel id=98ae76ca-62a9-4a1a-8c89-1b7fe806c8a9
+2025-11-23T20:00:15.080-05:00 DEBUG 16044 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: buscando usuario='manuel' usando columna='nombre_usuario'
+2025-11-23T20:00:15.093-05:00 DEBUG 16044 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: encontrado id=1 usuario='manuel'
+2025-11-23T20:00:15.100-05:00  INFO 16044 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Enviando 5 mensajes históricos desde BD a manuel
+2025-11-23T20:00:15.185-05:00 DEBUG 16044 --- [servidor] [pool-2-thread-1] com.proyecto.demo.dao.JdbcArchivoDao     : findById: select failed with SQL [SELECT id, nombre as filename, ruta as path, tamano as size, COALESCE(creado_en, subido_en) AS creado_en FROM archivos WHERE id = ?]: PreparedStatementCallback; bad SQL grammar [SELECT id, nombre as filename, ruta as path, tamano as size, COALESCE(creado_en, subido_en) AS creado_en FROM archivos WHERE id = ?]
+2025-11-23T20:00:35.117-05:00  INFO 16044 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Usuario 'manuel' desconectado.
+2025-11-23T20:00:35.118-05:00  INFO 16044 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Usuario manuel desconectado desde 192.168.40.12 (user-conns=0)
+2025-11-23T20:00:35.120-05:00  INFO 16044 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 0 clients: 
+2025-11-23T20:02:56.927-05:00  INFO 16044 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /192.168.40.12:49772
+2025-11-23T20:02:56.933-05:00  INFO 16044 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /192.168.40.12:49772
+2025-11-23T20:02:59.059-05:00  INFO 16044 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /192.168.40.12:49772
+2025-11-23T20:02:59.061-05:00  INFO 16044 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /192.168.40.12:49772
+2025-11-23T20:02:59.061-05:00  INFO 16044 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /192.168.40.12:49772
+2025-11-23T20:02:59.065-05:00  INFO 16044 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Cliente /192.168.40.12:49772 conectado y saludado.
+2025-11-23T20:02:59.065-05:00  INFO 16044 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN 1|manuel|1234'
+2025-11-23T20:02:59.083-05:00  INFO 16044 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.AuthDbService     : Login exitoso para usuario='manuel' id=1
+2025-11-23T20:02:59.085-05:00  INFO 16044 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Login exitoso: usuario='manuel' id=1 desde /192.168.40.12:49772
+2025-11-23T20:02:59.087-05:00  INFO 16044 --- [servidor] [pool-2-thread-2] com.proyecto.demo.ui.UiServerWindow      : Login exitoso: manuel (id=1) desde /192.168.40.12:49772
+2025-11-23T20:02:59.094-05:00  INFO 16044 --- [servidor] [pool-2-thread-2] c.proyecto.demo.server.ConnectedClients  : Usuario registrado para broadcast: manuel (user-conns=1)
+2025-11-23T20:02:59.096-05:00  INFO 16044 --- [servidor] [pool-2-thread-2] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 1 clients: manuel
+2025-11-23T20:02:59.098-05:00 DEBUG 16044 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: buscando usuario='manuel' usando columna='nombre_usuario'
+2025-11-23T20:02:59.102-05:00 DEBUG 16044 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: encontrado id=1 usuario='manuel'
+2025-11-23T20:02:59.115-05:00  INFO 16044 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Sesion creada para usuario manuel id=a87518e8-7bc8-4f9a-a742-2d8d78aca148
+2025-11-23T20:02:59.115-05:00 DEBUG 16044 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: buscando usuario='manuel' usando columna='nombre_usuario'
+2025-11-23T20:02:59.121-05:00 DEBUG 16044 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: encontrado id=1 usuario='manuel'
+2025-11-23T20:02:59.125-05:00  INFO 16044 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Enviando 5 mensajes históricos desde BD a manuel
+2025-11-23T20:02:59.174-05:00 DEBUG 16044 --- [servidor] [pool-2-thread-2] com.proyecto.demo.dao.JdbcArchivoDao     : findById: select failed with SQL [SELECT id, nombre as filename, ruta as path, tamano as size, COALESCE(creado_en, subido_en) AS creado_en FROM archivos WHERE id = ?]: PreparedStatementCallback; bad SQL grammar [SELECT id, nombre as filename, ruta as path, tamano as size, COALESCE(creado_en, subido_en) AS creado_en FROM archivos WHERE id = ?]
+2025-11-23T20:06:20.835-05:00  INFO 16044 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Usuario 'manuel' desconectado.
