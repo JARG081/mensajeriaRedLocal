@@ -1,0 +1,59 @@
+version: "3.9"
+
+services:
+  universidad-mysql:
+    image: mysql:8.0
+    container_name: universidad-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "1234"
+      MYSQL_DATABASE: "mensajeria"
+      MYSQL_ROOT_HOST: "%"
+    ports:
+      - "3307:3306"                      #3307 host local 3306
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./sql:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-p1234"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+
+  universidad-postgres:
+    image: postgres:15
+    container_name: universidad-postgres
+    environment:
+      POSTGRES_PASSWORD: "1234"
+      POSTGRES_DB: "mensajeria"
+    ports:
+      - "5433:5432"                      # host 5433 -> container 5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./sql/postgres:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+
+  universidad-oracle:
+    image: gvenzl/oracle-xe:21-slim
+    container_name: universidad-oracle
+    environment:
+      ORACLE_PASSWORD: "1234"
+      ORACLE_DATABASE: "orcl"
+    ports:
+      - "1522:1521"                      # host 1522 -> container 1521
+    volumes:
+      - oracle_data:/opt/oracle/oradata
+      - ./db-init/oracle:/container-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "echo 'SELECT 1 FROM dual;' | sqlplus -s system/1234@//127.0.0.1:1521/orcl || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 60
+
+volumes:
+  mysql_data:
+  postgres_data:
+  oracle_data:

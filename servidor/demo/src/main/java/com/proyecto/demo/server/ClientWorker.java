@@ -11,9 +11,7 @@ import org.springframework.stereotype.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import java.util.Arrays;
-import java.util.Set;
-import java.util.stream.Collectors;
+// removed unused collections imports after tightening file-extension policy
 import java.io.*;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
@@ -42,6 +40,28 @@ public class ClientWorker implements Runnable {
 
     @Value("${app.upload.blockedExtensions:exe,dll,bat,sh,jar,msi,com,scr}")
     private String blockedExtensionsProp;
+    @Value("${app.upload.allowedExtensions:txt,bin}")
+    private String allowedExtensionsProp;
+    // cached parsed set
+    private java.util.Set<String> allowedExtensionsSet = null;
+
+    private boolean isAllowedExtension(String ext) {
+        if (ext == null) return false;
+        if (allowedExtensionsSet == null) {
+            allowedExtensionsSet = new java.util.HashSet<>();
+            try {
+                if (allowedExtensionsProp != null && !allowedExtensionsProp.isBlank()) {
+                    for (String s : allowedExtensionsProp.split(",")) {
+                        String t = s.trim().toLowerCase();
+                        if (!t.isEmpty()) allowedExtensionsSet.add(t);
+                    }
+                }
+            } catch (Exception e) {
+                log.warn("No se pudo parsear app.upload.allowedExtensions='{}': {}", allowedExtensionsProp, e.getMessage());
+            }
+        }
+        return allowedExtensionsSet.contains(ext.toLowerCase());
+    }
     private String authenticatedUser = null;
     private String authenticatedUserIp = null;
     private final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -183,29 +203,14 @@ public class ClientWorker implements Runnable {
         // Sanitize filename to avoid path traversal
         filename = filename.replaceAll("[\\\\/]+", "_");
 
-        // Block dangerous extensions (configurable)
+        // quick extension detection
         String ext = "";
         int idx = filename.lastIndexOf('.');
         if (idx >= 0 && idx < filename.length() - 1) {
             ext = filename.substring(idx + 1).toLowerCase();
         }
-        Set<String> blocked = Arrays.stream(blockedExtensionsProp.split(","))
-                .map(String::trim)
-                .filter(s -> !s.isEmpty())
-                .map(String::toLowerCase)
-                .collect(Collectors.toSet());
-        if (!ext.isEmpty() && blocked.contains(ext)) {
-            String reason = "ext_bloqueada";
-            log.warn("Rechazando archivo por extensión bloqueada (.{}) nombre='{}' desde {}", ext, filename, socket.getRemoteSocketAddress());
-            try { com.proyecto.demo.ui.UiServerWindow.publishMessageToUi("Rechazado: " + filename + " motivo: " + reason + " desde " + socket.getRemoteSocketAddress()); } catch (Exception ignored) {}
-            out.write("FILE_STATUS " + filename + "|ERROR|" + reason + "\n");
-            out.flush();
-            return;
-        }
-
-
-        // solo .txt .bin
-        boolean allowedByExt = "txt".equals(ext) || "bin".equals(ext);
+        // Only accept extensions that appear in the allowed list (default: txt,bin)
+        boolean allowedByExt = isAllowedExtension(ext);
         if (!allowedByExt) {
             String reason = "ext_no_permitida";
             log.warn("Rechazando archivo por extensión no permitida (.{}) nombre='{}' desde {}", ext, filename, socket.getRemoteSocketAddress());
@@ -283,7 +288,7 @@ public class ClientWorker implements Runnable {
         // forward to recipient(s): send FILEFROM sender|filename|base64
         String forward = "FILEFROM " + authenticatedUser + "|" + filename + "|" + base64 + "\n";
             if ("ALL".equalsIgnoreCase(recipient)) {
-            connectedClients.broadcastMessage(authenticatedUser, "(file) " + filename);
+            connectedClients.broadcastMessage(authenticatedUser, "(archivo) " + filename);
             // broadcast the file itself
             connectedClients.broadcastRaw(forward);
         } else {
@@ -291,9 +296,9 @@ public class ClientWorker implements Runnable {
             if (!sent) {
                 log.warn("No se pudo entregar archivo a {} (no conectado)", recipient);
             }
-            // Also send a textual notification MSGFROM so the recipient sees a chat line like "(file) filename"
+            // Also send a textual notification MSGFROM so the recipient sees a chat line like "(archivo) filename"
             try {
-                String note = "MSGFROM " + authenticatedUser + "|" + "(file) " + filename + "\n";
+                String note = "MSGFROM " + authenticatedUser + "|" + "(archivo) " + filename + "\n";
                 boolean noteSent = connectedClients.sendTo(recipient, note);
                 if (noteSent) {
                     log.debug("Sent file notification MSGFROM to {} for file {}", recipient, filename);
@@ -305,7 +310,7 @@ public class ClientWorker implements Runnable {
             }
             // send an immediate echo to the sender so their UI shows the outgoing file line
             try {
-                String echo = "MSG_ECHO " + authenticatedUser + "|" + recipient + "|" + "(file) " + filename + "\n";
+                String echo = "MSG_ECHO " + authenticatedUser + "|" + recipient + "|" + "(archivo) " + filename + "\n";
                 out.write(echo);
                 out.flush();
             } catch (Exception ee) {
@@ -352,19 +357,8 @@ public class ClientWorker implements Runnable {
             ext = filename.substring(idx + 1).toLowerCase();
         }
 
-        Set<String> blocked = Arrays.stream(blockedExtensionsProp.split(","))
-                .map(String::trim)
-                .filter(s -> !s.isEmpty())
-                .map(String::toLowerCase)
-                .collect(Collectors.toSet());
-        if (!ext.isEmpty() && blocked.contains(ext)) {
-            String reason = "ext_bloqueada";
-            try { com.proyecto.demo.ui.UiServerWindow.publishMessageToUi("Rechazado HDR: " + filename + " motivo: " + reason + " desde " + socket.getRemoteSocketAddress()); } catch (Exception ignored) {}
-            out.write("FILE_HDR_STATUS " + filename + "|ERROR|" + reason + "\n");
-            out.flush();
-            return;
-        }
-        boolean allowedByExt = "txt".equals(ext) || "bin".equals(ext);
+        // Only accept extensions that appear in the allowed list (default: txt,bin)
+        boolean allowedByExt = isAllowedExtension(ext);
         if (!allowedByExt) {
             String reason = "ext_no_permitida";
             try { com.proyecto.demo.ui.UiServerWindow.publishMessageToUi("Rechazado HDR: " + filename + " motivo: " + reason + " desde " + socket.getRemoteSocketAddress()); } catch (Exception ignored) {}
@@ -441,7 +435,6 @@ public class ClientWorker implements Runnable {
 
         // Sanitize filename to avoid path traversal
         filename = filename.replaceAll("[\\\\/]+", "_");
-
         // save
         String safeName = java.time.Instant.now().toEpochMilli() + "_" + authenticatedUser + "_" + filename;
         java.nio.file.Path target = uploadsDir.resolve(safeName);
@@ -506,7 +499,7 @@ public class ClientWorker implements Runnable {
         // forward to recipient(s): send FILEFROM sender|filename|base64
         String forward = "FILEFROM " + authenticatedUser + "|" + filename + "|" + base64 + "\n";
         if ("ALL".equalsIgnoreCase(recipient)) {
-            connectedClients.broadcastMessage(authenticatedUser, "(file) " + filename);
+            connectedClients.broadcastMessage(authenticatedUser, "(archivo) " + filename);
             // broadcast the file itself
             connectedClients.broadcastRaw(forward);
         } else {
@@ -514,9 +507,9 @@ public class ClientWorker implements Runnable {
             if (!sent) {
                 log.warn("No se pudo entregar archivo a {} (no conectado)", recipient);
             }
-            // Also send a textual notification MSGFROM so the recipient sees a chat line like "(file) filename"
+            // Also send a textual notification MSGFROM so the recipient sees a chat line like "(archivo) filename"
             try {
-                String note = "MSGFROM " + authenticatedUser + "|" + "(file) " + filename + "\n";
+                String note = "MSGFROM " + authenticatedUser + "|" + "(archivo) " + filename + "\n";
                 boolean noteSent = connectedClients.sendTo(recipient, note);
                 if (!noteSent) {
                     log.debug("Could not send file notification MSGFROM to {}", recipient);
@@ -624,8 +617,32 @@ public class ClientWorker implements Runnable {
                         java.util.List<com.proyecto.demo.model.MessageRecord> recent = messageDao.findForUser(uid, 200);
                         if (recent != null && !recent.isEmpty()) {
                             log.info("Enviando {} mensajes históricos desde BD a {}", recent.size(), user);
+                            // Determine last closed session end time for this user (to avoid resending messages
+                            // that the client already received during the previous session).
+                            java.time.LocalDateTime lastLogout = null;
+                            try {
+                                var sessions = sesionDao.findActiveSessionsByUser(uid);
+                                if (sessions != null && !sessions.isEmpty()) {
+                                    for (var s : sessions) {
+                                        if (s.desconectadoEn != null) {
+                                            lastLogout = s.desconectadoEn.toLocalDateTime();
+                                            break;
+                                        }
+                                    }
+                                }
+                            } catch (Exception sessEx) {
+                                log.debug("No se pudo determinar última sesión cerrada para usuario {}: {}", user, sessEx.getMessage());
+                            }
+                            if (lastLogout != null) {
+                                log.info("Se omitirá historial creado hasta {} para evitar duplicados al usuario {}", lastLogout, user);
+                            }
                             for (com.proyecto.demo.model.MessageRecord mr : recent) {
                                 try {
+                                    // If we determined a lastLogout time, skip messages created at or before that time
+                                    if (lastLogout != null && mr.getCreadoEn() != null && !mr.getCreadoEn().isAfter(lastLogout)) {
+                                        // skip this message because it was likely already delivered in previous session
+                                        continue;
+                                    }
                                     // get sender username via JDBC (handle nombre/nombre_usuario)
                                     String sender = null;
                                     try {
@@ -675,6 +692,9 @@ public class ClientWorker implements Runnable {
                                                     // Send HISTFILE with emisor|receptor|filename|base64|timestamp
                                                     String ts = mr.getCreadoEn() == null ? java.time.Instant.now().toString() : mr.getCreadoEn().toString();
                                                     out.write("HISTFILE " + sender + "|" + receptor + "|" + ainfo.filename + "|" + b64 + "|" + ts + "\n");
+                                                    out.flush();
+                                                    // Also send a historical textual notification so the client shows a chat line like '(archivo) filename'
+                                                    out.write("HISTMSG " + sender + "|" + receptor + "|" + "(archivo) " + ainfo.filename + "|" + ts + "\n");
                                                     out.flush();
                                                 } else {
                                                     log.warn("Archivo histórico no encontrado en FS para archivo id={} nombre='{}'", ainfo.id, ainfo.filename);

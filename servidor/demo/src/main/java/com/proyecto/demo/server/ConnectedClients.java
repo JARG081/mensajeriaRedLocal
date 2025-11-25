@@ -54,7 +54,7 @@ public class ConnectedClients {
         if (user == null || out == null || ip == null) return "invalid_params";
         clients.putIfAbsent(user, new ConcurrentHashMap<>());
         var map = clients.get(user);
-        // same IP already connected => reject
+        // same IP already connected => reject (do not close previous connection)
         if (map.containsKey(ip)) {
             log.info("Rechazando registro para usuario '{}' desde la misma IP {} (ya conectado)", user, ip);
             return "Error: Limite de ips excedido, no puede ingresar en este equipo";

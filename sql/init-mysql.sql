@@ -50,3 +50,8 @@ CREATE TABLE IF NOT EXISTS mensajes (
   CONSTRAINT fk_mensajes_archivo FOREIGN KEY (archivo_id) REFERENCES archivos(id) ON DELETE SET NULL,
   CONSTRAINT fk_mensajes_sesion FOREIGN KEY (sesion_id) REFERENCES sesiones(id) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+select * from usuarios;
+select * from sesiones;
+select * from archivos;
+select * from mensajes;

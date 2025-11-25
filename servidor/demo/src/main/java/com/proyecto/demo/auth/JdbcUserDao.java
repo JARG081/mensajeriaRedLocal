@@ -25,16 +25,16 @@ public class JdbcUserDao implements UserDao {
 
     @PostConstruct
     public void ensureTable() {
-        // Skipping DDL execution: schema management is performed externally (no CREATE/ALTER at runtime)
-        log.info("ensureTable skipped for 'usuarios' - DDL is managed outside the application");
+        log.info("evitar DDL");
     }
 
+    @SuppressWarnings("unused")
     private final RowMapper<UserDto> mapper = new RowMapper<>() {
         @Override
         public UserDto mapRow(ResultSet rs, int rowNum) throws SQLException {
             UserDto u = new UserDto();
             u.setId(rs.getLong("id"));
-            // attempt to read either 'nombre' or 'nombre_usuario'
+            // revisa 'nombre' o 'nombre_usuario'
             String user = null;
             try { user = rs.getString("nombre"); } catch (Exception ignored) {}
             if (user == null) {
@@ -46,7 +46,7 @@ public class JdbcUserDao implements UserDao {
         }
     };
 
-    // detected username column in the DB: either 'nombre' or 'nombre_usuario'
+    // revisa 'nombre' o 'nombre_usuario'
     private volatile String usernameColumn = null;
 
     private synchronized void detectUsernameColumn() {
@@ -63,7 +63,7 @@ public class JdbcUserDao implements UserDao {
                 return null;
             });
         } catch (Exception e) {
-            // ignore - we'll fallback to 'nombre'
+
         }
         if (usernameColumn == null) usernameColumn = "nombre";
     }
@@ -75,6 +75,7 @@ public class JdbcUserDao implements UserDao {
         String sql = "SELECT id, " + col + " as uname, contrasena_hash FROM usuarios WHERE " + col + " = ?";
         try {
             log.debug("JdbcUserDao.findByUsername: buscando usuario='{}' usando columna='{}'", username, col);
+            @SuppressWarnings("deprecation")
             UserDto u = jdbc.queryForObject(sql, new Object[]{username}, (rs, rowNum) -> {
                 UserDto ud = new UserDto();
                 ud.setId(rs.getLong("id"));
@@ -87,12 +88,12 @@ public class JdbcUserDao implements UserDao {
             return Optional.ofNullable(u);
         } catch (Exception e) {
             log.warn("JdbcUserDao.findByUsername: fallo buscando usuario='{}' usando '{}' - {}", username, col, e.getMessage());
-            // if first attempt used 'nombre' and failed due to bad SQL, try the alternative column once
             if ("nombre".equalsIgnoreCase(col)) {
                 try {
                     String alt = "nombre_usuario";
                     String sql2 = "SELECT id, " + alt + " as uname, contrasena_hash FROM usuarios WHERE " + alt + " = ?";
                     log.debug("JdbcUserDao.findByUsername: intentando alternativa usando='{}'", alt);
+                    @SuppressWarnings("deprecation")
                     UserDto u2 = jdbc.queryForObject(sql2, new Object[]{username}, (rs, rowNum) -> {
                         UserDto ud = new UserDto();
                         ud.setId(rs.getLong("id"));
@@ -117,6 +118,7 @@ public class JdbcUserDao implements UserDao {
         String col = usernameColumn;
         String sql = "SELECT id, " + col + " as uname, contrasena_hash FROM usuarios WHERE id = ?";
         try {
+            @SuppressWarnings("deprecation")
             UserDto u = jdbc.queryForObject(sql, new Object[]{id}, (rs, rowNum) -> {
                 UserDto ud = new UserDto();
                 ud.setId(rs.getLong("id"));
@@ -131,6 +133,7 @@ public class JdbcUserDao implements UserDao {
                 try {
                     String alt = "nombre_usuario";
                     String sql2 = "SELECT id, " + alt + " as uname, contrasena_hash FROM usuarios WHERE id = ?";
+                    @SuppressWarnings("deprecation")
                     UserDto u2 = jdbc.queryForObject(sql2, new Object[]{id}, (rs, rowNum) -> {
                         UserDto ud = new UserDto();
                         ud.setId(rs.getLong("id"));
@@ -154,8 +157,7 @@ public class JdbcUserDao implements UserDao {
             detectUsernameColumn();
             String col = usernameColumn == null ? "nombre" : usernameColumn;
             if (id == null) {
-                // Application must not rely on DB auto-increment for usuarios.id
-                log.warn("createUser called without id: this application requires explicit id (no AUTO_INCREMENT)");
+                log.warn("no AUTO_INCREMENT");
                 return false;
             }
             String sql = "INSERT INTO usuarios (id, " + col + ", contrasena_hash) VALUES (?, ?, ?)";
