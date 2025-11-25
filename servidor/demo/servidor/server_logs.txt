@@ -6117,3 +6117,926 @@ Identify and stop the process that's listening on port 9010 or configure this ap
 2025-11-24T21:49:07.806-05:00  INFO 25808 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Usuario 'postgres3' desconectado.
 2025-11-24T21:49:07.806-05:00  INFO 25808 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Usuario postgres3 desconectado desde 172.29.96.1 (user-conns=0)
 2025-11-24T21:49:07.806-05:00  INFO 25808 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 0 clients: 
+2025-11-25T09:12:01.735-05:00  INFO 8876 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 8876 (C:\Users\josem\Desktop\proyectoavanzadas2025\mensajeriaRedLocal\servidor\demo\target\classes started by josem in C:\Users\josem\Desktop\proyectoavanzadas2025\mensajeriaRedLocal)
+2025-11-25T09:12:01.739-05:00 DEBUG 8876 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-11-25T09:12:01.741-05:00  INFO 8876 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-11-25T09:12:03.826-05:00  INFO 8876 --- [servidor] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9010 (http)
+2025-11-25T09:12:03.843-05:00  INFO 8876 --- [servidor] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-25T09:12:03.843-05:00  INFO 8876 --- [servidor] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
+2025-11-25T09:12:03.957-05:00  INFO 8876 --- [servidor] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-25T09:12:03.957-05:00  INFO 8876 --- [servidor] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2139 ms
+2025-11-25T09:12:04.082-05:00  INFO 8876 --- [servidor] [main] c.proyecto.demo.config.DataSourceConfig  : Attempting JDBC connect test to jdbc:postgresql://localhost:5433/mensajeria (user=postgres)
+2025-11-25T09:12:04.471-05:00  INFO 8876 --- [servidor] [main] c.proyecto.demo.config.DataSourceConfig  : Connection test succeeded to jdbc:postgresql://localhost:5433/mensajeria
+2025-11-25T09:12:04.484-05:00  INFO 8876 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : app-ds - Starting...
+2025-11-25T09:12:04.563-05:00  INFO 8876 --- [servidor] [main] com.zaxxer.hikari.pool.HikariPool        : app-ds - Added connection org.postgresql.jdbc.PgConnection@869d87c
+2025-11-25T09:12:04.568-05:00  INFO 8876 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : app-ds - Start completed.
+2025-11-25T09:12:04.568-05:00  INFO 8876 --- [servidor] [main] c.proyecto.demo.config.DataSourceConfig  : Providing DataSource for URL jdbc:postgresql://localhost:5433/mensajeria
+2025-11-25T09:12:04.623-05:00  INFO 8876 --- [servidor] [main] com.proyecto.demo.auth.JdbcUserDao       : evitar DDL
+2025-11-25T09:12:04.674-05:00  INFO 8876 --- [servidor] [main] com.proyecto.demo.dao.JdbcMessageDao     : ensureTables skipped for messaging-related tables - DDL is managed outside the application
+2025-11-25T09:12:04.780-05:00  INFO 8876 --- [servidor] [main] com.proyecto.demo.dao.JdbcArchivoDao     : ensureTable skipped for 'archivos' - DDL is managed outside the application
+2025-11-25T09:12:04.815-05:00  INFO 8876 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 0.0.0.0:9001
+2025-11-25T09:12:04.827-05:00  INFO 8876 --- [servidor] [main] c.p.demo.db.DatabaseSelectorService      : DB selector preferType='postgres' configuredUrl='jdbc:mysql://localhost:3307/mensajeria?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC'
+2025-11-25T09:12:04.858-05:00  INFO 8876 --- [servidor] [main] c.p.demo.db.DatabaseSelectorService      : Connected to Postgres via jdbc:postgresql://localhost:5433/mensajeria (user=postgres)
+2025-11-25T09:12:04.862-05:00  INFO 8876 --- [servidor] [main] c.proyecto.demo.db.DatabaseInitRunner    : Using database adapter: Postgres
+2025-11-25T09:12:04.914-05:00  INFO 8876 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : java.awt.headless=false | GraphicsEnvironment.isHeadless=false
+2025-11-25T09:12:05.038-05:00  INFO 8876 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
+2025-11-25T09:12:05.660-05:00  INFO 8876 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Panel iniciado
+2025-11-25T09:12:05.663-05:00  INFO 8876 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
+2025-11-25T09:12:05.664-05:00  INFO 8876 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : Using database adapter: Postgres
+2025-11-25T09:12:05.666-05:00  INFO 8876 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : Conectado a BD: PostgreSQL | URL=jdbc:postgresql://localhost:5433/mensajeria | user=postgres
+2025-11-25T09:12:05.699-05:00  INFO 8876 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : Tabla: archivos
+2025-11-25T09:12:05.718-05:00  INFO 8876 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   (sin filas)
+2025-11-25T09:12:05.723-05:00  INFO 8876 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : Tabla: mensajes
+2025-11-25T09:12:05.740-05:00  INFO 8876 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   (sin filas)
+2025-11-25T09:12:05.743-05:00  INFO 8876 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : Tabla: sesiones
+2025-11-25T09:12:05.766-05:00  INFO 8876 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=05bba297-23b3-4a75-aed7-9b3413e93504; usuario_id=1; token=null; ip=192.168.40.12; fecha_inicio=2025-11-24 17:05:42.382366; fecha_fin=2025-11-24 17:06:27.945269; estado=CERRADA; 
+2025-11-25T09:12:05.768-05:00  INFO 8876 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=1532e17f-a649-440d-af79-ef42704d5bc1; usuario_id=1; token=null; ip=192.168.40.12; fecha_inicio=2025-11-24 17:06:31.007088; fecha_fin=2025-11-24 17:06:40.370939; estado=CERRADA; 
+2025-11-25T09:12:05.775-05:00  INFO 8876 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=d9830042-d3b5-4251-8dff-1b72d35228a9; usuario_id=2; token=null; ip=192.168.40.12; fecha_inicio=2025-11-24 17:06:07.717398; fecha_fin=2025-11-24 17:06:44.206152; estado=CERRADA; 
+2025-11-25T09:12:05.778-05:00  INFO 8876 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : Tabla: usuarios
+2025-11-25T09:12:05.797-05:00  INFO 8876 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=1; nombre_usuario=postgres1; contrasena_hash=03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4; 
+2025-11-25T09:12:05.798-05:00  INFO 8876 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=2; nombre_usuario=postgres2; contrasena_hash=03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4; 
+2025-11-25T09:12:05.799-05:00  INFO 8876 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : app.db.initOnStartup=false -> no se ejecuta initDatabase() (previene borrado de tablas)
+2025-11-25T09:12:05.843-05:00  INFO 8876 --- [servidor] [main] c.proyecto.demo.config.DatabaseConfig    : Creating primary DataSource: url='jdbc:postgresql://localhost:5433/mensajeria' user='postgres' (app.db.type=postgres)
+2025-11-25T09:12:05.847-05:00  INFO 8876 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : app-hikari-pool - Starting...
+2025-11-25T09:12:05.939-05:00  INFO 8876 --- [servidor] [main] com.zaxxer.hikari.pool.HikariPool        : app-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@7d979d34
+2025-11-25T09:12:05.942-05:00  INFO 8876 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : app-hikari-pool - Start completed.
+2025-11-25T09:12:06.073-05:00  INFO 8876 --- [servidor] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-11-25T09:12:06.753-05:00  INFO 8876 --- [servidor] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9010 (http) with context path ''
+2025-11-25T09:12:06.764-05:00  INFO 8876 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 5.841 seconds (process running for 6.348)
+2025-11-25T09:12:06.770-05:00  INFO 8876 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=0.0.0.0, port=9010
+2025-11-25T09:12:06.770-05:00  INFO 8876 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UI enabled property = true; intentando inicializar UI
+2025-11-25T09:12:06.772-05:00  INFO 8876 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (initialize)
+2025-11-25T09:12:06.772-05:00  INFO 8876 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UiServerWindow.initialize() invocado desde DemoApplication.run
+2025-11-25T09:12:06.774-05:00  INFO 8876 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
+2025-11-25T09:12:06.774-05:00  INFO 8876 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
+2025-11-25T09:12:06.830-05:00  INFO 8876 --- [servidor] [main] com.proyecto.demo.DemoApplication        : DB check OK - usuarios count = 2
+2025-11-25T09:12:06.832-05:00  INFO 8876 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : DB check OK - usuarios count = 2
+2025-11-25T09:12:06.895-05:00  INFO 8876 --- [servidor] [main] com.proyecto.demo.web.LogStartup         : LogStartup initialized. includePast=true, startPosition=0, path=C:\Users\josem\Desktop\proyectoavanzadas2025\mensajeriaRedLocal\servidor\demo\servidor\server_logs.txt
+2025-11-25T09:12:45.865-05:00  INFO 8876 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /10.236.197.200:62170
+2025-11-25T09:12:45.879-05:00  INFO 8876 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /10.236.197.200:62170
+2025-11-25T09:12:48.016-05:00  INFO 8876 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /10.236.197.200:62170
+2025-11-25T09:12:48.023-05:00  INFO 8876 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /10.236.197.200:62170
+2025-11-25T09:12:48.046-05:00  INFO 8876 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /10.236.197.200:62170
+2025-11-25T09:12:48.075-05:00  INFO 8876 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /10.236.197.200:62170 conectado y saludado.
+2025-11-25T09:12:48.081-05:00  INFO 8876 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN 1|postgres1|1234'
+2025-11-25T09:12:48.162-05:00  INFO 8876 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.AuthDbService     : Login exitoso para usuario='postgres1' id=1
+2025-11-25T09:12:48.166-05:00  INFO 8876 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Login exitoso: usuario='postgres1' id=1 desde /10.236.197.200:62170
+2025-11-25T09:12:48.172-05:00  INFO 8876 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : Login exitoso: postgres1 (id=1) desde /10.236.197.200:62170
+2025-11-25T09:12:48.186-05:00  INFO 8876 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Usuario registrado para broadcast: postgres1 (user-conns=1)
+2025-11-25T09:12:48.191-05:00  INFO 8876 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 1 clients: postgres1
+2025-11-25T09:12:48.196-05:00 DEBUG 8876 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: buscando usuario='postgres1' usando columna='nombre_usuario'
+2025-11-25T09:12:48.219-05:00 DEBUG 8876 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: encontrado id=1 usuario='postgres1'
+2025-11-25T09:12:48.271-05:00  INFO 8876 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Sesion creada para usuario postgres1 id=c96b254e-31c0-486d-87d4-557126cf7d27
+2025-11-25T09:12:48.275-05:00 DEBUG 8876 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: buscando usuario='postgres1' usando columna='nombre_usuario'
+2025-11-25T09:12:48.300-05:00 DEBUG 8876 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: encontrado id=1 usuario='postgres1'
+2025-11-25T09:13:54.657-05:00  INFO 8876 --- [servidor] [http-nio-0.0.0.0-9010-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-25T09:13:54.657-05:00  INFO 8876 --- [servidor] [http-nio-0.0.0.0-9010-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-25T09:13:54.663-05:00  INFO 8876 --- [servidor] [http-nio-0.0.0.0-9010-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-11-25T09:28:46.784-05:00  INFO 22980 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 22980 (C:\Users\josem\Desktop\proyectoavanzadas2025\mensajeriaRedLocal\servidor\demo\target\classes started by josem in C:\Users\josem\Desktop\proyectoavanzadas2025\mensajeriaRedLocal)
+2025-11-25T09:28:46.786-05:00 DEBUG 22980 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-11-25T09:28:46.788-05:00  INFO 22980 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-11-25T09:28:49.370-05:00  INFO 22980 --- [servidor] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9010 (http)
+2025-11-25T09:28:49.405-05:00  INFO 22980 --- [servidor] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-25T09:28:49.405-05:00  INFO 22980 --- [servidor] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
+2025-11-25T09:28:49.546-05:00  INFO 22980 --- [servidor] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-25T09:28:49.547-05:00  INFO 22980 --- [servidor] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2681 ms
+2025-11-25T09:28:49.639-05:00  INFO 22980 --- [servidor] [main] c.proyecto.demo.config.DataSourceConfig  : Attempting JDBC connect test to jdbc:postgresql://localhost:5433/mensajeria (user=postgres)
+2025-11-25T09:28:49.879-05:00  INFO 22980 --- [servidor] [main] c.proyecto.demo.config.DataSourceConfig  : Connection test succeeded to jdbc:postgresql://localhost:5433/mensajeria
+2025-11-25T09:28:49.895-05:00  INFO 22980 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : app-ds - Starting...
+2025-11-25T09:28:49.987-05:00  INFO 22980 --- [servidor] [main] com.zaxxer.hikari.pool.HikariPool        : app-ds - Added connection org.postgresql.jdbc.PgConnection@1921994e
+2025-11-25T09:28:49.991-05:00  INFO 22980 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : app-ds - Start completed.
+2025-11-25T09:28:49.992-05:00  INFO 22980 --- [servidor] [main] c.proyecto.demo.config.DataSourceConfig  : Providing DataSource for URL jdbc:postgresql://localhost:5433/mensajeria
+2025-11-25T09:28:50.048-05:00  INFO 22980 --- [servidor] [main] com.proyecto.demo.auth.JdbcUserDao       : evitar DDL
+2025-11-25T09:28:50.103-05:00  INFO 22980 --- [servidor] [main] com.proyecto.demo.dao.JdbcMessageDao     : ensureTables skipped for messaging-related tables - DDL is managed outside the application
+2025-11-25T09:28:50.148-05:00  INFO 22980 --- [servidor] [main] com.proyecto.demo.dao.JdbcArchivoDao     : ensureTable skipped for 'archivos' - DDL is managed outside the application
+2025-11-25T09:28:50.215-05:00  INFO 22980 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 0.0.0.0:9001
+2025-11-25T09:28:50.238-05:00  INFO 22980 --- [servidor] [main] c.p.demo.db.DatabaseSelectorService      : DB selector preferType='postgres' configuredUrl='jdbc:mysql://localhost:3307/mensajeria?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC'
+2025-11-25T09:28:50.296-05:00  INFO 22980 --- [servidor] [main] c.p.demo.db.DatabaseSelectorService      : Connected to Postgres via jdbc:postgresql://localhost:5433/mensajeria (user=postgres)
+2025-11-25T09:28:50.303-05:00  INFO 22980 --- [servidor] [main] c.proyecto.demo.db.DatabaseInitRunner    : Using database adapter: Postgres
+2025-11-25T09:28:50.365-05:00  INFO 22980 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : java.awt.headless=false | GraphicsEnvironment.isHeadless=false
+2025-11-25T09:28:50.466-05:00  INFO 22980 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
+2025-11-25T09:28:50.880-05:00  INFO 22980 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Panel iniciado
+2025-11-25T09:28:50.880-05:00  INFO 22980 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
+2025-11-25T09:28:50.882-05:00  INFO 22980 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : Using database adapter: Postgres
+2025-11-25T09:28:50.882-05:00  INFO 22980 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : Conectado a BD: PostgreSQL | URL=jdbc:postgresql://localhost:5433/mensajeria | user=postgres
+2025-11-25T09:28:50.892-05:00  INFO 22980 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : Tabla: archivos
+2025-11-25T09:28:50.900-05:00  INFO 22980 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   (sin filas)
+2025-11-25T09:28:50.900-05:00  INFO 22980 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : Tabla: mensajes
+2025-11-25T09:28:50.905-05:00  INFO 22980 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   (sin filas)
+2025-11-25T09:28:50.906-05:00  INFO 22980 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : Tabla: sesiones
+2025-11-25T09:28:50.915-05:00  INFO 22980 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=05bba297-23b3-4a75-aed7-9b3413e93504; usuario_id=1; token=null; ip=192.168.40.12; fecha_inicio=2025-11-24 17:05:42.382366; fecha_fin=2025-11-24 17:06:27.945269; estado=CERRADA; 
+2025-11-25T09:28:50.916-05:00  INFO 22980 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=1532e17f-a649-440d-af79-ef42704d5bc1; usuario_id=1; token=null; ip=192.168.40.12; fecha_inicio=2025-11-24 17:06:31.007088; fecha_fin=2025-11-24 17:06:40.370939; estado=CERRADA; 
+2025-11-25T09:28:50.917-05:00  INFO 22980 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=d9830042-d3b5-4251-8dff-1b72d35228a9; usuario_id=2; token=null; ip=192.168.40.12; fecha_inicio=2025-11-24 17:06:07.717398; fecha_fin=2025-11-24 17:06:44.206152; estado=CERRADA; 
+2025-11-25T09:28:50.919-05:00  INFO 22980 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=c96b254e-31c0-486d-87d4-557126cf7d27; usuario_id=1; token=null; ip=10.236.197.200; fecha_inicio=2025-11-25 09:12:48.248811; fecha_fin=null; estado=ACTIVA; 
+2025-11-25T09:28:50.920-05:00  INFO 22980 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : Tabla: usuarios
+2025-11-25T09:28:50.925-05:00  INFO 22980 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=1; nombre_usuario=postgres1; contrasena_hash=03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4; 
+2025-11-25T09:28:50.926-05:00  INFO 22980 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=2; nombre_usuario=postgres2; contrasena_hash=03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4; 
+2025-11-25T09:28:50.927-05:00  INFO 22980 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : app.db.initOnStartup=false -> no se ejecuta initDatabase() (previene borrado de tablas)
+2025-11-25T09:28:50.948-05:00  INFO 22980 --- [servidor] [main] c.proyecto.demo.config.DatabaseConfig    : Creating primary DataSource: url='jdbc:postgresql://localhost:5433/mensajeria' user='postgres' (app.db.type=postgres)
+2025-11-25T09:28:50.949-05:00  INFO 22980 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : app-hikari-pool - Starting...
+2025-11-25T09:28:50.980-05:00  INFO 22980 --- [servidor] [main] com.zaxxer.hikari.pool.HikariPool        : app-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@6a9cd0f8
+2025-11-25T09:28:50.981-05:00  INFO 22980 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : app-hikari-pool - Start completed.
+2025-11-25T09:28:51.123-05:00  INFO 22980 --- [servidor] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-11-25T09:28:51.668-05:00  INFO 22980 --- [servidor] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9010 (http) with context path ''
+2025-11-25T09:28:51.679-05:00  INFO 22980 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 5.579 seconds (process running for 6.23)
+2025-11-25T09:28:51.683-05:00  INFO 22980 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=0.0.0.0, port=9010
+2025-11-25T09:28:51.684-05:00  INFO 22980 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UI enabled property = true; intentando inicializar UI
+2025-11-25T09:28:51.685-05:00  INFO 22980 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (initialize)
+2025-11-25T09:28:51.685-05:00  INFO 22980 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UiServerWindow.initialize() invocado desde DemoApplication.run
+2025-11-25T09:28:51.686-05:00  INFO 22980 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
+2025-11-25T09:28:51.686-05:00  INFO 22980 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
+2025-11-25T09:28:51.718-05:00  INFO 22980 --- [servidor] [main] com.proyecto.demo.DemoApplication        : DB check OK - usuarios count = 2
+2025-11-25T09:28:51.719-05:00  INFO 22980 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : DB check OK - usuarios count = 2
+2025-11-25T09:28:51.722-05:00  INFO 22980 --- [servidor] [main] com.proyecto.demo.web.LogStartup         : LogStartup initialized. includePast=true, startPosition=0, path=C:\Users\josem\Desktop\proyectoavanzadas2025\mensajeriaRedLocal\servidor\demo\servidor\server_logs.txt
+2025-11-25T09:30:15.078-05:00  INFO 22980 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /10.236.197.200:60266
+2025-11-25T09:30:15.088-05:00  INFO 22980 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /10.236.197.200:60266
+2025-11-25T09:30:21.461-05:00  INFO 22980 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /10.236.197.200:60266
+2025-11-25T09:30:21.461-05:00  INFO 22980 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /10.236.197.200:60266
+2025-11-25T09:30:21.461-05:00  INFO 22980 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /10.236.197.200:60266
+2025-11-25T09:30:21.479-05:00  INFO 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /10.236.197.200:60266 conectado y saludado.
+2025-11-25T09:30:21.480-05:00  INFO 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleRegister correctamente. Raw='REGISTER 3|postgres3|1234'
+2025-11-25T09:30:21.495-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: buscando usuario='postgres3' usando columna='nombre_usuario'
+2025-11-25T09:30:21.505-05:00  WARN 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: fallo buscando usuario='postgres3' usando 'nombre_usuario' - Incorrect result size: expected 1, actual 0
+2025-11-25T09:30:21.519-05:00  INFO 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.AuthDbService     : Usuario 'postgres3' (id=3) registrado en DB
+2025-11-25T09:30:21.520-05:00  INFO 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Registro exitoso de usuario 'postgres3' (id=3) desde /10.236.197.200:60266
+2025-11-25T09:30:21.521-05:00  INFO 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : Registro exitoso: postgres3 (id=3) desde /10.236.197.200:60266
+2025-11-25T09:30:21.525-05:00  INFO 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Post-register DB check: usuarios count = 3
+2025-11-25T09:30:21.525-05:00  INFO 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : Post-register DB check: usuarios count = 3
+2025-11-25T09:30:35.970-05:00  INFO 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN 3|postgres3|1234'
+2025-11-25T09:30:35.978-05:00  INFO 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.AuthDbService     : Login exitoso para usuario='postgres3' id=3
+2025-11-25T09:30:35.979-05:00  INFO 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Login exitoso: usuario='postgres3' id=3 desde /10.236.197.200:60266
+2025-11-25T09:30:35.980-05:00  INFO 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : Login exitoso: postgres3 (id=3) desde /10.236.197.200:60266
+2025-11-25T09:30:35.981-05:00  INFO 22980 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Usuario registrado para broadcast: postgres3 (user-conns=1)
+2025-11-25T09:30:35.982-05:00  INFO 22980 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 1 clients: postgres3
+2025-11-25T09:30:35.983-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: buscando usuario='postgres3' usando columna='nombre_usuario'
+2025-11-25T09:30:35.989-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: encontrado id=3 usuario='postgres3'
+2025-11-25T09:30:36.004-05:00  INFO 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Sesion creada para usuario postgres3 id=f04966b8-7d7d-4121-b5a4-86b6c86a1480
+2025-11-25T09:30:36.005-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: buscando usuario='postgres3' usando columna='nombre_usuario'
+2025-11-25T09:30:36.010-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: encontrado id=3 usuario='postgres3'
+2025-11-25T09:30:47.455-05:00  INFO 22980 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /10.236.197.200:49734
+2025-11-25T09:30:47.460-05:00  INFO 22980 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /10.236.197.200:49734
+2025-11-25T09:30:50.665-05:00  INFO 22980 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /10.236.197.200:49734
+2025-11-25T09:30:50.665-05:00  INFO 22980 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /10.236.197.200:49734
+2025-11-25T09:30:50.666-05:00  INFO 22980 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /10.236.197.200:49734
+2025-11-25T09:30:50.668-05:00  INFO 22980 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Cliente /10.236.197.200:49734 conectado y saludado.
+2025-11-25T09:30:50.670-05:00  INFO 22980 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN 1|postgres1|1234'
+2025-11-25T09:30:50.677-05:00  INFO 22980 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.AuthDbService     : Login exitoso para usuario='postgres1' id=1
+2025-11-25T09:30:50.679-05:00  INFO 22980 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Login exitoso: usuario='postgres1' id=1 desde /10.236.197.200:49734
+2025-11-25T09:30:50.680-05:00  INFO 22980 --- [servidor] [pool-2-thread-2] com.proyecto.demo.ui.UiServerWindow      : Login exitoso: postgres1 (id=1) desde /10.236.197.200:49734
+2025-11-25T09:30:50.681-05:00  INFO 22980 --- [servidor] [pool-2-thread-2] c.proyecto.demo.server.ConnectedClients  : Usuario registrado para broadcast: postgres1 (user-conns=1)
+2025-11-25T09:30:50.682-05:00  INFO 22980 --- [servidor] [pool-2-thread-2] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 2 clients: postgres1,postgres3
+2025-11-25T09:30:50.683-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: buscando usuario='postgres1' usando columna='nombre_usuario'
+2025-11-25T09:30:50.693-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: encontrado id=1 usuario='postgres1'
+2025-11-25T09:30:50.704-05:00  INFO 22980 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Sesion creada para usuario postgres1 id=070675b4-6818-4243-99f0-0669c4400d54
+2025-11-25T09:30:50.708-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: buscando usuario='postgres1' usando columna='nombre_usuario'
+2025-11-25T09:30:50.717-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: encontrado id=1 usuario='postgres1'
+2025-11-25T09:31:06.509-05:00  INFO 22980 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /10.236.197.200:56403
+2025-11-25T09:31:06.516-05:00  INFO 22980 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /10.236.197.200:56403
+2025-11-25T09:31:09.836-05:00  INFO 22980 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /10.236.197.200:56403
+2025-11-25T09:31:09.838-05:00  INFO 22980 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /10.236.197.200:56403
+2025-11-25T09:31:09.838-05:00  INFO 22980 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /10.236.197.200:56403
+2025-11-25T09:31:09.841-05:00  INFO 22980 --- [servidor] [pool-2-thread-3] com.proyecto.demo.server.ClientWorker    : Cliente /10.236.197.200:56403 conectado y saludado.
+2025-11-25T09:31:09.842-05:00  INFO 22980 --- [servidor] [pool-2-thread-3] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN 2|postgres2|1234'
+2025-11-25T09:31:09.856-05:00  INFO 22980 --- [servidor] [pool-2-thread-3] com.proyecto.demo.auth.AuthDbService     : Login exitoso para usuario='postgres2' id=2
+2025-11-25T09:31:09.857-05:00  INFO 22980 --- [servidor] [pool-2-thread-3] com.proyecto.demo.server.ClientWorker    : Login exitoso: usuario='postgres2' id=2 desde /10.236.197.200:56403
+2025-11-25T09:31:09.857-05:00  INFO 22980 --- [servidor] [pool-2-thread-3] com.proyecto.demo.ui.UiServerWindow      : Login exitoso: postgres2 (id=2) desde /10.236.197.200:56403
+2025-11-25T09:31:09.858-05:00  INFO 22980 --- [servidor] [pool-2-thread-3] c.proyecto.demo.server.ConnectedClients  : Usuario registrado para broadcast: postgres2 (user-conns=1)
+2025-11-25T09:31:09.860-05:00  INFO 22980 --- [servidor] [pool-2-thread-3] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 3 clients: postgres1,postgres2,postgres3
+2025-11-25T09:31:09.861-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-3] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: buscando usuario='postgres2' usando columna='nombre_usuario'
+2025-11-25T09:31:09.872-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-3] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: encontrado id=2 usuario='postgres2'
+2025-11-25T09:31:09.897-05:00  INFO 22980 --- [servidor] [pool-2-thread-3] com.proyecto.demo.server.ClientWorker    : Sesion creada para usuario postgres2 id=3cf72ee3-835e-4896-87ad-b979ec440d8f
+2025-11-25T09:31:09.898-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-3] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: buscando usuario='postgres2' usando columna='nombre_usuario'
+2025-11-25T09:31:09.903-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-3] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: encontrado id=2 usuario='postgres2'
+2025-11-25T09:31:43.598-05:00  INFO 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleMessage correctamente. Raw='MSG postgres1|msj para pg2'
+2025-11-25T09:31:43.603-05:00  INFO 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : [2025-11-25 09:31:43] Mensaje enviado por: postgres3 Para postgres1 Contenido: msj para pg2
+2025-11-25T09:31:43.606-05:00  INFO 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : [MSG] 2025-11-25 09:31:43 Mensaje enviado por: postgres3 Para postgres1 Contenido: msj para pg2 (desde /10.236.197.200:60266)
+2025-11-25T09:31:43.611-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: buscando usuario='postgres3' usando columna='nombre_usuario'
+2025-11-25T09:31:43.626-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: encontrado id=3 usuario='postgres3'
+2025-11-25T09:31:43.629-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: buscando usuario='postgres1' usando columna='nombre_usuario'
+2025-11-25T09:31:43.644-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: encontrado id=1 usuario='postgres1'
+2025-11-25T09:31:43.646-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Persistiendo mensaje: emisorId=3 receptorId=1 sesionId=f04966b8-7d7d-4121-b5a4-86b6c86a1480 contenido='msj para pg2'
+2025-11-25T09:31:43.648-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.dao.JdbcMessageDao     : Executing SQL: INSERT INTO mensajes (emisor_id,receptor_id,tipo,contenido,archivo_id,sesion_id) VALUES (?,?,?,?,?,?) with emisorId=3, receptorId=1, tipo=TEXTO, sesionId=f04966b8-7d7d-4121-b5a4-86b6c86a1480
+2025-11-25T09:31:43.691-05:00 ERROR 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.dao.JdbcMessageDao     : Error inserting message into DB (emisorId=3, receptorId=1, sesionId=f04966b8-7d7d-4121-b5a4-86b6c86a1480)
+
+org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar []
+	at org.springframework.jdbc.support.SQLStateSQLExceptionTranslator.doTranslate(SQLStateSQLExceptionTranslator.java:112) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:107) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:116) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.core.JdbcTemplate.translateException(JdbcTemplate.java:1548) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:677) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1001) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at com.proyecto.demo.dao.JdbcMessageDao.insertMessage(JdbcMessageDao.java:108) ~[classes/:na]
+	at com.proyecto.demo.server.ClientWorker.handleMessage(ClientWorker.java:811) ~[classes/:na]
+	at com.proyecto.demo.server.ClientWorker.run(ClientWorker.java:102) ~[classes/:na]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[na:na]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+Caused by: org.postgresql.util.PSQLException: ERROR: column "tipo" is of type mensaje_tipo but expression is of type character varying
+  Hint: You will need to rewrite or cast the expression.
+  Position: 96
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2713) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2401) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:368) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:498) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:415) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:190) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:152) ~[postgresql-42.6.0.jar:42.6.0]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java) ~[HikariCP-5.0.1.jar:na]
+	at org.springframework.jdbc.core.JdbcTemplate.lambda$update$3(JdbcTemplate.java:1002) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:658) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	... 9 common frames omitted
+
+2025-11-25T09:31:58.937-05:00  INFO 22980 --- [servidor] [pool-2-thread-3] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleMessage correctamente. Raw='MSG postgres1|respuesta para pg1'
+2025-11-25T09:31:58.940-05:00  INFO 22980 --- [servidor] [pool-2-thread-3] com.proyecto.demo.server.ClientWorker    : [2025-11-25 09:31:58] Mensaje enviado por: postgres2 Para postgres1 Contenido: respuesta para pg1
+2025-11-25T09:31:58.947-05:00  INFO 22980 --- [servidor] [pool-2-thread-3] com.proyecto.demo.ui.UiServerWindow      : [MSG] 2025-11-25 09:31:58 Mensaje enviado por: postgres2 Para postgres1 Contenido: respuesta para pg1 (desde /10.236.197.200:56403)
+2025-11-25T09:31:58.948-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-3] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: buscando usuario='postgres2' usando columna='nombre_usuario'
+2025-11-25T09:31:58.970-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-3] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: encontrado id=2 usuario='postgres2'
+2025-11-25T09:31:58.983-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-3] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: buscando usuario='postgres1' usando columna='nombre_usuario'
+2025-11-25T09:31:58.995-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-3] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: encontrado id=1 usuario='postgres1'
+2025-11-25T09:31:59.008-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-3] com.proyecto.demo.server.ClientWorker    : Persistiendo mensaje: emisorId=2 receptorId=1 sesionId=3cf72ee3-835e-4896-87ad-b979ec440d8f contenido='respuesta para pg1'
+2025-11-25T09:31:59.008-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-3] com.proyecto.demo.dao.JdbcMessageDao     : Executing SQL: INSERT INTO mensajes (emisor_id,receptor_id,tipo,contenido,archivo_id,sesion_id) VALUES (?,?,?,?,?,?) with emisorId=2, receptorId=1, tipo=TEXTO, sesionId=3cf72ee3-835e-4896-87ad-b979ec440d8f
+2025-11-25T09:31:59.021-05:00 ERROR 22980 --- [servidor] [pool-2-thread-3] com.proyecto.demo.dao.JdbcMessageDao     : Error inserting message into DB (emisorId=2, receptorId=1, sesionId=3cf72ee3-835e-4896-87ad-b979ec440d8f)
+
+org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar []
+	at org.springframework.jdbc.support.SQLStateSQLExceptionTranslator.doTranslate(SQLStateSQLExceptionTranslator.java:112) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:107) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:116) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.core.JdbcTemplate.translateException(JdbcTemplate.java:1548) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:677) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1001) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at com.proyecto.demo.dao.JdbcMessageDao.insertMessage(JdbcMessageDao.java:108) ~[classes/:na]
+	at com.proyecto.demo.server.ClientWorker.handleMessage(ClientWorker.java:811) ~[classes/:na]
+	at com.proyecto.demo.server.ClientWorker.run(ClientWorker.java:102) ~[classes/:na]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[na:na]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+Caused by: org.postgresql.util.PSQLException: ERROR: column "tipo" is of type mensaje_tipo but expression is of type character varying
+  Hint: You will need to rewrite or cast the expression.
+  Position: 96
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2713) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2401) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:368) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:498) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:415) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:190) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:152) ~[postgresql-42.6.0.jar:42.6.0]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java) ~[HikariCP-5.0.1.jar:na]
+	at org.springframework.jdbc.core.JdbcTemplate.lambda$update$3(JdbcTemplate.java:1002) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:658) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	... 9 common frames omitted
+
+2025-11-25T09:32:14.989-05:00  INFO 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleMessage correctamente. Raw='MSG postgres2|msj para pg2'
+2025-11-25T09:32:14.992-05:00  INFO 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : [2025-11-25 09:32:14] Mensaje enviado por: postgres3 Para postgres2 Contenido: msj para pg2
+2025-11-25T09:32:14.992-05:00  INFO 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : [MSG] 2025-11-25 09:32:14 Mensaje enviado por: postgres3 Para postgres2 Contenido: msj para pg2 (desde /10.236.197.200:60266)
+2025-11-25T09:32:14.994-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: buscando usuario='postgres3' usando columna='nombre_usuario'
+2025-11-25T09:32:15.015-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: encontrado id=3 usuario='postgres3'
+2025-11-25T09:32:15.015-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: buscando usuario='postgres2' usando columna='nombre_usuario'
+2025-11-25T09:32:15.018-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: encontrado id=2 usuario='postgres2'
+2025-11-25T09:32:15.019-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Persistiendo mensaje: emisorId=3 receptorId=2 sesionId=f04966b8-7d7d-4121-b5a4-86b6c86a1480 contenido='msj para pg2'
+2025-11-25T09:32:15.020-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.dao.JdbcMessageDao     : Executing SQL: INSERT INTO mensajes (emisor_id,receptor_id,tipo,contenido,archivo_id,sesion_id) VALUES (?,?,?,?,?,?) with emisorId=3, receptorId=2, tipo=TEXTO, sesionId=f04966b8-7d7d-4121-b5a4-86b6c86a1480
+2025-11-25T09:32:15.023-05:00 ERROR 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.dao.JdbcMessageDao     : Error inserting message into DB (emisorId=3, receptorId=2, sesionId=f04966b8-7d7d-4121-b5a4-86b6c86a1480)
+
+org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar []
+	at org.springframework.jdbc.support.SQLStateSQLExceptionTranslator.doTranslate(SQLStateSQLExceptionTranslator.java:112) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:107) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:116) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.core.JdbcTemplate.translateException(JdbcTemplate.java:1548) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:677) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1001) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at com.proyecto.demo.dao.JdbcMessageDao.insertMessage(JdbcMessageDao.java:108) ~[classes/:na]
+	at com.proyecto.demo.server.ClientWorker.handleMessage(ClientWorker.java:811) ~[classes/:na]
+	at com.proyecto.demo.server.ClientWorker.run(ClientWorker.java:102) ~[classes/:na]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[na:na]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+Caused by: org.postgresql.util.PSQLException: ERROR: column "tipo" is of type mensaje_tipo but expression is of type character varying
+  Hint: You will need to rewrite or cast the expression.
+  Position: 96
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2713) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2401) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:368) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:498) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:415) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:190) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:152) ~[postgresql-42.6.0.jar:42.6.0]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java) ~[HikariCP-5.0.1.jar:na]
+	at org.springframework.jdbc.core.JdbcTemplate.lambda$update$3(JdbcTemplate.java:1002) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:658) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	... 9 common frames omitted
+
+2025-11-25T09:32:47.526-05:00  INFO 22980 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleFileHeader. Raw='FILE_HDR postgres2|Tipos de mensaje avanzadas.txt|2259'
+2025-11-25T09:32:47.526-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : FILE_HDR parsed recipient='postgres2' filename='Tipos de mensaje avanzadas.txt' size='2259'
+2025-11-25T09:32:47.531-05:00  INFO 22980 --- [servidor] [pool-2-thread-2] com.proyecto.demo.ui.UiServerWindow      : HDR aceptado: Tipos de mensaje avanzadas.txt size=2259 desde /10.236.197.200:49734
+2025-11-25T09:32:47.563-05:00  INFO 22980 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleFileData. Raw='FILE_DATA postgres2|Tipos de mensaje avanzadas.txt|Ly8vLy8vLy8NCkFwbGljYWNpw7NuIGNsaWVudGUgc2Vydmlkb3IgcGFyYSBlbCBpbnRlcmNhbWJpbyBkZSBpbmZvcm1hY2nDs24gZW50cmUgdXN1YXJpb3MuIHB1ZWRlbiBpbnRlcmNhbWJpYXIgaW5mb3JtYWNpw7NuIGJhc2FkYSBlbiBtZW5zYWplcyBkZSB0ZXh0byB5IGFyY2hpdm9zICggdGV4dG8gbyBiaW5hcmlvICkNCkVsIHNlcnZpZG9yIHBvZHLDoSByZWNpYmlyIHZhcmlhcyBjb25leGlvbmVzIHNpbXVsdGFuZWFzIHBhcmEgZWwgcHJvY2VzYW1pZW50byBkZSBtZW5zYWplcywgZGViZXLDoW4gYXBsaWNhciBlbCBjb25jZXB0byBkZSBwcm9ncmFtYWNpw7NuIGNvbmN1cnJlbnRlIGNvbiBoaWxvcyBwYXJhIGdlc3Rpb25hciBsYXMgY29uZXhpb25lcw0KVG9kYSBsYSBpbmZvcm1hY2nDs24gZGVsIHNlcnZpZG9yIGRlYmUgc2VyIGFsbWFjZW5hZGEgZW4gbGEgYmFzZSBkZSBkYXRvcyByZWxhY2lvbmFsOyBlajogc3FsLCBPcmFjbGUNCkxvcyB1c3VhcmlvcyBzZSBkZWJlbiBjcmVhciBkZXNkZSBsYSBhcHAgZGUgY2xpZW50ZSwgcGVybyBzZSBhY2VwdGFuIGRlc2RlIGVsIHNlcnZpZG9yLCBzb2xvIHB1ZWRlbiBjb25lY3RhcnNlIGx1ZWdvIGRlIHNlciBhY2VwdGFkb3MNClVuIHVzdWFyaW8gcHVlZGUgdGVuZXIgbWFzIGRlIDEgY29uZXhpw7NuIGRlc2RlIG1hcyBkZSAxIGRpc3Bvc2l0aXZvDQpFbCBzZXJ2aWRvciBkZWJlIG1vc3RyYXIgcG9yIGNvbnNvbGEgdG9kYXMgbGFzIGFjY2lvbmVzIHF1ZSBzZSBlc3TDoW4gZWplY3V0YW5kbw0KRWwgc2Vydmlkb3IgbGltaXRhIGxhIGNhbnRpZGFkIGRlIGNvbmV4aW9uZXMgcG9yIHVzdWFyaW8NCkxhIGNvbmV4acOzbiBlbnRyZSBzZXJ2aWRvciBjbGllbnRlcyBzZSBoYWNlIGEgdHJhdsOpcyBkZSBwcm90b2NvbG8gdGNwIGlwDQpMb3MgdXN1YXJpb3MgcHVlZGVuIGRlc2NhcmdhciBsb3MgYXJjaGl2b3MgZW52aWFkb3MNCkxhIGFwbGljYWNpw7NuIGNsaWVudGUgaW1wbGVtZW50YXJhIGZvcm11bGFyaW9zIG1hZXN0cm8tZGV0YWxsZSBwYXJhIG1vc3RyYXIgbGEgaW5mb3JtYWNpw7NuIGFzb2NpYWRhIGFsIHVzdWFyaW8NCg0KVW5hIGFwbGljYWNpw7NuIHdlYiBtdmMgbXXDqXN0cmFsbyBzaWd1aWVudGUNCkxpc3RhZG8gZGUgdXN1YXJpb3MgcmVnaXN0cmFkb3MNCk1lbnNhamVzIGRlIGxvcyB1c3VhcmlvcywgY2xhc2lmaWNhZG9zIHBvciBlbCB0aXBvIGRlIG1lbnNhamUuIFZlciBkZXRhbGxlIGRlIG1lbnNhamUsIGluY2x1eWUgZGVzY2FyZ2FyIGFyY2hpdm9zLg0KTW9zdHJhciBsb3Mgc2lndWllbnRlcyBpbmZvcm1lcw0KVXN1YXJpbyBjb24gbWFzIG1lbnNhamVzIGVudmlhZG9zOiBtb3N0cmFyIGNhbnRpZGFkDQpBcmNoaXZvcyBlbnZpYWRvcywgbGlzdGFyIHBvciB0YW1hw7FvIHkgbW9zdHJhciBwcm9waWV0YXJpbw0KTGlzdGEgZGUgdXN1YXJpb3MgY29uZWN0YWRvcyB5IGluZm9ybWFjacOzbjogSXAsIGhvcmEgZGUgY29uZXhpw7NuLCBjYW50aWRhZCBkZSBtZW5zYWplcyBlbnZpYWRvcyBlbiBlc2UgaW5zdGFudGUpDQpMaXN0YSBkZSB1c3VhcmlvcyBkZXNjb25lY3RhZG9zIHkgaW5mb3JtYWNpw7NuOiBJcCwgaG9yYSBkZSBjb25leGnDs24sIGhvcmEgZGUgZGVzY29uZXhpw7NuLCBjYW50aWRhZCBkZSBtZW5zYWplcyBlbnZpYWRvcyBlbiBlc2UgaW5zdGFudGUpDQoNCg0KaHR0cDovL2xvY2FsaG9zdDo5MzAwL3dlYi91c3Vhcmlvcw0KaHR0cDovL2xvY2FsaG9zdDo5MzAwL3dlYi8NCg0KDQpVbiBzZXJ2aWNpbyB3ZWIgZGUgYXBpIHJlc3QgcGFyYSBtb3N0cmFyIGxvIHNpZ3VpZW50ZToNCkluZm9ybWFjacOzbiBjb21wbGV0YSBkZSB1c3VhcmlvOiBOb21icmUsIGNhbnRpZGFkIGRlIG1lbnNhamVzIGVudmlhZG9zLCBjYW50aWRhZCBkZSBtZW5zYWplcyByZWNpYmlkb3MsIGZlY2hhIHkgaG9yYSBkZSB1bHRpbWEgY29uZXhpw7NuLCBlc3RhZG8gKGRlc2NvbmVjdGFkby9jb25lY3RhZG8pDQpMaXN0YSBkZSBtZW5zYWplcyBlbnZpYWRvcyAoSXAgdXN1YXJpbyxpcCB1c3VhcmlvIHJlbW90byxmZWNoYSxob3JhKQ0KTGlzdGEgZGUgbWVuc2FqZXMgcmVjaWJpZG9zIChJcCB1c3VhcmlvLGlwIHVzdWFyaW8gcmVtb3RvLGZlY2hhLGhvcmEpDQoNCmh0dHA6Ly9sb2NhbGhvc3Q6OTIwMC9hcGkvdXN1YXJpb3MvMQ0KaHR0cDovL2xvY2FsaG9zdDo5MjAwL2FwaS91c3Vhcmlvcy8xL21lbnNhamVzL3JlY2liaWRvcw0KaHR0cDovL2xvY2FsaG9zdDo5MjAwL2FwaS91c3Vhcmlvcy8xL21lbnNhamVzL2VudmlhZG9z'
+2025-11-25T09:32:47.576-05:00  INFO 22980 --- [servidor] [pool-2-thread-2] com.proyecto.demo.ui.UiServerWindow      : Archivo DATA recibido: postgres1 -> postgres2 : Tipos de mensaje avanzadas.txt (2259 bytes)
+2025-11-25T09:32:47.587-05:00  INFO 22980 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Archivo DATA recibido guardado en Archivos_enviados\1764081167577_postgres1_Tipos de mensaje avanzadas.txt
+2025-11-25T09:32:47.589-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: buscando usuario='postgres1' usando columna='nombre_usuario'
+2025-11-25T09:32:47.598-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: encontrado id=1 usuario='postgres1'
+2025-11-25T09:32:47.616-05:00  INFO 22980 --- [servidor] [pool-2-thread-2] com.proyecto.demo.dao.JdbcArchivoDao     : insertArchivo: inserted file 'Tipos de mensaje avanzadas.txt' using columns nombre / ruta, id=1
+2025-11-25T09:32:47.617-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: buscando usuario='postgres2' usando columna='nombre_usuario'
+2025-11-25T09:32:47.621-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: encontrado id=2 usuario='postgres2'
+2025-11-25T09:32:47.621-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Persistiendo mensaje archivo (DATA): emisorId=1 receptorId=2 archivoId=1
+2025-11-25T09:32:47.622-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-2] com.proyecto.demo.dao.JdbcMessageDao     : Executing SQL: INSERT INTO mensajes (emisor_id,receptor_id,tipo,contenido,archivo_id,sesion_id) VALUES (?,?,?,?,?,?) with emisorId=1, receptorId=2, tipo=ARCHIVO, sesionId=null
+2025-11-25T09:32:47.626-05:00 ERROR 22980 --- [servidor] [pool-2-thread-2] com.proyecto.demo.dao.JdbcMessageDao     : Error inserting message into DB (emisorId=1, receptorId=2, sesionId=null)
+
+org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar []
+	at org.springframework.jdbc.support.SQLStateSQLExceptionTranslator.doTranslate(SQLStateSQLExceptionTranslator.java:112) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:107) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:116) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.core.JdbcTemplate.translateException(JdbcTemplate.java:1548) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:677) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1001) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at com.proyecto.demo.dao.JdbcMessageDao.insertMessage(JdbcMessageDao.java:108) ~[classes/:na]
+	at com.proyecto.demo.server.ClientWorker.handleFileData(ClientWorker.java:482) ~[classes/:na]
+	at com.proyecto.demo.server.ClientWorker.run(ClientWorker.java:117) ~[classes/:na]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[na:na]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+Caused by: org.postgresql.util.PSQLException: ERROR: column "tipo" is of type mensaje_tipo but expression is of type character varying
+  Hint: You will need to rewrite or cast the expression.
+  Position: 96
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2713) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2401) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:368) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:498) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:415) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:190) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:152) ~[postgresql-42.6.0.jar:42.6.0]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java) ~[HikariCP-5.0.1.jar:na]
+	at org.springframework.jdbc.core.JdbcTemplate.lambda$update$3(JdbcTemplate.java:1002) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:658) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	... 9 common frames omitted
+
+2025-11-25T09:32:47.628-05:00  WARN 22980 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : insertMessage devolvió id no válido (-1) para mensaje archivo (archivoId=1)
+2025-11-25T09:33:03.994-05:00  INFO 22980 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleFileHeader. Raw='FILE_HDR postgres3|mensaje_archivo_recibido_laura.txt|2038'
+2025-11-25T09:33:03.995-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : FILE_HDR parsed recipient='postgres3' filename='mensaje_archivo_recibido_laura.txt' size='2038'
+2025-11-25T09:33:03.996-05:00  INFO 22980 --- [servidor] [pool-2-thread-2] com.proyecto.demo.ui.UiServerWindow      : HDR aceptado: mensaje_archivo_recibido_laura.txt size=2038 desde /10.236.197.200:49734
+2025-11-25T09:33:04.029-05:00  INFO 22980 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleFileData. Raw='FILE_DATA postgres3|mensaje_archivo_recibido_laura.txt|Ly8vLy8vLy8NCkFwbGljYWNpw7NuIGNsaWVudGUgc2Vydmlkb3IgcGFyYSBlbCBpbnRlcmNhbWJpbyBkZSBpbmZvcm1hY2nDs24gZW50cmUgdXN1YXJpb3MuIHB1ZWRlbiBpbnRlcmNhbWJpYXIgaW5mb3JtYWNpw7NuIGJhc2FkYSBlbiBtZW5zYWplcyBkZSB0ZXh0byB5IGFyY2hpdm9zICggdGV4dG8gbyBiaW5hcmlvICkNCkVsIHNlcnZpZG9yIHBvZHLDoSByZWNpYmlyIHZhcmlhcyBjb25leGlvbmVzIHNpbXVsdGFuZWFzIHBhcmEgZWwgcHJvY2VzYW1pZW50byBkZSBtZW5zYWplcywgZGViZXLDoW4gYXBsaWNhciBlbCBjb25jZXB0byBkZSBwcm9ncmFtYWNpw7NuIGNvbmN1cnJlbnRlIGNvbiBoaWxvcyBwYXJhIGdlc3Rpb25hciBsYXMgY29uZXhpb25lcw0KVG9kYSBsYSBpbmZvcm1hY2nDs24gZGVsIHNlcnZpZG9yIGRlYmUgc2VyIGFsbWFjZW5hZGEgZW4gbGEgYmFzZSBkZSBkYXRvcyByZWxhY2lvbmFsOyBlajogc3FsLCBPcmFjbGUNCkxvcyB1c3VhcmlvcyBzZSBkZWJlbiBjcmVhciBkZXNkZSBsYSBhcHAgZGUgY2xpZW50ZSwgcGVybyBzZSBhY2VwdGFuIGRlc2RlIGVsIHNlcnZpZG9yLCBzb2xvIHB1ZWRlbiBjb25lY3RhcnNlIGx1ZWdvIGRlIHNlciBhY2VwdGFkb3MNClVuIHVzdWFyaW8gcHVlZGUgdGVuZXIgbWFzIGRlIDEgY29uZXhpw7NuIGRlc2RlIG1hcyBkZSAxIGRpc3Bvc2l0aXZvDQpFbCBzZXJ2aWRvciBkZWJlIG1vc3RyYXIgcG9yIGNvbnNvbGEgdG9kYXMgbGFzIGFjY2lvbmVzIHF1ZSBzZSBlc3TDoW4gZWplY3V0YW5kbw0KRWwgc2Vydmlkb3IgbGltaXRhIGxhIGNhbnRpZGFkIGRlIGNvbmV4aW9uZXMgcG9yIHVzdWFyaW8NCkxhIGNvbmV4acOzbiBlbnRyZSBzZXJ2aWRvciBjbGllbnRlcyBzZSBoYWNlIGEgdHJhdsOpcyBkZSBwcm90b2NvbG8gdGNwIGlwDQpMb3MgdXN1YXJpb3MgcHVlZGVuIGRlc2NhcmdhciBsb3MgYXJjaGl2b3MgZW52aWFkb3MNCkxhIGFwbGljYWNpw7NuIGNsaWVudGUgaW1wbGVtZW50YXJhIGZvcm11bGFyaW9zIG1hZXN0cm8tZGV0YWxsZSBwYXJhIG1vc3RyYXIgbGEgaW5mb3JtYWNpw7NuIGFzb2NpYWRhIGFsIHVzdWFyaW8NCg0KVW5hIGFwbGljYWNpw7NuIHdlYiBtdmMgbXXDqXN0cmFsbyBzaWd1aWVudGUNCkxpc3RhZG8gZGUgdXN1YXJpb3MgcmVnaXN0cmFkb3MNCk1lbnNhamVzIGRlIGxvcyB1c3VhcmlvcywgY2xhc2lmaWNhZG9zIHBvciBlbCB0aXBvIGRlIG1lbnNhamUuIFZlciBkZXRhbGxlIGRlIG1lbnNhamUsIGluY2x1eWUgZGVzY2FyZ2FyIGFyY2hpdm9zLg0KTW9zdHJhciBsb3Mgc2lndWllbnRlcyBpbmZvcm1lcw0KVXN1YXJpbyBjb24gbWFzIG1lbnNhamVzIGVudmlhZG9zOiBtb3N0cmFyIGNhbnRpZGFkDQpBcmNoaXZvcyBlbnZpYWRvcywgbGlzdGFyIHBvciB0YW1hw7FvIHkgbW9zdHJhciBwcm9waWV0YXJpbw0KTGlzdGEgZGUgdXN1YXJpb3MgY29uZWN0YWRvcyB5IGluZm9ybWFjacOzbjogSXAsIGhvcmEgZGUgY29uZXhpw7NuLCBjYW50aWRhZCBkZSBtZW5zYWplcyBlbnZpYWRvcyBlbiBlc2UgaW5zdGFudGUpDQpMaXN0YSBkZSB1c3VhcmlvcyBkZXNjb25lY3RhZG9zIHkgaW5mb3JtYWNpw7NuOiBJcCwgaG9yYSBkZSBjb25leGnDs24sIGhvcmEgZGUgZGVzY29uZXhpw7NuLCBjYW50aWRhZCBkZSBtZW5zYWplcyBlbnZpYWRvcyBlbiBlc2UgaW5zdGFudGUpDQoNCg0KVW4gc2VydmljaW8gd2ViIGRlIGFwaSByZXN0IHBhcmEgbW9zdHJhciBsbyBzaWd1aWVudGU6DQpJbmZvcm1hY2nDs24gY29tcGxldGEgZGUgdXN1YXJpbzogTm9tYnJlLCBjYW50aWRhZCBkZSBtZW5zYWplcyBlbnZpYWRvcywgY2FudGlkYWQgZGUgbWVuc2FqZXMgcmVjaWJpZG9zLCBmZWNoYSB5IGhvcmEgZGUgdWx0aW1hIGNvbmV4acOzbiwgZXN0YWRvIChkZXNjb25lY3RhZG8vY29uZWN0YWRvKQ0KTGlzdGEgZGUgbWVuc2FqZXMgZW52aWFkb3MgKElwIHVzdWFyaW8saXAgdXN1YXJpbyByZW1vdG8sZmVjaGEsaG9yYSkNCkxpc3RhIGRlIG1lbnNhamVzIHJlY2liaWRvcyAoSXAgdXN1YXJpbyxpcCB1c3VhcmlvIHJlbW90byxmZWNoYSxob3JhKQ=='
+2025-11-25T09:33:04.032-05:00  INFO 22980 --- [servidor] [pool-2-thread-2] com.proyecto.demo.ui.UiServerWindow      : Archivo DATA recibido: postgres1 -> postgres3 : mensaje_archivo_recibido_laura.txt (2038 bytes)
+2025-11-25T09:33:04.033-05:00  INFO 22980 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Archivo DATA recibido guardado en Archivos_enviados\1764081184032_postgres1_mensaje_archivo_recibido_laura.txt
+2025-11-25T09:33:04.034-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: buscando usuario='postgres1' usando columna='nombre_usuario'
+2025-11-25T09:33:04.043-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: encontrado id=1 usuario='postgres1'
+2025-11-25T09:33:04.051-05:00  INFO 22980 --- [servidor] [pool-2-thread-2] com.proyecto.demo.dao.JdbcArchivoDao     : insertArchivo: inserted file 'mensaje_archivo_recibido_laura.txt' using columns nombre / ruta, id=2
+2025-11-25T09:33:04.052-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: buscando usuario='postgres3' usando columna='nombre_usuario'
+2025-11-25T09:33:04.056-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: encontrado id=3 usuario='postgres3'
+2025-11-25T09:33:04.056-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Persistiendo mensaje archivo (DATA): emisorId=1 receptorId=3 archivoId=2
+2025-11-25T09:33:04.057-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-2] com.proyecto.demo.dao.JdbcMessageDao     : Executing SQL: INSERT INTO mensajes (emisor_id,receptor_id,tipo,contenido,archivo_id,sesion_id) VALUES (?,?,?,?,?,?) with emisorId=1, receptorId=3, tipo=ARCHIVO, sesionId=null
+2025-11-25T09:33:04.060-05:00 ERROR 22980 --- [servidor] [pool-2-thread-2] com.proyecto.demo.dao.JdbcMessageDao     : Error inserting message into DB (emisorId=1, receptorId=3, sesionId=null)
+
+org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar []
+	at org.springframework.jdbc.support.SQLStateSQLExceptionTranslator.doTranslate(SQLStateSQLExceptionTranslator.java:112) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:107) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:116) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.core.JdbcTemplate.translateException(JdbcTemplate.java:1548) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:677) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1001) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at com.proyecto.demo.dao.JdbcMessageDao.insertMessage(JdbcMessageDao.java:108) ~[classes/:na]
+	at com.proyecto.demo.server.ClientWorker.handleFileData(ClientWorker.java:482) ~[classes/:na]
+	at com.proyecto.demo.server.ClientWorker.run(ClientWorker.java:117) ~[classes/:na]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[na:na]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+Caused by: org.postgresql.util.PSQLException: ERROR: column "tipo" is of type mensaje_tipo but expression is of type character varying
+  Hint: You will need to rewrite or cast the expression.
+  Position: 96
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2713) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2401) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:368) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:498) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:415) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:190) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:152) ~[postgresql-42.6.0.jar:42.6.0]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java) ~[HikariCP-5.0.1.jar:na]
+	at org.springframework.jdbc.core.JdbcTemplate.lambda$update$3(JdbcTemplate.java:1002) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:658) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	... 9 common frames omitted
+
+2025-11-25T09:33:04.061-05:00  WARN 22980 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : insertMessage devolvió id no válido (-1) para mensaje archivo (archivoId=2)
+2025-11-25T09:34:23.541-05:00  INFO 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleMessage correctamente. Raw='MSG postgres2|mensaje para pg2'
+2025-11-25T09:34:23.541-05:00  INFO 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : [2025-11-25 09:34:23] Mensaje enviado por: postgres3 Para postgres2 Contenido: mensaje para pg2
+2025-11-25T09:34:23.546-05:00  INFO 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : [MSG] 2025-11-25 09:34:23 Mensaje enviado por: postgres3 Para postgres2 Contenido: mensaje para pg2 (desde /10.236.197.200:60266)
+2025-11-25T09:34:23.546-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: buscando usuario='postgres3' usando columna='nombre_usuario'
+2025-11-25T09:34:23.556-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: encontrado id=3 usuario='postgres3'
+2025-11-25T09:34:23.556-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: buscando usuario='postgres2' usando columna='nombre_usuario'
+2025-11-25T09:34:23.560-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: encontrado id=2 usuario='postgres2'
+2025-11-25T09:34:23.561-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Persistiendo mensaje: emisorId=3 receptorId=2 sesionId=f04966b8-7d7d-4121-b5a4-86b6c86a1480 contenido='mensaje para pg2'
+2025-11-25T09:34:23.563-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.dao.JdbcMessageDao     : Executing SQL: INSERT INTO mensajes (emisor_id,receptor_id,tipo,contenido,archivo_id,sesion_id) VALUES (?,?,?,?,?,?) with emisorId=3, receptorId=2, tipo=TEXTO, sesionId=f04966b8-7d7d-4121-b5a4-86b6c86a1480
+2025-11-25T09:34:23.567-05:00 ERROR 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.dao.JdbcMessageDao     : Error inserting message into DB (emisorId=3, receptorId=2, sesionId=f04966b8-7d7d-4121-b5a4-86b6c86a1480)
+
+org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar []
+	at org.springframework.jdbc.support.SQLStateSQLExceptionTranslator.doTranslate(SQLStateSQLExceptionTranslator.java:112) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:107) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:116) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.core.JdbcTemplate.translateException(JdbcTemplate.java:1548) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:677) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1001) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at com.proyecto.demo.dao.JdbcMessageDao.insertMessage(JdbcMessageDao.java:108) ~[classes/:na]
+	at com.proyecto.demo.server.ClientWorker.handleMessage(ClientWorker.java:811) ~[classes/:na]
+	at com.proyecto.demo.server.ClientWorker.run(ClientWorker.java:102) ~[classes/:na]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[na:na]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+Caused by: org.postgresql.util.PSQLException: ERROR: column "tipo" is of type mensaje_tipo but expression is of type character varying
+  Hint: You will need to rewrite or cast the expression.
+  Position: 96
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2713) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2401) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:368) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:498) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:415) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:190) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:152) ~[postgresql-42.6.0.jar:42.6.0]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java) ~[HikariCP-5.0.1.jar:na]
+	at org.springframework.jdbc.core.JdbcTemplate.lambda$update$3(JdbcTemplate.java:1002) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:658) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	... 9 common frames omitted
+
+2025-11-25T09:34:30.280-05:00  INFO 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleMessage correctamente. Raw='MSG postgres1|mas mensajes para pg1'
+2025-11-25T09:34:30.280-05:00  INFO 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : [2025-11-25 09:34:30] Mensaje enviado por: postgres3 Para postgres1 Contenido: mas mensajes para pg1
+2025-11-25T09:34:30.280-05:00  INFO 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : [MSG] 2025-11-25 09:34:30 Mensaje enviado por: postgres3 Para postgres1 Contenido: mas mensajes para pg1 (desde /10.236.197.200:60266)
+2025-11-25T09:34:30.284-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: buscando usuario='postgres3' usando columna='nombre_usuario'
+2025-11-25T09:34:30.296-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: encontrado id=3 usuario='postgres3'
+2025-11-25T09:34:30.297-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: buscando usuario='postgres1' usando columna='nombre_usuario'
+2025-11-25T09:34:30.301-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: encontrado id=1 usuario='postgres1'
+2025-11-25T09:34:30.301-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Persistiendo mensaje: emisorId=3 receptorId=1 sesionId=f04966b8-7d7d-4121-b5a4-86b6c86a1480 contenido='mas mensajes para pg1'
+2025-11-25T09:34:30.301-05:00 DEBUG 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.dao.JdbcMessageDao     : Executing SQL: INSERT INTO mensajes (emisor_id,receptor_id,tipo,contenido,archivo_id,sesion_id) VALUES (?,?,?,?,?,?) with emisorId=3, receptorId=1, tipo=TEXTO, sesionId=f04966b8-7d7d-4121-b5a4-86b6c86a1480
+2025-11-25T09:34:30.306-05:00 ERROR 22980 --- [servidor] [pool-2-thread-1] com.proyecto.demo.dao.JdbcMessageDao     : Error inserting message into DB (emisorId=3, receptorId=1, sesionId=f04966b8-7d7d-4121-b5a4-86b6c86a1480)
+
+org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar []
+	at org.springframework.jdbc.support.SQLStateSQLExceptionTranslator.doTranslate(SQLStateSQLExceptionTranslator.java:112) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:107) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:116) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.core.JdbcTemplate.translateException(JdbcTemplate.java:1548) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:677) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1001) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at com.proyecto.demo.dao.JdbcMessageDao.insertMessage(JdbcMessageDao.java:108) ~[classes/:na]
+	at com.proyecto.demo.server.ClientWorker.handleMessage(ClientWorker.java:811) ~[classes/:na]
+	at com.proyecto.demo.server.ClientWorker.run(ClientWorker.java:102) ~[classes/:na]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[na:na]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+Caused by: org.postgresql.util.PSQLException: ERROR: column "tipo" is of type mensaje_tipo but expression is of type character varying
+  Hint: You will need to rewrite or cast the expression.
+  Position: 96
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2713) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2401) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:368) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:498) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:415) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:190) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:152) ~[postgresql-42.6.0.jar:42.6.0]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java) ~[HikariCP-5.0.1.jar:na]
+	at org.springframework.jdbc.core.JdbcTemplate.lambda$update$3(JdbcTemplate.java:1002) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:658) ~[spring-jdbc-6.1.1.jar:6.1.1]
+	... 9 common frames omitted
+
+2025-11-25T09:35:33.229-05:00  INFO 22980 --- [servidor] [http-nio-0.0.0.0-9010-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-25T09:35:33.231-05:00  INFO 22980 --- [servidor] [http-nio-0.0.0.0-9010-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-25T09:35:33.231-05:00  INFO 22980 --- [servidor] [http-nio-0.0.0.0-9010-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-11-25T09:38:35.039-05:00  INFO 9852 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 9852 (C:\Users\josem\Desktop\proyectoavanzadas2025\mensajeriaRedLocal\servidor\demo\target\classes started by josem in C:\Users\josem\Desktop\proyectoavanzadas2025\mensajeriaRedLocal)
+2025-11-25T09:38:35.039-05:00 DEBUG 9852 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-11-25T09:38:35.047-05:00  INFO 9852 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-11-25T09:38:37.212-05:00  INFO 9852 --- [servidor] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9010 (http)
+2025-11-25T09:38:37.235-05:00  INFO 9852 --- [servidor] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-25T09:38:37.236-05:00  INFO 9852 --- [servidor] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
+2025-11-25T09:38:37.376-05:00  INFO 9852 --- [servidor] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-25T09:38:37.376-05:00  INFO 9852 --- [servidor] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2260 ms
+2025-11-25T09:38:37.501-05:00  INFO 9852 --- [servidor] [main] c.proyecto.demo.config.DataSourceConfig  : Attempting JDBC connect test to jdbc:mysql://localhost:3307/mensajeria?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC (user=root)
+2025-11-25T09:38:38.051-05:00  INFO 9852 --- [servidor] [main] c.proyecto.demo.config.DataSourceConfig  : Connection test succeeded to jdbc:mysql://localhost:3307/mensajeria?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+2025-11-25T09:38:38.087-05:00  INFO 9852 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : app-ds - Starting...
+2025-11-25T09:38:38.165-05:00  INFO 9852 --- [servidor] [main] com.zaxxer.hikari.pool.HikariPool        : app-ds - Added connection com.mysql.cj.jdbc.ConnectionImpl@999b951
+2025-11-25T09:38:38.169-05:00  INFO 9852 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : app-ds - Start completed.
+2025-11-25T09:38:38.169-05:00  INFO 9852 --- [servidor] [main] c.proyecto.demo.config.DataSourceConfig  : Providing DataSource for URL jdbc:mysql://localhost:3307/mensajeria?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+2025-11-25T09:38:38.235-05:00  INFO 9852 --- [servidor] [main] com.proyecto.demo.auth.JdbcUserDao       : evitar DDL
+2025-11-25T09:38:38.283-05:00  INFO 9852 --- [servidor] [main] com.proyecto.demo.dao.JdbcMessageDao     : ensureTables skipped for messaging-related tables - DDL is managed outside the application
+2025-11-25T09:38:38.396-05:00  INFO 9852 --- [servidor] [main] com.proyecto.demo.dao.JdbcArchivoDao     : ensureTable skipped for 'archivos' - DDL is managed outside the application
+2025-11-25T09:38:38.450-05:00  INFO 9852 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 0.0.0.0:9001
+2025-11-25T09:38:38.465-05:00  INFO 9852 --- [servidor] [main] c.p.demo.db.DatabaseSelectorService      : DB selector preferType='mysql' configuredUrl='jdbc:mysql://localhost:3307/mensajeria?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC'
+2025-11-25T09:38:38.499-05:00  INFO 9852 --- [servidor] [main] c.p.demo.db.DatabaseSelectorService      : Connected to MySQL via jdbc:mysql://localhost:3307/mensajeria?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+2025-11-25T09:38:38.502-05:00  INFO 9852 --- [servidor] [main] c.proyecto.demo.db.DatabaseInitRunner    : Using database adapter: MySQL
+2025-11-25T09:38:38.554-05:00  INFO 9852 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : java.awt.headless=false | GraphicsEnvironment.isHeadless=false
+2025-11-25T09:38:38.624-05:00  INFO 9852 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
+2025-11-25T09:38:39.017-05:00  INFO 9852 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Panel iniciado
+2025-11-25T09:38:39.018-05:00  INFO 9852 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
+2025-11-25T09:38:39.019-05:00  INFO 9852 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : Using database adapter: MySQL
+2025-11-25T09:38:39.026-05:00  INFO 9852 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : Conectado a BD: MySQL | URL=jdbc:mysql://localhost:3307/mensajeria?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC | user=root@172.18.0.1
+2025-11-25T09:38:39.118-05:00  INFO 9852 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : Tabla: archivos
+2025-11-25T09:38:39.142-05:00  INFO 9852 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   (sin filas)
+2025-11-25T09:38:39.144-05:00  INFO 9852 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : Tabla: mensajes
+2025-11-25T09:38:39.162-05:00  INFO 9852 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=1; emisor_id=2; receptor_id=1; tipo=TEXTO; contenido=mensaje de testeo; archivo_id=null; sesion_id=c03752eb-522d-4e86-a144-14f0227b59e4; creado_en=2025-11-24 22:03:45.477770; 
+2025-11-25T09:38:39.164-05:00  INFO 9852 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=2; emisor_id=1; receptor_id=2; tipo=TEXTO; contenido=respuesta de testeo; archivo_id=null; sesion_id=623ae263-9828-4caa-a8ba-99539278f72b; creado_en=2025-11-24 22:03:53.104761; 
+2025-11-25T09:38:39.165-05:00  INFO 9852 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : Tabla: sesiones
+2025-11-25T09:38:39.179-05:00  INFO 9852 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=623ae263-9828-4caa-a8ba-99539278f72b; usuario_id=1; token=null; ip=192.168.40.12; fecha_inicio=2025-11-24 22:03:19.342833; fecha_fin=2025-11-24 22:04:45.566031; estado=CERRADA; 
+2025-11-25T09:38:39.182-05:00  INFO 9852 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=b6a191e9-0ad2-498d-bd94-5e751dc0a3c3; usuario_id=2; token=null; ip=192.168.40.12; fecha_inicio=2025-11-24 22:51:01.732324; fecha_fin=null; estado=ACTIVA; 
+2025-11-25T09:38:39.199-05:00  INFO 9852 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=c03752eb-522d-4e86-a144-14f0227b59e4; usuario_id=2; token=null; ip=192.168.40.12; fecha_inicio=2025-11-24 22:03:38.055400; fecha_fin=2025-11-24 22:04:49.441709; estado=CERRADA; 
+2025-11-25T09:38:39.209-05:00  INFO 9852 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : Tabla: usuarios
+2025-11-25T09:38:39.227-05:00  INFO 9852 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=1; nombre_usuario=mysql1; contrasena_hash=03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4; 
+2025-11-25T09:38:39.229-05:00  INFO 9852 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=2; nombre_usuario=mysql2; contrasena_hash=03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4; 
+2025-11-25T09:38:39.234-05:00  INFO 9852 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : Tabla: sys_config
+2025-11-25T09:38:39.303-05:00  INFO 9852 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   Error leyendo tabla sys_config: Table 'mensajeria.sys_config' doesn't exist
+2025-11-25T09:38:39.311-05:00  INFO 9852 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : app.db.initOnStartup=false -> no se ejecuta initDatabase() (previene borrado de tablas)
+2025-11-25T09:38:39.365-05:00  INFO 9852 --- [servidor] [main] c.proyecto.demo.config.DatabaseConfig    : Creating primary DataSource: url='jdbc:mysql://localhost:3307/mensajeria?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC' user='root' (app.db.type=mysql)
+2025-11-25T09:38:39.369-05:00  INFO 9852 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : app-hikari-pool - Starting...
+2025-11-25T09:38:39.458-05:00  INFO 9852 --- [servidor] [main] com.zaxxer.hikari.pool.HikariPool        : app-hikari-pool - Added connection com.mysql.cj.jdbc.ConnectionImpl@7d42542
+2025-11-25T09:38:39.461-05:00  INFO 9852 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : app-hikari-pool - Start completed.
+2025-11-25T09:38:39.590-05:00  INFO 9852 --- [servidor] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-11-25T09:38:40.130-05:00  INFO 9852 --- [servidor] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9010 (http) with context path ''
+2025-11-25T09:38:40.145-05:00  INFO 9852 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 5.822 seconds (process running for 6.446)
+2025-11-25T09:38:40.150-05:00  INFO 9852 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=0.0.0.0, port=9010
+2025-11-25T09:38:40.151-05:00  INFO 9852 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UI enabled property = true; intentando inicializar UI
+2025-11-25T09:38:40.153-05:00  INFO 9852 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (initialize)
+2025-11-25T09:38:40.153-05:00  INFO 9852 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UiServerWindow.initialize() invocado desde DemoApplication.run
+2025-11-25T09:38:40.153-05:00  INFO 9852 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
+2025-11-25T09:38:40.154-05:00  INFO 9852 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
+2025-11-25T09:38:40.197-05:00  INFO 9852 --- [servidor] [main] com.proyecto.demo.DemoApplication        : DB check OK - usuarios count = 2
+2025-11-25T09:38:40.197-05:00  INFO 9852 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : DB check OK - usuarios count = 2
+2025-11-25T09:38:40.197-05:00  INFO 9852 --- [servidor] [main] com.proyecto.demo.web.LogStartup         : LogStartup initialized. includePast=true, startPosition=0, path=C:\Users\josem\Desktop\proyectoavanzadas2025\mensajeriaRedLocal\servidor\demo\servidor\server_logs.txt
+2025-11-25T09:38:55.833-05:00  INFO 9852 --- [servidor] [http-nio-0.0.0.0-9010-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-25T09:38:55.839-05:00  INFO 9852 --- [servidor] [http-nio-0.0.0.0-9010-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-25T09:38:55.847-05:00  INFO 9852 --- [servidor] [http-nio-0.0.0.0-9010-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2025-11-25T09:39:26.171-05:00  INFO 9852 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /10.236.197.200:59741
+2025-11-25T09:39:26.183-05:00  INFO 9852 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /10.236.197.200:59741
+2025-11-25T09:39:27.536-05:00  INFO 9852 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /10.236.197.200:59741
+2025-11-25T09:39:27.536-05:00  INFO 9852 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /10.236.197.200:59741
+2025-11-25T09:39:27.538-05:00  INFO 9852 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /10.236.197.200:59741
+2025-11-25T09:39:27.549-05:00  INFO 9852 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /10.236.197.200:59741 conectado y saludado.
+2025-11-25T09:39:27.550-05:00  INFO 9852 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleRegister correctamente. Raw='REGISTER 3|mysql3|1234'
+2025-11-25T09:39:27.566-05:00 DEBUG 9852 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: buscando usuario='mysql3' usando columna='nombre_usuario'
+2025-11-25T09:39:27.598-05:00  WARN 9852 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: fallo buscando usuario='mysql3' usando 'nombre_usuario' - Incorrect result size: expected 1, actual 0
+2025-11-25T09:39:27.626-05:00  INFO 9852 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.AuthDbService     : Usuario 'mysql3' (id=3) registrado en DB
+2025-11-25T09:39:27.627-05:00  INFO 9852 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Registro exitoso de usuario 'mysql3' (id=3) desde /10.236.197.200:59741
+2025-11-25T09:39:27.629-05:00  INFO 9852 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : Registro exitoso: mysql3 (id=3) desde /10.236.197.200:59741
+2025-11-25T09:39:27.633-05:00  INFO 9852 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Post-register DB check: usuarios count = 3
+2025-11-25T09:39:27.633-05:00  INFO 9852 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : Post-register DB check: usuarios count = 3
+2025-11-25T09:39:34.395-05:00  INFO 9852 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN 3|mysql3|1234'
+2025-11-25T09:39:34.402-05:00  INFO 9852 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.AuthDbService     : Login exitoso para usuario='mysql3' id=3
+2025-11-25T09:39:34.403-05:00  INFO 9852 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Login exitoso: usuario='mysql3' id=3 desde /10.236.197.200:59741
+2025-11-25T09:39:34.404-05:00  INFO 9852 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : Login exitoso: mysql3 (id=3) desde /10.236.197.200:59741
+2025-11-25T09:39:34.404-05:00  INFO 9852 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Usuario registrado para broadcast: mysql3 (user-conns=1)
+2025-11-25T09:39:34.405-05:00  INFO 9852 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 1 clients: mysql3
+2025-11-25T09:39:34.406-05:00 DEBUG 9852 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: buscando usuario='mysql3' usando columna='nombre_usuario'
+2025-11-25T09:39:34.412-05:00 DEBUG 9852 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: encontrado id=3 usuario='mysql3'
+2025-11-25T09:39:34.428-05:00  INFO 9852 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Sesion creada para usuario mysql3 id=52bc7dad-fd74-4837-8936-be2d71661498
+2025-11-25T09:39:34.428-05:00 DEBUG 9852 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: buscando usuario='mysql3' usando columna='nombre_usuario'
+2025-11-25T09:39:34.434-05:00 DEBUG 9852 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: encontrado id=3 usuario='mysql3'
+2025-11-25T09:39:43.595-05:00  INFO 9852 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /10.236.197.200:63005
+2025-11-25T09:39:43.600-05:00  INFO 9852 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /10.236.197.200:63005
+2025-11-25T09:39:45.470-05:00  INFO 9852 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /10.236.197.200:63005
+2025-11-25T09:39:45.471-05:00  INFO 9852 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /10.236.197.200:63005
+2025-11-25T09:39:45.471-05:00  INFO 9852 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /10.236.197.200:63005
+2025-11-25T09:39:45.474-05:00  INFO 9852 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Cliente /10.236.197.200:63005 conectado y saludado.
+2025-11-25T09:39:45.474-05:00  INFO 9852 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN 1|mysql1|1234'
+2025-11-25T09:39:45.485-05:00  INFO 9852 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.AuthDbService     : Login exitoso para usuario='mysql1' id=1
+2025-11-25T09:39:45.486-05:00  INFO 9852 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Login exitoso: usuario='mysql1' id=1 desde /10.236.197.200:63005
+2025-11-25T09:39:45.487-05:00  INFO 9852 --- [servidor] [pool-2-thread-2] com.proyecto.demo.ui.UiServerWindow      : Login exitoso: mysql1 (id=1) desde /10.236.197.200:63005
+2025-11-25T09:39:45.488-05:00  INFO 9852 --- [servidor] [pool-2-thread-2] c.proyecto.demo.server.ConnectedClients  : Usuario registrado para broadcast: mysql1 (user-conns=1)
+2025-11-25T09:39:45.488-05:00  INFO 9852 --- [servidor] [pool-2-thread-2] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 2 clients: mysql1,mysql3
+2025-11-25T09:39:45.489-05:00 DEBUG 9852 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: buscando usuario='mysql1' usando columna='nombre_usuario'
+2025-11-25T09:39:45.495-05:00 DEBUG 9852 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: encontrado id=1 usuario='mysql1'
+2025-11-25T09:39:45.512-05:00  INFO 9852 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Sesion creada para usuario mysql1 id=669b3c0d-dca1-4bf0-b463-1ee96127a40f
+2025-11-25T09:39:45.513-05:00 DEBUG 9852 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: buscando usuario='mysql1' usando columna='nombre_usuario'
+2025-11-25T09:39:45.519-05:00 DEBUG 9852 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: encontrado id=1 usuario='mysql1'
+2025-11-25T09:39:45.525-05:00  INFO 9852 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Enviando 2 mensajes históricos desde BD a mysql1
+2025-11-25T09:39:45.531-05:00  INFO 9852 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Se omitirá historial creado hasta 2025-11-24T17:04:45.566031 para evitar duplicados al usuario mysql1
+2025-11-25T09:40:27.076-05:00  INFO 9852 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleMessage correctamente. Raw='MSG mysql3|mensaje de text de 1 a 3'
+2025-11-25T09:40:27.077-05:00  INFO 9852 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : [2025-11-25 09:40:27] Mensaje enviado por: mysql1 Para mysql3 Contenido: mensaje de text de 1 a 3
+2025-11-25T09:40:27.080-05:00  INFO 9852 --- [servidor] [pool-2-thread-2] com.proyecto.demo.ui.UiServerWindow      : [MSG] 2025-11-25 09:40:27 Mensaje enviado por: mysql1 Para mysql3 Contenido: mensaje de text de 1 a 3 (desde /10.236.197.200:63005)
+2025-11-25T09:40:27.082-05:00 DEBUG 9852 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: buscando usuario='mysql1' usando columna='nombre_usuario'
+2025-11-25T09:40:27.093-05:00 DEBUG 9852 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: encontrado id=1 usuario='mysql1'
+2025-11-25T09:40:27.093-05:00 DEBUG 9852 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: buscando usuario='mysql3' usando columna='nombre_usuario'
+2025-11-25T09:40:27.105-05:00 DEBUG 9852 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: encontrado id=3 usuario='mysql3'
+2025-11-25T09:40:27.109-05:00 DEBUG 9852 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Persistiendo mensaje: emisorId=1 receptorId=3 sesionId=669b3c0d-dca1-4bf0-b463-1ee96127a40f contenido='mensaje de text de 1 a 3'
+2025-11-25T09:40:27.111-05:00 DEBUG 9852 --- [servidor] [pool-2-thread-2] com.proyecto.demo.dao.JdbcMessageDao     : Executing SQL: INSERT INTO mensajes (emisor_id,receptor_id,tipo,contenido,archivo_id,sesion_id) VALUES (?,?,?,?,?,?) with emisorId=1, receptorId=3, tipo=TEXTO, sesionId=669b3c0d-dca1-4bf0-b463-1ee96127a40f
+2025-11-25T09:40:49.008-05:00  INFO 9852 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleMessage correctamente. Raw='MSG mysql1|mensajes a 1 desde 3 mysql'
+2025-11-25T09:40:49.013-05:00  INFO 9852 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : [2025-11-25 09:40:49] Mensaje enviado por: mysql3 Para mysql1 Contenido: mensajes a 1 desde 3 mysql
+2025-11-25T09:40:49.016-05:00  INFO 9852 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : [MSG] 2025-11-25 09:40:49 Mensaje enviado por: mysql3 Para mysql1 Contenido: mensajes a 1 desde 3 mysql (desde /10.236.197.200:59741)
+2025-11-25T09:40:49.016-05:00 DEBUG 9852 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: buscando usuario='mysql3' usando columna='nombre_usuario'
+2025-11-25T09:40:49.033-05:00 DEBUG 9852 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: encontrado id=3 usuario='mysql3'
+2025-11-25T09:40:49.035-05:00 DEBUG 9852 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: buscando usuario='mysql1' usando columna='nombre_usuario'
+2025-11-25T09:40:49.043-05:00 DEBUG 9852 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: encontrado id=1 usuario='mysql1'
+2025-11-25T09:40:49.044-05:00 DEBUG 9852 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Persistiendo mensaje: emisorId=3 receptorId=1 sesionId=52bc7dad-fd74-4837-8936-be2d71661498 contenido='mensajes a 1 desde 3 mysql'
+2025-11-25T09:40:49.049-05:00 DEBUG 9852 --- [servidor] [pool-2-thread-1] com.proyecto.demo.dao.JdbcMessageDao     : Executing SQL: INSERT INTO mensajes (emisor_id,receptor_id,tipo,contenido,archivo_id,sesion_id) VALUES (?,?,?,?,?,?) with emisorId=3, receptorId=1, tipo=TEXTO, sesionId=52bc7dad-fd74-4837-8936-be2d71661498
+2025-11-25T09:41:00.015-05:00  INFO 9852 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleFileHeader. Raw='FILE_HDR mysql1|Tipos de mensaje avanzadas.txt|2259'
+2025-11-25T09:41:00.017-05:00 DEBUG 9852 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : FILE_HDR parsed recipient='mysql1' filename='Tipos de mensaje avanzadas.txt' size='2259'
+2025-11-25T09:41:00.020-05:00  INFO 9852 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : HDR aceptado: Tipos de mensaje avanzadas.txt size=2259 desde /10.236.197.200:59741
+2025-11-25T09:41:00.036-05:00  INFO 9852 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleFileData. Raw='FILE_DATA mysql1|Tipos de mensaje avanzadas.txt|Ly8vLy8vLy8NCkFwbGljYWNpw7NuIGNsaWVudGUgc2Vydmlkb3IgcGFyYSBlbCBpbnRlcmNhbWJpbyBkZSBpbmZvcm1hY2nDs24gZW50cmUgdXN1YXJpb3MuIHB1ZWRlbiBpbnRlcmNhbWJpYXIgaW5mb3JtYWNpw7NuIGJhc2FkYSBlbiBtZW5zYWplcyBkZSB0ZXh0byB5IGFyY2hpdm9zICggdGV4dG8gbyBiaW5hcmlvICkNCkVsIHNlcnZpZG9yIHBvZHLDoSByZWNpYmlyIHZhcmlhcyBjb25leGlvbmVzIHNpbXVsdGFuZWFzIHBhcmEgZWwgcHJvY2VzYW1pZW50byBkZSBtZW5zYWplcywgZGViZXLDoW4gYXBsaWNhciBlbCBjb25jZXB0byBkZSBwcm9ncmFtYWNpw7NuIGNvbmN1cnJlbnRlIGNvbiBoaWxvcyBwYXJhIGdlc3Rpb25hciBsYXMgY29uZXhpb25lcw0KVG9kYSBsYSBpbmZvcm1hY2nDs24gZGVsIHNlcnZpZG9yIGRlYmUgc2VyIGFsbWFjZW5hZGEgZW4gbGEgYmFzZSBkZSBkYXRvcyByZWxhY2lvbmFsOyBlajogc3FsLCBPcmFjbGUNCkxvcyB1c3VhcmlvcyBzZSBkZWJlbiBjcmVhciBkZXNkZSBsYSBhcHAgZGUgY2xpZW50ZSwgcGVybyBzZSBhY2VwdGFuIGRlc2RlIGVsIHNlcnZpZG9yLCBzb2xvIHB1ZWRlbiBjb25lY3RhcnNlIGx1ZWdvIGRlIHNlciBhY2VwdGFkb3MNClVuIHVzdWFyaW8gcHVlZGUgdGVuZXIgbWFzIGRlIDEgY29uZXhpw7NuIGRlc2RlIG1hcyBkZSAxIGRpc3Bvc2l0aXZvDQpFbCBzZXJ2aWRvciBkZWJlIG1vc3RyYXIgcG9yIGNvbnNvbGEgdG9kYXMgbGFzIGFjY2lvbmVzIHF1ZSBzZSBlc3TDoW4gZWplY3V0YW5kbw0KRWwgc2Vydmlkb3IgbGltaXRhIGxhIGNhbnRpZGFkIGRlIGNvbmV4aW9uZXMgcG9yIHVzdWFyaW8NCkxhIGNvbmV4acOzbiBlbnRyZSBzZXJ2aWRvciBjbGllbnRlcyBzZSBoYWNlIGEgdHJhdsOpcyBkZSBwcm90b2NvbG8gdGNwIGlwDQpMb3MgdXN1YXJpb3MgcHVlZGVuIGRlc2NhcmdhciBsb3MgYXJjaGl2b3MgZW52aWFkb3MNCkxhIGFwbGljYWNpw7NuIGNsaWVudGUgaW1wbGVtZW50YXJhIGZvcm11bGFyaW9zIG1hZXN0cm8tZGV0YWxsZSBwYXJhIG1vc3RyYXIgbGEgaW5mb3JtYWNpw7NuIGFzb2NpYWRhIGFsIHVzdWFyaW8NCg0KVW5hIGFwbGljYWNpw7NuIHdlYiBtdmMgbXXDqXN0cmFsbyBzaWd1aWVudGUNCkxpc3RhZG8gZGUgdXN1YXJpb3MgcmVnaXN0cmFkb3MNCk1lbnNhamVzIGRlIGxvcyB1c3VhcmlvcywgY2xhc2lmaWNhZG9zIHBvciBlbCB0aXBvIGRlIG1lbnNhamUuIFZlciBkZXRhbGxlIGRlIG1lbnNhamUsIGluY2x1eWUgZGVzY2FyZ2FyIGFyY2hpdm9zLg0KTW9zdHJhciBsb3Mgc2lndWllbnRlcyBpbmZvcm1lcw0KVXN1YXJpbyBjb24gbWFzIG1lbnNhamVzIGVudmlhZG9zOiBtb3N0cmFyIGNhbnRpZGFkDQpBcmNoaXZvcyBlbnZpYWRvcywgbGlzdGFyIHBvciB0YW1hw7FvIHkgbW9zdHJhciBwcm9waWV0YXJpbw0KTGlzdGEgZGUgdXN1YXJpb3MgY29uZWN0YWRvcyB5IGluZm9ybWFjacOzbjogSXAsIGhvcmEgZGUgY29uZXhpw7NuLCBjYW50aWRhZCBkZSBtZW5zYWplcyBlbnZpYWRvcyBlbiBlc2UgaW5zdGFudGUpDQpMaXN0YSBkZSB1c3VhcmlvcyBkZXNjb25lY3RhZG9zIHkgaW5mb3JtYWNpw7NuOiBJcCwgaG9yYSBkZSBjb25leGnDs24sIGhvcmEgZGUgZGVzY29uZXhpw7NuLCBjYW50aWRhZCBkZSBtZW5zYWplcyBlbnZpYWRvcyBlbiBlc2UgaW5zdGFudGUpDQoNCg0KaHR0cDovL2xvY2FsaG9zdDo5MzAwL3dlYi91c3Vhcmlvcw0KaHR0cDovL2xvY2FsaG9zdDo5MzAwL3dlYi8NCg0KDQpVbiBzZXJ2aWNpbyB3ZWIgZGUgYXBpIHJlc3QgcGFyYSBtb3N0cmFyIGxvIHNpZ3VpZW50ZToNCkluZm9ybWFjacOzbiBjb21wbGV0YSBkZSB1c3VhcmlvOiBOb21icmUsIGNhbnRpZGFkIGRlIG1lbnNhamVzIGVudmlhZG9zLCBjYW50aWRhZCBkZSBtZW5zYWplcyByZWNpYmlkb3MsIGZlY2hhIHkgaG9yYSBkZSB1bHRpbWEgY29uZXhpw7NuLCBlc3RhZG8gKGRlc2NvbmVjdGFkby9jb25lY3RhZG8pDQpMaXN0YSBkZSBtZW5zYWplcyBlbnZpYWRvcyAoSXAgdXN1YXJpbyxpcCB1c3VhcmlvIHJlbW90byxmZWNoYSxob3JhKQ0KTGlzdGEgZGUgbWVuc2FqZXMgcmVjaWJpZG9zIChJcCB1c3VhcmlvLGlwIHVzdWFyaW8gcmVtb3RvLGZlY2hhLGhvcmEpDQoNCmh0dHA6Ly9sb2NhbGhvc3Q6OTIwMC9hcGkvdXN1YXJpb3MvMQ0KaHR0cDovL2xvY2FsaG9zdDo5MjAwL2FwaS91c3Vhcmlvcy8xL21lbnNhamVzL3JlY2liaWRvcw0KaHR0cDovL2xvY2FsaG9zdDo5MjAwL2FwaS91c3Vhcmlvcy8xL21lbnNhamVzL2VudmlhZG9z'
+2025-11-25T09:41:00.060-05:00  INFO 9852 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : Archivo DATA recibido: mysql3 -> mysql1 : Tipos de mensaje avanzadas.txt (2259 bytes)
+2025-11-25T09:41:00.072-05:00  INFO 9852 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Archivo DATA recibido guardado en Archivos_enviados\1764081660062_mysql3_Tipos de mensaje avanzadas.txt
+2025-11-25T09:41:00.072-05:00 DEBUG 9852 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: buscando usuario='mysql3' usando columna='nombre_usuario'
+2025-11-25T09:41:00.083-05:00 DEBUG 9852 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: encontrado id=3 usuario='mysql3'
+2025-11-25T09:41:00.103-05:00  INFO 9852 --- [servidor] [pool-2-thread-1] com.proyecto.demo.dao.JdbcArchivoDao     : insertArchivo: inserted file 'Tipos de mensaje avanzadas.txt' using columns nombre / ruta, id=1
+2025-11-25T09:41:00.103-05:00 DEBUG 9852 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: buscando usuario='mysql1' usando columna='nombre_usuario'
+2025-11-25T09:41:00.107-05:00 DEBUG 9852 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: encontrado id=1 usuario='mysql1'
+2025-11-25T09:41:00.108-05:00 DEBUG 9852 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Persistiendo mensaje archivo (DATA): emisorId=3 receptorId=1 archivoId=1
+2025-11-25T09:41:00.108-05:00 DEBUG 9852 --- [servidor] [pool-2-thread-1] com.proyecto.demo.dao.JdbcMessageDao     : Executing SQL: INSERT INTO mensajes (emisor_id,receptor_id,tipo,contenido,archivo_id,sesion_id) VALUES (?,?,?,?,?,?) with emisorId=3, receptorId=1, tipo=ARCHIVO, sesionId=null
+2025-11-25T09:41:34.444-05:00  INFO 9852 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleFileHeader. Raw='FILE_HDR mysql3|conversar.txt|185'
+2025-11-25T09:41:34.444-05:00 DEBUG 9852 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : FILE_HDR parsed recipient='mysql3' filename='conversar.txt' size='185'
+2025-11-25T09:41:34.444-05:00  INFO 9852 --- [servidor] [pool-2-thread-2] com.proyecto.demo.ui.UiServerWindow      : HDR aceptado: conversar.txt size=185 desde /10.236.197.200:63005
+2025-11-25T09:41:34.457-05:00  INFO 9852 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleFileData. Raw='FILE_DATA mysql3|conversar.txt|Y29udmVyc2FyDQpwcmVzZW50YWNpb25lcw0KZ3VzdG9zDQpwYcOtcw0KZXh0cmFzDQoNCnRpZW5kYXMNCmN1YW50byB2YWxlLCBjdWFuZG8gcGFnbywgZWZlY3Rpdm8vdGFyamV0YQ0KcmVjb21lbmRhY2lvbmVzLCBkdWxjZSwgcHJvdGXDrW5hcywgDQpib2xzYXMsIHRhcmpldGFzIGRlIGFmaWxpYWRvDQoNCnNpdGlvcw0KDQo='
+2025-11-25T09:41:34.457-05:00  INFO 9852 --- [servidor] [pool-2-thread-2] com.proyecto.demo.ui.UiServerWindow      : Archivo DATA recibido: mysql1 -> mysql3 : conversar.txt (185 bytes)
+2025-11-25T09:41:34.457-05:00  INFO 9852 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Archivo DATA recibido guardado en Archivos_enviados\1764081694457_mysql1_conversar.txt
+2025-11-25T09:41:34.457-05:00 DEBUG 9852 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: buscando usuario='mysql1' usando columna='nombre_usuario'
+2025-11-25T09:41:34.472-05:00 DEBUG 9852 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: encontrado id=1 usuario='mysql1'
+2025-11-25T09:41:34.504-05:00  INFO 9852 --- [servidor] [pool-2-thread-2] com.proyecto.demo.dao.JdbcArchivoDao     : insertArchivo: inserted file 'conversar.txt' using columns nombre / ruta, id=2
+2025-11-25T09:41:34.505-05:00 DEBUG 9852 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: buscando usuario='mysql3' usando columna='nombre_usuario'
+2025-11-25T09:41:34.509-05:00 DEBUG 9852 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: encontrado id=3 usuario='mysql3'
+2025-11-25T09:41:34.509-05:00 DEBUG 9852 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Persistiendo mensaje archivo (DATA): emisorId=1 receptorId=3 archivoId=2
+2025-11-25T09:41:34.510-05:00 DEBUG 9852 --- [servidor] [pool-2-thread-2] com.proyecto.demo.dao.JdbcMessageDao     : Executing SQL: INSERT INTO mensajes (emisor_id,receptor_id,tipo,contenido,archivo_id,sesion_id) VALUES (?,?,?,?,?,?) with emisorId=1, receptorId=3, tipo=ARCHIVO, sesionId=null
+2025-11-25T09:42:41.308-05:00 ERROR 9852 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Error en worker para cliente /10.236.197.200:59741: java.net.SocketException: Connection reset
+2025-11-25T09:42:41.310-05:00  INFO 9852 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Usuario 'mysql3' desconectado.
+2025-11-25T09:42:41.310-05:00  INFO 9852 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Usuario mysql3 desconectado desde 10.236.197.200 (user-conns=0)
+2025-11-25T09:42:41.311-05:00  INFO 9852 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 1 clients: mysql1
+2025-11-25T09:43:48.123-05:00  INFO 18860 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 18860 (C:\Users\josem\Desktop\proyectoavanzadas2025\mensajeriaRedLocal\servidor\demo\target\classes started by josem in C:\Users\josem\Desktop\proyectoavanzadas2025\mensajeriaRedLocal)
+2025-11-25T09:43:48.126-05:00 DEBUG 18860 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-11-25T09:43:48.128-05:00  INFO 18860 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-11-25T09:43:50.318-05:00  INFO 18860 --- [servidor] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9010 (http)
+2025-11-25T09:43:50.337-05:00  INFO 18860 --- [servidor] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-25T09:43:50.337-05:00  INFO 18860 --- [servidor] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
+2025-11-25T09:43:50.412-05:00  INFO 18860 --- [servidor] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-25T09:43:50.412-05:00  INFO 18860 --- [servidor] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2222 ms
+2025-11-25T09:43:50.613-05:00  INFO 18860 --- [servidor] [main] c.proyecto.demo.config.DataSourceConfig  : Attempting JDBC connect test to jdbc:mysql://localhost:3307/mensajeria?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC (user=root)
+2025-11-25T09:43:51.228-05:00  INFO 18860 --- [servidor] [main] c.proyecto.demo.config.DataSourceConfig  : Connection test succeeded to jdbc:mysql://localhost:3307/mensajeria?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+2025-11-25T09:43:51.254-05:00  INFO 18860 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : app-ds - Starting...
+2025-11-25T09:43:51.326-05:00  INFO 18860 --- [servidor] [main] com.zaxxer.hikari.pool.HikariPool        : app-ds - Added connection com.mysql.cj.jdbc.ConnectionImpl@1d06f16f
+2025-11-25T09:43:51.330-05:00  INFO 18860 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : app-ds - Start completed.
+2025-11-25T09:43:51.330-05:00  INFO 18860 --- [servidor] [main] c.proyecto.demo.config.DataSourceConfig  : Providing DataSource for URL jdbc:mysql://localhost:3307/mensajeria?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+2025-11-25T09:43:51.419-05:00  INFO 18860 --- [servidor] [main] com.proyecto.demo.auth.JdbcUserDao       : evitar DDL
+2025-11-25T09:43:51.486-05:00  INFO 18860 --- [servidor] [main] com.proyecto.demo.dao.JdbcMessageDao     : ensureTables skipped for messaging-related tables - DDL is managed outside the application
+2025-11-25T09:43:51.550-05:00  INFO 18860 --- [servidor] [main] com.proyecto.demo.dao.JdbcArchivoDao     : ensureTable skipped for 'archivos' - DDL is managed outside the application
+2025-11-25T09:43:51.602-05:00  INFO 18860 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 0.0.0.0:9001
+2025-11-25T09:43:51.624-05:00  INFO 18860 --- [servidor] [main] c.p.demo.db.DatabaseSelectorService      : DB selector preferType='mysql' configuredUrl='jdbc:mysql://localhost:3307/mensajeria?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC'
+2025-11-25T09:43:51.653-05:00  INFO 18860 --- [servidor] [main] c.p.demo.db.DatabaseSelectorService      : Connected to MySQL via jdbc:mysql://localhost:3307/mensajeria?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+2025-11-25T09:43:51.657-05:00  INFO 18860 --- [servidor] [main] c.proyecto.demo.db.DatabaseInitRunner    : Using database adapter: MySQL
+2025-11-25T09:43:51.696-05:00  INFO 18860 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : java.awt.headless=false | GraphicsEnvironment.isHeadless=false
+2025-11-25T09:43:51.770-05:00  INFO 18860 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
+2025-11-25T09:43:52.068-05:00  INFO 18860 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Panel iniciado
+2025-11-25T09:43:52.069-05:00  INFO 18860 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
+2025-11-25T09:43:52.071-05:00  INFO 18860 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : Using database adapter: MySQL
+2025-11-25T09:43:52.081-05:00  INFO 18860 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : Conectado a BD: MySQL | URL=jdbc:mysql://localhost:3307/mensajeria?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC | user=root@172.18.0.1
+2025-11-25T09:43:52.112-05:00  INFO 18860 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : Tabla: archivos
+2025-11-25T09:43:52.128-05:00  INFO 18860 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=1; propietario_id=3; nombre=Tipos de mensaje avanzadas.txt; ruta=Archivos_enviados\1764081660062_mysql3_Tipos de mensaje avanzadas.txt; tipo_mime=null; tamano=2259; creado_en=2025-11-25 14:41:00.089183; 
+2025-11-25T09:43:52.130-05:00  INFO 18860 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=2; propietario_id=1; nombre=conversar.txt; ruta=Archivos_enviados\1764081694457_mysql1_conversar.txt; tipo_mime=null; tamano=185; creado_en=2025-11-25 14:41:34.478316; 
+2025-11-25T09:43:52.132-05:00  INFO 18860 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : Tabla: mensajes
+2025-11-25T09:43:52.137-05:00  INFO 18860 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=1; emisor_id=2; receptor_id=1; tipo=TEXTO; contenido=mensaje de testeo; archivo_id=null; sesion_id=c03752eb-522d-4e86-a144-14f0227b59e4; creado_en=2025-11-24 22:03:45.477770; 
+2025-11-25T09:43:52.141-05:00  INFO 18860 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=2; emisor_id=1; receptor_id=2; tipo=TEXTO; contenido=respuesta de testeo; archivo_id=null; sesion_id=623ae263-9828-4caa-a8ba-99539278f72b; creado_en=2025-11-24 22:03:53.104761; 
+2025-11-25T09:43:52.143-05:00  INFO 18860 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=3; emisor_id=1; receptor_id=3; tipo=TEXTO; contenido=mensaje de text de 1 a 3; archivo_id=null; sesion_id=669b3c0d-dca1-4bf0-b463-1ee96127a40f; creado_en=2025-11-25 14:40:27.116345; 
+2025-11-25T09:43:52.146-05:00  INFO 18860 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=4; emisor_id=3; receptor_id=1; tipo=TEXTO; contenido=mensajes a 1 desde 3 mysql; archivo_id=null; sesion_id=52bc7dad-fd74-4837-8936-be2d71661498; creado_en=2025-11-25 14:40:49.054499; 
+2025-11-25T09:43:52.147-05:00  INFO 18860 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=5; emisor_id=3; receptor_id=1; tipo=ARCHIVO; contenido=Tipos de mensaje avanzadas.txt; archivo_id=1; sesion_id=null; creado_en=2025-11-25 14:41:00.110706; 
+2025-11-25T09:43:52.148-05:00  INFO 18860 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : Tabla: sesiones
+2025-11-25T09:43:52.154-05:00  INFO 18860 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=52bc7dad-fd74-4837-8936-be2d71661498; usuario_id=3; token=null; ip=10.236.197.200; fecha_inicio=2025-11-25 14:39:34.417636; fecha_fin=2025-11-25 14:42:41.312689; estado=CERRADA; 
+2025-11-25T09:43:52.156-05:00  INFO 18860 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=623ae263-9828-4caa-a8ba-99539278f72b; usuario_id=1; token=null; ip=192.168.40.12; fecha_inicio=2025-11-24 22:03:19.342833; fecha_fin=2025-11-24 22:04:45.566031; estado=CERRADA; 
+2025-11-25T09:43:52.158-05:00  INFO 18860 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=669b3c0d-dca1-4bf0-b463-1ee96127a40f; usuario_id=1; token=null; ip=10.236.197.200; fecha_inicio=2025-11-25 14:39:45.501765; fecha_fin=null; estado=ACTIVA; 
+2025-11-25T09:43:52.160-05:00  INFO 18860 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=b6a191e9-0ad2-498d-bd94-5e751dc0a3c3; usuario_id=2; token=null; ip=192.168.40.12; fecha_inicio=2025-11-24 22:51:01.732324; fecha_fin=null; estado=ACTIVA; 
+2025-11-25T09:43:52.162-05:00  INFO 18860 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=c03752eb-522d-4e86-a144-14f0227b59e4; usuario_id=2; token=null; ip=192.168.40.12; fecha_inicio=2025-11-24 22:03:38.055400; fecha_fin=2025-11-24 22:04:49.441709; estado=CERRADA; 
+2025-11-25T09:43:52.164-05:00  INFO 18860 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : Tabla: usuarios
+2025-11-25T09:43:52.169-05:00  INFO 18860 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=1; nombre_usuario=mysql1; contrasena_hash=03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4; 
+2025-11-25T09:43:52.170-05:00  INFO 18860 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=2; nombre_usuario=mysql2; contrasena_hash=03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4; 
+2025-11-25T09:43:52.173-05:00  INFO 18860 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=3; nombre_usuario=mysql3; contrasena_hash=03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4; 
+2025-11-25T09:43:52.174-05:00  INFO 18860 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : Tabla: sys_config
+2025-11-25T09:43:52.230-05:00  INFO 18860 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   Error leyendo tabla sys_config: Table 'mensajeria.sys_config' doesn't exist
+2025-11-25T09:43:52.230-05:00  INFO 18860 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : app.db.initOnStartup=false -> no se ejecuta initDatabase() (previene borrado de tablas)
+2025-11-25T09:43:52.260-05:00  INFO 18860 --- [servidor] [main] c.proyecto.demo.config.DatabaseConfig    : Creating primary DataSource: url='jdbc:mysql://localhost:3307/mensajeria?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC' user='root' (app.db.type=mysql)
+2025-11-25T09:43:52.262-05:00  INFO 18860 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : app-hikari-pool - Starting...
+2025-11-25T09:43:52.333-05:00  INFO 18860 --- [servidor] [main] com.zaxxer.hikari.pool.HikariPool        : app-hikari-pool - Added connection com.mysql.cj.jdbc.ConnectionImpl@6adc5b9c
+2025-11-25T09:43:52.335-05:00  INFO 18860 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : app-hikari-pool - Start completed.
+2025-11-25T09:43:52.465-05:00  INFO 18860 --- [servidor] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-11-25T09:43:53.260-05:00  INFO 18860 --- [servidor] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9010 (http) with context path ''
+2025-11-25T09:43:53.271-05:00  INFO 18860 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 5.84 seconds (process running for 6.378)
+2025-11-25T09:43:53.277-05:00  INFO 18860 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=0.0.0.0, port=9010
+2025-11-25T09:43:53.278-05:00  INFO 18860 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UI enabled property = true; intentando inicializar UI
+2025-11-25T09:43:53.279-05:00  INFO 18860 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (initialize)
+2025-11-25T09:43:53.280-05:00  INFO 18860 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UiServerWindow.initialize() invocado desde DemoApplication.run
+2025-11-25T09:43:53.281-05:00  INFO 18860 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
+2025-11-25T09:43:53.281-05:00  INFO 18860 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
+2025-11-25T09:43:53.310-05:00  INFO 18860 --- [servidor] [main] com.proyecto.demo.DemoApplication        : DB check OK - usuarios count = 3
+2025-11-25T09:43:53.310-05:00  INFO 18860 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : DB check OK - usuarios count = 3
+2025-11-25T09:43:53.314-05:00  INFO 18860 --- [servidor] [main] com.proyecto.demo.web.LogStartup         : LogStartup initialized. includePast=true, startPosition=0, path=C:\Users\josem\Desktop\proyectoavanzadas2025\mensajeriaRedLocal\servidor\demo\servidor\server_logs.txt
+2025-11-25T09:44:22.706-05:00  INFO 18860 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /10.236.197.200:63991
+2025-11-25T09:44:22.712-05:00  INFO 18860 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /10.236.197.200:63991
+2025-11-25T09:44:24.502-05:00  INFO 18860 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /10.236.197.200:63991
+2025-11-25T09:44:24.503-05:00  INFO 18860 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /10.236.197.200:63991
+2025-11-25T09:44:24.503-05:00  INFO 18860 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /10.236.197.200:63991
+2025-11-25T09:44:24.514-05:00  INFO 18860 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /10.236.197.200:63991 conectado y saludado.
+2025-11-25T09:44:24.517-05:00  INFO 18860 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN 1|mysql1|1234'
+2025-11-25T09:44:24.551-05:00  INFO 18860 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.AuthDbService     : Login exitoso para usuario='mysql1' id=1
+2025-11-25T09:44:24.552-05:00  INFO 18860 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Login exitoso: usuario='mysql1' id=1 desde /10.236.197.200:63991
+2025-11-25T09:44:24.553-05:00  INFO 18860 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : Login exitoso: mysql1 (id=1) desde /10.236.197.200:63991
+2025-11-25T09:44:24.553-05:00  INFO 18860 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Usuario registrado para broadcast: mysql1 (user-conns=1)
+2025-11-25T09:44:24.554-05:00  INFO 18860 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 1 clients: mysql1
+2025-11-25T09:44:24.556-05:00 DEBUG 18860 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: buscando usuario='mysql1' usando columna='nombre_usuario'
+2025-11-25T09:44:24.563-05:00 DEBUG 18860 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: encontrado id=1 usuario='mysql1'
+2025-11-25T09:44:24.580-05:00  INFO 18860 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Sesion creada para usuario mysql1 id=4c74091d-f6dd-41a0-b5d2-f39b44eab105
+2025-11-25T09:44:24.581-05:00 DEBUG 18860 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: buscando usuario='mysql1' usando columna='nombre_usuario'
+2025-11-25T09:44:24.586-05:00 DEBUG 18860 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: encontrado id=1 usuario='mysql1'
+2025-11-25T09:44:24.592-05:00  INFO 18860 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Enviando 6 mensajes históricos desde BD a mysql1
+2025-11-25T09:44:24.600-05:00  INFO 18860 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Se omitirá historial creado hasta 2025-11-24T17:04:45.566031 para evitar duplicados al usuario mysql1
+2025-11-25T09:44:24.650-05:00 DEBUG 18860 --- [servidor] [pool-2-thread-1] com.proyecto.demo.dao.JdbcArchivoDao     : findById: select failed with SQL [SELECT id, nombre as filename, ruta as path, tamano as size, COALESCE(creado_en, subido_en) AS creado_en FROM archivos WHERE id = ?]: PreparedStatementCallback; bad SQL grammar [SELECT id, nombre as filename, ruta as path, tamano as size, COALESCE(creado_en, subido_en) AS creado_en FROM archivos WHERE id = ?]
+2025-11-25T09:44:24.681-05:00 DEBUG 18860 --- [servidor] [pool-2-thread-1] com.proyecto.demo.dao.JdbcArchivoDao     : findById: select failed with SQL [SELECT id, nombre as filename, ruta as path, tamano as size, COALESCE(creado_en, subido_en) AS creado_en FROM archivos WHERE id = ?]: PreparedStatementCallback; bad SQL grammar [SELECT id, nombre as filename, ruta as path, tamano as size, COALESCE(creado_en, subido_en) AS creado_en FROM archivos WHERE id = ?]
+2025-11-25T09:44:34.319-05:00  INFO 18860 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /10.236.197.200:61075
+2025-11-25T09:44:34.325-05:00  INFO 18860 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /10.236.197.200:61075
+2025-11-25T09:44:36.515-05:00  INFO 18860 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /10.236.197.200:61075
+2025-11-25T09:44:36.516-05:00  INFO 18860 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /10.236.197.200:61075
+2025-11-25T09:44:36.516-05:00  INFO 18860 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /10.236.197.200:61075
+2025-11-25T09:44:36.519-05:00  INFO 18860 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Cliente /10.236.197.200:61075 conectado y saludado.
+2025-11-25T09:44:36.520-05:00  INFO 18860 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN 1|mysql1|1234'
+2025-11-25T09:44:36.533-05:00  INFO 18860 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.AuthDbService     : Login exitoso para usuario='mysql1' id=1
+2025-11-25T09:44:36.534-05:00  INFO 18860 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Login exitoso: usuario='mysql1' id=1 desde /10.236.197.200:61075
+2025-11-25T09:44:36.535-05:00  INFO 18860 --- [servidor] [pool-2-thread-2] com.proyecto.demo.ui.UiServerWindow      : Login exitoso: mysql1 (id=1) desde /10.236.197.200:61075
+2025-11-25T09:44:36.535-05:00  INFO 18860 --- [servidor] [pool-2-thread-2] c.proyecto.demo.server.ConnectedClients  : Rechazando registro para usuario 'mysql1' desde la misma IP 10.236.197.200 (ya conectado)
+2025-11-25T09:44:36.536-05:00  WARN 18860 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Registro rechazado para usuario 'mysql1' desde 10.236.197.200 motivo=Error: Limite de ips excedido, no puede ingresar en este equipo
+2025-11-25T09:45:32.306-05:00 ERROR 18860 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Error en worker para cliente /10.236.197.200:61075: java.net.SocketException: Connection reset
+2025-11-25T09:45:32.306-05:00  INFO 18860 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Cliente /10.236.197.200:61075 desconectado sin autenticarse.
+2025-11-25T09:45:50.930-05:00  INFO 19332 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 19332 (C:\Users\josem\Desktop\proyectoavanzadas2025\mensajeriaRedLocal\servidor\demo\target\classes started by josem in C:\Users\josem\Desktop\proyectoavanzadas2025\mensajeriaRedLocal)
+2025-11-25T09:45:50.934-05:00 DEBUG 19332 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-11-25T09:45:50.936-05:00  INFO 19332 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-11-25T09:45:53.092-05:00  INFO 19332 --- [servidor] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9010 (http)
+2025-11-25T09:45:53.108-05:00  INFO 19332 --- [servidor] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-25T09:45:53.109-05:00  INFO 19332 --- [servidor] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
+2025-11-25T09:45:53.206-05:00  INFO 19332 --- [servidor] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-25T09:45:53.206-05:00  INFO 19332 --- [servidor] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2150 ms
+2025-11-25T09:45:53.393-05:00  INFO 19332 --- [servidor] [main] c.proyecto.demo.config.DataSourceConfig  : Attempting JDBC connect test to jdbc:mysql://localhost:3307/mensajeria?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC (user=root)
+2025-11-25T09:45:54.023-05:00  INFO 19332 --- [servidor] [main] c.proyecto.demo.config.DataSourceConfig  : Connection test succeeded to jdbc:mysql://localhost:3307/mensajeria?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+2025-11-25T09:45:54.050-05:00  INFO 19332 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : app-ds - Starting...
+2025-11-25T09:45:54.116-05:00  INFO 19332 --- [servidor] [main] com.zaxxer.hikari.pool.HikariPool        : app-ds - Added connection com.mysql.cj.jdbc.ConnectionImpl@4fa4f485
+2025-11-25T09:45:54.116-05:00  INFO 19332 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : app-ds - Start completed.
+2025-11-25T09:45:54.116-05:00  INFO 19332 --- [servidor] [main] c.proyecto.demo.config.DataSourceConfig  : Providing DataSource for URL jdbc:mysql://localhost:3307/mensajeria?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+2025-11-25T09:45:54.163-05:00  INFO 19332 --- [servidor] [main] com.proyecto.demo.auth.JdbcUserDao       : evitar DDL
+2025-11-25T09:45:54.199-05:00  INFO 19332 --- [servidor] [main] com.proyecto.demo.dao.JdbcMessageDao     : ensureTables skipped for messaging-related tables - DDL is managed outside the application
+2025-11-25T09:45:54.272-05:00  INFO 19332 --- [servidor] [main] com.proyecto.demo.dao.JdbcArchivoDao     : ensureTable skipped for 'archivos' - DDL is managed outside the application
+2025-11-25T09:45:54.321-05:00  INFO 19332 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 0.0.0.0:9001
+2025-11-25T09:45:54.338-05:00  INFO 19332 --- [servidor] [main] c.p.demo.db.DatabaseSelectorService      : DB selector preferType='mysql' configuredUrl='jdbc:mysql://localhost:3307/mensajeria?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC'
+2025-11-25T09:45:54.381-05:00  INFO 19332 --- [servidor] [main] c.p.demo.db.DatabaseSelectorService      : Connected to MySQL via jdbc:mysql://localhost:3307/mensajeria?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+2025-11-25T09:45:54.387-05:00  INFO 19332 --- [servidor] [main] c.proyecto.demo.db.DatabaseInitRunner    : Using database adapter: MySQL
+2025-11-25T09:45:54.434-05:00  INFO 19332 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : java.awt.headless=false | GraphicsEnvironment.isHeadless=false
+2025-11-25T09:45:54.504-05:00  INFO 19332 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
+2025-11-25T09:45:54.808-05:00  INFO 19332 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Panel iniciado
+2025-11-25T09:45:54.808-05:00  INFO 19332 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
+2025-11-25T09:45:54.809-05:00  INFO 19332 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : Using database adapter: MySQL
+2025-11-25T09:45:54.816-05:00  INFO 19332 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : Conectado a BD: MySQL | URL=jdbc:mysql://localhost:3307/mensajeria?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC | user=root@172.18.0.1
+2025-11-25T09:45:54.828-05:00  INFO 19332 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : Tabla: archivos
+2025-11-25T09:45:54.841-05:00  INFO 19332 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=1; propietario_id=3; nombre=Tipos de mensaje avanzadas.txt; ruta=Archivos_enviados\1764081660062_mysql3_Tipos de mensaje avanzadas.txt; tipo_mime=null; tamano=2259; creado_en=2025-11-25 14:41:00.089183; 
+2025-11-25T09:45:54.843-05:00  INFO 19332 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=2; propietario_id=1; nombre=conversar.txt; ruta=Archivos_enviados\1764081694457_mysql1_conversar.txt; tipo_mime=null; tamano=185; creado_en=2025-11-25 14:41:34.478316; 
+2025-11-25T09:45:54.846-05:00  INFO 19332 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : Tabla: mensajes
+2025-11-25T09:45:54.854-05:00  INFO 19332 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=1; emisor_id=2; receptor_id=1; tipo=TEXTO; contenido=mensaje de testeo; archivo_id=null; sesion_id=c03752eb-522d-4e86-a144-14f0227b59e4; creado_en=2025-11-24 22:03:45.477770; 
+2025-11-25T09:45:54.855-05:00  INFO 19332 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=2; emisor_id=1; receptor_id=2; tipo=TEXTO; contenido=respuesta de testeo; archivo_id=null; sesion_id=623ae263-9828-4caa-a8ba-99539278f72b; creado_en=2025-11-24 22:03:53.104761; 
+2025-11-25T09:45:54.857-05:00  INFO 19332 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=3; emisor_id=1; receptor_id=3; tipo=TEXTO; contenido=mensaje de text de 1 a 3; archivo_id=null; sesion_id=669b3c0d-dca1-4bf0-b463-1ee96127a40f; creado_en=2025-11-25 14:40:27.116345; 
+2025-11-25T09:45:54.858-05:00  INFO 19332 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=4; emisor_id=3; receptor_id=1; tipo=TEXTO; contenido=mensajes a 1 desde 3 mysql; archivo_id=null; sesion_id=52bc7dad-fd74-4837-8936-be2d71661498; creado_en=2025-11-25 14:40:49.054499; 
+2025-11-25T09:45:54.860-05:00  INFO 19332 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=5; emisor_id=3; receptor_id=1; tipo=ARCHIVO; contenido=Tipos de mensaje avanzadas.txt; archivo_id=1; sesion_id=null; creado_en=2025-11-25 14:41:00.110706; 
+2025-11-25T09:45:54.861-05:00  INFO 19332 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : Tabla: sesiones
+2025-11-25T09:45:54.867-05:00  INFO 19332 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=4c74091d-f6dd-41a0-b5d2-f39b44eab105; usuario_id=1; token=null; ip=10.236.197.200; fecha_inicio=2025-11-25 14:44:24.569887; fecha_fin=null; estado=ACTIVA; 
+2025-11-25T09:45:54.871-05:00  INFO 19332 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=52bc7dad-fd74-4837-8936-be2d71661498; usuario_id=3; token=null; ip=10.236.197.200; fecha_inicio=2025-11-25 14:39:34.417636; fecha_fin=2025-11-25 14:42:41.312689; estado=CERRADA; 
+2025-11-25T09:45:54.872-05:00  INFO 19332 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=623ae263-9828-4caa-a8ba-99539278f72b; usuario_id=1; token=null; ip=192.168.40.12; fecha_inicio=2025-11-24 22:03:19.342833; fecha_fin=2025-11-24 22:04:45.566031; estado=CERRADA; 
+2025-11-25T09:45:54.873-05:00  INFO 19332 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=669b3c0d-dca1-4bf0-b463-1ee96127a40f; usuario_id=1; token=null; ip=10.236.197.200; fecha_inicio=2025-11-25 14:39:45.501765; fecha_fin=null; estado=ACTIVA; 
+2025-11-25T09:45:54.874-05:00  INFO 19332 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=b6a191e9-0ad2-498d-bd94-5e751dc0a3c3; usuario_id=2; token=null; ip=192.168.40.12; fecha_inicio=2025-11-24 22:51:01.732324; fecha_fin=null; estado=ACTIVA; 
+2025-11-25T09:45:54.875-05:00  INFO 19332 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : Tabla: usuarios
+2025-11-25T09:45:54.880-05:00  INFO 19332 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=1; nombre_usuario=mysql1; contrasena_hash=03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4; 
+2025-11-25T09:45:54.881-05:00  INFO 19332 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=2; nombre_usuario=mysql2; contrasena_hash=03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4; 
+2025-11-25T09:45:54.882-05:00  INFO 19332 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=3; nombre_usuario=mysql3; contrasena_hash=03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4; 
+2025-11-25T09:45:54.884-05:00  INFO 19332 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : Tabla: sys_config
+2025-11-25T09:45:54.935-05:00  INFO 19332 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   Error leyendo tabla sys_config: Table 'mensajeria.sys_config' doesn't exist
+2025-11-25T09:45:54.935-05:00  INFO 19332 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : app.db.initOnStartup=false -> no se ejecuta initDatabase() (previene borrado de tablas)
+2025-11-25T09:45:54.957-05:00  INFO 19332 --- [servidor] [main] c.proyecto.demo.config.DatabaseConfig    : Creating primary DataSource: url='jdbc:mysql://localhost:3307/mensajeria?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC' user='root' (app.db.type=mysql)
+2025-11-25T09:45:54.957-05:00  INFO 19332 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : app-hikari-pool - Starting...
+2025-11-25T09:45:55.018-05:00  INFO 19332 --- [servidor] [main] com.zaxxer.hikari.pool.HikariPool        : app-hikari-pool - Added connection com.mysql.cj.jdbc.ConnectionImpl@19c1820d
+2025-11-25T09:45:55.019-05:00  INFO 19332 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : app-hikari-pool - Start completed.
+2025-11-25T09:45:55.186-05:00  INFO 19332 --- [servidor] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-11-25T09:45:56.237-05:00  INFO 19332 --- [servidor] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9010 (http) with context path ''
+2025-11-25T09:45:56.287-05:00  INFO 19332 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 6.055 seconds (process running for 6.638)
+2025-11-25T09:45:56.291-05:00  INFO 19332 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=0.0.0.0, port=9010
+2025-11-25T09:45:56.292-05:00  INFO 19332 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UI enabled property = true; intentando inicializar UI
+2025-11-25T09:45:56.293-05:00  INFO 19332 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (initialize)
+2025-11-25T09:45:56.294-05:00  INFO 19332 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UiServerWindow.initialize() invocado desde DemoApplication.run
+2025-11-25T09:45:56.297-05:00  INFO 19332 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
+2025-11-25T09:45:56.298-05:00  INFO 19332 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
+2025-11-25T09:45:56.343-05:00  INFO 19332 --- [servidor] [main] com.proyecto.demo.DemoApplication        : DB check OK - usuarios count = 3
+2025-11-25T09:45:56.348-05:00  INFO 19332 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : DB check OK - usuarios count = 3
+2025-11-25T09:45:56.377-05:00  INFO 19332 --- [servidor] [main] com.proyecto.demo.web.LogStartup         : LogStartup initialized. includePast=true, startPosition=0, path=C:\Users\josem\Desktop\proyectoavanzadas2025\mensajeriaRedLocal\servidor\demo\servidor\server_logs.txt
+2025-11-25T09:46:08.251-05:00  INFO 19332 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /10.236.197.200:62608
+2025-11-25T09:46:08.257-05:00  INFO 19332 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /10.236.197.200:62608
+2025-11-25T09:46:09.613-05:00  INFO 19332 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /10.236.197.200:62608
+2025-11-25T09:46:09.616-05:00  INFO 19332 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /10.236.197.200:62608
+2025-11-25T09:46:09.618-05:00  INFO 19332 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /10.236.197.200:62608
+2025-11-25T09:46:09.639-05:00  INFO 19332 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Cliente /10.236.197.200:62608 conectado y saludado.
+2025-11-25T09:46:09.642-05:00  INFO 19332 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN 1|mysql1|1234'
+2025-11-25T09:46:09.697-05:00  INFO 19332 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.AuthDbService     : Login exitoso para usuario='mysql1' id=1
+2025-11-25T09:46:09.699-05:00  INFO 19332 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Login exitoso: usuario='mysql1' id=1 desde /10.236.197.200:62608
+2025-11-25T09:46:09.701-05:00  INFO 19332 --- [servidor] [pool-2-thread-1] com.proyecto.demo.ui.UiServerWindow      : Login exitoso: mysql1 (id=1) desde /10.236.197.200:62608
+2025-11-25T09:46:09.701-05:00  INFO 19332 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Usuario registrado para broadcast: mysql1 (user-conns=1)
+2025-11-25T09:46:09.703-05:00  INFO 19332 --- [servidor] [pool-2-thread-1] c.proyecto.demo.server.ConnectedClients  : Broadcasting USERS list to 1 clients: mysql1
+2025-11-25T09:46:09.706-05:00 DEBUG 19332 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: buscando usuario='mysql1' usando columna='nombre_usuario'
+2025-11-25T09:46:09.722-05:00 DEBUG 19332 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: encontrado id=1 usuario='mysql1'
+2025-11-25T09:46:09.760-05:00  INFO 19332 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Sesion creada para usuario mysql1 id=bd22bf3f-7549-41f2-bd13-3330c84ca7a9
+2025-11-25T09:46:09.762-05:00 DEBUG 19332 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: buscando usuario='mysql1' usando columna='nombre_usuario'
+2025-11-25T09:46:09.771-05:00 DEBUG 19332 --- [servidor] [pool-2-thread-1] com.proyecto.demo.auth.JdbcUserDao       : JdbcUserDao.findByUsername: encontrado id=1 usuario='mysql1'
+2025-11-25T09:46:09.782-05:00  INFO 19332 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Enviando 6 mensajes históricos desde BD a mysql1
+2025-11-25T09:46:09.791-05:00  INFO 19332 --- [servidor] [pool-2-thread-1] com.proyecto.demo.server.ClientWorker    : Se omitirá historial creado hasta 2025-11-24T17:04:45.566031 para evitar duplicados al usuario mysql1
+2025-11-25T09:46:09.855-05:00 DEBUG 19332 --- [servidor] [pool-2-thread-1] com.proyecto.demo.dao.JdbcArchivoDao     : findById: select failed with SQL [SELECT id, nombre as filename, ruta as path, tamano as size, COALESCE(creado_en, subido_en) AS creado_en FROM archivos WHERE id = ?]: PreparedStatementCallback; bad SQL grammar [SELECT id, nombre as filename, ruta as path, tamano as size, COALESCE(creado_en, subido_en) AS creado_en FROM archivos WHERE id = ?]
+2025-11-25T09:46:09.880-05:00 DEBUG 19332 --- [servidor] [pool-2-thread-1] com.proyecto.demo.dao.JdbcArchivoDao     : findById: select failed with SQL [SELECT id, nombre as filename, ruta as path, tamano as size, COALESCE(creado_en, subido_en) AS creado_en FROM archivos WHERE id = ?]: PreparedStatementCallback; bad SQL grammar [SELECT id, nombre as filename, ruta as path, tamano as size, COALESCE(creado_en, subido_en) AS creado_en FROM archivos WHERE id = ?]
+2025-11-25T09:46:21.114-05:00  INFO 19332 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Nueva conexión entrante desde /10.236.197.200:57080
+2025-11-25T09:46:21.120-05:00  INFO 19332 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Solicitud de conexión desde /10.236.197.200:57080
+2025-11-25T09:46:22.519-05:00  INFO 19332 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Decisión: APROBADA para /10.236.197.200:57080
+2025-11-25T09:46:22.520-05:00  INFO 19332 --- [servidor] [servidor] com.proyecto.demo.ui.UiServerWindow      : Conexión aprobada desde /10.236.197.200:57080
+2025-11-25T09:46:22.521-05:00  INFO 19332 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Conexión aprobada desde /10.236.197.200:57080
+2025-11-25T09:46:22.523-05:00  INFO 19332 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Cliente /10.236.197.200:57080 conectado y saludado.
+2025-11-25T09:46:22.524-05:00  INFO 19332 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN 1|mysql1|1234'
+2025-11-25T09:46:22.540-05:00  INFO 19332 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.AuthDbService     : Login exitoso para usuario='mysql1' id=1
+2025-11-25T09:46:22.541-05:00  INFO 19332 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Login exitoso: usuario='mysql1' id=1 desde /10.236.197.200:57080
+2025-11-25T09:46:22.543-05:00  INFO 19332 --- [servidor] [pool-2-thread-2] com.proyecto.demo.ui.UiServerWindow      : Login exitoso: mysql1 (id=1) desde /10.236.197.200:57080
+2025-11-25T09:46:22.543-05:00  INFO 19332 --- [servidor] [pool-2-thread-2] c.proyecto.demo.server.ConnectedClients  : Rechazando registro para usuario 'mysql1' desde la misma IP 10.236.197.200 (ya conectado)
+2025-11-25T09:46:22.543-05:00  WARN 19332 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Registro rechazado para usuario 'mysql1' desde 10.236.197.200 motivo=Error: Limite de ips excedido, no puede ingresar en este equipo
+2025-11-25T09:46:38.542-05:00  INFO 19332 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : mensaje llega a funcion de ClientWorker.handleLogin correctamente. Raw='LOGIN 1|mysql1|1234'
+2025-11-25T09:46:38.547-05:00  INFO 19332 --- [servidor] [pool-2-thread-2] com.proyecto.demo.auth.AuthDbService     : Login exitoso para usuario='mysql1' id=1
+2025-11-25T09:46:38.548-05:00  INFO 19332 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Login exitoso: usuario='mysql1' id=1 desde /10.236.197.200:57080
+2025-11-25T09:46:38.549-05:00  INFO 19332 --- [servidor] [pool-2-thread-2] com.proyecto.demo.ui.UiServerWindow      : Login exitoso: mysql1 (id=1) desde /10.236.197.200:57080
+2025-11-25T09:46:38.550-05:00  INFO 19332 --- [servidor] [pool-2-thread-2] c.proyecto.demo.server.ConnectedClients  : Rechazando registro para usuario 'mysql1' desde la misma IP 10.236.197.200 (ya conectado)
+2025-11-25T09:46:38.550-05:00  WARN 19332 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Registro rechazado para usuario 'mysql1' desde 10.236.197.200 motivo=Error: Limite de ips excedido, no puede ingresar en este equipo
+2025-11-25T09:47:11.610-05:00 ERROR 19332 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Error en worker para cliente /10.236.197.200:57080: java.net.SocketException: Connection reset
+2025-11-25T09:47:11.611-05:00  INFO 19332 --- [servidor] [pool-2-thread-2] com.proyecto.demo.server.ClientWorker    : Cliente /10.236.197.200:57080 desconectado sin autenticarse.
+2025-11-25T09:52:31.629-05:00  INFO 22020 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Starting DemoApplication using Java 21.0.8 with PID 22020 (C:\Users\josem\Desktop\proyectoavanzadas2025\mensajeriaRedLocal\servidor\demo\target\classes started by josem in C:\Users\josem\Desktop\proyectoavanzadas2025\mensajeriaRedLocal)
+2025-11-25T09:52:31.636-05:00 DEBUG 22020 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-11-25T09:52:31.642-05:00  INFO 22020 --- [servidor] [main] com.proyecto.demo.DemoApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-11-25T09:52:33.900-05:00  INFO 22020 --- [servidor] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9010 (http)
+2025-11-25T09:52:33.927-05:00  INFO 22020 --- [servidor] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-25T09:52:33.929-05:00  INFO 22020 --- [servidor] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
+2025-11-25T09:52:34.024-05:00  INFO 22020 --- [servidor] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-25T09:52:34.024-05:00  INFO 22020 --- [servidor] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2251 ms
+2025-11-25T09:52:34.151-05:00  INFO 22020 --- [servidor] [main] c.proyecto.demo.config.DataSourceConfig  : Attempting JDBC connect test to jdbc:mysql://localhost:3307/mensajeria?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC (user=root)
+2025-11-25T09:52:34.771-05:00  INFO 22020 --- [servidor] [main] c.proyecto.demo.config.DataSourceConfig  : Connection test succeeded to jdbc:mysql://localhost:3307/mensajeria?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+2025-11-25T09:52:34.787-05:00  INFO 22020 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : app-ds - Starting...
+2025-11-25T09:52:34.855-05:00  INFO 22020 --- [servidor] [main] com.zaxxer.hikari.pool.HikariPool        : app-ds - Added connection com.mysql.cj.jdbc.ConnectionImpl@3af58f76
+2025-11-25T09:52:34.859-05:00  INFO 22020 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : app-ds - Start completed.
+2025-11-25T09:52:34.860-05:00  INFO 22020 --- [servidor] [main] c.proyecto.demo.config.DataSourceConfig  : Providing DataSource for URL jdbc:mysql://localhost:3307/mensajeria?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+2025-11-25T09:52:34.903-05:00  INFO 22020 --- [servidor] [main] com.proyecto.demo.auth.JdbcUserDao       : evitar DDL
+2025-11-25T09:52:34.956-05:00  INFO 22020 --- [servidor] [main] com.proyecto.demo.dao.JdbcMessageDao     : ensureTables skipped for messaging-related tables - DDL is managed outside the application
+2025-11-25T09:52:35.045-05:00  INFO 22020 --- [servidor] [main] com.proyecto.demo.dao.JdbcArchivoDao     : ensureTable skipped for 'archivos' - DDL is managed outside the application
+2025-11-25T09:52:35.087-05:00  INFO 22020 --- [servidor] [servidor] com.proyecto.demo.server.TcpServer       : Servidor TCP escuchando en 0.0.0.0:9001
+2025-11-25T09:52:35.103-05:00  INFO 22020 --- [servidor] [main] c.p.demo.db.DatabaseSelectorService      : DB selector preferType='mysql' configuredUrl='jdbc:mysql://localhost:3307/mensajeria?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC'
+2025-11-25T09:52:35.153-05:00  INFO 22020 --- [servidor] [main] c.p.demo.db.DatabaseSelectorService      : Connected to MySQL via jdbc:mysql://localhost:3307/mensajeria?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+2025-11-25T09:52:35.157-05:00  INFO 22020 --- [servidor] [main] c.proyecto.demo.db.DatabaseInitRunner    : Using database adapter: MySQL
+2025-11-25T09:52:35.225-05:00  INFO 22020 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : java.awt.headless=false | GraphicsEnvironment.isHeadless=false
+2025-11-25T09:52:35.312-05:00  INFO 22020 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Creando ventana UI del servidor...
+2025-11-25T09:52:35.660-05:00  INFO 22020 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Panel iniciado
+2025-11-25T09:52:35.660-05:00  INFO 22020 --- [servidor] [AWT-EventQueue-0] com.proyecto.demo.ui.UiServerWindow      : Ventana UI visible
+2025-11-25T09:52:35.661-05:00  INFO 22020 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : Using database adapter: MySQL
+2025-11-25T09:52:35.682-05:00  INFO 22020 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : Conectado a BD: MySQL | URL=jdbc:mysql://localhost:3307/mensajeria?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC | user=root@172.18.0.1
+2025-11-25T09:52:35.699-05:00  INFO 22020 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : Tabla: archivos
+2025-11-25T09:52:35.727-05:00  INFO 22020 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=1; propietario_id=3; nombre=Tipos de mensaje avanzadas.txt; ruta=Archivos_enviados\1764081660062_mysql3_Tipos de mensaje avanzadas.txt; tipo_mime=null; tamano=2259; creado_en=2025-11-25 14:41:00.089183; 
+2025-11-25T09:52:35.729-05:00  INFO 22020 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=2; propietario_id=1; nombre=conversar.txt; ruta=Archivos_enviados\1764081694457_mysql1_conversar.txt; tipo_mime=null; tamano=185; creado_en=2025-11-25 14:41:34.478316; 
+2025-11-25T09:52:35.730-05:00  INFO 22020 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : Tabla: mensajes
+2025-11-25T09:52:35.742-05:00  INFO 22020 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=1; emisor_id=2; receptor_id=1; tipo=TEXTO; contenido=mensaje de testeo; archivo_id=null; sesion_id=c03752eb-522d-4e86-a144-14f0227b59e4; creado_en=2025-11-24 22:03:45.477770; 
+2025-11-25T09:52:35.743-05:00  INFO 22020 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=2; emisor_id=1; receptor_id=2; tipo=TEXTO; contenido=respuesta de testeo; archivo_id=null; sesion_id=623ae263-9828-4caa-a8ba-99539278f72b; creado_en=2025-11-24 22:03:53.104761; 
+2025-11-25T09:52:35.746-05:00  INFO 22020 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=3; emisor_id=1; receptor_id=3; tipo=TEXTO; contenido=mensaje de text de 1 a 3; archivo_id=null; sesion_id=669b3c0d-dca1-4bf0-b463-1ee96127a40f; creado_en=2025-11-25 14:40:27.116345; 
+2025-11-25T09:52:35.748-05:00  INFO 22020 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=4; emisor_id=3; receptor_id=1; tipo=TEXTO; contenido=mensajes a 1 desde 3 mysql; archivo_id=null; sesion_id=52bc7dad-fd74-4837-8936-be2d71661498; creado_en=2025-11-25 14:40:49.054499; 
+2025-11-25T09:52:35.756-05:00  INFO 22020 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=5; emisor_id=3; receptor_id=1; tipo=ARCHIVO; contenido=Tipos de mensaje avanzadas.txt; archivo_id=1; sesion_id=null; creado_en=2025-11-25 14:41:00.110706; 
+2025-11-25T09:52:35.761-05:00  INFO 22020 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : Tabla: sesiones
+2025-11-25T09:52:35.768-05:00  INFO 22020 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=4c74091d-f6dd-41a0-b5d2-f39b44eab105; usuario_id=1; token=null; ip=10.236.197.200; fecha_inicio=2025-11-25 14:44:24.569887; fecha_fin=null; estado=ACTIVA; 
+2025-11-25T09:52:35.771-05:00  INFO 22020 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=52bc7dad-fd74-4837-8936-be2d71661498; usuario_id=3; token=null; ip=10.236.197.200; fecha_inicio=2025-11-25 14:39:34.417636; fecha_fin=2025-11-25 14:42:41.312689; estado=CERRADA; 
+2025-11-25T09:52:35.779-05:00  INFO 22020 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=623ae263-9828-4caa-a8ba-99539278f72b; usuario_id=1; token=null; ip=192.168.40.12; fecha_inicio=2025-11-24 22:03:19.342833; fecha_fin=2025-11-24 22:04:45.566031; estado=CERRADA; 
+2025-11-25T09:52:35.781-05:00  INFO 22020 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=669b3c0d-dca1-4bf0-b463-1ee96127a40f; usuario_id=1; token=null; ip=10.236.197.200; fecha_inicio=2025-11-25 14:39:45.501765; fecha_fin=null; estado=ACTIVA; 
+2025-11-25T09:52:35.785-05:00  INFO 22020 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=b6a191e9-0ad2-498d-bd94-5e751dc0a3c3; usuario_id=2; token=null; ip=192.168.40.12; fecha_inicio=2025-11-24 22:51:01.732324; fecha_fin=null; estado=ACTIVA; 
+2025-11-25T09:52:35.788-05:00  INFO 22020 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : Tabla: usuarios
+2025-11-25T09:52:35.795-05:00  INFO 22020 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=1; nombre_usuario=mysql1; contrasena_hash=03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4; 
+2025-11-25T09:52:35.796-05:00  INFO 22020 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=2; nombre_usuario=mysql2; contrasena_hash=03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4; 
+2025-11-25T09:52:35.797-05:00  INFO 22020 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   id=3; nombre_usuario=mysql3; contrasena_hash=03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4; 
+2025-11-25T09:52:35.799-05:00  INFO 22020 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : Tabla: sys_config
+2025-11-25T09:52:35.888-05:00  INFO 22020 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      :   Error leyendo tabla sys_config: Table 'mensajeria.sys_config' doesn't exist
+2025-11-25T09:52:35.895-05:00  INFO 22020 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : app.db.initOnStartup=false -> no se ejecuta initDatabase() (previene borrado de tablas)
+2025-11-25T09:52:35.937-05:00  INFO 22020 --- [servidor] [main] c.proyecto.demo.config.DatabaseConfig    : Creating primary DataSource: url='jdbc:mysql://localhost:3307/mensajeria?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC' user='root' (app.db.type=mysql)
+2025-11-25T09:52:35.941-05:00  INFO 22020 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : app-hikari-pool - Starting...
+2025-11-25T09:52:36.017-05:00  INFO 22020 --- [servidor] [main] com.zaxxer.hikari.pool.HikariPool        : app-hikari-pool - Added connection com.mysql.cj.jdbc.ConnectionImpl@76ff68c5
+2025-11-25T09:52:36.019-05:00  INFO 22020 --- [servidor] [main] com.zaxxer.hikari.HikariDataSource       : app-hikari-pool - Start completed.
+2025-11-25T09:52:36.177-05:00  INFO 22020 --- [servidor] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-11-25T09:52:36.875-05:00  INFO 22020 --- [servidor] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9010 (http) with context path ''
+2025-11-25T09:52:36.891-05:00  INFO 22020 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Started DemoApplication in 6.135 seconds (process running for 6.842)
+2025-11-25T09:52:36.898-05:00  INFO 22020 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Aplicación 'servidor' iniciada. Server address=0.0.0.0, port=9010
+2025-11-25T09:52:36.899-05:00  INFO 22020 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UI enabled property = true; intentando inicializar UI
+2025-11-25T09:52:36.909-05:00  INFO 22020 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : UI inicializada correctamente (initialize)
+2025-11-25T09:52:36.912-05:00  INFO 22020 --- [servidor] [main] com.proyecto.demo.DemoApplication        : UiServerWindow.initialize() invocado desde DemoApplication.run
+2025-11-25T09:52:36.914-05:00  INFO 22020 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Componente TcpServer activo
+2025-11-25T09:52:36.938-05:00  INFO 22020 --- [servidor] [main] com.proyecto.demo.DemoApplication        : Servicio de autenticación activo
+2025-11-25T09:52:36.989-05:00  INFO 22020 --- [servidor] [main] com.proyecto.demo.DemoApplication        : DB check OK - usuarios count = 3
+2025-11-25T09:52:36.989-05:00  INFO 22020 --- [servidor] [main] com.proyecto.demo.ui.UiServerWindow      : DB check OK - usuarios count = 3
+2025-11-25T09:52:36.997-05:00  INFO 22020 --- [servidor] [main] com.proyecto.demo.web.LogStartup         : LogStartup initialized. includePast=true, startPosition=0, path=C:\Users\josem\Desktop\proyectoavanzadas2025\mensajeriaRedLocal\servidor\demo\servidor\server_logs.txt
+2025-11-25T10:22:42.998-05:00  WARN 22020 --- [servidor] [app-ds housekeeper] com.zaxxer.hikari.pool.HikariPool        : app-ds - Thread starvation or clock leap detected (housekeeper delta=21m7s918ms956µs300ns).
+2025-11-25T10:22:44.179-05:00  WARN 22020 --- [servidor] [app-hikari-pool housekeeper] com.zaxxer.hikari.pool.HikariPool        : app-hikari-pool - Thread starvation or clock leap detected (housekeeper delta=21m7s912ms50µs900ns).

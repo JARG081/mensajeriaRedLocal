@@ -1,0 +1,34 @@
+////////
+Aplicación cliente servidor para el intercambio de información entre usuarios. pueden intercambiar información basada en mensajes de texto y archivos ( texto o binario )
+El servidor podrá recibir varias conexiones simultaneas para el procesamiento de mensajes, deberán aplicar el concepto de programación concurrente con hilos para gestionar las conexiones
+Toda la información del servidor debe ser almacenada en la base de datos relacional; ej: sql, Oracle
+Los usuarios se deben crear desde la app de cliente, pero se aceptan desde el servidor, solo pueden conectarse luego de ser aceptados
+Un usuario puede tener mas de 1 conexión desde mas de 1 dispositivo
+El servidor debe mostrar por consola todas las acciones que se están ejecutando
+El servidor limita la cantidad de conexiones por usuario
+La conexión entre servidor clientes se hace a través de protocolo tcp ip
+Los usuarios pueden descargar los archivos enviados
+La aplicación cliente implementara formularios maestro-detalle para mostrar la información asociada al usuario
+
+Una aplicación web mvc muéstralo siguiente
+Listado de usuarios registrados
+Mensajes de los usuarios, clasificados por el tipo de mensaje. Ver detalle de mensaje, incluye descargar archivos.
+Mostrar los siguientes informes
+Usuario con mas mensajes enviados: mostrar cantidad
+Archivos enviados, listar por tamaño y mostrar propietario
+Lista de usuarios conectados y información: Ip, hora de conexión, cantidad de mensajes enviados en ese instante)
+Lista de usuarios desconectados y información: Ip, hora de conexión, hora de desconexión, cantidad de mensajes enviados en ese instante)
+
+
+http://localhost:9300/web/usuarios
+http://localhost:9300/web/
+
+
+Un servicio web de api rest para mostrar lo siguiente:
+Información completa de usuario: Nombre, cantidad de mensajes enviados, cantidad de mensajes recibidos, fecha y hora de ultima conexión, estado (desconectado/conectado)
+Lista de mensajes enviados (Ip usuario,ip usuario remoto,fecha,hora)
+Lista de mensajes recibidos (Ip usuario,ip usuario remoto,fecha,hora)
+
+http://localhost:9200/api/usuarios/1
+http://localhost:9200/api/usuarios/1/mensajes/recibidos
+http://localhost:9200/api/usuarios/1/mensajes/enviados
